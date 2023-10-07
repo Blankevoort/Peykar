@@ -2,59 +2,53 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ProfileUpdateRequest;
-use Illuminate\Http\RedirectResponse;
+use App\Models\Profile;
 use Illuminate\Http\Request;
+use App\Traits\HttpResponses;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Redirect;
-use Illuminate\View\View;
 
 class ProfileController extends Controller
 {
-    /**
-     * Display the user's profile form.
-     */
-    public function edit(Request $request): View
+    use HttpResponses;
+
+    public function index()
     {
-        return view('profile.edit', [
-            'user' => $request->user(),
-        ]);
+        return Profile::where('user_id', Auth::user()->id)->get();
     }
 
-    /**
-     * Update the user's profile information.
-     */
-    public function update(ProfileUpdateRequest $request): RedirectResponse
+    public function store(Request $request)
     {
-        $request->user()->fill($request->validated());
+        $profile = Profile::create([
+            'user_id' => Auth::user()->id,
+            'name' => $request->name,
+            'birth' => $request->birth,
+            'resume' => $request->resume,
+            'description' => $request->description,
+        ]);
 
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
+        return $profile;
+    }
+
+    public function update(Request $request, Profile $profile)
+    {
+        if (Auth::user()->id !== $profile->user_id) {
+            return $this->error('', 'You are not authorized to make this request', 403);
         }
 
-        $request->user()->save();
+        $profile->update($request->all());
 
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+        return $profile;
     }
 
-    /**
-     * Delete the user's account.
-     */
-    public function destroy(Request $request): RedirectResponse
+    public function destroy(Profile $profile)
     {
-        $request->validateWithBag('userDeletion', [
-            'password' => ['required', 'current-password'],
-        ]);
+        return $this->isNotAuthorized($profile) ? $this->isNotAuthorized($profile) : $profile->delete();
+    }
 
-        $user = $request->user();
-
-        Auth::logout();
-
-        $user->delete();
-
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
-
-        return Redirect::to('/');
+    private function isNotAuthorized($profile)
+    {
+        if (Auth::user()->id !== $profile->user_id) {
+            return $this->error('', 'You are not authorized to make this request', 403);
+        }
     }
 }
