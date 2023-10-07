@@ -14,7 +14,13 @@ class JobController extends Controller
 
     public function index()
     {
-        return Job::all();
+        $jobs = Job::all();
+
+        foreach ($jobs as $job) {
+            $job->created_at = Carbon::parse($job->created_at)->format("Y-m-d");
+            $job->save();
+        }
+        return $jobs;
     }
 
     public function store(Request $request)
