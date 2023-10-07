@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string("workDate");
             $table->string("workHours");
             $table->string("workSpace");
-            $table->string("description");
+            $table->string("description")->nullable();
             $table->string("tags");
             $table->unsignedBigInteger("user_id");
             $table->timestamps();

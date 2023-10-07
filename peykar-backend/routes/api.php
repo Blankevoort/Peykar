@@ -21,11 +21,11 @@ Route::post('register', function (Request $request) {
 
 Route::post('login', [AuthController::class, 'login']);
 
-Route::resource('jobs', JobController::class);
-
 //Protected Routes
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
+
+    Route::resource('job', JobController::class);
 
     Route::resource('profile', ProfileController::class);
 

@@ -25,7 +25,6 @@ class JobController extends Controller
             'workDate' => 'required',
             'workHours' => 'required',
             'workSpace' => 'required',
-            'description' => 'required',
         ]);
 
         $jobs = Job::create([
@@ -41,23 +40,23 @@ class JobController extends Controller
         return $jobs;
     }
 
-    public function update(Request $request, Job $jobs)
+    public function update(Request $request, Job $job)
     {
-        if (Auth::user()->id !== $jobs->user_id) {
+        if (Auth::user()->id !== $job->user_id) {
             return $this->error('', 'You are not authorized to make this request', 403);
         }
 
-        $jobs->update($request->all());
+        $job->update($request->all());
 
-        return $jobs;
+        return $job;
     }
 
-    public function destroy(Job $jobs)
+    public function destroy(Job $job)
     {
-        return $this->isNotAuthorized($jobs) ? $this->isNotAuthorized($jobs) : $jobs->delete();
+        return $this->isNotAuthorized($job) ? $this->isNotAuthorized($job) : $job->delete();
     }
 
-    public function userStories()
+    public function userJobs()
     {
         return Job::where('user_id', Auth::user()->id)->get();
     }
