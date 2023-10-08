@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TagController;
 
 //User Login And Register Requests
 
@@ -26,6 +27,8 @@ Route::post('login', [AuthController::class, 'login']);
 Route::group(['middleware' => ['auth:sanctum']], function () {
 
     Route::resource('job', JobController::class);
+
+    Route::resource('tags', TagController::class);
 
     Route::resource('profile', ProfileController::class);
 

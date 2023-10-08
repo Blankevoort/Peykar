@@ -13,15 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('jobs', function (Blueprint $table) {
+        Schema::create('tags', function (Blueprint $table) {
             $table->id();
-            $table->string("title");
-            $table->string("workDate");
-            $table->string("workHours");
-            $table->string("workSpace");
-            $table->string("description")->nullable();
-            $table->unsignedBigInteger("tag_id");
-            $table->unsignedBigInteger("user_id");
+            $table->string("name");
             $table->timestamps();
         });
     }
@@ -33,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('jobs');
+        Schema::dropIfExists('tags');
     }
 };

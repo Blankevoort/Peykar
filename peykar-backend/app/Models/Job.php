@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use Carbon\Carbon;
+use App\Models\Tag;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -16,7 +16,7 @@ class Job extends Model
         "workHours",
         "workSpace",
         "description",
-        "tags",
+        "tag_id",
         "user_id",
     ];
 
@@ -25,10 +25,15 @@ class Job extends Model
         'updated_at' => 'datetime:Y-m-d',
     ];
 
-    protected $with = ['user'];
+    protected $with = ['user', "tags"];
 
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class);
     }
 }
