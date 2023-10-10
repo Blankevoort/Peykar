@@ -20,7 +20,6 @@ class JobController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'tags' => 'required',
             'title' => 'required',
             'workDate' => 'required',
             'workHours' => 'required',
@@ -29,7 +28,6 @@ class JobController extends Controller
 
         $jobs = Job::create([
             'user_id' => Auth::user()->id,
-            'tags' => $request->tags,
             'title' => $request->title,
             'workDate' => $request->workDate,
             'workHours' => $request->workHours,

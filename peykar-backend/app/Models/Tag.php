@@ -14,7 +14,7 @@ class Tag extends Model
         "name"
     ];
 
-    protected $with = ["jobs"];
+    protected $with = ['jobs'];
 
     public function jobs()
     {

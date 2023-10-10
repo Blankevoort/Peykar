@@ -25,7 +25,7 @@ class Job extends Model
         'updated_at' => 'datetime:Y-m-d',
     ];
 
-    protected $with = ['user', "tags"];
+    protected $with = ['user', 'tags'];
 
     public function user()
     {
