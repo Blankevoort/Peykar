@@ -14,8 +14,6 @@ class Tag extends Model
         "name"
     ];
 
-    protected $with = ['jobs'];
-
     public function jobs()
     {
         return $this->belongsToMany(Job::class);

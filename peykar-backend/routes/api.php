@@ -26,7 +26,7 @@ Route::post('login', [AuthController::class, 'login']);
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
 
-    Route::resource('job', JobController::class);
+    Route::resource('jobs', JobController::class);
 
     Route::resource('tags', TagController::class);
 

@@ -14,7 +14,7 @@ class JobController extends Controller
 
     public function index()
     {
-        return Job::all();
+        return Job::with('tags')->get();
     }
 
     public function store(Request $request)
@@ -26,7 +26,7 @@ class JobController extends Controller
             'workSpace' => 'required',
         ]);
 
-        $jobs = Job::create([
+        $job = Job::create([
             'user_id' => Auth::user()->id,
             'title' => $request->title,
             'workDate' => $request->workDate,
@@ -35,7 +35,7 @@ class JobController extends Controller
             'description' => $request->description,
         ]);
 
-        return $jobs;
+        return $job;
     }
 
     public function update(Request $request, Job $job)

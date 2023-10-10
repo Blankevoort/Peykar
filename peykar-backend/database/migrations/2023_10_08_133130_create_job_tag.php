@@ -16,9 +16,6 @@ return new class extends Migration
         Schema::create('job_tag', function (Blueprint $table) {
             $table->unsignedBigInteger("tag_id");
             $table->unsignedBigInteger("job_id");
-
-            $table->foreign('tag_id')->references('id')->on('tags');
-            $table->foreign('job_id')->references('id')->on('jobs');
         });
     }
 

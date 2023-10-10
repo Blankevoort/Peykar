@@ -16,7 +16,6 @@ class Job extends Model
         "workHours",
         "workSpace",
         "description",
-        "tag_id",
         "user_id",
     ];
 
@@ -24,8 +23,6 @@ class Job extends Model
         'created_at' => 'datetime:Y-m-d',
         'updated_at' => 'datetime:Y-m-d',
     ];
-
-    protected $with = ['user', 'tags'];
 
     public function user()
     {
