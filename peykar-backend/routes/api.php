@@ -17,14 +17,14 @@ Route::post('register', function (Request $request) {
     $user->email = $request->email;
     $user->password = Hash::make($request->password);
     $user->save();
-    return response()->json(['status'=> true]);
+    return response()->json(['status' => true]);
 });
 
 Route::post('login', [AuthController::class, 'login']);
 
 //Protected Routes
 
-Route::group(['middleware' => ['auth:sanctum']], function () {
+Route::group(['middleware' => ['role:Admin|User']], function () {
 
     Route::resource('jobs', JobController::class);
 
