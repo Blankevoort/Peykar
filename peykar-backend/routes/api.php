@@ -24,7 +24,7 @@ Route::post('login', [AuthController::class, 'login']);
 
 //Protected Routes
 
-Route::group(['middleware' => ['role:Admin|User']], function () {
+Route::group(['middleware' => ['auth:sanctum', 'role:Admin|User']], function () {
 
     Route::resource('jobs', JobController::class);
 
