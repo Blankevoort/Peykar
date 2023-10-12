@@ -17,6 +17,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'reminder_sent',
     ];
 
     protected $hidden = [
@@ -28,10 +29,15 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    protected $with = ['profile'];
+    protected $with = ['profile', 'roles'];
 
     public function profile()
     {
         return $this->hasOne(Profile::class);
+    }
+
+    public function tickets()
+    {
+        return $this->hasMany(Ticket::class);
     }
 }

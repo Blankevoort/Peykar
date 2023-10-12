@@ -45,6 +45,11 @@ class RolesAndPermissions extends Seeder
             'profile_edit',
             'profile_delete',
             'profile_access',
+            'ticket_show',
+            'ticket_create',
+            'ticket_edit',
+            'ticket_delete',
+            'ticket_access',
         ];
 
         foreach ($permissions as $permission) {
@@ -57,6 +62,8 @@ class RolesAndPermissions extends Seeder
 
         Role::create(['name' => 'Freelancer']);
 
+        Role::create(['name' => 'Supporter']);
+
         $role = Role::create(['name' => 'User']);
 
         $userPermissions = [
@@ -67,6 +74,9 @@ class RolesAndPermissions extends Seeder
             'profile_create',
             'profile_edit',
             'profile_delete',
+            'ticket_show',
+            'ticket_create',
+            'ticket_edit',
         ];
 
         foreach ($userPermissions as $permission) {
@@ -81,6 +91,9 @@ class RolesAndPermissions extends Seeder
             'profile_create',
             'profile_edit',
             'profile_delete',
+            'ticket_show',
+            'ticket_create',
+            'ticket_edit',
         ];
 
         foreach ($freelancerPermissions as $permission) {
@@ -110,6 +123,10 @@ class RolesAndPermissions extends Seeder
             'profile_edit',
             'profile_delete',
             'profile_access',
+            'ticket_show',
+            'ticket_create',
+            'ticket_edit',
+            'ticket_delete',
         ];
 
         foreach ($supporterPermissions as $permission) {
@@ -143,6 +160,11 @@ class RolesAndPermissions extends Seeder
             'profile_edit',
             'profile_delete',
             'profile_access',
+            'ticket_show',
+            'ticket_create',
+            'ticket_edit',
+            'ticket_delete',
+            'ticket_access',
         ];
 
         foreach ($adminPermissions as $permission) {

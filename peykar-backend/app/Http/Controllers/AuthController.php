@@ -3,14 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use Illuminate\Http\Request;
 use App\Traits\HttpResponses;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UserLoginRequest;
-use App\Mail\SendPass;
-use Illuminate\Support\Facades\Mail;
 
 class AuthController extends Controller
 {

@@ -5,16 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Profile extends Model
+class Ticket extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        "name",
-        "birth",
-        "resume",
-        "description",
-        "user_id",
+        'title',
+        'priority',
+        'description',
     ];
 
     protected $casts = [
