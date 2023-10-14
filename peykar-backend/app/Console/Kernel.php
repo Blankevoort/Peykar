@@ -21,11 +21,10 @@ class Kernel extends ConsoleKernel
                 $userId = $user->id;
 
                 foreach ($tokens as $token) {
-                    $tokenId = $token->id;
                     $tokenableId = $token->tokenable_id;
 
                     if ($tokenableId == $userId) {
-                        echo "User ID: $userId, Token ID: $tokenId\n";
+                        echo "User ID: $userId, Token ID: $tokenableId\n ";
                     } else {
                         if (!$user->reminder_sent) {
 
