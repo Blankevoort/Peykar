@@ -2,113 +2,6 @@
   <q-layout view="hHh lpR fFf">
     <q-header class="row justify-center shadow" style="height: 70px">
       <q-toolbar class="col-8">
-        <q-toolbar-title class="col-6 flex justify-right">
-          <img
-            src="https://jobvision.ir/assets/images/header/header-logo-primary-desktop.svg"
-          />
-
-          <q-separator class="q-mx-md" vertical />
-
-          <q-btn-dropdown
-            color="primary"
-            label="نام کاربری"
-            dropdown-icon="expand_more"
-            padding="8px 20px"
-          >
-            <q-list>
-              <q-item clickable v-ripple :active="active">
-                <q-item-section side></q-item-section>
-                <div class="q-mx-lg"></div>
-                <q-item-section>رزومه من</q-item-section>
-                <q-item-section avatar>
-                  <q-icon name="description" />
-                </q-item-section>
-              </q-item>
-
-              <q-item clickable v-ripple :active="active">
-                <q-item-section side></q-item-section>
-                <div class="q-mx-lg"></div>
-                <q-item-section>رزومه های ارسال شده</q-item-section>
-                <q-item-section avatar>
-                  <q-icon name="drive_folder_upload" />
-                </q-item-section>
-              </q-item>
-
-              <q-item clickable v-ripple :active="active">
-                <q-item-section side>48 مورد</q-item-section>
-                <div class="q-mx-lg"></div>
-                <q-item-section>مشاغل پیشنهادی</q-item-section>
-                <q-item-section avatar>
-                  <q-icon name="hotel_class" />
-                </q-item-section>
-              </q-item>
-
-              <q-item clickable v-ripple :active="active">
-                <q-item-section side>0 مورد</q-item-section>
-                <div class="q-mx-lg"></div>
-                <q-item-section>مشاغل نشان شده</q-item-section>
-                <q-item-section avatar>
-                  <q-icon name="favorite_outline" />
-                </q-item-section>
-              </q-item>
-
-              <q-item clickable v-ripple :active="active">
-                <q-item-section side>0 مورد</q-item-section>
-                <div class="q-mx-lg"></div>
-                <q-item-section>جستجو های ذخیره شده</q-item-section>
-                <q-item-section avatar>
-                  <q-icon name="saved_search" />
-                </q-item-section>
-              </q-item>
-
-              <q-item clickable v-ripple :active="active">
-                <q-item-section side>0 مورد</q-item-section>
-                <div class="q-mx-lg"></div>
-                <q-item-section>شرکت های دنبال شده</q-item-section>
-                <q-item-section avatar>
-                  <q-icon name="apartment" />
-                </q-item-section>
-              </q-item>
-
-              <q-item clickable v-ripple :active="active">
-                <q-item-section side></q-item-section>
-                <div class="q-mx-lg"></div>
-                <q-item-section>دوره های آموزشی پیشنهادی</q-item-section>
-                <q-item-section avatar>
-                  <q-icon name="school" />
-                </q-item-section>
-              </q-item>
-
-              <q-item clickable v-ripple :active="active">
-                <q-item-section side></q-item-section>
-                <div class="q-mx-lg"></div>
-                <q-item-section>نمایشگاه کار</q-item-section>
-                <q-item-section avatar>
-                  <q-icon name="business_center" />
-                </q-item-section>
-              </q-item>
-
-              <q-item clickable v-ripple :active="active">
-                <q-item-section side></q-item-section>
-                <div class="q-mx-lg"></div>
-                <q-item-section>تنظیمات ناحیه کاربری</q-item-section>
-                <q-item-section avatar>
-                  <q-icon name="settings" />
-                </q-item-section>
-              </q-item>
-
-              <q-item clickable v-ripple :active="active">
-                <q-item-section side>0 مورد</q-item-section>
-                <div class="q-mx-lg"></div>
-                <q-item-section>پیام های من</q-item-section>
-                <q-item-section avatar>
-                  <q-icon name="notifications " />
-                </q-item-section>
-              </q-item>
-            </q-list>
-          </q-btn-dropdown>
-        </q-toolbar-title>
-
         <div class="col-6">
           <div>
             <div>
@@ -139,6 +32,115 @@
             </div>
           </div>
         </div>
+
+        <q-toolbar-title class="col-6 row justify-end">
+          <q-btn-dropdown
+            color="primary"
+            label="نام کاربری"
+            dropdown-icon="expand_more"
+            padding="8px 20px"
+          >
+            <q-list>
+              <q-item clickable v-ripple>
+                <q-item-section avatar>
+                  <q-icon name="description" />
+                </q-item-section>
+                <q-item-section>رزومه من</q-item-section>
+                <div class="q-mx-lg"></div>
+                <q-item-section side></q-item-section>
+              </q-item>
+
+              <q-item clickable v-ripple>
+                <q-item-section avatar>
+                  <q-icon name="drive_folder_upload" />
+                </q-item-section>
+                <q-item-section>رزومه های ارسال شده</q-item-section>
+                <div class="q-mx-lg"></div>
+              </q-item>
+
+              <q-item clickable v-ripple>
+                <q-item-section avatar>
+                  <q-icon name="hotel_class" />
+                </q-item-section>
+                <q-item-section>مشاغل پیشنهادی</q-item-section>
+                <div class="q-mx-lg"></div>
+                <q-item-section side>48 مورد</q-item-section>
+              </q-item>
+
+              <q-item clickable v-ripple>
+                <q-item-section avatar>
+                  <q-icon name="favorite_outline" />
+                </q-item-section>
+                <q-item-section>مشاغل نشان شده</q-item-section>
+                <div class="q-mx-lg"></div>
+                <q-item-section side>0 مورد</q-item-section>
+              </q-item>
+
+              <q-item clickable v-ripple>
+                <q-item-section avatar>
+                  <q-icon name="saved_search" />
+                </q-item-section>
+                <q-item-section>جستجو های ذخیره شده</q-item-section>
+                <div class="q-mx-lg"></div>
+                <q-item-section side>0 مورد</q-item-section>
+              </q-item>
+
+              <q-item clickable v-ripple>
+                <q-item-section avatar>
+                  <q-icon name="apartment" />
+                </q-item-section>
+                <q-item-section>شرکت های دنبال شده</q-item-section>
+                <div class="q-mx-lg"></div>
+                <q-item-section side>0 مورد</q-item-section>
+              </q-item>
+
+              <q-item clickable v-ripple>
+                <q-item-section avatar>
+                  <q-icon name="school" />
+                </q-item-section>
+                <q-item-section>دوره های آموزشی پیشنهادی</q-item-section>
+                <div class="q-mx-lg"></div>
+              </q-item>
+
+              <q-item clickable v-ripple>
+                <q-item-section avatar>
+                  <q-icon name="business_center" />
+                </q-item-section>
+                <q-item-section>نمایشگاه کار</q-item-section>
+                <div class="q-mx-lg"></div>
+              </q-item>
+
+              <q-item clickable v-ripple>
+                <q-item-section avatar>
+                  <q-icon name="settings" />
+                </q-item-section>
+                <q-item-section>تنظیمات ناحیه کاربری</q-item-section>
+              </q-item>
+
+              <q-item clickable v-ripple>
+                <q-item-section avatar>
+                  <q-icon name="notifications " />
+                </q-item-section>
+                <q-item-section>پیام های من</q-item-section>
+                <div class="q-mx-lg"></div>
+                <q-item-section side>0 مورد</q-item-section>
+              </q-item>
+
+              <q-item class="text-red" clickable v-ripple>
+                <q-item-section avatar>
+                  <q-icon name="logout " />
+                </q-item-section>
+                <q-item-section>خروج از حساب</q-item-section>
+              </q-item>
+            </q-list>
+          </q-btn-dropdown>
+
+          <q-separator class="q-mx-md" vertical />
+
+          <img
+            src="https://jobvision.ir/assets/images/header/header-logo-primary-desktop.svg"
+          />
+        </q-toolbar-title>
       </q-toolbar>
     </q-header>
 
