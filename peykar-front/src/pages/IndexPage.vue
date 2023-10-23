@@ -1,33 +1,42 @@
 <template>
-  <q-page class="row justify-center">
+  <q-page class="row justify-center q-py-md">
     <div class="col-8 row justify-between content-center items-center">
-        <div class="col-6 text-weight-bold" style="font-size: 40px">
-          <div class="row" style="width: 350px">
-            <span class="text-primary">39,271</span> آگهی شغلی در
-            <span class="text-primary">454</span> شهر
-          </div>
+      <div class="col-6 text-weight-bold" style="font-size: 40px">
+        <div class="row" style="width: 350px">
+          <span class="text-primary">39,271</span> آگهی شغلی در
+          <span class="text-primary">454</span> شهر
         </div>
+      </div>
 
-        <div class="col-6">
-          <div class="row justify-end">
-            <img
-              style="width: 350px; height: 350px"
-              src="../assets/IR-Map.svg"
-              alt="iranMap"
-            />
-          </div>
+      <div class="col-6">
+        <div class="row justify-center">
+          <img
+            style="width: 350px; height: 350px"
+            src="../assets/IR-Map.svg"
+            alt="iranMap"
+          />
         </div>
+      </div>
 
-        <div class="text-weight-bold q-my-md" style="font-size: 20px;">دنبال چه شغلی می‌گردید؟</div>
+      <div class="text-weight-bold q-my-md" style="font-size: 20px">
+        دنبال چه شغلی می‌گردید؟
+      </div>
 
-      <div class="col-12 row justify-between content-center ">
+      <div class="col-12 row justify-between content-center">
         <q-select
           class="col-4 q-px-sm"
           outlined
           v-model="model"
           :options="options"
           label="عنوان شغلی یا شرکت"
-        />
+          use-input
+          hide-selected
+          fill-input
+        >
+          <template v-slot:prepend>
+            <q-icon name="search" />
+          </template>
+        </q-select>
 
         <q-select
           class="col-3 q-px-sm"
@@ -35,7 +44,11 @@
           v-model="model"
           :options="options"
           label="گروه شغلی"
-        />
+        >
+          <template v-slot:prepend>
+            <q-icon name="work" />
+          </template>
+        </q-select>
 
         <q-select
           class="col-3 q-px-sm"
@@ -43,7 +56,14 @@
           v-model="model"
           :options="options"
           label="شهر"
-        />
+          use-input
+          hide-selected
+          fill-input
+        >
+          <template v-slot:prepend>
+            <q-icon name="location_on" />
+          </template>
+        </q-select>
 
         <q-btn
           color="primary"
@@ -52,6 +72,145 @@
           class="col-2 q-px-sm"
         />
       </div>
+
+      <div
+        class="text-weight-bold col-12 q-mb-md"
+        style="font-size: 20px; height: 50px; margin-top: 55px"
+      >
+        تازه‌ترین آگهی‌های شغلی برای شما
+      </div>
+
+      <div class="col-12 row">
+        <q-tabs
+          class="text-bold"
+          style="height: 50px"
+          active-color="primary"
+          content-class="text-bold"
+          inline-label
+          v-model="tab"
+        >
+          <q-tab class="text-bold" name="suggestions">
+            <q-icon class="q-pr-md" size="24px" name="lightbulb" />
+            <span>مشاغل پیشنهادی</span>
+          </q-tab>
+
+          <q-tab content-class="text-bold" name="history">
+            <q-icon class="q-pr-md" size="24px" name="history" />
+            <span>آخرین جستجوی یوزر</span>
+          </q-tab>
+        </q-tabs>
+      </div>
+
+      <q-tab-panels
+        class="full-width"
+        v-model="tab"
+        animated
+        swipeable
+        vertical
+        transition-prev="jump-up"
+        transition-next="jump-up"
+      >
+        <q-tab-panel
+          class="row justify-between"
+          name="suggestions"
+          style="font-size: 16px"
+        >
+          <div class="col-12 text-grey-6 q-my-md">
+            پیشنهاد شده بر اساس رفتار و عملکرد شما
+          </div>
+
+          <div class="q-px-sm col-4">
+            <q-card flat bordered>
+              <q-card-section horizontal>
+                <q-card-section class="col-5 flex flex-center">
+                  <q-img
+                    class="rounded-borders"
+                    src="https://cdn.quasar.dev/img/parallax2.jpg"
+                  />
+                </q-card-section>
+
+                <q-card-section>
+                  <div class="q-mt-sm q-mb-xs">توسعه دهنده فرانت</div>
+                  <div class="text-caption">شرکت شبکه هوشمند امید</div>
+                  <div class="text-caption text-grey">
+                    <span>تهران،میرداماد |</span>
+                    <span class="text-positive"> 20 - 25 </span>
+                  </div>
+                </q-card-section>
+              </q-card-section>
+
+              <q-separator inset />
+
+              <q-card-actions class="q-px-sm">
+                <q-btn flat> 6 روز پیش </q-btn>
+                <q-space />
+                <q-btn color="positive" label="ارسال رزومه" />
+              </q-card-actions>
+            </q-card>
+          </div>
+
+          <div class="q-px-sm col-4">
+            <q-card flat bordered>
+              <q-card-section horizontal>
+                <q-card-section class="col-5 flex flex-center">
+                  <q-img
+                    class="rounded-borders"
+                    src="https://cdn.quasar.dev/img/parallax2.jpg"
+                  />
+                </q-card-section>
+
+                <q-card-section>
+                  <div class="q-mt-sm q-mb-xs">توسعه دهنده فرانت</div>
+                  <div class="text-caption">شرکت شبکه هوشمند امید</div>
+                  <div class="text-caption text-grey">
+                    <span>تهران،میرداماد |</span>
+                  </div>
+                </q-card-section>
+              </q-card-section>
+
+              <q-separator inset />
+
+              <q-card-actions class="q-px-sm">
+                <q-btn flat> 6 روز پیش </q-btn>
+                <q-space />
+                <q-btn color="positive" label="ارسال رزومه" />
+              </q-card-actions>
+            </q-card>
+          </div>
+
+          <div class="q-px-sm col-4">
+            <q-card flat bordered>
+              <q-card-section horizontal>
+                <q-card-section class="col-5 flex flex-center">
+                  <q-img
+                    class="rounded-borders"
+                    src="https://cdn.quasar.dev/img/parallax2.jpg"
+                  />
+                </q-card-section>
+
+                <q-card-section>
+                  <div class="q-mt-sm q-mb-xs">توسعه دهنده فرانت</div>
+                  <div class="text-caption">شرکت شبکه هوشمند امید</div>
+                  <div class="text-caption text-grey">
+                    <span>تهران،میرداماد |</span>
+                    <span class="text-positive"> 20 - 25 </span>
+                  </div>
+                </q-card-section>
+              </q-card-section>
+
+              <q-separator inset />
+
+              <q-card-actions class="q-px-sm">
+                <q-btn flat> 6 روز پیش </q-btn>
+                <q-space />
+                <q-btn color="positive" label="ارسال رزومه" />
+              </q-card-actions>
+            </q-card>
+          </div>
+        </q-tab-panel>
+
+        <q-tab-panel name="history"> </q-tab-panel>
+      </q-tab-panels>
     </div>
   </q-page>
 </template>
@@ -63,8 +222,20 @@ export default {
   setup() {
     return {
       model: ref(null),
+      tab: ref("suggestions"),
       options: ["Google", "Facebook", "Twitter", "Apple", "Oracle"],
     };
   },
 };
 </script>
+
+<style scoped>
+.q-tab-panel {
+  padding: 0;
+}
+
+.q-card--bordered {
+  border: 2px solid #dde1e6;
+  border-radius: 12px;
+}
+</style>
