@@ -119,7 +119,7 @@
             پیشنهاد شده بر اساس رفتار و عملکرد شما
           </div>
 
-          <div class="q-px-sm col-4">
+          <div class="q-px-sm q-my-md col-4">
             <q-card flat bordered>
               <q-card-section horizontal>
                 <q-card-section class="col-5 flex flex-center">
@@ -149,7 +149,7 @@
             </q-card>
           </div>
 
-          <div class="q-px-sm col-4">
+          <div class="q-px-sm q-my-md col-4">
             <q-card flat bordered>
               <q-card-section horizontal>
                 <q-card-section class="col-5 flex flex-center">
@@ -163,7 +163,7 @@
                   <div class="q-mt-sm q-mb-xs">توسعه دهنده فرانت</div>
                   <div class="text-caption">شرکت شبکه هوشمند امید</div>
                   <div class="text-caption text-grey">
-                    <span>تهران،میرداماد |</span>
+                    <span>تهران،میرداماد </span>
                   </div>
                 </q-card-section>
               </q-card-section>
@@ -178,7 +178,7 @@
             </q-card>
           </div>
 
-          <div class="q-px-sm col-4">
+          <div class="q-px-sm q-my-md col-4">
             <q-card flat bordered>
               <q-card-section horizontal>
                 <q-card-section class="col-5 flex flex-center">
@@ -192,8 +192,7 @@
                   <div class="q-mt-sm q-mb-xs">توسعه دهنده فرانت</div>
                   <div class="text-caption">شرکت شبکه هوشمند امید</div>
                   <div class="text-caption text-grey">
-                    <span>تهران،میرداماد |</span>
-                    <span class="text-positive"> 20 - 25 </span>
+                    <span>تهران،میرداماد</span>
                   </div>
                 </q-card-section>
               </q-card-section>
@@ -211,6 +210,111 @@
 
         <q-tab-panel name="history"> </q-tab-panel>
       </q-tab-panels>
+
+      <div class="col-12 q-mt-lg q-mb-sm row justify-center">
+        <q-btn
+          outline
+          color="black"
+          icon-right="keyboard_backspace"
+          label="مشاهده همه"
+        />
+      </div>
+
+      <q-card
+        flat
+        class="global-emplyment q-mt-md col-12 row justify-center content-center items-center"
+      >
+        <div class="col-10">
+          <q-card-section
+            class="row justify-between content-center items-center"
+            horizontal
+          >
+            <q-card-section class="col-6">
+              <div class="text-bold q-pb-md">استخدام‌های سراسری و دولتی</div>
+              <div class="q-py-md">
+                در این قسمت، آخرین فرصت‌های استخدام سراسری و دولتی به‌طور مرتب
+                به‌روزرسانی و منتشر می‌شوند. به صفحه استخدام‌های سراسری سر بزنید
+                و از بررسی روزانه ده‌ها سایت و مرجع خبری دیگر بی‌نیاز شوید.
+              </div>
+
+              <q-btn
+                class="q-my-md"
+                outline
+                color="black"
+                label="مشاهده فرصت های شغلی"
+              />
+            </q-card-section>
+
+            <div class="col-4">
+              <q-img
+                style="width: 80%; height: 80%"
+                src="https://cdn.quasar.dev/img/parallax2.jpg"
+              />
+            </div>
+          </q-card-section>
+        </div>
+      </q-card>
+
+      <div class="col-12 q-my-md row">
+        <div class="col-12 row justify-center items-center">
+          <div class="q-px-md">به روز رسانی‌های سایت</div>
+
+          <q-separator style="height: 1px" class="col-10" inset />
+        </div>
+
+        <q-list class="q-my-md col-12 row items-center" disable>
+          <q-item class="col-12">
+            <q-item-section avatar>
+              <q-icon size="20px" color="grey-5" name="done" />
+            </q-item-section>
+
+            <q-item-section class="text-grey-5"
+              >در صفحه مشاغل پیشنهادی، برای مرتب سازی موقعیت‌های شغلی گزینه
+              بیشترین حقوق هم اضافه شد.
+            </q-item-section>
+
+            <q-item-section side>
+              <q-badge color="green-2" text-color="green-9"> جدید </q-badge>
+            </q-item-section>
+          </q-item>
+
+          <q-item class="col-12">
+            <q-item-section avatar>
+              <q-icon size="20px" color="grey-5" name="done" />
+            </q-item-section>
+
+            <q-item-section class="text-grey-5"
+              >از این پس در صورتی که کارجو جزو اتباع خارجی باشد می‌تواند در
+              رزومه ساز جاب ویژن ملیت خود را اعلام کند.
+            </q-item-section>
+
+            <q-item-section side>
+              <q-badge color="green-2" text-color="green-9"> جدید </q-badge>
+            </q-item-section>
+          </q-item>
+
+          <q-item class="col-12">
+            <q-item-section avatar>
+              <q-icon size="20px" color="grey-5" name="done" />
+            </q-item-section>
+
+            <q-item-section class="text-grey-5">
+              در صفحه فرصت های شغلی، برای فیلتر حقوق دو بازه جدید «۳۵ تا ۶۰
+              میلیون» و «بالای ۶۰ میلیون» اضافه شدند.
+            </q-item-section>
+          </q-item>
+
+          <q-item class="col-12">
+            <q-item-section avatar>
+              <q-icon size="20px" color="grey-5" name="done" />
+            </q-item-section>
+
+            <q-item-section class="text-grey-5">
+              طراحی جدید برای صفحه اصلی جاب ویژن منتشر شد.
+            </q-item-section>
+          </q-item>
+        </q-list>
+      </div>
     </div>
   </q-page>
 </template>
@@ -237,5 +341,18 @@ export default {
 .q-card--bordered {
   border: 2px solid #dde1e6;
   border-radius: 12px;
+}
+
+.global-emplyment {
+  border-radius: 10px;
+  background-color: #f8f9fa;
+}
+
+.text-muted {
+  color: #8e9cb2 !important;
+}
+
+[dir="rtl"] .q-item__section--side {
+  padding-left: 0;
 }
 </style>
