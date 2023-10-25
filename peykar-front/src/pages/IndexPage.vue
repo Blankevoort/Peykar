@@ -1,5 +1,5 @@
 <template>
-  <q-page class="row justify-center q-py-md">
+  <q-page class="row justify-center">
     <div class="col-8 row justify-between content-center items-center">
       <div class="col-6 text-weight-bold" style="font-size: 40px">
         <div class="row" style="width: 350px">
