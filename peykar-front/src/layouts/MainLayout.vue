@@ -139,6 +139,7 @@
 
           <img
             src="https://jobvision.ir/assets/images/header/header-logo-primary-desktop.svg"
+            @click="$router.push('/')"
           />
         </q-toolbar-title>
       </q-toolbar>
@@ -304,6 +305,7 @@
 
 <script>
 import { ref } from "vue";
+import { useRouter } from "vue-router";
 
 export default {
   setup() {
