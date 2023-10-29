@@ -276,11 +276,11 @@
               </div>
 
               <div class="col-12 row justify-center items-center q-my-md">
-                <q-tabs v-model="tab">
+                <q-tabs active-class="active-tab" v-model="tab">
                   <q-tab
                     class="q-mx-xs text-black"
                     style="background: white; border-radius: 8px; width: 60px"
-                    name="pageOne"
+                    name="firstPage"
                     label="اولین"
                   />
 
@@ -294,8 +294,8 @@
                   />
 
                   <q-tab
-                    class="q-mx-xs text-white"
-                    style="background: #5660f2; border-radius: 8px; width: 40px"
+                    class="q-mx-xs text-black"
+                    style="background: white; border-radius: 8px; width: 40px"
                     name="pageThree"
                     label="2"
                   />
@@ -312,7 +312,7 @@
                   <q-tab
                     class="q-mx-xs text-black"
                     style="background: white; border-radius: 8px; width: 60px"
-                    name="pageOne"
+                    name="lastPage"
                     label="آخرین"
                   />
                 </q-tabs>
@@ -351,18 +351,441 @@
           </div>
         </div>
       </div>
+
+      <div class="col-12 row justify-center q-mb-xl q-mt-sm">
+        <div class="col-8">
+          <div class="row">
+            <swiper
+              dir="rtl"
+              class="col-12 row"
+              ref="{swiperRef}"
+              :slidesPerView="5"
+              :centeredSlides="true"
+              :spaceBetween="5"
+              :modules="modules"
+              :autoplay="{
+                delay: 2500,
+                disableOnInteraction: false,
+              }"
+            >
+              <swiper-slide class="col-12 row q-px-xs">
+                <div class="col-12">
+                  <q-card class="row justify-center q-pa-sm companies-card">
+                    <div class="col-12 row q-ma-sm q-px-sm">
+                      <q-img
+                        class="col-12"
+                        src="../assets/logo.svg"
+                        style="width: 75px; height: 100px"
+                      />
+
+                      <div class="col-12 row">
+                        <div class="col-12">نام شرکت</div>
+
+                        <div class="col-12">
+                          <q-badge class="q-my-xs">
+                            5.0
+                            <q-icon
+                              name="star"
+                              color="yellow"
+                              class="q-ml-xs"
+                            />
+                          </q-badge>
+                        </div>
+
+                        <div class="col-12 q-mt-md">
+                          <div class="text-primary">
+                            4 اگهی شغلی فعال
+                            <q-icon
+                              name="keyboard_backspace"
+                              size="16px"
+                              class="q-ml-sm q-mt-xs"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-12 row q-mt-md q-px-sm q-py-xs">
+                      <q-btn
+                        class="col"
+                        color="grey-5"
+                        icon="add"
+                        label="دنبال کنید"
+                      />
+                    </div>
+                  </q-card>
+                </div>
+              </swiper-slide>
+
+              <swiper-slide class="col-12 row q-px-xs">
+                <div class="col-12">
+                  <q-card class="row justify-center q-pa-sm companies-card">
+                    <div class="col-12 row q-ma-sm q-px-sm">
+                      <q-img
+                        class="col-12"
+                        src="../assets/logo.svg"
+                        style="width: 75px; height: 100px"
+                      />
+
+                      <div class="col-12 row">
+                        <div class="col-12">نام شرکت</div>
+
+                        <div class="col-12">
+                          <q-badge class="q-my-xs">
+                            5.0
+                            <q-icon
+                              name="star"
+                              color="yellow"
+                              class="q-ml-xs"
+                            />
+                          </q-badge>
+                        </div>
+
+                        <div class="col-12 q-mt-md">
+                          <div class="text-primary">
+                            4 اگهی شغلی فعال
+                            <q-icon
+                              name="keyboard_backspace"
+                              size="16px"
+                              class="q-ml-sm q-mt-xs"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-12 row q-mt-md q-px-sm q-py-xs">
+                      <q-btn
+                        class="col"
+                        color="grey-5"
+                        icon="add"
+                        label="دنبال کنید"
+                      />
+                    </div>
+                  </q-card>
+                </div>
+              </swiper-slide>
+
+              <swiper-slide class="col-12 row q-px-xs">
+                <div class="col-12">
+                  <q-card class="row justify-center q-pa-sm companies-card">
+                    <div class="col-12 row q-ma-sm q-px-sm">
+                      <q-img
+                        class="col-12"
+                        src="../assets/logo.svg"
+                        style="width: 75px; height: 100px"
+                      />
+
+                      <div class="col-12 row">
+                        <div class="col-12">نام شرکت</div>
+
+                        <div class="col-12">
+                          <q-badge class="q-my-xs">
+                            5.0
+                            <q-icon
+                              name="star"
+                              color="yellow"
+                              class="q-ml-xs"
+                            />
+                          </q-badge>
+                        </div>
+
+                        <div class="col-12 q-mt-md">
+                          <div class="text-primary">
+                            4 اگهی شغلی فعال
+                            <q-icon
+                              name="keyboard_backspace"
+                              size="16px"
+                              class="q-ml-sm q-mt-xs"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-12 row q-mt-md q-px-sm q-py-xs">
+                      <q-btn
+                        class="col"
+                        color="grey-5"
+                        icon="add"
+                        label="دنبال کنید"
+                      />
+                    </div>
+                  </q-card>
+                </div>
+              </swiper-slide>
+
+              <swiper-slide class="col-12 row q-px-xs">
+                <div class="col-12">
+                  <q-card class="row justify-center q-pa-sm companies-card">
+                    <div class="col-12 row q-ma-sm q-px-sm">
+                      <q-img
+                        class="col-12"
+                        src="../assets/logo.svg"
+                        style="width: 75px; height: 100px"
+                      />
+
+                      <div class="col-12 row">
+                        <div class="col-12">نام شرکت</div>
+
+                        <div class="col-12">
+                          <q-badge class="q-my-xs">
+                            5.0
+                            <q-icon
+                              name="star"
+                              color="yellow"
+                              class="q-ml-xs"
+                            />
+                          </q-badge>
+                        </div>
+
+                        <div class="col-12 q-mt-md">
+                          <div class="text-primary">
+                            4 اگهی شغلی فعال
+                            <q-icon
+                              name="keyboard_backspace"
+                              size="16px"
+                              class="q-ml-sm q-mt-xs"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-12 row q-mt-md q-px-sm q-py-xs">
+                      <q-btn
+                        class="col"
+                        color="grey-5"
+                        icon="add"
+                        label="دنبال کنید"
+                      />
+                    </div>
+                  </q-card>
+                </div>
+              </swiper-slide>
+
+              <swiper-slide class="col-12 row q-px-xs">
+                <div class="col-12">
+                  <q-card class="row justify-center q-pa-sm companies-card">
+                    <div class="col-12 row q-ma-sm q-px-sm">
+                      <q-img
+                        class="col-12"
+                        src="../assets/logo.svg"
+                        style="width: 75px; height: 100px"
+                      />
+
+                      <div class="col-12 row">
+                        <div class="col-12">نام شرکت</div>
+
+                        <div class="col-12">
+                          <q-badge class="q-my-xs">
+                            5.0
+                            <q-icon
+                              name="star"
+                              color="yellow"
+                              class="q-ml-xs"
+                            />
+                          </q-badge>
+                        </div>
+
+                        <div class="col-12 q-mt-md">
+                          <div class="text-primary">
+                            4 اگهی شغلی فعال
+                            <q-icon
+                              name="keyboard_backspace"
+                              size="16px"
+                              class="q-ml-sm q-mt-xs"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-12 row q-mt-md q-px-sm q-py-xs">
+                      <q-btn
+                        class="col"
+                        color="grey-5"
+                        icon="add"
+                        label="دنبال کنید"
+                      />
+                    </div>
+                  </q-card>
+                </div>
+              </swiper-slide>
+
+              <swiper-slide class="col-12 row q-px-xs">
+                <div class="col-12">
+                  <q-card class="row justify-center q-pa-sm companies-card">
+                    <div class="col-12 row q-ma-sm q-px-sm">
+                      <q-img
+                        class="col-12"
+                        src="../assets/logo.svg"
+                        style="width: 75px; height: 100px"
+                      />
+
+                      <div class="col-12 row">
+                        <div class="col-12">نام شرکت</div>
+
+                        <div class="col-12">
+                          <q-badge class="q-my-xs">
+                            5.0
+                            <q-icon
+                              name="star"
+                              color="yellow"
+                              class="q-ml-xs"
+                            />
+                          </q-badge>
+                        </div>
+
+                        <div class="col-12 q-mt-md">
+                          <div class="text-primary">
+                            4 اگهی شغلی فعال
+                            <q-icon
+                              name="keyboard_backspace"
+                              size="16px"
+                              class="q-ml-sm q-mt-xs"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-12 row q-mt-md q-px-sm q-py-xs">
+                      <q-btn
+                        class="col"
+                        color="grey-5"
+                        icon="add"
+                        label="دنبال کنید"
+                      />
+                    </div>
+                  </q-card>
+                </div>
+              </swiper-slide>
+
+              <swiper-slide class="col-12 row q-px-xs">
+                <div class="col-12">
+                  <q-card class="row justify-center q-pa-sm companies-card">
+                    <div class="col-12 row q-ma-sm q-px-sm">
+                      <q-img
+                        class="col-12"
+                        src="../assets/logo.svg"
+                        style="width: 75px; height: 100px"
+                      />
+
+                      <div class="col-12 row">
+                        <div class="col-12">نام شرکت</div>
+
+                        <div class="col-12">
+                          <q-badge class="q-my-xs">
+                            5.0
+                            <q-icon
+                              name="star"
+                              color="yellow"
+                              class="q-ml-xs"
+                            />
+                          </q-badge>
+                        </div>
+
+                        <div class="col-12 q-mt-md">
+                          <div class="text-primary">
+                            4 اگهی شغلی فعال
+                            <q-icon
+                              name="keyboard_backspace"
+                              size="16px"
+                              class="q-ml-sm q-mt-xs"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-12 row q-mt-md q-px-sm q-py-xs">
+                      <q-btn
+                        class="col"
+                        color="grey-5"
+                        icon="add"
+                        label="دنبال کنید"
+                      />
+                    </div>
+                  </q-card>
+                </div>
+              </swiper-slide>
+
+              <swiper-slide class="col-12 row q-px-xs">
+                <div class="col-12">
+                  <q-card class="row justify-center q-pa-sm companies-card">
+                    <div class="col-12 row q-ma-sm q-px-sm">
+                      <q-img
+                        class="col-12"
+                        src="../assets/logo.svg"
+                        style="width: 75px; height: 100px"
+                      />
+
+                      <div class="col-12 row">
+                        <div class="col-12">نام شرکت</div>
+
+                        <div class="col-12">
+                          <q-badge class="q-my-xs">
+                            5.0
+                            <q-icon
+                              name="star"
+                              color="yellow"
+                              class="q-ml-xs"
+                            />
+                          </q-badge>
+                        </div>
+
+                        <div class="col-12 q-mt-md">
+                          <div class="text-primary">
+                            4 اگهی شغلی فعال
+                            <q-icon
+                              name="keyboard_backspace"
+                              size="16px"
+                              class="q-ml-sm q-mt-xs"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-12 row q-mt-md q-px-sm q-py-xs">
+                      <q-btn
+                        class="col"
+                        color="grey-5"
+                        icon="add"
+                        label="دنبال کنید"
+                      />
+                    </div>
+                  </q-card>
+                </div>
+              </swiper-slide>
+            </swiper>
+          </div>
+        </div>
+      </div>
     </div>
   </q-page>
 </template>
 
 <script>
 import { ref } from "vue";
+import { Swiper, SwiperSlide } from "swiper/vue";
+import "swiper/css";
+
+import "swiper/css/navigation";
+import "swiper/css/autoplay";
+
+import { Autoplay, Navigation } from "swiper/modules";
 
 export default {
+  components: {
+    Swiper,
+    SwiperSlide,
+  },
   setup() {
     return {
       model: ref(null),
-      tab: ref("suggestions"),
+      tab: ref("firstPage"),
       group: ref("op1"),
       options: ["Google", "Facebook", "Twitter", "Apple", "Oracle"],
       optionss: [
@@ -379,6 +802,8 @@ export default {
           value: "op3",
         },
       ],
+      slide: ref(1),
+      modules: [Autoplay, Navigation],
     };
   },
 };
@@ -391,5 +816,19 @@ export default {
 
 .q-item {
   padding: 0;
+}
+
+.q-carousel {
+  background-color: #f8f9fa;
+}
+
+.active-tab {
+  background-color: #5660f2 !important;
+  color: white !important;
+}
+
+.companies-card {
+  border: 2px solid #dde1e6;
+  border-radius: 16px;
 }
 </style>
