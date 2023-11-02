@@ -192,7 +192,7 @@
               <q-btn
                 color="primary"
                 class="col-12 q-mb-sm"
-                label="امکان استعلام معلولین"
+                label="فعال سازی اطلاع رسانی شغلی"
                 icon="notification_add"
                 style="height: 50px"
               />
@@ -326,7 +326,10 @@
               <q-card
                 class="col-8 row justify-center q-my-xl q-my-xl q-px-md q-pa-md"
               >
-                <div class="text-weight-bold q-my-md" style="font-size: 18px">
+                <div
+                  class="text-weight-bold text-primary q-my-md"
+                  style="font-size: 18px"
+                >
                   اطلاع رسانی شغلی
                 </div>
 
