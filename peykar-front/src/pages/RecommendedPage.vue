@@ -406,6 +406,10 @@ export default {
   background-color: transparent;
 }
 
+.q-tab-panel {
+  padding: 0;
+}
+
 .active-tab {
   border-left: 3px solid;
   border-color: #5660f2 !important;
