@@ -120,7 +120,7 @@
 
             <div class="col-8 row">
               <div
-                style="background-color: white"
+                style="background-color: white; height: 50px"
                 class="col-12 row justify-between"
               >
                 <div class="col-6 q-px-md q-my-md text-grey-7">
@@ -169,6 +169,7 @@
               <!-- jobs List -->
 
               <div
+              style="margin-top: -250px"
                 class="col-12 row justify-between content-center items-center"
               >
                 <div class="col-12 q-my-xs row justify-center items-center">
