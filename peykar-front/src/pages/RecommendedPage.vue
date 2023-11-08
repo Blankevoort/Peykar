@@ -118,8 +118,8 @@
           <q-tab-panel class="row" name="CVSent">
             <!-- Sorting -->
 
-            <div class="col-9 row">
-              <div class="col-12 row" style="height: 50px">
+            <div class="col-9">
+              <div class="full-width row justify-start">
                 <q-tabs
                   active-class="active-category"
                   indicator-color="transparent"
@@ -162,50 +162,102 @@
                 </q-tabs>
               </div>
 
-              <div
-                style="
-                  background-color: white;
-                  height: 50px;
-                  margin-top: -275px;
-                "
-                class="col-12"
-              >
-                <div class="q-px-md text-right">
-                  <q-btn-dropdown
-                    class="q-my-sm"
-                    label="تاریخ درخواست"
-                    dropdown-icon="arrow_drop_down"
-                    icon="sort"
-                    flat
-                  >
-                    <q-tabs
-                      vertical
-                      active-class="active-sort-type"
-                      indicator-color="transparent"
-                      v-model="tab"
-                      class="row"
+              <div class="full-width q-my-md">
+                <div style="background-color: white">
+                  <div class="q-px-md text-right">
+                    <q-btn-dropdown
+                      class="q-my-sm"
+                      label="تاریخ درخواست"
+                      dropdown-icon="arrow_drop_down"
+                      icon="sort"
+                      flat
                     >
-                      <q-tab
-                        class="q-mx-xs q-my-xs text-black"
-                        style="border-radius: 8px"
-                        name="all"
-                        label="تاریخ درخواست"
-                      />
+                      <q-tabs
+                        vertical
+                        active-class="active-sort-type"
+                        indicator-color="transparent"
+                        v-model="tab"
+                        class="row"
+                      >
+                        <q-tab
+                          class="q-mx-xs q-my-xs text-black"
+                          style="border-radius: 8px"
+                          name="all"
+                          label="تاریخ درخواست"
+                        />
 
-                      <q-tab
-                        class="q-mx-xs q-my-xs text-black"
-                        style="border-radius: 8px"
-                        name="seen"
-                        label="تاریخ تایین وضعیت"
-                      />
-                    </q-tabs>
-                  </q-btn-dropdown>
+                        <q-tab
+                          class="q-mx-xs q-my-xs text-black"
+                          style="border-radius: 8px"
+                          name="seen"
+                          label="تاریخ تایین وضعیت"
+                        />
+                      </q-tabs>
+                    </q-btn-dropdown>
+                  </div>
                 </div>
               </div>
 
-              <div
-                class="col-12 row justify-between content-center items-center"
-                style="margin-top: -275px"
+              <q-list class="col-12 q-my-sm">
+                <q-expansion-item
+                  expand-icon-class="q-pb-lg"
+                  class="bg-white br-10 q-pa-sm"
+                  expand-icon-toggle
+                  expand-separator
+                >
+                  <template v-slot:header>
+                    <q-item-section class="q-pb-sm" avatar>
+                      <q-img src="../assets/logo.png" />
+                    </q-item-section>
+
+                    <q-item-section class="q-pb-sm text-bold">
+                      برنامه‌نویس (Front-End (Vuejs
+                      <br />
+                      <div class="text-caption text-grey-7">
+                        ارسال شده برای
+                        <span class="text-bold">داده نگار</span> امروز
+                      </div>
+                    </q-item-section>
+
+                    <q-item-section class="q-pb-sm" side>
+                      <div
+                        class="row items-center text-bold q-pb-md"
+                        style="font-size: 13px"
+                      >
+                        تعیین وضعیت نشده
+                      </div>
+                    </q-item-section>
+                  </template>
+
+                  <q-card>
+                    <q-separator style="height: 2px" />
+
+                    <q-card-section style="padding: 8px 0 16px 0">
+                      <q-btn
+                        flat
+                        class="text-red"
+                        label="انصراف از درخواست"
+                        icon="delete"
+                      />
+                    </q-card-section>
+                  </q-card>
+                </q-expansion-item>
+              </q-list>
+
+              <div class="q-my-md row justify-end">
+                <q-tabs active-class="active-tabs" v-model="CVPage">
+                  <q-tab
+                    class="q-mx-xs text-black"
+                    style="background: white; border-radius: 8px; width: 40px"
+                    name="pageOne"
+                    label="1"
+                  />
+                </q-tabs>
+              </div>
+
+              <!-- <div
+                class="col-12 row justify-between content-center"
+                style="margin-top: -650px"
               >
                 <div class="col-12 q-my-xs row justify-center">
                   <q-img
@@ -218,12 +270,12 @@
                     شوند.
                   </div>
                 </div>
-              </div>
+              </div> -->
             </div>
 
             <!-- LeftSide Content -->
 
-            <div class="col-3 row justify-center q-pl-sm">
+            <div class="col-3 justify-center q-pl-sm">
               <q-card class="shadow-2">
                 <q-card-section>
                   <div class="text-weight-bold text-h6">سوالات متداول</div>
@@ -866,10 +918,12 @@ import { ref } from "vue";
 export default {
   setup() {
     const getMessage = ref(true);
-    const tab = ref("suggestion");
+    const tab = ref("CVSent");
+    const CVPage = ref("pageOne");
     const categories = ref("all");
 
     return {
+      CVPage,
       getMessage,
       tab,
       categories,
@@ -881,6 +935,12 @@ export default {
 </script>
 
 <style scoped>
+.q-tab__label {
+  font-size: 12px;
+  line-height: 1.715em;
+  font-weight: 500;
+}
+
 .q-badge {
   background-color: transparent;
   color: green;
@@ -892,6 +952,11 @@ export default {
 
 .q-tab-panel {
   padding: 0;
+}
+
+.active-tabs {
+  background-color: #5660f2 !important;
+  color: white !important;
 }
 
 .active-tab {
@@ -924,5 +989,9 @@ export default {
   border: 1px solid #e0e0e0;
   margin: 0 4px;
   padding: 8px 16px;
+}
+
+.br-10 {
+  border-radius: 10px !important;
 }
 </style>
