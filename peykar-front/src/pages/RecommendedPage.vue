@@ -128,6 +128,20 @@
                   <q-tab
                     class="q-mx-xs q-my-xs text-black not-active-category"
                     style="border-radius: 40px"
+                    name="all"
+                    label="همه(1)"
+                  />
+
+                  <q-tab
+                    class="q-mx-xs q-my-xs text-black not-active-category"
+                    style="border-radius: 40px"
+                    name="sent"
+                    label="دریافت شده توسط کارفرما(1)"
+                  />
+
+                  <q-tab
+                    class="q-mx-xs q-my-xs text-black not-active-category"
+                    style="border-radius: 40px"
                     name="priority"
                     label="در اولویت بررسی(0)"
                   />
@@ -162,115 +176,266 @@
                 </q-tabs>
               </div>
 
-              <div class="full-width q-my-md">
-                <div style="background-color: white">
-                  <div class="q-px-md text-right">
-                    <q-btn-dropdown
-                      class="q-my-sm"
-                      label="تاریخ درخواست"
-                      dropdown-icon="arrow_drop_down"
-                      icon="sort"
-                      flat
-                    >
-                      <q-tabs
-                        vertical
-                        active-class="active-sort-type"
-                        indicator-color="transparent"
-                        v-model="tab"
-                        class="row"
-                      >
-                        <q-tab
-                          class="q-mx-xs q-my-xs text-black"
-                          style="border-radius: 8px"
-                          name="all"
+              <q-tab-panels v-model="categories">
+                <q-tab-panel name="all">
+                  <div class="full-width q-my-md">
+                    <div style="background-color: white">
+                      <div class="q-px-md text-right">
+                        <q-btn-dropdown
+                          class="q-my-sm"
                           label="تاریخ درخواست"
-                        />
+                          dropdown-icon="arrow_drop_down"
+                          icon="sort"
+                          flat
+                        >
+                          <q-tabs
+                            vertical
+                            active-class="active-sort-type"
+                            indicator-color="transparent"
+                            v-model="tab"
+                            class="row"
+                          >
+                            <q-tab
+                              class="q-mx-xs q-my-xs text-black"
+                              style="border-radius: 8px"
+                              name="all"
+                              label="تاریخ درخواست"
+                            />
 
-                        <q-tab
-                          class="q-mx-xs q-my-xs text-black"
-                          style="border-radius: 8px"
-                          name="seen"
-                          label="تاریخ تایین وضعیت"
-                        />
-                      </q-tabs>
-                    </q-btn-dropdown>
+                            <q-tab
+                              class="q-mx-xs q-my-xs text-black"
+                              style="border-radius: 8px"
+                              name="seen"
+                              label="تاریخ تایین وضعیت"
+                            />
+                          </q-tabs>
+                        </q-btn-dropdown>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
 
-              <q-list class="col-12 q-my-sm">
-                <q-expansion-item
-                  expand-icon-class="q-pb-lg"
-                  class="bg-white br-10 q-pa-sm"
-                  expand-icon-toggle
-                  expand-separator
-                >
-                  <template v-slot:header>
-                    <q-item-section class="q-pb-sm" avatar>
-                      <q-img src="../assets/logo.png" />
-                    </q-item-section>
+                  <q-list class="col-12 q-my-sm">
+                    <q-expansion-item
+                      expand-icon-class="q-pb-lg"
+                      class="bg-white br-10 q-pa-sm"
+                      expand-icon-toggle
+                      expand-separator
+                    >
+                      <template v-slot:header>
+                        <q-item-section class="q-pb-sm" avatar>
+                          <q-img src="../assets/logo.png" />
+                        </q-item-section>
 
-                    <q-item-section class="q-pb-sm text-bold">
-                      برنامه‌نویس (Front-End (Vuejs
-                      <br />
-                      <div class="text-caption text-grey-7">
-                        ارسال شده برای
-                        <span class="text-bold">داده نگار</span> امروز
-                      </div>
-                    </q-item-section>
+                        <q-item-section class="q-pb-sm text-bold">
+                          برنامه‌نویس (Front-End (Vuejs
+                          <br />
+                          <div class="text-caption text-grey-7">
+                            ارسال شده برای
+                            <span class="text-bold">داده نگار</span> امروز
+                          </div>
+                        </q-item-section>
 
-                    <q-item-section class="q-pb-sm" side>
-                      <div
-                        class="row items-center text-bold q-pb-md"
-                        style="font-size: 13px"
-                      >
-                        تعیین وضعیت نشده
-                      </div>
-                    </q-item-section>
-                  </template>
+                        <q-item-section class="q-pb-sm" side>
+                          <div
+                            class="row items-center text-bold q-pb-md"
+                            style="font-size: 13px"
+                          >
+                            تعیین وضعیت نشده
+                          </div>
+                        </q-item-section>
+                      </template>
 
-                  <q-card>
-                    <q-separator style="height: 2px" />
+                      <q-card>
+                        <q-separator style="height: 2px" />
 
-                    <q-card-section style="padding: 8px 0 16px 0">
-                      <q-btn
-                        flat
-                        class="text-red"
-                        label="انصراف از درخواست"
-                        icon="delete"
+                        <q-card-section style="padding: 8px 0 16px 0">
+                          <q-btn
+                            flat
+                            class="text-red"
+                            label="انصراف از درخواست"
+                            icon="delete"
+                          />
+                        </q-card-section>
+                      </q-card>
+                    </q-expansion-item>
+                  </q-list>
+
+                  <div class="q-my-md row justify-end">
+                    <q-tabs active-class="active-tabs" v-model="CVPage">
+                      <q-tab
+                        class="q-mx-xs text-black"
+                        style="
+                          background: white;
+                          border-radius: 8px;
+                          width: 40px;
+                        "
+                        name="pageOne"
+                        label="1"
                       />
-                    </q-card-section>
-                  </q-card>
-                </q-expansion-item>
-              </q-list>
-
-              <div class="q-my-md row justify-end">
-                <q-tabs active-class="active-tabs" v-model="CVPage">
-                  <q-tab
-                    class="q-mx-xs text-black"
-                    style="background: white; border-radius: 8px; width: 40px"
-                    name="pageOne"
-                    label="1"
-                  />
-                </q-tabs>
-              </div>
-
-              <!-- <div
-                class="col-12 row justify-between content-center"
-                style="margin-top: -650px"
-              >
-                <div class="col-12 q-my-xs row justify-center">
-                  <q-img
-                    class="col-6 content-center"
-                    src="https://jobvision.ir/assets/images/my-applications/applications-empty-state.svg"
-                  />
-
-                  <div class="text-grey-6 q-mt-xl">
-                    درخواست هایی که ارسال کرده اید در این قسمت نمایش داده می
-                    شوند.
+                    </q-tabs>
                   </div>
-                </div>
-              </div> -->
+                </q-tab-panel>
+
+                <q-tab-panel name="sent">
+                  <div class="q-mt-xl">
+                    <q-list class="col-12 q-my-sm">
+                      <q-expansion-item
+                        expand-icon-class="q-pb-lg"
+                        class="bg-white br-10 q-pa-sm"
+                        expand-icon-toggle
+                        expand-separator
+                      >
+                        <template v-slot:header>
+                          <q-item-section class="q-pb-sm" avatar>
+                            <q-img src="../assets/logo.png" />
+                          </q-item-section>
+
+                          <q-item-section class="q-pb-sm text-bold">
+                            برنامه‌نویس (Front-End (Vuejs
+                            <br />
+                            <div class="text-caption text-grey-7">
+                              ارسال شده برای
+                              <span class="text-bold">داده نگار</span> امروز
+                            </div>
+                          </q-item-section>
+
+                          <q-item-section class="q-pb-sm" side>
+                            <div
+                              class="row items-center text-bold q-pb-md"
+                              style="font-size: 13px"
+                            >
+                              تعیین وضعیت نشده
+                            </div>
+                          </q-item-section>
+                        </template>
+
+                        <q-card>
+                          <q-separator style="height: 2px" />
+
+                          <q-card-section style="padding: 8px 0 16px 0">
+                            <q-btn
+                              flat
+                              class="text-red"
+                              label="انصراف از درخواست"
+                              icon="delete"
+                            />
+                          </q-card-section>
+                        </q-card>
+                      </q-expansion-item>
+                    </q-list>
+                  </div>
+
+                  <div class="q-my-md row justify-end">
+                    <q-tabs active-class="active-tabs" v-model="CVPage">
+                      <q-tab
+                        class="q-mx-xs text-black"
+                        style="
+                          background: white;
+                          border-radius: 8px;
+                          width: 40px;
+                        "
+                        name="pageOne"
+                        label="1"
+                      />
+                    </q-tabs>
+                  </div>
+                </q-tab-panel>
+
+                <q-tab-panel name="priority">
+                  <div
+                    class="col-12 row justify-between content-center"
+                    style="margin-top: 250px"
+                  >
+                    <div class="col-12 q-my-xs row justify-center">
+                      <q-img
+                        class="col-6 content-center"
+                        src="https://jobvision.ir/assets/images/my-applications/applications-empty-state.svg"
+                      />
+
+                      <div class="text-grey-6 q-mt-xl">
+                        درخواست‌هایی که توسط کارفرما به مرحله «در اولویت بررسی»
+                        منتقل شوند، در این بخش نمایش داده می‌شوند.
+                      </div>
+                    </div>
+                  </div>
+                </q-tab-panel>
+
+                <q-tab-panel name="confirms">
+                  <div
+                    class="col-12 row justify-between content-center"
+                    style="margin-top: 250px"
+                  >
+                    <div class="col-12 q-my-xs row justify-center">
+                      <q-img
+                        class="col-6 content-center"
+                        src="https://jobvision.ir/assets/images/my-applications/applications-empty-state.svg"
+                      />
+
+                      <div class="text-grey-6 q-mt-xl">
+                        درخواست‌هایی که توسط کارفرما به مرحله «تایید شده» منتقل
+                        شوند، در این بخش نمایش داده می‌شوند.
+                      </div>
+                    </div>
+                  </div>
+                </q-tab-panel>
+
+                <q-tab-panel name="rejects">
+                  <div
+                    class="col-12 row justify-between content-center"
+                    style="margin-top: 250px"
+                  >
+                    <div class="col-12 q-my-xs row justify-center">
+                      <q-img
+                        class="col-6 content-center"
+                        src="https://jobvision.ir/assets/images/my-applications/applications-empty-state.svg"
+                      />
+
+                      <div class="text-grey-6 q-mt-xl">
+                        درخواست‌هایی که توسط کارفرما رد شوند، در این بخش نمایش
+                        داده می‌شوند.
+                      </div>
+                    </div>
+                  </div>
+                </q-tab-panel>
+
+                <q-tab-panel name="canceled">
+                  <div
+                    class="col-12 row justify-between content-center"
+                    style="margin-top: 250px"
+                  >
+                    <div class="col-12 q-my-xs row justify-center">
+                      <q-img
+                        class="col-6 content-center"
+                        src="https://jobvision.ir/assets/images/my-applications/applications-empty-state.svg"
+                      />
+
+                      <div class="text-grey-6 q-mt-xl">
+                        درخواست هایی که از ادامه فرایند استخدام انصراف داده اید
+                        در این قسمت نمایش داده می شوند.
+                      </div>
+                    </div>
+                  </div>
+                </q-tab-panel>
+
+                <q-tab-panel name="closed">
+                  <div
+                    class="col-12 row justify-between content-center"
+                    style="margin-top: 250px"
+                  >
+                    <div class="col-12 q-my-xs row justify-center">
+                      <q-img
+                        class="col-6 content-center"
+                        src="https://jobvision.ir/assets/images/my-applications/applications-empty-state.svg"
+                      />
+
+                      <div class="text-grey-6 q-mt-xl">
+                        درخواست‌هایی که آگهی مربوط به آن‌ها بسته شده باشد، در
+                        این بخش نمایش داده می‌شوند.
+                      </div>
+                    </div>
+                  </div>
+                </q-tab-panel>
+              </q-tab-panels>
             </div>
 
             <!-- LeftSide Content -->

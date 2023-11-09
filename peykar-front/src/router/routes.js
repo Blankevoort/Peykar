@@ -16,6 +16,13 @@ const routes = [
       { path: "", component: () => import("pages/RecommendedPage.vue") },
     ],
   },
+  {
+    path: "/my-cv",
+    component: () => import("src/layouts/MainLayout.vue"),
+    children: [
+      { path: "", component: () => import("pages/myResume.vue") },
+    ],
+  },
 
   // Always leave this as last one,
   // but you can also remove it
