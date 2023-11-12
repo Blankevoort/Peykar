@@ -41,7 +41,7 @@
             padding="8px 20px"
           >
             <q-list>
-              <q-item clickable v-ripple>
+              <q-item to="/my-cv" clickable v-ripple>
                 <q-item-section avatar>
                   <q-icon name="description" />
                 </q-item-section>
@@ -151,7 +151,6 @@
 
     <q-footer class="bg-dark text-white row justify-center">
       <div class="col-8 row q-my-md">
-
         <div class="col-6 row justify-between">
           <div class="col-5 row full-width">
             <div class="col-6">
