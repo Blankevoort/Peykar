@@ -222,7 +222,7 @@
 
       <q-card
         flat
-        class="global-emplyment q-mt-md col-12 row justify-center content-center items-center"
+        class="global-emplyment q-mt-md col-12 row justify-center content-center items-center q-py-lg"
       >
         <div class="col-10">
           <q-card-section
@@ -230,15 +230,15 @@
             horizontal
           >
             <q-card-section class="col-6">
-              <div class="text-bold q-pb-md">استخدام‌های سراسری و دولتی</div>
-              <div class="q-py-md">
+              <div class="text-bold text-h5 q-pb-md">استخدام‌های سراسری و دولتی</div>
+              <div class="q-py-md text-grey-7">
                 در این قسمت، آخرین فرصت‌های استخدام سراسری و دولتی به‌طور مرتب
                 به‌روزرسانی و منتشر می‌شوند. به صفحه استخدام‌های سراسری سر بزنید
                 و از بررسی روزانه ده‌ها سایت و مرجع خبری دیگر بی‌نیاز شوید.
               </div>
 
               <q-btn
-                class="q-my-md"
+                class="q-my-md text-bold"
                 outline
                 color="black"
                 label="مشاهده فرصت های شغلی"

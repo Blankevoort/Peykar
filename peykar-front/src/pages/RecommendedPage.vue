@@ -61,7 +61,7 @@
 
       <div class="col-8 row q-my-md q-pl-lg">
         <div class="col-2 q-px-sm">
-          <q-card class="row" bordered>
+          <q-card bordered>
             <q-tabs
               inline-label
               vertical
