@@ -138,12 +138,207 @@
                 </div>
               </div>
             </div>
+
+            <div class="q-mt-lg">
+              <div class="full-width">
+                <div class="bg-white br-10">
+                  <div class="q-px-md">
+                    <div class="row">
+                      <div class="col-12">
+                        <q-badge
+                          class="text-white text-bold"
+                          style="background-color: #45c26f"
+                        >
+                          100%
+                        </q-badge>
+                      </div>
+
+                      <div class="full-width">
+                        <div class="row justify-between">
+                          <div class="text-h6 text-bold q-mt-sm">
+                            اطلاعات اولیه
+                          </div>
+
+                          <div>
+                            <q-btn
+                              dense
+                              flat
+                              class="text-grey-8"
+                              label="ویرایش"
+                              icon="edit"
+                            />
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row justify-between q-mt-lg full-width">
+                        <div class="col-12 row justify-between q-pb-lg">
+                          <div class="col-5">
+                            <div>
+                              <div class="text-weight-thin text-grey-8">
+                                نام و نام خانوادگی
+                              </div>
+                              <div class="text-bold">معین صداقتی</div>
+                            </div>
+
+                            <div class="q-mt-md">
+                              <div class="text-weight-thin text-grey-8">
+                                جنسیت
+                              </div>
+                              <div class="text-bold">مرد</div>
+                            </div>
+
+                            <div class="q-mt-md">
+                              <div class="text-weight-thin text-grey-8">
+                                وضعیت تاهل
+                              </div>
+                              <div class="text-bold">مجرد</div>
+                            </div>
+
+                            <div class="q-mt-md">
+                              <div class="text-weight-thin text-grey-8">
+                                وضعیت نظام وظیفه
+                              </div>
+                              <div class="text-bold">معافیت تحصیلی</div>
+                            </div>
+
+                            <div class="q-mt-md">
+                              <div class="text-weight-thin text-grey-8">
+                                شهر محل سکونت
+                              </div>
+                              <div class="text-bold">گنبد کاووس</div>
+                            </div>
+
+                            <div class="q-mt-md">
+                              <div class="text-weight-thin text-grey-8">
+                                محل سکونت
+                              </div>
+                              <div class="text-bold">
+                                خیابان بعثت غربی نرسیده به چهارراه فردوسی جنب
+                                یخچال سازی صوفی زاده
+                              </div>
+                            </div>
+
+                            <div class="q-mt-md">
+                              <div class="text-weight-thin text-grey-8">
+                                تاریخ تولد
+                              </div>
+                              <div class="text-bold">1386/09/09</div>
+                            </div>
+
+                            <div class="q-mt-md">
+                              <div class="text-weight-thin text-grey-8">
+                                شماره ثابت
+                              </div>
+                              <div class="text-bold">33231884</div>
+                            </div>
+
+                            <div class="q-mt-md">
+                              <div class="text-weight-thin text-grey-8">
+                                حقوق درخواستی
+                              </div>
+                              <div class="text-bold">8 - 6 میلیون تومان</div>
+                            </div>
+
+                            <div class="q-mt-md">
+                              <div class="text-weight-thin text-grey-8">
+                                گروه شغلی مورد علاقه
+                              </div>
+                              <div class="text-bold">
+                                توسعه نرم افزار و برنامه نویسی
+                              </div>
+                            </div>
+                          </div>
+
+                          <div dir="ltr" class="col-5">
+                            <div>
+                              <div class="text-weight-thin text-grey-8">
+                                First and Last Name
+                              </div>
+                              <div class="text-bold">Moeen Sedaqati</div>
+                            </div>
+
+                            <div class="q-mt-md">
+                              <div class="text-weight-thin text-grey-8">
+                                Gender
+                              </div>
+                              <div class="text-bold">Male</div>
+                            </div>
+
+                            <div class="q-mt-md">
+                              <div class="text-weight-thin text-grey-8">
+                                Marital Status
+                              </div>
+                              <div class="text-bold">Single</div>
+                            </div>
+
+                            <div class="q-mt-md">
+                              <div class="text-weight-thin text-grey-8">
+                                Military Service Status
+                              </div>
+                              <div class="text-bold">Educational Exemption</div>
+                            </div>
+
+                            <div class="q-mt-md">
+                              <div class="text-weight-thin text-grey-8">
+                                City
+                              </div>
+                              <div class="text-bold">Gonbad kavoos</div>
+                            </div>
+
+                            <div class="q-mt-md">
+                              <div class="text-weight-thin text-grey-8">
+                                Region
+                              </div>
+                              <div class="text-bold">
+                                West Ba'ath St. has not reached the Ferdowsi
+                                intersection, next to Sufizadeh refrigerator
+                              </div>
+                            </div>
+
+                            <div class="q-mt-md">
+                              <div class="text-weight-thin text-grey-8">
+                                Date of Birth
+                              </div>
+                              <div class="text-bold">2007-11-30</div>
+                            </div>
+
+                            <div class="q-mt-md">
+                              <div class="text-weight-thin text-grey-8">
+                                Phone Number
+                              </div>
+                              <div class="text-bold">33231884</div>
+                            </div>
+
+                            <div class="q-mt-md">
+                              <div class="text-weight-thin text-grey-8">
+                                Expected Salary
+                              </div>
+                              <div class="text-bold">6 - 8 Million Tomans</div>
+                            </div>
+
+                            <div class="q-mt-md">
+                              <div class="text-weight-thin text-grey-8">
+                                Preferred Job Category
+                              </div>
+                              <div class="text-bold">
+                                IT - Software Development (Web,Moblie,…)
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
 
           <div class="col-4 q-pl-md">
-            <div class="full-width q-px-md q-pt-lg">
+            <div class="full-width q-px-md">
               <div class="bg-white br-10">
-                <div class="row justify-between">
+                <div class="row justify-between q-pt-md q-pa-md">
                   <div class="col-12">
                     <div class="text-bold row">
                       <div>میزان تکمیل رزومه</div>
@@ -240,45 +435,449 @@
                 </div>
               </div>
             </div>
-          </div>
 
-          <div class="col-8 q-pr-md">
-            <div class="full-width">
+            <!-- Phone Number, Audio Introduction And Upload Personal Resume -->
+
+            <div class="q-mt-lg q-px-md q-pl-md">
               <div class="bg-white br-10">
-                <div class="q-px-md">
-                  <div class="row">
-                    <div class="col-12">
-                      <q-badge
-                        class="text-white text-bold"
-                        style="background-color: #45c26f"
-                      >
-                        100%
-                      </q-badge>
-                    </div>
+                <div class="row">
+                  <!-- First Part -->
 
-                    <div class="full-width">
-                      <div class="row justify-between">
-                        <div class="text-h6 text-bold q-mt-sm">
-                          اطلاعات اولیه
+                  <div class="q-pa-md">
+                    <div class="text-bold text-h6">اطلاعات تماس</div>
+
+                    <div class="row full-width q-mt-md">
+                      <div class="col-12">
+                        <div class="row justify-between">
+                          <div class="col-8">
+                            <div class="text-weight-thin text-grey-6">
+                              آدرس ایمیل
+                            </div>
+                            <div class="text-bold">
+                              moeensedaghaty86@gmail.com
+                            </div>
+                          </div>
+
+                          <div class="col-2">
+                            <q-btn flat color="grey-9" icon="edit" />
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="col-12 q-mt-md">
+                        <div class="row justify-between">
+                          <div class="col-8">
+                            <div class="text-weight-thin text-grey-6">
+                              شماره موبایل
+                            </div>
+                            <div class="text-bold">09379608155</div>
+                          </div>
+
+                          <div class="col-2">
+                            <q-btn flat color="grey-9" icon="edit" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <q-separator class="q-mt-md full-width" style="height: 1px" />
+
+                  <div class="full-width">
+                    <div class="bg-white br-10">
+                      <div class="q-px-md">
+                        <div class="row">
+                          <div class="col-12">
+                            <q-badge
+                              class="text-white text-bold"
+                              style="background-color: #eb4969"
+                            >
+                              0%
+                            </q-badge>
+                          </div>
                         </div>
 
-                        <div>
+                        <div class="full-width row justify-center q-py-md">
+                          <div class="col-12 row justify-between">
+                            <div class="text-h6 text-bold q-mt-sm">
+                              معرفی صوتی
+                            </div>
+
+                            <div>
+                              <q-btn
+                                dense
+                                flat
+                                color="primary"
+                                label="افزودن"
+                                icon="add_circle"
+                                class="q-pr-md"
+                              />
+                            </div>
+                          </div>
+
+                          <div class="col-12 q-mt-md">
+                            <div class="text-grey-7">
+                              در این بخش، خود را در قالب یک صوت حداکثر دو دقیقه
+                              ای به کارفرما معرفی کنید. در بسیاری از موارد
+                              شناختی که این معرفی دو دقیقه ای برای کارفرمایان
+                              ایجاد میکند
+                              <span class="text-bold text-grey-8"
+                                >از رزومه شما بیشتر است.</span
+                              >
+                            </div>
+                          </div>
+
                           <q-btn
-                            dense
+                            class="q-mt-md text-primary"
+                            style="font-size: 18px"
                             flat
-                            class="text-grey-8"
-                            label="ویرایش"
-                            icon="edit"
+                          >
+                            <q-icon
+                              style="border-radius: 50%"
+                              class="text-white bg-primary q-pa-sm q-mr-md"
+                              size="32px"
+                              name="mic"
+                            />
+
+                            ضبط صدا
+                          </q-btn>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Second Part -->
+
+                  <q-separator class="q-mt-md full-width" style="height: 1px" />
+
+                  <div class="full-width">
+                    <div class="bg-white br-10">
+                      <div class="q-px-md">
+                        <div class="row">
+                          <div class="col-12">
+                            <q-badge
+                              class="text-white text-bold"
+                              style="background-color: #eb4969"
+                            >
+                              0%
+                            </q-badge>
+                          </div>
+                        </div>
+
+                        <div class="full-width row justify-center q-py-md">
+                          <div class="col-12 row justify-between">
+                            <div class="text-h6 text-bold q-mt-sm">
+                              بارگذاری رزومه شخصی
+                            </div>
+
+                            <div>
+                              <q-btn
+                                dense
+                                flat
+                                color="primary"
+                                label="افزودن"
+                                icon="add_circle"
+                                class="q-pr-md"
+                              />
+                            </div>
+                          </div>
+
+                          <div class="col-12 q-mt-md">
+                            <div class="text-grey-7">
+                              در این بخش با بارگذاری فایل رزومه خود نیز
+                              می‌توانید به جذب بهتر خود کمک کنید. ایجاد میکند
+                            </div>
+                          </div>
+
+                          <q-img
+                            class="col-8 q-mt-md"
+                            src="https://jobvision.ir/assets/images/my-cv/cv-sample.svg"
                           />
                         </div>
                       </div>
                     </div>
+                  </div>
+                </div>
+              </div>
+            </div>
 
-                    <div class="row justify-between">
-                      <div class="col-12 justify-between">
-                        <div class="col-4"></div>
+            <!-- Some Of My Works -->
 
-                        <div class="col-4 justify-end"></div>
+            <div class="q-mt-lg q-px-md q-pl-md">
+              <div class="bg-white br-10">
+                <div class="row">
+                  <div class="full-width">
+                    <div class="bg-white br-10">
+                      <div class="q-px-md">
+                        <div class="row">
+                          <div class="col-12">
+                            <q-badge
+                              class="text-white text-bold"
+                              style="background-color: #45c26f"
+                            >
+                              100%
+                            </q-badge>
+                          </div>
+                        </div>
+
+                        <!-- Declaration -->
+
+                        <div class="full-width">
+                          <div class="row justify-between">
+                            <div class="text-h6 text-bold q-mt-sm">
+                              نمونه کارها
+                            </div>
+
+                            <div>
+                              <q-btn
+                                dense
+                                flat
+                                color="primary"
+                                label="افزودن"
+                                icon="add_circle"
+                                class="q-pr-md"
+                              />
+                            </div>
+                          </div>
+
+                          <!-- Buttons And Links -->
+
+                          <div class="row q-my-lg">
+                            <div class="full-width">
+                              <div
+                                dir="ltr"
+                                class="row justify-between q-pr-md"
+                              >
+                                <div class="col-7 row">
+                                  <q-btn
+                                    class="col-2"
+                                    color="primary"
+                                    rounded
+                                    icon="link"
+                                    unelevated
+                                  />
+
+                                  <div class="text-primary col-6">
+                                    <q-btn
+                                      flat
+                                      href="https://moeensedaqati.ir/"
+                                      target="_blank"
+                                    >
+                                      <div style="font-size: 12px">
+                                        https://moeensedaqati.ir/
+                                      </div>
+                                    </q-btn>
+                                  </div>
+                                </div>
+
+                                <div class="col-5 row justify-end">
+                                  <q-btn
+                                    class="q-px-s"
+                                    dense
+                                    flat
+                                    color="grey-8"
+                                    icon="edit"
+                                  />
+                                  <q-btn
+                                    class="q-px-s"
+                                    dense
+                                    flat
+                                    color="grey-8"
+                                    icon="delete"
+                                  />
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Salary Insight -->
+
+            <div class="q-mt-lg q-px-md q-pl-md">
+              <div class="bg-white br-10">
+                <div class="row">
+                  <div class="full-width">
+                    <div
+                      style="background-color: #eeeffe !important"
+                      class="br-10 q-py-md"
+                    >
+                      <div class="q-px-md row">
+                        <div class="full-width">
+                          <div class="row justify-center text-center">
+                            <q-img
+                              class="col-8"
+                              src="https://jobvision.ir/assets/images/my-cv/salary-table.svg"
+                            />
+
+                            <div>
+                              <div
+                                class="text-bold q-mt-md"
+                                style="font-size: 12px"
+                              >
+                                از حقوق دریافتی افراد در مشاغل مختلف باخبر شوید
+                              </div>
+
+                              <div class="q-mt-sm" style="font-size: 11px">
+                                حقوق و دستمزد مشاغل مختلف را بررسی کنید و تخمین
+                                دقیق‌تری از حقوق منصفانه خود داشته باشید.
+                              </div>
+
+                              <div class="q-mt-md">
+                                <q-btn
+                                  flat
+                                  color="primary"
+                                  class="text-bold"
+                                  label="ماشین حساب حقوق و دست مزد"
+                                  icon="east"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Test Results -->
+
+            <div class="q-mt-lg q-px-md q-pl-md">
+              <div class="bg-white br-10">
+                <div class="row q-py-md">
+                  <div class="full-width">
+                    <div class="bg-white br-10">
+                      <div class="q-px-md">
+                        <!-- Declaration -->
+
+                        <div class="full-width">
+                          <div class="row justify-between">
+                            <div class="text-h6 text-bold q-mt-sm">
+                              نتایج آزمون‌ها
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="full-width q-mt-lg">
+                          <div class="row justify-center">
+                            <div class="col-12 row justify-between">
+                              <div class="col-7 text-grey-7">
+                                <q-btn
+                                  rounded
+                                  disable
+                                  dense
+                                  color="grey-5"
+                                  icon="done"
+                                  class="q-mr-sm"
+                                />
+                                <span>Bar-On </span>
+                              </div>
+
+                              <div class="col-5 row justify-end">
+                                <q-btn
+                                  flat
+                                  color="primary"
+                                  label="شرکت در آزمون"
+                                />
+                              </div>
+                            </div>
+
+                            <div class="col-12 row justify-between q-mt-xs">
+                              <div class="col-7 text-bold">
+                                <q-btn
+                                  rounded
+                                  disable
+                                  dense
+                                  color="primary"
+                                  icon="done"
+                                  class="q-mr-sm"
+                                />
+                                <span>MBTI </span>
+                              </div>
+
+                              <div class="col-5 row justify-end">
+                                <q-btn
+                                  flat
+                                  color="primary"
+                                  label="مشاهده نتایج"
+                                />
+                              </div>
+                            </div>
+
+                            <div class="col-12 row justify-between q-mt-xs">
+                              <div class="col-7 text-grey-7">
+                                <q-btn
+                                  rounded
+                                  disable
+                                  dense
+                                  color="grey-5"
+                                  icon="done"
+                                  class="q-mr-sm"
+                                />
+                                <span>NEO </span>
+                              </div>
+
+                              <div class="col-5 row justify-end">
+                                <q-btn
+                                  flat
+                                  color="primary"
+                                  label="شرکت در آزمون"
+                                />
+                              </div>
+                            </div>
+
+                            <div class="col-12 row justify-between q-mt-xs">
+                              <div class="col-7 text-grey-7">
+                                <q-btn
+                                  rounded
+                                  disable
+                                  dense
+                                  color="grey-5"
+                                  icon="done"
+                                  class="q-mr-sm"
+                                />
+                                <span>هوش های چندگانه</span>
+                              </div>
+
+                              <div class="col-5 row justify-end">
+                                <q-btn
+                                  flat
+                                  color="primary"
+                                  label="شرکت در آزمون"
+                                />
+                              </div>
+                            </div>
+
+                            <div class="col-12 row justify-between q-mt-xs">
+                              <div class="col-7 text-grey-7">
+                                <q-btn
+                                  rounded
+                                  disable
+                                  dense
+                                  color="grey-5"
+                                  icon="done"
+                                  class="q-mr-sm"
+                                />
+                                <span>Holland </span>
+                              </div>
+
+                              <div class="col-5 row justify-end">
+                                <q-btn
+                                  flat
+                                  color="primary"
+                                  label="شرکت در آزمون"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -324,6 +923,7 @@ export default {
       preferred,
       options,
       model: ref(null),
+      val: ref(true),
     };
   },
 };
