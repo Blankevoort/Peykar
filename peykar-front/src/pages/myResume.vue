@@ -28,11 +28,13 @@
 
     <div class="row justify-center">
       <div class="col-8 q-my-md" style="padding: 0 32px">
-        <div class="row">
+        <div class="row" v-if="preferred.value == 'me'">
+          <!-- Myself -->
+
           <div class="col-8 q-pr-md">
             <div class="full-width">
               <div class="bg-white br-10">
-                <div class="q-px-md">
+                <div class="q-px-lg">
                   <div class="row">
                     <div class="col-12">
                       <q-badge
@@ -89,13 +91,13 @@
                             </div>
                           </q-item-section>
 
-                          <q-item-section>
+                          <q-item-section class="q-px-md">
                             <q-item-label
                               style="font-size: 16px"
                               class="text-bold"
                               >معین صداقتی</q-item-label
                             >
-                            <q-item-label caption lines="2">
+                            <q-item-label class="q-pt-md" caption lines="2">
                               دولوپر فول استک در شرکت آیترونیک
                               <q-icon class="q-pl-sm" name="edit" size="18px" />
                             </q-item-label>
@@ -142,7 +144,7 @@
             <div class="q-mt-lg">
               <div class="full-width">
                 <div class="bg-white br-10">
-                  <div class="q-px-md">
+                  <div class="q-px-lg">
                     <div class="row">
                       <div class="col-12">
                         <q-badge
@@ -339,7 +341,7 @@
             <div class="q-mt-lg">
               <div class="full-width">
                 <div class="bg-white br-10">
-                  <div class="q-px-md">
+                  <div class="q-px-lg">
                     <div class="row">
                       <div class="col-12">
                         <q-badge
@@ -353,7 +355,7 @@
                       <div class="col-12 q-mt-md">
                         <div class="col-12 row justify-between">
                           <div class="text-h6 text-bold q-mt-sm">
-                            بارگذاری رزومه شخصی
+                            سوابق تحصیلی
                           </div>
 
                           <!-- <div>
@@ -398,7 +400,7 @@
             <div class="q-mt-lg">
               <div class="full-width">
                 <div class="bg-white br-10">
-                  <div class="q-px-md">
+                  <div class="q-px-lg">
                     <div class="row">
                       <div class="col-12">
                         <q-badge
@@ -429,7 +431,7 @@
                       </div>
 
                       <div
-                        class="col-12 q-mt-xs q-mb-md row justify-center items-center"
+                        class="col-12 q-mt-md q-mb-md row justify-center items-center"
                       >
                         <q-item
                           style="background-color: white; border-radius: 8px"
@@ -437,7 +439,7 @@
                         >
                           <q-item-section avatar>
                             <div
-                              class="br-10 row"
+                              class="br-10 row q-py-md"
                               style="background-color: #f6f7f9 !important"
                             >
                               <q-btn
@@ -462,14 +464,14 @@
                               >دولوپر فول استک در شرکت آیترونیک</q-item-label
                             >
 
-                            <div class="q-my-sm">
+                            <div class="q-my-md">
                               <span class="text-bold">آیترونیک</span>
                             </div>
 
                             <div class="text-grey-6">از تیر 1402 تاکنون</div>
                           </q-item-section>
 
-                          <q-item-section class="q-pa-sm row q-mr-md" side top>
+                          <q-item-section class="q-pa-sm row q-mr-md" side>
                             <div class="text-bold text-black">
                               Full Stack Developer
                             </div>
@@ -493,7 +495,7 @@
             <div class="q-mt-lg">
               <div class="full-width">
                 <div class="bg-white br-10">
-                  <div class="q-px-md">
+                  <div class="q-px-lg">
                     <div class="row">
                       <div class="col-12">
                         <q-badge
@@ -521,55 +523,111 @@
                         </div>
                       </div>
 
-                      <div class="col-12 row justify-between q-my-lg">
+                      <div class="col-12 row justify-between q-my-md">
                         <div class="col-5 row items-center">
-                          <q-icon
-                            size="20px"
-                            class="q-px-xs"
-                            color="grey-7"
-                            name="delete"
-                          />
+                          <div>
+                            <div class="row items-center q-mt-md">
+                              <q-icon
+                                size="20px"
+                                class="q-px-xs"
+                                color="grey-7"
+                                name="delete"
+                              />
+                              <div
+                                class="text-white row q-px-sm q-py-xs br-10"
+                                style="
+                                  background-color: #5c6573 !important;
+                                  padding-top: 5px;
+                                  padding-bottom: 5px;
+                                "
+                              >
+                                <div class="text-bold q-ml-sm">انگلیسی</div>
+
+                                <q-separator
+                                  color="white"
+                                  class="q-mx-sm q-my-xs"
+                                  vertical
+                                />
+
+                                <div>بالاتر از متوسط</div>
+                              </div>
+                            </div>
+                          </div>
 
                           <div>
-                            <div
-                              class="text-white row q-px-sm q-py-xs br-10"
-                              style="
-                                background-color: #5c6573 !important;
-                                padding-top: 5px;
-                                padding-bottom: 5px;
-                              "
-                            >
-                              <div class="text-bold q-ml-sm">انگلیسی</div>
-
-                              <q-separator
-                                color="white"
-                                class="q-mx-sm q-my-xs"
-                                vertical
+                            <div class="row items-center q-mt-md">
+                              <q-icon
+                                size="20px"
+                                class="q-px-xs"
+                                color="grey-7"
+                                name="delete"
                               />
+                              <div
+                                class="text-white row q-px-sm q-py-xs br-10"
+                                style="
+                                  background-color: #5c6573 !important;
+                                  padding-top: 5px;
+                                  padding-bottom: 5px;
+                                "
+                              >
+                                <div class="text-bold q-ml-sm">فارسی</div>
 
-                              <div>بالاتر از متوسط</div>
+                                <q-separator
+                                  color="white"
+                                  class="q-mx-sm q-my-xs"
+                                  vertical
+                                />
+
+                                <div>پیشرفته</div>
+                              </div>
                             </div>
                           </div>
                         </div>
 
                         <div class="col-5 row justify-end q-mr-md">
                           <div>
-                            <div
-                              class="text-white row q-px-sm q-py-xs br-10"
-                              style="
-                                background-color: #5c6573 !important;
-                                padding: 5px 0;
-                              "
-                            >
-                              <div class="text-bold">English</div>
+                            <div class="row items-center q-mt-md">
+                              <div
+                                class="text-white row q-px-sm q-py-xs br-10"
+                                style="
+                                  background-color: #5c6573 !important;
+                                  padding-top: 5px;
+                                  padding-bottom: 5px;
+                                "
+                              >
+                                <div>Upper Intermediate</div>
 
-                              <q-separator
-                                color="white"
-                                class="q-mx-sm q-my-xs"
-                                vertical
-                              />
+                                <q-separator
+                                  color="white"
+                                  class="q-mx-sm q-my-xs"
+                                  vertical
+                                />
 
-                              <div>Upper Intermediate</div>
+                                <div class="text-bold q-ml-sm">English</div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div>
+                            <div class="row items-center q-mt-md">
+                              <div
+                                class="text-white row q-px-sm q-py-xs br-10"
+                                style="
+                                  background-color: #5c6573 !important;
+                                  padding-top: 5px;
+                                  padding-bottom: 5px;
+                                "
+                              >
+                                <div>Advanced</div>
+
+                                <q-separator
+                                  color="white"
+                                  class="q-mx-sm q-my-xs"
+                                  vertical
+                                />
+
+                                <div class="text-bold q-ml-sm">Persian</div>
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -585,7 +643,7 @@
             <div class="q-mt-lg">
               <div class="full-width">
                 <div class="bg-white br-10">
-                  <div class="q-px-md">
+                  <div class="q-px-lg">
                     <div class="row">
                       <div class="col-12">
                         <q-badge
@@ -767,7 +825,7 @@
             <div class="q-mt-lg">
               <div class="full-width">
                 <div class="bg-white br-10">
-                  <div class="q-px-md">
+                  <div class="q-px-lg">
                     <div class="row">
                       <div class="col-12">
                         <q-badge
@@ -781,7 +839,7 @@
                       <div class="col-12 q-mt-md">
                         <div class="col-12 row justify-between">
                           <div class="text-h6 text-bold q-mt-sm">
-                            مهارت های نرم افزاری
+                            مهارت های تکمیلی
                           </div>
 
                           <div>
@@ -811,7 +869,7 @@
                                     "
                                   >
                                     <div
-                                      class="text-grey-5"
+                                      class="text-grey-6"
                                       style="font-size: 13px"
                                     >
                                       مهارت‌ها در رزومه فارسی (6 مهارت)
@@ -819,6 +877,8 @@
                                   </div>
                                 </div>
                               </div>
+
+                              <!-- Skills -->
 
                               <div class="col-12 row items-center q-mt-sm">
                                 <div>
@@ -986,7 +1046,9 @@
                             <q-separator class="q-my-xs q-mx-xs" vertical />
 
                             <div class="col row">
-                              <div class="col-12 row justify-end items-center q-mt-sm">
+                              <div
+                                class="col-12 row justify-end items-center q-mt-sm"
+                              >
                                 <div>
                                   <div
                                     class="text-white row q-px-sm q-pb-xs q-mr-sm"
@@ -996,7 +1058,7 @@
                                     "
                                   >
                                     <div
-                                      class="text-grey-5"
+                                      class="text-grey-6"
                                       style="font-size: 13px"
                                     >
                                       Skills in English Resume (8 skills)
@@ -1005,31 +1067,33 @@
                                 </div>
                               </div>
 
+                              <!-- Skills -->
+
                               <div
                                 class="col-12 row justify-end items-center q-mt-sm"
                               >
                                 <div>
                                   <div
-                                    class="text-white row q-px-sm q-py-xs br-8 q-mr-md"
+                                    class="text-white row q-pl-sm q-py-xs br-8 q-mr-md"
                                     style="
                                       background-color: #5c6573 !important;
                                       padding-top: 5px;
                                       padding-bottom: 5px;
                                     "
                                   >
+                                    <div
+                                      class="text-bold q-mr-sm"
+                                      style="font-size: 13px"
+                                    >
+                                      HTML
+                                    </div>
+
                                     <q-icon
                                       size="20px"
                                       class="q-px-xs"
                                       color="grey-5"
                                       name="delete"
                                     />
-
-                                    <div
-                                      class="text-bold q-ml-sm"
-                                      style="font-size: 13px"
-                                    >
-                                      HTML
-                                    </div>
                                   </div>
                                 </div>
                               </div>
@@ -1039,26 +1103,26 @@
                               >
                                 <div>
                                   <div
-                                    class="text-white row q-px-sm q-py-xs br-8 q-mr-md"
+                                    class="text-white row q-pl-sm q-py-xs br-8 q-mr-md"
                                     style="
                                       background-color: #5c6573 !important;
                                       padding-top: 5px;
                                       padding-bottom: 5px;
                                     "
                                   >
-                                    <q-icon
-                                      size="20px"
-                                      class="q-px-xs"
-                                      color="grey-5"
-                                      name="delete"
-                                    />
-
                                     <div
                                       class="text-bold q-ml-sm"
                                       style="font-size: 13px"
                                     >
                                       Quasar
                                     </div>
+
+                                    <q-icon
+                                      size="20px"
+                                      class="q-px-xs"
+                                      color="grey-5"
+                                      name="delete"
+                                    />
                                   </div>
                                 </div>
                               </div>
@@ -1068,26 +1132,26 @@
                               >
                                 <div>
                                   <div
-                                    class="text-white row q-px-sm q-py-xs br-8 q-mr-md"
+                                    class="text-white row q-pl-sm q-py-xs br-8 q-mr-md"
                                     style="
                                       background-color: #5c6573 !important;
                                       padding-top: 5px;
                                       padding-bottom: 5px;
                                     "
                                   >
-                                    <q-icon
-                                      size="20px"
-                                      class="q-px-xs"
-                                      color="grey-5"
-                                      name="delete"
-                                    />
-
                                     <div
                                       class="text-bold q-ml-sm"
                                       style="font-size: 13px"
                                     >
                                       vue.js
                                     </div>
+
+                                    <q-icon
+                                      size="20px"
+                                      class="q-px-xs"
+                                      color="grey-5"
+                                      name="delete"
+                                    />
                                   </div>
                                 </div>
                               </div>
@@ -1097,26 +1161,26 @@
                               >
                                 <div>
                                   <div
-                                    class="text-white row q-px-sm q-py-xs br-8 q-mr-md"
+                                    class="text-white row q-pl-sm q-py-xs br-8 q-mr-md"
                                     style="
                                       background-color: #5c6573 !important;
                                       padding-top: 5px;
                                       padding-bottom: 5px;
                                     "
                                   >
-                                    <q-icon
-                                      size="20px"
-                                      class="q-px-xs"
-                                      color="grey-5"
-                                      name="delete"
-                                    />
-
                                     <div
                                       class="text-bold q-ml-sm"
                                       style="font-size: 13px"
                                     >
                                       vue router
                                     </div>
+
+                                    <q-icon
+                                      size="20px"
+                                      class="q-px-xs"
+                                      color="grey-5"
+                                      name="delete"
+                                    />
                                   </div>
                                 </div>
                               </div>
@@ -1126,26 +1190,26 @@
                               >
                                 <div>
                                   <div
-                                    class="text-white row q-px-sm q-py-xs br-8 q-mr-md"
+                                    class="text-white row q-pl-sm q-py-xs br-8 q-mr-md"
                                     style="
                                       background-color: #5c6573 !important;
                                       padding-top: 5px;
                                       padding-bottom: 5px;
                                     "
                                   >
-                                    <q-icon
-                                      size="20px"
-                                      class="q-px-xs"
-                                      color="grey-5"
-                                      name="delete"
-                                    />
-
                                     <div
                                       class="text-bold q-ml-sm"
                                       style="font-size: 13px"
                                     >
                                       Vue CLi
                                     </div>
+
+                                    <q-icon
+                                      size="20px"
+                                      class="q-px-xs"
+                                      color="grey-5"
+                                      name="delete"
+                                    />
                                   </div>
                                 </div>
                               </div>
@@ -1155,26 +1219,26 @@
                               >
                                 <div>
                                   <div
-                                    class="text-white row q-px-sm q-py-xs br-8 q-mr-md"
+                                    class="text-white row q-pl-sm q-py-xs br-8 q-mr-md"
                                     style="
                                       background-color: #5c6573 !important;
                                       padding-top: 5px;
                                       padding-bottom: 5px;
                                     "
                                   >
-                                    <q-icon
-                                      size="20px"
-                                      class="q-px-xs"
-                                      color="grey-5"
-                                      name="delete"
-                                    />
-
                                     <div
                                       class="text-bold q-ml-sm"
                                       style="font-size: 13px"
                                     >
                                       Laravel
                                     </div>
+
+                                    <q-icon
+                                      size="20px"
+                                      class="q-px-xs"
+                                      color="grey-5"
+                                      name="delete"
+                                    />
                                   </div>
                                 </div>
                               </div>
@@ -1184,26 +1248,26 @@
                               >
                                 <div>
                                   <div
-                                    class="text-white row q-px-sm q-py-xs br-8 q-mr-md"
+                                    class="text-white row q-pl-sm q-py-xs br-8 q-mr-md"
                                     style="
                                       background-color: #5c6573 !important;
                                       padding-top: 5px;
                                       padding-bottom: 5px;
                                     "
                                   >
-                                    <q-icon
-                                      size="20px"
-                                      class="q-px-xs"
-                                      color="grey-5"
-                                      name="delete"
-                                    />
-
                                     <div
                                       class="text-bold q-ml-sm"
                                       style="font-size: 13px"
                                     >
                                       Css3
                                     </div>
+
+                                    <q-icon
+                                      size="20px"
+                                      class="q-px-xs"
+                                      color="grey-5"
+                                      name="delete"
+                                    />
                                   </div>
                                 </div>
                               </div>
@@ -1213,28 +1277,429 @@
                               >
                                 <div>
                                   <div
-                                    class="text-white row q-px-sm q-py-xs br-8 q-mr-md"
+                                    class="text-white row q-pl-sm q-py-xs br-8 q-mr-md"
                                     style="
                                       background-color: #5c6573 !important;
                                       padding-top: 5px;
                                       padding-bottom: 5px;
                                     "
                                   >
-                                    <q-icon
-                                      size="20px"
-                                      class="q-px-xs"
-                                      color="grey-5"
-                                      name="delete"
-                                    />
-
                                     <div
                                       class="text-bold q-ml-sm"
                                       style="font-size: 13px"
                                     >
                                       Figma
                                     </div>
+
+                                    <q-icon
+                                      size="20px"
+                                      class="q-px-xs"
+                                      color="grey-5"
+                                      name="delete"
+                                    />
                                   </div>
                                 </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- More -->
+
+            <div class="q-mt-lg">
+              <div class="full-width">
+                <div class="row">
+                  <!-- Partners -->
+
+                  <div class="col-12 row">
+                    <div class="col-12 text-center q-my-md text-bold">
+                      افزایش شانس استخدام شما تنها با تکمیل کردن اطلاعات تکمیلی
+                      زیر
+                    </div>
+
+                    <!-- Content -->
+
+                    <div class="full-width">
+                      <div class="q-mt-sm">
+                        <div class="bg-white br-10">
+                          <div class="q-px-lg">
+                            <div class="row">
+                              <div class="col-12">
+                                <q-badge
+                                  class="text-white text-bold"
+                                  style="background-color: #45c26f"
+                                >
+                                  100%
+                                </q-badge>
+                              </div>
+
+                              <div class="col-12 q-mt-md">
+                                <div class="col-12 row justify-between">
+                                  <div class="text-h6 text-bold q-px-md">
+                                    مدیران و همکاران سابق
+                                  </div>
+
+                                  <div>
+                                    <q-btn
+                                      dense
+                                      flat
+                                      color="primary"
+                                      label="افزودن"
+                                      icon="add_circle"
+                                      class="q-pr-md"
+                                    />
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div
+                                class="col-12 q-mt-sm q-mb-md row justify-center items-center q-ml-md"
+                              >
+                                <q-item
+                                  style="
+                                    background-color: white;
+                                    border-radius: 8px;
+                                  "
+                                  class="col-12 q-my-xs"
+                                >
+                                  <q-item-section avatar>
+                                    <div
+                                      class="br-10 row q-py-sm"
+                                      style="
+                                        background-color: #f6f7f9 !important;
+                                      "
+                                    >
+                                      <q-btn
+                                        color="grey-7"
+                                        flat
+                                        dense
+                                        class="col-12"
+                                        icon="edit"
+                                      />
+                                      <q-btn
+                                        color="grey-7"
+                                        flat
+                                        dense
+                                        class="col-12"
+                                        icon="delete "
+                                      />
+                                    </div>
+                                  </q-item-section>
+
+                                  <q-item-section class="q-px-md q-py-sm">
+                                    <q-item-label class="text-bold"
+                                      >عاشر قلیچ سید محمدی</q-item-label
+                                    >
+
+                                    <div class="q-my-sm">
+                                      <span class="text-grey-7"
+                                        >مدیر در aytronic</span
+                                      >
+                                    </div>
+
+                                    <div class="text-grey-7">09112746075</div>
+                                  </q-item-section>
+                                </q-item>
+                              </div>
+                            </div>
+                          </div>
+
+                          <q-separator class="full-width q-mt-md" />
+
+                          <!-- Courses -->
+
+                          <div class="col-12 row">
+                            <div class="q-px-lg">
+                              <div class="row">
+                                <div class="col-12">
+                                  <q-badge
+                                    class="text-white text-bold"
+                                    style="background-color: #45c26f"
+                                  >
+                                    100%
+                                  </q-badge>
+                                </div>
+
+                                <div class="col-12 q-mt-md">
+                                  <div class="col-12 row justify-between">
+                                    <div class="text-h6 text-bold q-px-md">
+                                      دوره‌های آموزشی
+                                    </div>
+
+                                    <div>
+                                      <q-btn
+                                        dense
+                                        flat
+                                        color="primary"
+                                        label="افزودن"
+                                        icon="add_circle"
+                                        class="q-pr-md"
+                                      />
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <div
+                                  class="col-12 q-mt-sm q-mb-md row justify-center items-center q-ml-md"
+                                >
+                                  <q-item class="col-12 q-my-xs">
+                                    <q-item-section avatar>
+                                      <div
+                                        class="br-10 row q-py-lg"
+                                        style="
+                                          background-color: #f6f7f9 !important;
+                                        "
+                                      >
+                                        <q-btn
+                                          color="grey-7"
+                                          flat
+                                          dense
+                                          class="col-12"
+                                          icon="edit"
+                                        />
+                                        <q-btn
+                                          color="grey-7"
+                                          flat
+                                          dense
+                                          class="col-12"
+                                          icon="delete "
+                                        />
+                                      </div>
+                                    </q-item-section>
+
+                                    <q-item-section class="q-pa-md">
+                                      <q-item-label class="text-bold"
+                                        >دوره نهم سفر به ماه</q-item-label
+                                      >
+
+                                      <div class="q-pt-md q-pb-sm">
+                                        <span class="text-grey-7"
+                                          >عاشر قلیچ سید محمدی</span
+                                        >
+                                      </div>
+
+                                      <div class="text-grey-7 q-pb-sm">
+                                        طول دوره: 1 سال
+                                      </div>
+
+                                      <div class="text-grey-7">1400</div>
+                                    </q-item-section>
+
+                                    <q-item-section
+                                      class="q-pa-sm row q-mr-lg"
+                                      side
+                                    >
+                                      <div class="text-bold text-black">
+                                        The ninth period of travel to the moon
+                                      </div>
+
+                                      <div class="text-bold q-py-sm text-black">
+                                        Usher Qelich Seyed Muhammadi
+                                      </div>
+
+                                      <div class="text-grey-6 q-pb-sm">
+                                        Duration: 1 year
+                                      </div>
+
+                                      <div class="text-grey-6">2021</div>
+                                    </q-item-section>
+                                  </q-item>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <q-separator class="full-width q-mt-md" />
+
+                          <!-- Awards -->
+
+                          <div class="col-12 row">
+                            <div class="q-px-lg">
+                              <div class="row">
+                                <div class="col-12">
+                                  <q-badge
+                                    class="text-white text-bold"
+                                    style="background-color: #45c26f"
+                                  >
+                                    100%
+                                  </q-badge>
+                                </div>
+
+                                <div class="col-12 q-mt-md">
+                                  <div class="col-12 row justify-between">
+                                    <div class="text-h6 text-bold q-px-md">
+                                      جوایز و افتخارات
+                                    </div>
+
+                                    <div>
+                                      <q-btn
+                                        dense
+                                        flat
+                                        color="primary"
+                                        label="افزودن"
+                                        icon="add_circle"
+                                        class="q-pr-md"
+                                      />
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <div
+                                  class="col-12 q-mt-sm q-mb-md row justify-center items-center q-ml-md"
+                                >
+                                  <q-item class="col-12 q-my-xs">
+                                    <q-item-section avatar>
+                                      <div
+                                        class="br-10 row q-py-sm"
+                                        style="
+                                          background-color: #f6f7f9 !important;
+                                        "
+                                      >
+                                        <q-btn
+                                          color="grey-7"
+                                          flat
+                                          dense
+                                          class="col-12"
+                                          icon="edit"
+                                        />
+                                        <q-btn
+                                          color="grey-7"
+                                          flat
+                                          dense
+                                          class="col-12"
+                                          icon="delete "
+                                        />
+                                      </div>
+                                    </q-item-section>
+
+                                    <q-item-section class="q-pa-md">
+                                      <q-item-label class="text-bold"
+                                        >نفر اول کشوری جشنواره نوجوان
+                                        خوارزمی</q-item-label
+                                      >
+
+                                      <div class="q-pt-md q-pb-sm">
+                                        <span class="text-grey-7">1401</span>
+                                      </div>
+                                    </q-item-section>
+
+                                    <q-item-section
+                                      class="q-pa-sm row q-mr-lg"
+                                      side
+                                    >
+                                      <div class="text-bold text-black">
+                                        The first national winner of the
+                                        Khwarazmi Youth Festival
+                                      </div>
+
+                                      <div class="text-bold q-py-sm text-black">
+                                        2022
+                                      </div>
+                                    </q-item-section>
+                                  </q-item>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <q-separator class="full-width q-mt-md" />
+
+                          <!-- Academic Projects  -->
+
+                          <div class="q-px-lg q-mb-md">
+                            <div class="col-12">
+                              <q-badge
+                                class="text-white text-bold"
+                                style="background-color: #eb4969"
+                              >
+                                0%
+                              </q-badge>
+                            </div>
+
+                            <div class="col-12 row justify-between">
+                              <div class="text-h6 text-bold q-px-md q-mt-sm">
+                                پروژه‌ها و تجربیات آکادمیک
+                              </div>
+
+                              <div>
+                                <q-btn
+                                  dense
+                                  flat
+                                  color="primary"
+                                  label="افزودن"
+                                  icon="add_circle"
+                                  class="q-pr-md"
+                                />
+                              </div>
+                            </div>
+                          </div>
+
+                          <q-separator class="full-width q-mt-md" />
+
+                          <!-- Books And Articles -->
+
+                          <div class="q-px-lg q-mb-md">
+                            <div class="col-12">
+                              <q-badge
+                                class="text-white text-bold"
+                                style="background-color: #eb4969"
+                              >
+                                0%
+                              </q-badge>
+                            </div>
+
+                            <div class="col-12 row justify-between">
+                              <div class="text-h6 text-bold q-px-lg q-mt-sm">
+                                کتاب‌ها و مقالات
+                              </div>
+
+                              <div>
+                                <q-btn
+                                  dense
+                                  flat
+                                  color="primary"
+                                  label="افزودن"
+                                  icon="add_circle"
+                                  class="q-pr-md"
+                                />
+                              </div>
+                            </div>
+                          </div>
+
+                          <q-separator class="full-width q-mt-md" />
+
+                          <!-- Voluntary Activities -->
+
+                          <div class="q-px-lg q-pb-md">
+                            <div class="col-12">
+                              <q-badge
+                                class="text-white text-bold"
+                                style="background-color: #eb4969"
+                              >
+                                0%
+                              </q-badge>
+                            </div>
+
+                            <div class="col-12 row justify-between">
+                              <div class="text-h6 text-bold q-px-md q-mt-sm">
+                                فعالیت‌های داوطلبانه
+                              </div>
+
+                              <div>
+                                <q-btn
+                                  dense
+                                  flat
+                                  color="primary"
+                                  label="افزودن"
+                                  icon="add_circle"
+                                  class="q-pr-md"
+                                />
                               </div>
                             </div>
                           </div>
@@ -1350,7 +1815,7 @@
 
             <!-- Phone Number, Audio Introduction And Upload Personal Resume -->
 
-            <div class="q-mt-lg q-px-md q-pl-md">
+            <div class="q-mt-lg">
               <div class="bg-white br-10">
                 <div class="row">
                   <!-- First Part -->
@@ -1515,7 +1980,7 @@
 
             <!-- Some Of My Works -->
 
-            <div class="q-mt-lg q-px-md q-pl-md">
+            <div class="q-mt-lg">
               <div class="bg-white br-10">
                 <div class="row">
                   <div class="full-width">
@@ -1611,7 +2076,7 @@
 
             <!-- Salary Insight -->
 
-            <div class="q-mt-lg q-px-md q-pl-md">
+            <div class="q-mt-lg">
               <div class="bg-white br-10">
                 <div class="row">
                   <div class="full-width">
@@ -1646,7 +2111,7 @@
                                   color="primary"
                                   class="text-bold"
                                   label="ماشین حساب حقوق و دست مزد"
-                                  icon="east"
+                                  icon-right="west"
                                 />
                               </div>
                             </div>
@@ -1661,7 +2126,1621 @@
 
             <!-- Test Results -->
 
-            <div class="q-mt-lg q-px-md q-pl-md">
+            <div class="q-mt-lg">
+              <div class="bg-white br-10">
+                <div class="row q-py-md">
+                  <div class="full-width">
+                    <div class="bg-white br-10">
+                      <div class="q-px-md">
+                        <!-- Declaration -->
+
+                        <div class="full-width">
+                          <div class="row justify-between">
+                            <div class="text-h6 text-bold q-mt-sm">
+                              نتایج آزمون‌ها
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="full-width q-mt-lg">
+                          <div class="row justify-center">
+                            <div class="col-12 row justify-between">
+                              <div class="col-7 text-grey-7">
+                                <q-btn
+                                  rounded
+                                  disable
+                                  dense
+                                  color="grey-5"
+                                  icon="done"
+                                  class="q-mr-sm"
+                                />
+                                <span>Bar-On </span>
+                              </div>
+
+                              <div class="col-5 row justify-end">
+                                <q-btn
+                                  flat
+                                  color="primary"
+                                  label="شرکت در آزمون"
+                                />
+                              </div>
+                            </div>
+
+                            <div class="col-12 row justify-between q-mt-xs">
+                              <div class="col-7 text-bold">
+                                <q-btn
+                                  rounded
+                                  disable
+                                  dense
+                                  color="primary"
+                                  icon="done"
+                                  class="q-mr-sm"
+                                />
+                                <span>MBTI </span>
+                              </div>
+
+                              <div class="col-5 row justify-end">
+                                <q-btn
+                                  flat
+                                  color="primary"
+                                  label="مشاهده نتایج"
+                                />
+                              </div>
+                            </div>
+
+                            <div class="col-12 row justify-between q-mt-xs">
+                              <div class="col-7 text-grey-7">
+                                <q-btn
+                                  rounded
+                                  disable
+                                  dense
+                                  color="grey-5"
+                                  icon="done"
+                                  class="q-mr-sm"
+                                />
+                                <span>NEO </span>
+                              </div>
+
+                              <div class="col-5 row justify-end">
+                                <q-btn
+                                  flat
+                                  color="primary"
+                                  label="شرکت در آزمون"
+                                />
+                              </div>
+                            </div>
+
+                            <div class="col-12 row justify-between q-mt-xs">
+                              <div class="col-7 text-grey-7">
+                                <q-btn
+                                  rounded
+                                  disable
+                                  dense
+                                  color="grey-5"
+                                  icon="done"
+                                  class="q-mr-sm"
+                                />
+                                <span>هوش های چندگانه</span>
+                              </div>
+
+                              <div class="col-5 row justify-end">
+                                <q-btn
+                                  flat
+                                  color="primary"
+                                  label="شرکت در آزمون"
+                                />
+                              </div>
+                            </div>
+
+                            <div class="col-12 row justify-between q-mt-xs">
+                              <div class="col-7 text-grey-7">
+                                <q-btn
+                                  rounded
+                                  disable
+                                  dense
+                                  color="grey-5"
+                                  icon="done"
+                                  class="q-mr-sm"
+                                />
+                                <span>Holland </span>
+                              </div>
+
+                              <div class="col-5 row justify-end">
+                                <q-btn
+                                  flat
+                                  color="primary"
+                                  label="شرکت در آزمون"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row" v-if="preferred.value == 'employer'">
+          <!-- Employer -->
+
+          <div class="col-8 q-pr-md">
+            <div class="full-width">
+              <div class="bg-white br-10">
+                <div class="q-px-lg">
+                  <div class="row">
+                    <div class="col-12">
+                      <q-badge
+                        class="text-white text-bold"
+                        style="background-color: #45c26f"
+                      >
+                        100%
+                      </q-badge>
+                    </div>
+                  </div>
+
+                  <div class="full-width">
+                    <div class="row justify-between">
+                      <div class="text-h6 text-bold q-mt-sm">درباره من</div>
+                    </div>
+                  </div>
+
+                  <div class="col-12 row">
+                    <div class="q-mt-md q-mb-lg row justify-between">
+                      <div class="col-12 q-pr-xl">
+                        <q-item class="full-width">
+                          <q-item-section top avatar>
+                            <q-avatar
+                              size="64px"
+                              color="blue-grey-3"
+                              text-color="white"
+                              @click="editToggle"
+                            >
+                              <q-icon size="80px" name="person" />
+                            </q-avatar>
+                          </q-item-section>
+
+                          <q-item-section class="q-px-md">
+                            <q-item-label
+                              style="font-size: 16px"
+                              class="text-bold"
+                              >معین صداقتی</q-item-label
+                            >
+                            <q-item-label class="q-pt-md" caption lines="2">
+                              دولوپر فول استک در شرکت آیترونیک
+                            </q-item-label>
+                          </q-item-section>
+                        </q-item>
+                      </div>
+
+                      <div class="row q-px-md">
+                        <div class="col-12 q-mt-md text-grey-8">
+                          معین صداقتی متولد سال 1386/9/9. از 13 سالگی شروع به
+                          یاد گیری برنامه نویسی کردم و از 15 سالگی به صورت جدی
+                          برنامه نویسی میکنم.
+                        </div>
+
+                        <div dir="ltr" class="col-12 q-mt-lg text-grey-8">
+                          Moeen Sedaqati born on 9/9/1386. I started learning
+                          programming when I was 13 years old, and I started
+                          programming seriously when I was 15 years old.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="q-mt-lg">
+              <div class="full-width">
+                <div class="bg-white br-10">
+                  <div class="q-px-lg">
+                    <div class="row">
+                      <div class="col-12">
+                        <q-badge
+                          class="text-white text-bold"
+                          style="background-color: #45c26f"
+                        >
+                          100%
+                        </q-badge>
+                      </div>
+
+                      <div class="full-width">
+                        <div class="row justify-between">
+                          <div class="text-h6 text-bold q-mt-sm">
+                            اطلاعات اولیه
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row justify-between q-mt-lg full-width">
+                        <div class="col-12 row justify-between q-pb-lg">
+                          <div class="col-5">
+                            <div>
+                              <div class="text-weight-thin text-grey-8">
+                                نام و نام خانوادگی
+                              </div>
+                              <div class="text-bold">معین صداقتی</div>
+                            </div>
+
+                            <div class="q-mt-md">
+                              <div class="text-weight-thin text-grey-8">
+                                جنسیت
+                              </div>
+                              <div class="text-bold">مرد</div>
+                            </div>
+
+                            <div class="q-mt-md">
+                              <div class="text-weight-thin text-grey-8">
+                                وضعیت تاهل
+                              </div>
+                              <div class="text-bold">مجرد</div>
+                            </div>
+
+                            <div class="q-mt-md">
+                              <div class="text-weight-thin text-grey-8">
+                                وضعیت نظام وظیفه
+                              </div>
+                              <div class="text-bold">معافیت تحصیلی</div>
+                            </div>
+
+                            <div class="q-mt-md">
+                              <div class="text-weight-thin text-grey-8">
+                                شهر محل سکونت
+                              </div>
+                              <div class="text-bold">گنبد کاووس</div>
+                            </div>
+
+                            <div class="q-mt-md">
+                              <div class="text-weight-thin text-grey-8">
+                                محل سکونت
+                              </div>
+                              <div class="text-bold">
+                                خیابان بعثت غربی نرسیده به چهارراه فردوسی جنب
+                                یخچال سازی صوفی زاده
+                              </div>
+                            </div>
+
+                            <div class="q-mt-md">
+                              <div class="text-weight-thin text-grey-8">
+                                تاریخ تولد
+                              </div>
+                              <div class="text-bold">1386/09/09</div>
+                            </div>
+
+                            <div class="q-mt-md">
+                              <div class="text-weight-thin text-grey-8">
+                                شماره ثابت
+                              </div>
+                              <div class="text-bold">33231884</div>
+                            </div>
+
+                            <div class="q-mt-md">
+                              <div class="text-weight-thin text-grey-8">
+                                حقوق درخواستی
+                              </div>
+                              <div class="text-bold">8 - 6 میلیون تومان</div>
+                            </div>
+
+                            <div class="q-mt-md">
+                              <div class="text-weight-thin text-grey-8">
+                                گروه شغلی مورد علاقه
+                              </div>
+                              <div class="text-bold">
+                                توسعه نرم افزار و برنامه نویسی
+                              </div>
+                            </div>
+                          </div>
+
+                          <div dir="ltr" class="col-5">
+                            <div>
+                              <div class="text-weight-thin text-grey-8">
+                                First and Last Name
+                              </div>
+                              <div class="text-bold">Moeen Sedaqati</div>
+                            </div>
+
+                            <div class="q-mt-md">
+                              <div class="text-weight-thin text-grey-8">
+                                Gender
+                              </div>
+                              <div class="text-bold">Male</div>
+                            </div>
+
+                            <div class="q-mt-md">
+                              <div class="text-weight-thin text-grey-8">
+                                Marital Status
+                              </div>
+                              <div class="text-bold">Single</div>
+                            </div>
+
+                            <div class="q-mt-md">
+                              <div class="text-weight-thin text-grey-8">
+                                Military Service Status
+                              </div>
+                              <div class="text-bold">Educational Exemption</div>
+                            </div>
+
+                            <div class="q-mt-md">
+                              <div class="text-weight-thin text-grey-8">
+                                City
+                              </div>
+                              <div class="text-bold">Gonbad kavoos</div>
+                            </div>
+
+                            <div class="q-mt-md">
+                              <div class="text-weight-thin text-grey-8">
+                                Region
+                              </div>
+                              <div class="text-bold">
+                                West Ba'ath St. has not reached the Ferdowsi
+                                intersection, next to Sufizadeh refrigerator
+                              </div>
+                            </div>
+
+                            <div class="q-mt-md">
+                              <div class="text-weight-thin text-grey-8">
+                                Date of Birth
+                              </div>
+                              <div class="text-bold">2007-11-30</div>
+                            </div>
+
+                            <div class="q-mt-md">
+                              <div class="text-weight-thin text-grey-8">
+                                Phone Number
+                              </div>
+                              <div class="text-bold">33231884</div>
+                            </div>
+
+                            <div class="q-mt-md">
+                              <div class="text-weight-thin text-grey-8">
+                                Expected Salary
+                              </div>
+                              <div class="text-bold">6 - 8 Million Tomans</div>
+                            </div>
+
+                            <div class="q-mt-md">
+                              <div class="text-weight-thin text-grey-8">
+                                Preferred Job Category
+                              </div>
+                              <div class="text-bold">
+                                IT - Software Development (Web,Moblie,…)
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Educational Records -->
+
+            <div class="q-mt-lg">
+              <div class="full-width">
+                <div class="bg-white br-10">
+                  <div class="q-px-lg">
+                    <div class="row">
+                      <div class="col-12">
+                        <q-badge
+                          class="text-white text-bold"
+                          style="background-color: #45c26f"
+                        >
+                          100%
+                        </q-badge>
+                      </div>
+
+                      <div class="col-12 q-mt-md">
+                        <div class="col-12 row justify-between">
+                          <div class="text-h6 text-bold q-mt-sm">
+                            سوابق تحصیلی
+                          </div>
+
+                          <!-- <div>
+                            <q-btn
+                              dense
+                              flat
+                              color="primary"
+                              label="افزودن"
+                              icon="add_circle"
+                              class="q-pr-md"
+                            />
+                          </div> -->
+                        </div>
+                      </div>
+
+                      <div class="col-12 q-mt-md q-mb-sm">
+                        <q-checkbox v-model="val" label="تحصیلات دانشگاهی" />
+                      </div>
+
+                      <div class="col-12 q-mb-md q-ml-md">
+                        <q-radio
+                          class="q-mb-xs full-width"
+                          v-model="shape"
+                          val="DY"
+                          label="مدرک تحصیلی دیپلم دارم."
+                        />
+                        <q-radio
+                          class="q-my-xs full-width"
+                          v-model="shape"
+                          val="DN"
+                          label="مدرک تحصیلی زیر دیپلم دارم."
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Experience -->
+
+            <div class="q-mt-lg">
+              <div class="full-width">
+                <div class="bg-white br-10">
+                  <div class="q-px-lg">
+                    <div class="row">
+                      <div class="col-12">
+                        <q-badge
+                          class="text-white text-bold"
+                          style="background-color: #45c26f"
+                        >
+                          100%
+                        </q-badge>
+                      </div>
+
+                      <div class="col-12 q-mt-md">
+                        <div class="col-12 row justify-between">
+                          <div class="text-h6 text-bold q-mt-sm">
+                            سوابق شغلی
+                          </div>
+                        </div>
+                      </div>
+
+                      <div
+                        class="col-12 q-mt-xs q-mb-md row justify-center items-center"
+                      >
+                        <q-item
+                          style="background-color: white; border-radius: 8px"
+                          class="col-12 q-my-xs"
+                        >
+                          <q-item-section class="q-pa-md">
+                            <q-item-label class="text-bold"
+                              >دولوپر فول استک در شرکت آیترونیک</q-item-label
+                            >
+
+                            <div class="q-my-md">
+                              <span class="text-bold">آیترونیک</span>
+                            </div>
+
+                            <div class="text-grey-6">از تیر 1402 تاکنون</div>
+                          </q-item-section>
+
+                          <q-item-section class="q-pa-sm row q-mr-md" side>
+                            <div class="text-bold text-black">
+                              Full Stack Developer
+                            </div>
+
+                            <div class="text-bold q-my-md text-black">
+                              Aytronic
+                            </div>
+
+                            <div class="text-grey-6">June 2023 - Present</div>
+                          </q-item-section>
+                        </q-item>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Langs -->
+
+            <div class="q-mt-lg">
+              <div class="full-width">
+                <div class="bg-white br-10">
+                  <div class="q-px-lg">
+                    <div class="row">
+                      <div class="col-12">
+                        <q-badge
+                          class="text-white text-bold"
+                          style="background-color: #45c26f"
+                        >
+                          100%
+                        </q-badge>
+                      </div>
+
+                      <div class="col-12 q-mt-md">
+                        <div class="col-12 row justify-between">
+                          <div class="text-h6 text-bold q-mt-sm">زبان‌ها</div>
+                        </div>
+                      </div>
+
+                      <div class="col-12 row justify-between q-my-md">
+                        <div class="col-5 row q-mr-md">
+                          <div>
+                            <div class="row items-center q-mt-md">
+                              <div
+                                class="text-white row q-px-sm q-py-xs br-10"
+                                style="
+                                  background-color: #5c6573 !important;
+                                  padding-top: 5px;
+                                  padding-bottom: 5px;
+                                "
+                              >
+                                <div class="text-bold q-ml-sm">انگلیسی</div>
+
+                                <q-separator
+                                  color="white"
+                                  class="q-mx-sm q-my-xs"
+                                  vertical
+                                />
+
+                                <div>Upper Intermediate</div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div>
+                            <div class="row items-center q-mt-md">
+                              <div
+                                class="text-white row q-px-sm q-py-xs br-10"
+                                style="
+                                  background-color: #5c6573 !important;
+                                  padding-top: 5px;
+                                  padding-bottom: 5px;
+                                "
+                              >
+                                <div class="text-bold q-ml-sm">فارسی</div>
+
+                                <q-separator
+                                  color="white"
+                                  class="q-mx-sm q-my-xs"
+                                  vertical
+                                />
+
+                                <div>پیشرفته</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-5 row justify-end q-mr-md">
+                          <div>
+                            <div class="row items-center q-mt-md">
+                              <div
+                                class="text-white row q-px-sm q-py-xs br-10"
+                                style="
+                                  background-color: #5c6573 !important;
+                                  padding-top: 5px;
+                                  padding-bottom: 5px;
+                                "
+                              >
+                                <div>Upper Intermediate</div>
+
+                                <q-separator
+                                  color="white"
+                                  class="q-mx-sm q-my-xs"
+                                  vertical
+                                />
+
+                                <div class="text-bold q-ml-sm">English</div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div>
+                            <div class="row items-center q-mt-md">
+                              <div
+                                class="text-white row q-px-sm q-py-xs br-10"
+                                style="
+                                  background-color: #5c6573 !important;
+                                  padding-top: 5px;
+                                  padding-bottom: 5px;
+                                "
+                              >
+                                <div>Advanced</div>
+
+                                <q-separator
+                                  color="white"
+                                  class="q-mx-sm q-my-xs"
+                                  vertical
+                                />
+
+                                <div class="text-bold q-ml-sm">Persian</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Skills -->
+
+            <div class="q-mt-lg">
+              <div class="full-width">
+                <div class="bg-white br-10">
+                  <div class="q-px-lg">
+                    <div class="row">
+                      <div class="col-12">
+                        <q-badge
+                          class="text-white text-bold"
+                          style="background-color: #45c26f"
+                        >
+                          100%
+                        </q-badge>
+                      </div>
+
+                      <div class="col-12 q-mt-md">
+                        <div class="col-12 row justify-between">
+                          <div class="text-h6 text-bold q-mt-sm">
+                            مهارت های نرم افزاری
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="col-12 row q-my-lg">
+                        <div class="q-mr-md row items-center q-mt-sm">
+                          <div>
+                            <div
+                              class="text-white row q-px-sm q-py-xs br-8"
+                              style="
+                                background-color: #5c6573 !important;
+                                padding-top: 5px;
+                                padding-bottom: 5px;
+                              "
+                            >
+                              <div
+                                class="text-bold q-ml-sm"
+                                style="font-size: 13px"
+                              >
+                                Html & CSS
+                              </div>
+
+                              <q-separator
+                                color="white"
+                                class="q-mx-sm q-my-xs"
+                                vertical
+                              />
+
+                              <div>پیشرفته</div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="q-mr-md row items-center q-mt-sm">
+                          <div>
+                            <div
+                              class="text-white row q-px-sm q-py-xs br-8"
+                              style="
+                                background-color: #5c6573 !important;
+                                padding-top: 5px;
+                                padding-bottom: 5px;
+                              "
+                            >
+                              <div
+                                class="text-bold q-ml-sm"
+                                style="font-size: 13px"
+                              >
+                                VueJS
+                              </div>
+
+                              <q-separator
+                                color="white"
+                                class="q-mx-sm q-my-xs"
+                                vertical
+                              />
+
+                              <div>پیشرفته</div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="q-mr-md row items-center q-mt-sm">
+                          <div>
+                            <div
+                              class="text-white row q-px-sm q-py-xs br-8"
+                              style="
+                                background-color: #5c6573 !important;
+                                padding-top: 5px;
+                                padding-bottom: 5px;
+                              "
+                            >
+                              <div
+                                class="text-bold q-ml-sm"
+                                style="font-size: 13px"
+                              >
+                                Figma
+                              </div>
+
+                              <q-separator
+                                color="white"
+                                class="q-mx-sm q-my-xs"
+                                vertical
+                              />
+
+                              <div>پیشرفته</div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="q-mr-md row items-center q-mt-sm">
+                          <div>
+                            <div
+                              class="text-white row q-px-sm q-py-xs br-8"
+                              style="
+                                background-color: #5c6573 !important;
+                                padding-top: 5px;
+                                padding-bottom: 5px;
+                              "
+                            >
+                              <div
+                                class="text-bold q-ml-sm"
+                                style="font-size: 13px"
+                              >
+                                Laravel
+                              </div>
+
+                              <q-separator
+                                color="white"
+                                class="q-mx-sm q-my-xs"
+                                vertical
+                              />
+
+                              <div>متوسط</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Additional Skills -->
+
+            <div class="q-mt-lg">
+              <div class="full-width">
+                <div class="bg-white br-10">
+                  <div class="q-px-lg">
+                    <div class="row">
+                      <div class="col-12">
+                        <q-badge
+                          class="text-white text-bold"
+                          style="background-color: #45c26f"
+                        >
+                          100%
+                        </q-badge>
+                      </div>
+
+                      <div class="col-12 q-mt-md">
+                        <div class="col-12 row justify-between">
+                          <div class="text-h6 text-bold q-mt-sm">
+                            مهارت های تکمیلی
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="full-width">
+                        <div class="q-my-lg">
+                          <div class="row">
+                            <div class="col">
+                              <div class="col-12 row items-center q-mt-sm">
+                                <div>
+                                  <div
+                                    class="text-white row q-px-sm q-pb-xs"
+                                    style="
+                                      padding-top: 5px;
+                                      padding-bottom: 5px;
+                                    "
+                                  >
+                                    <div
+                                      class="text-grey-6"
+                                      style="font-size: 13px"
+                                    >
+                                      مهارت‌ها در رزومه فارسی (6 مهارت)
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <!-- Skills -->
+
+                              <div class="col-12 row items-center q-mt-sm">
+                                <div>
+                                  <div
+                                    class="text-white row q-px-sm q-py-xs br-8"
+                                    style="
+                                      background-color: #5c6573 !important;
+                                      padding-top: 5px;
+                                      padding-bottom: 5px;
+                                    "
+                                  >
+                                    <q-icon
+                                      size="20px"
+                                      class="q-px-xs"
+                                      color="grey-5"
+                                      name="delete"
+                                    />
+
+                                    <div
+                                      class="text-bold q-ml-sm"
+                                      style="font-size: 13px"
+                                    >
+                                      برنامه نویسی فرانت اند
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="col-12 row items-center q-mt-sm">
+                                <div>
+                                  <div
+                                    class="text-white row q-px-sm q-py-xs br-8"
+                                    style="
+                                      background-color: #5c6573 !important;
+                                      padding-top: 5px;
+                                      padding-bottom: 5px;
+                                    "
+                                  >
+                                    <q-icon
+                                      size="20px"
+                                      class="q-px-xs"
+                                      color="grey-5"
+                                      name="delete"
+                                    />
+
+                                    <div
+                                      class="text-bold q-ml-sm"
+                                      style="font-size: 13px"
+                                    >
+                                      سی اس اس
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="col-12 row items-center q-mt-sm">
+                                <div>
+                                  <div
+                                    class="text-white row q-px-sm q-py-xs br-8"
+                                    style="
+                                      background-color: #5c6573 !important;
+                                      padding-top: 5px;
+                                      padding-bottom: 5px;
+                                    "
+                                  >
+                                    <q-icon
+                                      size="20px"
+                                      class="q-px-xs"
+                                      color="grey-5"
+                                      name="delete"
+                                    />
+
+                                    <div
+                                      class="text-bold q-ml-sm"
+                                      style="font-size: 13px"
+                                    >
+                                      فیگما
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="col-12 row items-center q-mt-sm">
+                                <div>
+                                  <div
+                                    class="text-white row q-px-sm q-py-xs br-8"
+                                    style="
+                                      background-color: #5c6573 !important;
+                                      padding-top: 5px;
+                                      padding-bottom: 5px;
+                                    "
+                                  >
+                                    <q-icon
+                                      size="20px"
+                                      class="q-px-xs"
+                                      color="grey-5"
+                                      name="delete"
+                                    />
+
+                                    <div
+                                      class="text-bold q-ml-sm"
+                                      style="font-size: 13px"
+                                    >
+                                      اچ تی ام ال
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="col-12 row items-center q-mt-sm">
+                                <div>
+                                  <div
+                                    class="text-white row q-px-sm q-py-xs br-8"
+                                    style="
+                                      background-color: #5c6573 !important;
+                                      padding-top: 5px;
+                                      padding-bottom: 5px;
+                                    "
+                                  >
+                                    <q-icon
+                                      size="20px"
+                                      class="q-px-xs"
+                                      color="grey-5"
+                                      name="delete"
+                                    />
+
+                                    <div
+                                      class="text-bold q-ml-sm"
+                                      style="font-size: 13px"
+                                    >
+                                      کویزار
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="col-12 row items-center q-mt-sm">
+                                <div>
+                                  <div
+                                    class="text-white row q-px-sm q-py-xs br-8"
+                                    style="
+                                      background-color: #5c6573 !important;
+                                      padding-top: 5px;
+                                      padding-bottom: 5px;
+                                    "
+                                  >
+                                    <q-icon
+                                      size="20px"
+                                      class="q-px-xs"
+                                      color="grey-5"
+                                      name="delete"
+                                    />
+
+                                    <div
+                                      class="text-bold q-ml-sm"
+                                      style="font-size: 13px"
+                                    >
+                                      لاراول
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <q-separator class="q-my-xs q-mx-xs" vertical />
+
+                            <div class="col row">
+                              <div
+                                class="col-12 row justify-end items-center q-mt-sm"
+                              >
+                                <div>
+                                  <div
+                                    class="text-white row q-px-sm q-pb-xs q-mr-sm"
+                                    style="
+                                      padding-top: 5px;
+                                      padding-bottom: 5px;
+                                    "
+                                  >
+                                    <div
+                                      class="text-grey-6"
+                                      style="font-size: 13px"
+                                    >
+                                      Skills in English Resume (8 skills)
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <!-- Skills -->
+
+                              <div
+                                class="col-12 row justify-end items-center q-mt-sm"
+                              >
+                                <div>
+                                  <div
+                                    class="text-white row q-pl-sm q-py-xs br-8 q-mr-md"
+                                    style="
+                                      background-color: #5c6573 !important;
+                                      padding-top: 5px;
+                                      padding-bottom: 5px;
+                                    "
+                                  >
+                                    <div
+                                      class="text-bold q-mr-sm"
+                                      style="font-size: 13px"
+                                    >
+                                      HTML
+                                    </div>
+
+                                    <q-icon
+                                      size="20px"
+                                      class="q-px-xs"
+                                      color="grey-5"
+                                      name="delete"
+                                    />
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div
+                                class="col-12 row justify-end items-center q-mt-sm"
+                              >
+                                <div>
+                                  <div
+                                    class="text-white row q-pl-sm q-py-xs br-8 q-mr-md"
+                                    style="
+                                      background-color: #5c6573 !important;
+                                      padding-top: 5px;
+                                      padding-bottom: 5px;
+                                    "
+                                  >
+                                    <div
+                                      class="text-bold q-ml-sm"
+                                      style="font-size: 13px"
+                                    >
+                                      Quasar
+                                    </div>
+
+                                    <q-icon
+                                      size="20px"
+                                      class="q-px-xs"
+                                      color="grey-5"
+                                      name="delete"
+                                    />
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div
+                                class="col-12 row justify-end items-center q-mt-sm"
+                              >
+                                <div>
+                                  <div
+                                    class="text-white row q-pl-sm q-py-xs br-8 q-mr-md"
+                                    style="
+                                      background-color: #5c6573 !important;
+                                      padding-top: 5px;
+                                      padding-bottom: 5px;
+                                    "
+                                  >
+                                    <div
+                                      class="text-bold q-ml-sm"
+                                      style="font-size: 13px"
+                                    >
+                                      vue.js
+                                    </div>
+
+                                    <q-icon
+                                      size="20px"
+                                      class="q-px-xs"
+                                      color="grey-5"
+                                      name="delete"
+                                    />
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div
+                                class="col-12 row justify-end items-center q-mt-sm"
+                              >
+                                <div>
+                                  <div
+                                    class="text-white row q-pl-sm q-py-xs br-8 q-mr-md"
+                                    style="
+                                      background-color: #5c6573 !important;
+                                      padding-top: 5px;
+                                      padding-bottom: 5px;
+                                    "
+                                  >
+                                    <div
+                                      class="text-bold q-ml-sm"
+                                      style="font-size: 13px"
+                                    >
+                                      vue router
+                                    </div>
+
+                                    <q-icon
+                                      size="20px"
+                                      class="q-px-xs"
+                                      color="grey-5"
+                                      name="delete"
+                                    />
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div
+                                class="col-12 row justify-end items-center q-mt-sm"
+                              >
+                                <div>
+                                  <div
+                                    class="text-white row q-pl-sm q-py-xs br-8 q-mr-md"
+                                    style="
+                                      background-color: #5c6573 !important;
+                                      padding-top: 5px;
+                                      padding-bottom: 5px;
+                                    "
+                                  >
+                                    <div
+                                      class="text-bold q-ml-sm"
+                                      style="font-size: 13px"
+                                    >
+                                      Vue CLi
+                                    </div>
+
+                                    <q-icon
+                                      size="20px"
+                                      class="q-px-xs"
+                                      color="grey-5"
+                                      name="delete"
+                                    />
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div
+                                class="col-12 row justify-end items-center q-mt-sm"
+                              >
+                                <div>
+                                  <div
+                                    class="text-white row q-pl-sm q-py-xs br-8 q-mr-md"
+                                    style="
+                                      background-color: #5c6573 !important;
+                                      padding-top: 5px;
+                                      padding-bottom: 5px;
+                                    "
+                                  >
+                                    <div
+                                      class="text-bold q-ml-sm"
+                                      style="font-size: 13px"
+                                    >
+                                      Laravel
+                                    </div>
+
+                                    <q-icon
+                                      size="20px"
+                                      class="q-px-xs"
+                                      color="grey-5"
+                                      name="delete"
+                                    />
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div
+                                class="col-12 row justify-end items-center q-mt-sm"
+                              >
+                                <div>
+                                  <div
+                                    class="text-white row q-pl-sm q-py-xs br-8 q-mr-md"
+                                    style="
+                                      background-color: #5c6573 !important;
+                                      padding-top: 5px;
+                                      padding-bottom: 5px;
+                                    "
+                                  >
+                                    <div
+                                      class="text-bold q-ml-sm"
+                                      style="font-size: 13px"
+                                    >
+                                      Css3
+                                    </div>
+
+                                    <q-icon
+                                      size="20px"
+                                      class="q-px-xs"
+                                      color="grey-5"
+                                      name="delete"
+                                    />
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div
+                                class="col-12 row justify-end items-center q-mt-sm"
+                              >
+                                <div>
+                                  <div
+                                    class="text-white row q-pl-sm q-py-xs br-8 q-mr-md"
+                                    style="
+                                      background-color: #5c6573 !important;
+                                      padding-top: 5px;
+                                      padding-bottom: 5px;
+                                    "
+                                  >
+                                    <div
+                                      class="text-bold q-ml-sm"
+                                      style="font-size: 13px"
+                                    >
+                                      Figma
+                                    </div>
+
+                                    <q-icon
+                                      size="20px"
+                                      class="q-px-xs"
+                                      color="grey-5"
+                                      name="delete"
+                                    />
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- More -->
+
+            <div class="q-mt-lg">
+              <div class="full-width">
+                <div class="row">
+                  <!-- Partners -->
+
+                  <div class="col-12 row">
+                    <!-- Content -->
+
+                    <div class="col-12 q-mt-md">
+                      <div class="q-mt-sm">
+                        <div class="bg-white br-10">
+                          <div class="q-px-lg">
+                            <div class="row">
+                              <div class="col-12">
+                                <q-badge
+                                  class="text-white text-bold"
+                                  style="background-color: #45c26f"
+                                >
+                                  100%
+                                </q-badge>
+                              </div>
+
+                              <div class="col-12 q-mt-md">
+                                <div class="col-12 row justify-between">
+                                  <div class="text-h6 text-bold q-px-md">
+                                    مدیران و همکاران سابق
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div
+                                class="col-12 q-mt-sm q-mb-md row justify-center items-center q-ml-md"
+                              >
+                                <q-item
+                                  style="
+                                    background-color: white;
+                                    border-radius: 8px;
+                                  "
+                                  class="col-12 q-my-xs"
+                                >
+                                  <q-item-section class="q-px-md q-py-sm">
+                                    <q-item-label class="text-bold"
+                                      >عاشر قلیچ سید محمدی</q-item-label
+                                    >
+
+                                    <div class="q-my-sm">
+                                      <span class="text-grey-7"
+                                        >مدیر در aytronic</span
+                                      >
+                                    </div>
+
+                                    <div class="text-grey-7">09112746075</div>
+                                  </q-item-section>
+                                </q-item>
+                              </div>
+                            </div>
+                          </div>
+
+                          <q-separator class="full-width q-mt-md" />
+
+                          <!-- Courses -->
+
+                          <div class="col-12">
+                            <div class="q-px-lg">
+                              <div class="row">
+                                <div class="col-12">
+                                  <q-badge
+                                    class="text-white text-bold"
+                                    style="background-color: #45c26f"
+                                  >
+                                    100%
+                                  </q-badge>
+                                </div>
+
+                                <div class="col-12 q-mt-md">
+                                  <div class="col-12 row justify-between">
+                                    <div class="text-h6 text-bold q-px-md">
+                                      دوره‌های آموزشی
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <div
+                                  class="col-12 q-mt-sm q-mb-md row justify-center items-center q-ml-md"
+                                >
+                                  <q-item class="col-12 q-my-xs">
+                                    <q-item-section class="q-pa-md">
+                                      <q-item-label class="text-bold"
+                                        >دوره نهم سفر به ماه</q-item-label
+                                      >
+
+                                      <div class="q-pt-md q-pb-sm">
+                                        <span class="text-grey-7"
+                                          >عاشر قلیچ سید محمدی</span
+                                        >
+                                      </div>
+
+                                      <div class="text-grey-7 q-pb-sm">
+                                        طول دوره: 1 سال
+                                      </div>
+
+                                      <div class="text-grey-7">1400</div>
+                                    </q-item-section>
+
+                                    <q-item-section
+                                      class="q-pa-sm row q-mr-md"
+                                      side
+                                    >
+                                      <div class="text-bold text-black">
+                                        The ninth period of travel to the moon
+                                      </div>
+
+                                      <div class="text-bold q-py-sm text-black">
+                                        Usher Qelich Seyed Muhammadi
+                                      </div>
+
+                                      <div class="text-grey-6 q-pb-sm">
+                                        Duration: 1 year
+                                      </div>
+
+                                      <div class="text-grey-6">2021</div>
+                                    </q-item-section>
+                                  </q-item>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <q-separator class="full-width q-mt-md" />
+
+                          <!-- Awards -->
+
+                          <div class="col-12">
+                            <div class="q-px-lg">
+                              <div class="row">
+                                <div class="col-12">
+                                  <q-badge
+                                    class="text-white text-bold"
+                                    style="background-color: #45c26f"
+                                  >
+                                    100%
+                                  </q-badge>
+                                </div>
+
+                                <div class="col-12 q-mt-md">
+                                  <div class="col-12 row justify-between">
+                                    <div class="text-h6 text-bold q-px-md">
+                                      جوایز و افتخارات
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <div
+                                  class="col-12 q-mt-sm q-mb-md row justify-center items-center q-ml-md"
+                                >
+                                  <q-item class="col-12 q-my-xs">
+                                    <q-item-section class="q-pa-md">
+                                      <q-item-label class="text-bold"
+                                        >نفر اول کشوری جشنواره نوجوان
+                                        خوارزمی</q-item-label
+                                      >
+
+                                      <div class="q-pt-md q-pb-sm">
+                                        <span class="text-grey-7">1401</span>
+                                      </div>
+                                    </q-item-section>
+
+                                    <q-item-section
+                                      class="q-pa-sm row q-mr-lg"
+                                      side
+                                    >
+                                      <div class="text-bold text-black">
+                                        The first national winner of the
+                                        Khwarazmi Youth Festival
+                                      </div>
+
+                                      <div class="text-bold q-py-sm text-black">
+                                        2022
+                                      </div>
+                                    </q-item-section>
+                                  </q-item>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-4 q-pl-md">
+            <!-- Phone Number, Audio Introduction And Upload Personal Resume -->
+
+            <div>
+              <div class="bg-white br-10">
+                <div class="row">
+                  <!-- First Part -->
+
+                  <div class="q-pa-md q-py-lg">
+                    <div class="text-bold text-h6">اطلاعات تماس</div>
+
+                    <div class="row full-width q-mt-md">
+                      <div class="col-12">
+                        <div class="row justify-between">
+                          <div class="col-8">
+                            <div class="text-weight-thin text-grey-6">
+                              آدرس ایمیل
+                            </div>
+                            <div class="text-bold">
+                              moeensedaghaty86@gmail.com
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="col-12 q-mt-md">
+                        <div class="row justify-between">
+                          <div class="col-8">
+                            <div class="text-weight-thin text-grey-6">
+                              شماره موبایل
+                            </div>
+                            <div class="text-bold">09379608155</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Some Of My Works -->
+
+            <div class="q-mt-lg">
+              <div class="bg-white br-10">
+                <div class="row">
+                  <div class="full-width">
+                    <div class="q-px-md">
+                      <div class="row">
+                        <div class="col-12">
+                          <q-badge
+                            class="text-white text-bold"
+                            style="background-color: #45c26f"
+                          >
+                            100%
+                          </q-badge>
+                        </div>
+                      </div>
+
+                      <!-- Declaration -->
+
+                      <div class="full-width">
+                        <div class="row justify-between">
+                          <div class="text-h6 text-bold q-mt-sm">
+                            نمونه کارها
+                          </div>
+                        </div>
+
+                        <!-- Buttons And Links -->
+
+                        <div class="row q-my-lg">
+                          <div class="full-width">
+                            <div dir="ltr" class="row justify-between q-pr-md">
+                              <div class="col-7 row">
+                                <q-btn
+                                  class="col-2"
+                                  color="primary"
+                                  rounded
+                                  icon="link"
+                                  unelevated
+                                />
+
+                                <div class="text-primary col-6">
+                                  <q-btn
+                                    flat
+                                    href="https://moeensedaqati.ir/"
+                                    target="_blank"
+                                  >
+                                    <div style="font-size: 12px">
+                                      https://moeensedaqati.ir/
+                                    </div>
+                                  </q-btn>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Salary Insight -->
+
+            <div class="q-mt-lg">
+              <div class="bg-white br-10">
+                <div class="row">
+                  <div class="full-width">
+                    <div
+                      style="background-color: #eeeffe !important"
+                      class="br-10 q-py-md"
+                    >
+                      <div class="q-px-md row">
+                        <div class="full-width">
+                          <div class="row justify-center text-center">
+                            <q-img
+                              class="col-8"
+                              src="https://jobvision.ir/assets/images/my-cv/salary-table.svg"
+                            />
+
+                            <div>
+                              <div
+                                class="text-bold q-mt-md"
+                                style="font-size: 12px"
+                              >
+                                از حقوق دریافتی افراد در مشاغل مختلف باخبر شوید
+                              </div>
+
+                              <div class="q-mt-sm" style="font-size: 11px">
+                                حقوق و دستمزد مشاغل مختلف را بررسی کنید و تخمین
+                                دقیق‌تری از حقوق منصفانه خود داشته باشید.
+                              </div>
+
+                              <div class="q-mt-md">
+                                <q-btn
+                                  flat
+                                  color="primary"
+                                  class="text-bold"
+                                  label="ماشین حساب حقوق و دست مزد"
+                                  icon-right="west"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Test Results -->
+
+            <div class="q-mt-lg">
               <div class="bg-white br-10">
                 <div class="row q-py-md">
                   <div class="full-width">
