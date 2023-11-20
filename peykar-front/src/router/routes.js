@@ -19,20 +19,19 @@ const routes = [
   {
     path: "/my-cv",
     component: () => import("src/layouts/MainLayout.vue"),
-    children: [
-      { path: "", component: () => import("pages/myResume.vue") },
-    ],
+    children: [{ path: "", component: () => import("pages/myResume.vue") }],
+  },
+  {
+    path: "/top-companies",
+    component: () => import("src/layouts/MainLayout.vue"),
+    children: [{ path: "", component: () => import("pages/TopCompanies.vue") }],
   },
   {
     path: "/test",
     component: () => import("src/layouts/MainLayout.vue"),
-    children: [
-      { path: "", component: () => import("pages/TestPage.vue") },
-    ],
+    children: [{ path: "", component: () => import("pages/TestPage.vue") }],
   },
 
-  // Always leave this as last one,
-  // but you can also remove it
   {
     path: "/:catchAll(.*)*",
     component: () => import("pages/ErrorNotFound.vue"),

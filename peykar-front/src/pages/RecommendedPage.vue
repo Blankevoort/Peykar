@@ -1083,7 +1083,7 @@ import { ref } from "vue";
 export default {
   setup() {
     const getMessage = ref(true);
-    const tab = ref("CVSent");
+    const tab = ref("suggestion");
     const CVPage = ref("pageOne");
     const categories = ref("all");
 
