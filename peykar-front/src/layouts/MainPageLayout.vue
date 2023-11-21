@@ -25,7 +25,8 @@
               />
               <q-btn
                 flat
-                label="شرکت های برتر"
+                label="
+                داده‌های بازار کار"
                 to="/top-companies"
                 class="btn--no-hover button-effect"
               />
