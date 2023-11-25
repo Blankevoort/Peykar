@@ -3,7 +3,13 @@
     <q-header class="row justify-center shadow" style="height: 70px">
       <q-toolbar class="col-8">
         <div class="col-6">
-          <div>
+          <div class="row">
+            <img
+              class="q-mr-lg"
+              src="https://jobvision.ir/assets/images/header/logo-bg-white.svg"
+              @click="$router.push('/')"
+            />
+
             <div>
               <q-btn
                 flat
@@ -35,20 +41,30 @@
         </div>
 
         <q-toolbar-title class="col-6 row justify-end">
-          <q-btn-dropdown
-            color="primary"
-            label="نام کاربری"
-            dropdown-icon="expand_more"
-            padding="8px 20px"
-          >
+          <q-btn round flat>
+            <q-icon
+              @click="$router.push('/notifications')"
+              size="24px"
+              name="notifications"
+            />
+          </q-btn>
+
+          <q-btn-dropdown flat color="grey-7" icon="person" padding="8px 20px">
             <q-list>
-              <q-item to="/my-cv" clickable v-ripple>
+              <q-item clickable v-ripple>
                 <q-item-section avatar>
-                  <q-icon name="description" />
+                  <q-icon name="hotel_class" />
                 </q-item-section>
-                <q-item-section>رزومه من</q-item-section>
+                <q-item-section>مشاغل پیشنهادی</q-item-section>
                 <div class="q-mx-lg"></div>
-                <q-item-section side></q-item-section>
+                <q-item-section side>
+                  <q-badge
+                    class="text-bold"
+                    color="green-2"
+                    text-color="green-8"
+                    label="31"
+                  />
+                </q-item-section>
               </q-item>
 
               <q-item clickable v-ripple>
@@ -61,20 +77,10 @@
 
               <q-item clickable v-ripple>
                 <q-item-section avatar>
-                  <q-icon name="hotel_class" />
-                </q-item-section>
-                <q-item-section>مشاغل پیشنهادی</q-item-section>
-                <div class="q-mx-lg"></div>
-                <q-item-section side>48 مورد</q-item-section>
-              </q-item>
-
-              <q-item clickable v-ripple>
-                <q-item-section avatar>
                   <q-icon name="favorite_outline" />
                 </q-item-section>
                 <q-item-section>مشاغل نشان شده</q-item-section>
                 <div class="q-mx-lg"></div>
-                <q-item-section side>0 مورد</q-item-section>
               </q-item>
 
               <q-item clickable v-ripple>
@@ -83,7 +89,7 @@
                 </q-item-section>
                 <q-item-section>جستجو های ذخیره شده</q-item-section>
                 <div class="q-mx-lg"></div>
-                <q-item-section side>0 مورد</q-item-section>
+                <q-item-section side>1</q-item-section>
               </q-item>
 
               <q-item clickable v-ripple>
@@ -92,7 +98,6 @@
                 </q-item-section>
                 <q-item-section>شرکت های دنبال شده</q-item-section>
                 <div class="q-mx-lg"></div>
-                <q-item-section side>0 مورد</q-item-section>
               </q-item>
 
               <q-item clickable v-ripple>
@@ -118,14 +123,7 @@
                 <q-item-section>تنظیمات ناحیه کاربری</q-item-section>
               </q-item>
 
-              <q-item clickable v-ripple>
-                <q-item-section avatar>
-                  <q-icon name="notifications " />
-                </q-item-section>
-                <q-item-section>پیام های من</q-item-section>
-                <div class="q-mx-lg"></div>
-                <q-item-section side>0 مورد</q-item-section>
-              </q-item>
+              <q-separator />
 
               <q-item class="text-red" clickable v-ripple>
                 <q-item-section avatar>
@@ -135,13 +133,6 @@
               </q-item>
             </q-list>
           </q-btn-dropdown>
-
-          <q-separator class="q-mx-md" vertical />
-
-          <img
-            src="https://jobvision.ir/assets/images/header/header-logo-primary-desktop.svg"
-            @click="$router.push('/')"
-          />
         </q-toolbar-title>
       </q-toolbar>
     </q-header>
