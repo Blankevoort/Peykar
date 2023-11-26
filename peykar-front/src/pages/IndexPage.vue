@@ -230,7 +230,9 @@
             horizontal
           >
             <q-card-section class="col-6">
-              <div class="text-bold text-h5 q-pb-md">استخدام‌های سراسری و دولتی</div>
+              <div class="text-bold text-h5 q-pb-md">
+                استخدام‌های سراسری و دولتی
+              </div>
               <div class="q-py-md text-grey-7">
                 در این قسمت، آخرین فرصت‌های استخدام سراسری و دولتی به‌طور مرتب
                 به‌روزرسانی و منتشر می‌شوند. به صفحه استخدام‌های سراسری سر بزنید
@@ -248,7 +250,7 @@
             <div class="col-4">
               <q-img
                 style="width: 80%; height: 80%"
-                src="https://cdn.quasar.dev/img/parallax2.jpg"
+                src="https://jobvision.ir/assets/images/home-page/global-employment.svg"
               />
             </div>
           </q-card-section>

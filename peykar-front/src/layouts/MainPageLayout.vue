@@ -1,7 +1,11 @@
 <template>
   <q-layout view="hHh lpR fFf">
+    <!-- Header -->
+
     <q-header class="row justify-center shadow" style="height: 70px">
       <q-toolbar class="col-8">
+        <!-- Logo And Links -->
+
         <div class="col-6">
           <div class="row">
             <img
@@ -15,32 +19,29 @@
                 flat
                 label="فرصت های شغلی"
                 to="/jobs"
-                class="btn--no-hover"
+                class="btn--no-hover button-effect"
               />
               <q-btn
                 flat
                 label="فرصت های شغلی پیشنهادی"
                 to="/recommended-jobs"
-                class="btn--no-hover"
-              />
-              <q-btn
-                flat
-                label="رزومه من"
-                to="/my-cv"
                 class="btn--no-hover button-effect"
               />
+              <q-btn flat label="رزومه من" to="/my-cv" class="btn--no-hover" />
               <q-btn
                 flat
                 label="
                 داده‌های بازار کار"
                 to="/top-companies"
-                class="btn--no-hover button-effect"
+                class="btn--no-hover"
               />
             </div>
           </div>
         </div>
 
         <q-toolbar-title class="col-6 row justify-end">
+          <!-- Notification Button -->
+
           <q-btn round flat>
             <q-icon
               @click="$router.push('/notifications')"
@@ -50,7 +51,44 @@
           </q-btn>
 
           <q-btn-dropdown flat color="grey-7" icon="person" padding="8px 20px">
-            <q-list>
+            <div class="q-pa-md text-black row">
+              <div class="col-12">
+                <q-item class="full-width">
+                  <q-item-section top avatar>
+                    <q-avatar size="50px" color="grey-4">
+                      <q-icon name="person" color="grey-7" size="69px" />
+                    </q-avatar>
+                  </q-item-section>
+
+                  <!-- Full Namem, Job And Edit Button -->
+
+                  <q-item-section>
+                    <q-item-label>معین صداقتی</q-item-label>
+                    <q-item-label lines="2">
+                      <div class="text-black q-mt-sm" style="font-size: 12px">
+                        دولوپر فول استک در شرکت آیترونیک.
+                      </div>
+
+                      <q-btn flat>
+                        <q-icon size="20px" name="edit" />
+                      </q-btn>
+                    </q-item-label>
+                  </q-item-section>
+                </q-item>
+
+                <div>
+                  <q-btn
+                    class="full-width text-bold"
+                    outline
+                    color="black"
+                    label="رزومه من"
+                    icon="badge"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <q-list class="q-px-md">
               <q-item clickable v-ripple>
                 <q-item-section avatar>
                   <q-icon name="hotel_class" />
@@ -137,9 +175,13 @@
       </q-toolbar>
     </q-header>
 
+    <!-- Page Container -->
+
     <q-page-container>
       <router-view />
     </q-page-container>
+
+    <!-- Footer -->
 
     <q-footer class="bg-dark text-white row justify-center">
       <div class="col-8 row q-my-md">
@@ -422,6 +464,11 @@ export default {
 </script>
 
 <style scoped>
+.q-item {
+  padding: 0 !important;
+  min-height: 40px !important;
+}
+
 .fixed,
 .fixed-full,
 .fullscreen,
