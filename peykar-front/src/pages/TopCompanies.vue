@@ -365,11 +365,217 @@
         </div>
       </div>
     </div>
+
+    <!-- Top Companies Slider -->
+
+    <div class="q-pb-md q-mt-xl full-width">
+      <div class="row justify-center">
+        <div class="col-8">
+          <div class="text-center text-bold text-h6 text-grey-8">
+            با برخی از همراهان جاب ویژن، بیشتر آشنا شوید.
+          </div>
+
+          <!-- Companies List And Details -->
+
+          <div class="full-width q-my-md">
+            <swiper
+              :centeredSlides="true"
+              :slidesPerView="4"
+              :spaceBetween="30"
+              :autoplay="{
+                delay: 2500,
+                disableOnInteraction: false,
+              }"
+            >
+              <swiper-slide>
+                <q-card style="background: #f8f9fa" flat>
+                  <q-item>
+                    <q-item-section avatar>
+                      <q-avatar size="65px">
+                        <img src="https://cdn.quasar.dev/img/avatar2.jpg" />
+                      </q-avatar>
+                    </q-item-section>
+
+                    <q-item-section>
+                      <q-item-label>شرکت تربت پاک</q-item-label>
+                      <q-item-label class="q-pt-sm" caption
+                        >501 تا 1000 نفر</q-item-label
+                      >
+                    </q-item-section>
+                  </q-item>
+                </q-card>
+              </swiper-slide>
+            </swiper>
+          </div>
+
+          <div class="row q-mt-lg">
+            <div class="col-6 q-px-md">
+              <q-img
+                src="https://cdn.quasar.dev/img/parallax2.jpg"
+                style="height: 70%"
+              />
+            </div>
+
+            <div class="col-6 row justify-end q-px-md">
+              <div class="col-12">
+                <!-- Some Details About Company -->
+
+                <div class="col-12 row justify-between">
+                  <div class="text-bold col-3" style="font-size: 26px">
+                    شرکت تربت پاک
+                  </div>
+
+                  <div class="col-8 row items-center">
+                    <div class="col-6 row">
+                      <q-avatar class="q-mr-md" size="25px">
+                        <q-img
+                          src="https://jobvision.ir/assets/images/landings/new-year/i-1.svg"
+                        />
+                      </q-avatar>
+
+                      <div class="text-grey-7" style="font-size: 15px">
+                        خودرو و صنایع وابسته
+                      </div>
+                    </div>
+
+                    <div class="col-6 row">
+                      <q-avatar class="q-mr-md" size="25px">
+                        <q-img
+                          src="https://jobvision.ir/assets/images/landings/new-year/i-2.svg"
+                        />
+                      </q-avatar>
+
+                      <div class="text-grey-7" style="font-size: 15px">
+                        51 تا 200 نفر
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Offers And Goodies -->
+
+                <div class="full-width q-py-md">
+                  <div class="full-width row justify-between">
+                    <div class="col-5">
+                      <div class="row q-my-sm">
+                        <q-btn rounded dense color="positive" class="q-mr-sm">
+                          <q-icon size="20px" name="done" />
+                        </q-btn>
+
+                        <div>صندوق رفاهیات (وام)</div>
+                      </div>
+
+                      <div class="row q-my-sm">
+                        <q-btn rounded dense color="positive" class="q-mr-sm">
+                          <q-icon size="20px" name="done" />
+                        </q-btn>
+
+                        <div>پارکینگ اختصاصی</div>
+                      </div>
+
+                      <div class="row q-my-sm">
+                        <q-btn rounded dense color="positive" class="q-mr-sm">
+                          <q-icon size="20px" name="done" />
+                        </q-btn>
+
+                        <div>باشگاه ورزشی در محل کار</div>
+                      </div>
+
+                      <div class="row q-my-sm">
+                        <q-btn rounded dense color="positive" class="q-mr-sm">
+                          <q-icon size="20px" name="done" />
+                        </q-btn>
+
+                        <div>ساعت کار منعطف</div>
+                      </div>
+
+                      <div class="row q-my-sm">
+                        <q-btn rounded dense color="positive" class="q-mr-sm">
+                          <q-icon size="20px" name="done" />
+                        </q-btn>
+
+                        <div>بیمه تکمیل درمان</div>
+                      </div>
+
+                      <div class="row q-my-sm">
+                        <q-btn rounded dense color="positive" class="q-mr-sm">
+                          <q-icon size="20px" name="done" />
+                        </q-btn>
+
+                        <div>هدایای مناسبتی</div>
+                      </div>
+                    </div>
+
+                    <div class="col-5">
+                      <div class="row q-my-sm">
+                        <q-btn rounded dense color="positive" class="q-mr-sm">
+                          <q-icon size="20px" name="done" />
+                        </q-btn>
+
+                        <div>حقوق و مزایای رقابتی</div>
+                      </div>
+
+                      <div class="row q-my-sm">
+                        <q-btn rounded dense color="positive" class="q-mr-sm">
+                          <q-icon size="20px" name="done" />
+                        </q-btn>
+
+                        <div>کمک هزینه آموزش</div>
+                      </div>
+
+                      <div class="row q-my-sm">
+                        <q-btn rounded dense color="positive" class="q-mr-sm">
+                          <q-icon size="20px" name="done" />
+                        </q-btn>
+
+                        <div>میان وعده</div>
+                      </div>
+
+                      <div class="row q-my-sm">
+                        <q-btn rounded dense color="positive" class="q-mr-sm">
+                          <q-icon size="20px" name="done" />
+                        </q-btn>
+
+                        <div>اقامتگاه تفریحی (بزودی)</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row justify-end">
+                  <q-btn outline color="primary" label="مشاهده صفحه شرکت" icon-right="arrow_back_ios" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </q-page>
 </template>
 
 <script>
-export default {};
+import { ref } from "vue";
+import { Swiper, SwiperSlide } from "swiper/vue";
+import "swiper/css";
+
+import "swiper/css/navigation";
+import "swiper/css/autoplay";
+
+import { Autoplay } from "swiper/modules";
+
+export default {
+  components: {
+    Swiper,
+    SwiperSlide,
+  },
+  setup() {
+    return {
+      slide: ref(1),
+      modules: [Autoplay],
+    };
+  },
+};
 </script>
 
 <style scoped>

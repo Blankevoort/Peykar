@@ -359,7 +359,6 @@
         <div class="col-8">
           <div class="row">
             <swiper
-              dir="rtl"
               class="col-12 row"
               ref="{swiperRef}"
               :slidesPerView="5"
