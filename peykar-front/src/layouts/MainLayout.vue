@@ -31,7 +31,8 @@
               <q-btn
                 flat
                 label="
-                داده‌های بازار کار"
+
+رده‌بندی شرکت‌ها"
                 to="/top-companies"
                 class="btn--no-hover"
               />
@@ -229,7 +230,8 @@
               </div>
 
               <div class="col-12">
-                <q-btn flat label="داده‌های بازار کار" />
+                <q-btn flat label="
+                رده‌بندی شرکت‌ها" />
               </div>
             </div>
 

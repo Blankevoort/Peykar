@@ -30,8 +30,7 @@
               <q-btn flat label="رزومه من" to="/my-cv" class="btn--no-hover" />
               <q-btn
                 flat
-                label="
-                داده‌های بازار کار"
+                label="رده‌بندی شرکت‌ها"
                 to="/top-companies"
                 class="btn--no-hover"
               />
@@ -342,10 +341,6 @@
 
               <div class="col-12">
                 <q-btn flat label="آشنایی با شرکت ها" />
-              </div>
-
-              <div class="col-12">
-                <q-btn flat label="داده‌های بازار کار" />
               </div>
             </div>
 

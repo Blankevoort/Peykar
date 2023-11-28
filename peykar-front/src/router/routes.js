@@ -27,6 +27,11 @@ const routes = [
     children: [{ path: "", component: () => import("pages/TopCompanies.vue") }],
   },
   {
+    path: "/company",
+    component: () => import("src/layouts/MainLayout.vue"),
+    children: [{ path: "", component: () => import("pages/CompanyPage.vue") }],
+  },
+  {
     path: "/test",
     component: () => import("src/layouts/MainLayout.vue"),
     children: [{ path: "", component: () => import("pages/TestPage.vue") }],
