@@ -26,6 +26,8 @@
       </div>
     </div>
 
+    <!-- Design -->
+
     <div class="row justify-center">
       <div class="col-8 q-my-md" style="padding: 0 32px">
         <div class="row" v-if="preferred.value == 'me'">

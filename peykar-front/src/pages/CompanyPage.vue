@@ -104,6 +104,140 @@
                   <q-tab name="members" label="معرفی اعضای سازمان" />
                 </q-tabs>
               </div>
+
+              <div class="q-px-sm full-width bg-white">
+                <q-tab-panels v-model="tab" animated>
+                  <!-- About Company -->
+
+                  <q-tab-panel class="row" name="about">
+                    <div class="col-10 row">
+                      <!-- Core Information -->
+
+                      <div class="col-12">
+                        <div class="row">
+                          <div class="col-4 q-px-sm q-my-md">
+                            <div class="text-bold">سال تاسیس</div>
+
+                            <div
+                              class="text-grey-7"
+                              style="margin-bottom: 35px; margin-top: 35px"
+                            >
+                              1368
+                            </div>
+
+                            <div class="text-bold">نوع فعالیت</div>
+
+                            <div class="text-grey-7 q-mt-sm">
+                              شرکت ایرانی دارای مشتریان داخلی
+                            </div>
+                          </div>
+
+                          <div class="col-4 q-px-sm q-my-md">
+                            <div class="text-bold">صنعت</div>
+
+                            <div class="text-grey-7 q-mt-sm q-mb-md">
+                              <div>نفت، گاز و پتروشیمی</div>
+                              <div>شرکت های خدماتی / پیمانکاران</div>
+                              <div>ساختمان / مصالح و تجهیزات ساختمانی</div>
+                            </div>
+
+                            <div class="text-bold q-mb-sm">آدرس وبسایت</div>
+
+                            <a
+                              class="text-grey-7"
+                              href="https://torbatepak.com/"
+                              style="text-decoration: none"
+                              >torbatepak.com</a
+                            >
+                          </div>
+
+                          <div class="col-4 q-px-sm q-my-md">
+                            <div class="text-bold">نوع مالکیت</div>
+
+                            <div class="q-my-lg text-grey-7">خصوصی</div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- Users Rating -->
+
+                      <div class="col-12" style="font-size: 16px">
+                        <div class="text-bold">امتیاز سازمان</div>
+
+                        <div class="row q-my-sm">
+                          <div class="text-bold q-pr-sm">3.5</div>
+
+                          <q-rating
+                            v-model="ratingModel"
+                            max="5"
+                            size="1.5em"
+                            color="amber-8"
+                            icon="star_border"
+                            icon-selected="star"
+                            icon-half="star_half"
+                            no-dimming
+                            readonly
+                          />
+                        </div>
+                      </div>
+
+                      <!-- ScreenShots From Company -->
+
+                      <div class="col-12 q-my-md q-mt-lg">
+                        <div class="text-bold text-h6">معرفی تصویری سازمان</div>
+
+                        <div class="col-12 flex justify-center">
+                          <q-carousel
+                            swipeable
+                            animated
+                            v-model="slide"
+                            thumbnails
+                            infinite
+                          >
+                            <q-carousel-slide
+                              :name="1"
+                              img-src="https://cdn.quasar.dev/img/mountains.jpg"
+                            />
+                            <q-carousel-slide
+                              :name="2"
+                              img-src="https://cdn.quasar.dev/img/parallax1.jpg"
+                            />
+                            <q-carousel-slide
+                              :name="3"
+                              img-src="https://cdn.quasar.dev/img/parallax2.jpg"
+                            />
+                            <q-carousel-slide
+                              :name="4"
+                              img-src="https://cdn.quasar.dev/img/quasar.jpg"
+                            />
+                          </q-carousel>
+                        </div>
+                      </div>
+                    </div>
+                  </q-tab-panel>
+
+                  <!-- Opportunities On Company -->
+
+                  <q-tab-panel name="opportunity">
+                    <div class="text-h6">opportunity</div>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  </q-tab-panel>
+
+                  <!-- Charts Of Company -->
+
+                  <q-tab-panel name="charts">
+                    <div class="text-h6">Charts</div>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  </q-tab-panel>
+
+                  <!-- Members Of Company -->
+
+                  <q-tab-panel name="members">
+                    <div class="text-h6">Members</div>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  </q-tab-panel>
+                </q-tab-panels>
+              </div>
             </div>
 
             <div class="col-3 row justify-end">
@@ -143,9 +277,12 @@ import { ref } from "vue";
 export default {
   setup() {
     const tab = ref("about");
+    const slide = ref(1);
 
     return {
       tab,
+      slide,
+      ratingModel: ref(3.5),
     };
   },
 };
