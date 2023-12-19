@@ -490,6 +490,168 @@
                             </div>
                           </q-list>
                         </div>
+
+                        <div class="col-6 q-pr-sm">
+                          <q-list
+                            class="full-width bg-white br-10 q-my-sm relative-position"
+                            bordered
+                            separator
+                          >
+                            <q-btn
+                              class="absolute-center text-bold"
+                              outline
+                              color="red"
+                              label="بسته شده"
+                              disable
+                              style="rotate: 344deg"
+                            />
+
+                            <div class="q-px-md closed-job">
+                              <q-item class="col-12 q-my-xs">
+                                <q-item-section class="q-pa-md" avatar>
+                                  <q-avatar>
+                                    <img
+                                      src="https://fileapi.jobvision.ir/api/v1.0/files/getimage?fileid=153717&width=71&height=71"
+                                    />
+                                  </q-avatar>
+                                </q-item-section>
+
+                                <q-item-section caption class="q-pa-md">
+                                  <q-item-label class="text-weight-bold"
+                                    >کارشناس اداری و منابع انسانی</q-item-label
+                                  >
+
+                                  <q-item-label
+                                    class="text-weight-thin q-pt-xs"
+                                  >
+                                    تربت پاک
+                                  </q-item-label>
+
+                                  <q-item-label caption>
+                                    تهران، ظفر
+                                    <span class="text-grey-5"> | </span>
+
+                                    <span class="text-positive"
+                                      >10 - 12 میلیون تومان
+                                    </span>
+                                  </q-item-label>
+                                </q-item-section>
+
+                                <q-item-section class="q-pa-md" side top>
+                                  <q-btn flat icon="favorite_outline" />
+                                </q-item-section>
+                              </q-item>
+
+                              <div class="q-pr-lg">
+                                <q-separator style="height: 1px" />
+                              </div>
+
+                              <div class="col-12 q-my-sm">
+                                <div class="row justify-center">
+                                  <div
+                                    class="full-width row justify-between items-center"
+                                  >
+                                    <div class="col-3 text-grey-5">
+                                      12 روز پیش
+                                    </div>
+
+                                    <div class="col-4 row justify-end">
+                                      <q-btn
+                                        icon-right="arrow_back"
+                                        flat
+                                        color="primary"
+                                        label="مشاهده"
+                                      />
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </q-list>
+                        </div>
+
+                        <div class="col-6 q-pl-sm">
+                          <q-list
+                            class="full-width bg-white br-10 q-my-sm relative-position"
+                            bordered
+                            separator
+                          >
+                            <q-btn
+                              class="absolute-center text-bold"
+                              outline
+                              color="red"
+                              label="بسته شده"
+                              disable
+                              style="rotate: 344deg"
+                            />
+
+                            <div class="q-px-md closed-job">
+                              <q-item class="col-12 q-my-xs">
+                                <q-item-section class="q-pa-md" avatar>
+                                  <div class="row">
+                                    <q-badge
+                                      class="q-my-xs q-mx-xs"
+                                      color="red-1"
+                                      text-color="negative"
+                                      label="فوری"
+                                    />
+                                  </div>
+
+                                  <q-avatar>
+                                    <img
+                                      src="https://fileapi.jobvision.ir/api/v1.0/files/getimage?fileid=153717&width=71&height=71"
+                                    />
+                                  </q-avatar>
+                                </q-item-section>
+
+                                <q-item-section caption class="q-pa-md">
+                                  <q-item-label class="text-weight-bold"
+                                    >کارشناس اداری و منابع انسانی</q-item-label
+                                  >
+
+                                  <q-item-label
+                                    class="text-weight-thin q-pt-xs"
+                                  >
+                                    تربت پاک
+                                  </q-item-label>
+
+                                  <q-item-label caption>
+                                    تهران، ظفر
+                                  </q-item-label>
+                                </q-item-section>
+
+                                <q-item-section class="q-pa-md" side top>
+                                  <q-btn flat icon="favorite_outline" />
+                                </q-item-section>
+                              </q-item>
+
+                              <div class="q-pr-lg">
+                                <q-separator style="height: 1px" />
+                              </div>
+
+                              <div class="col-12 q-my-sm">
+                                <div class="row justify-center">
+                                  <div
+                                    class="full-width row justify-between items-center"
+                                  >
+                                    <div class="col-3 text-grey-5">
+                                      12 روز پیش
+                                    </div>
+
+                                    <div class="col-4 row justify-end">
+                                      <q-btn
+                                        icon-right="arrow_back"
+                                        flat
+                                        color="primary"
+                                        label="مشاهده"
+                                      />
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </q-list>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -628,5 +790,9 @@ export default {
   border-color: #5660f2 !important;
   font-weight: bold !important;
   color: #5660f2;
+}
+
+.closed-job {
+  filter: blur(1px);
 }
 </style>
