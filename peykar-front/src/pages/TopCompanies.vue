@@ -543,7 +543,13 @@
                 </div>
 
                 <div class="row justify-end">
-                  <q-btn outline color="primary" label="مشاهده صفحه شرکت" icon-right="arrow_back_ios" />
+                  <q-btn
+                    outline
+                    color="primary"
+                    label="مشاهده صفحه شرکت"
+                    icon-right="arrow_back_ios"
+                    to="/company"
+                  />
                 </div>
               </div>
             </div>
