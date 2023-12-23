@@ -9,6 +9,7 @@ use App\Models\Ticket;
 use App\Models\Profile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AdminPanelController extends Controller
 {
@@ -89,7 +90,7 @@ class AdminPanelController extends Controller
             'description' => $request->description,
         ]);
 
-        return $job;
+        return response()->json(['status' => 204]);
     }
 
     public function createTag(Request $request)
@@ -102,20 +103,26 @@ class AdminPanelController extends Controller
             'name' => $request->name,
         ]);
 
-        return $tag;
+        return response()->json(['status' => 204]);
     }
 
     public function createProfile(Request $request)
     {
-        $profile = Profile::create([
-            'user_id' => Auth::user()->id,
-            'name' => $request->name,
-            'birth' => $request->birth,
-            'resume' => $request->resume,
-            'description' => $request->description,
-        ]);
+        $user = Auth::user();
 
-        return $profile;
+        if ($user->profile == null) {
+            $profile = Profile::create([
+                'user_id' => $request->user_id,
+                'name' => $request->name,
+                'birth' => $request->birth,
+                'resume' => $request->resume,
+                'description' => $request->description,
+            ]);
+        } else {
+            return response()->json(['This User Do Have a Profile!!']);
+        }
+
+        return response()->json(['status' => 204]);
     }
 
     public function createTicket(Request $request)
@@ -125,12 +132,12 @@ class AdminPanelController extends Controller
             'description' => 'required',
         ]);
 
-        $Ticket = Ticket::create([
+        $ticket = Ticket::create([
             'title' => $request->title,
             'priority' => $request->priority,
             'description' => $request->description,
         ]);
 
-        return $Ticket;
+        return response()->json(['status' => 204]);
     }
 }

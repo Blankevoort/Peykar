@@ -35,7 +35,7 @@ Route::group(['middleware' => ['auth:sanctum', 'role:Admin']], function () {
         $user->password = Hash::make($request->password);
         $user->save();
 
-        return response()->json(['status' => true]);
+        return response()->json(['status' => 204]);
     });
 
     Route::prefix('get')->group(function () {
@@ -58,8 +58,6 @@ Route::group(['middleware' => ['auth:sanctum', 'role:Admin']], function () {
         Route::post('job', [AdminPanelController::class, 'createJob']);
 
         Route::post('tag', [AdminPanelController::class, 'createTag']);
-
-        Route::post('user/{id}', [AdminPanelController::class, 'createUser']);
 
         Route::post('ticket', [AdminPanelController::class, 'createTicket']);
 
