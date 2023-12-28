@@ -2,47 +2,48 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\activities;
+use App\Models\books;
 use Illuminate\Http\Request;
 use App\Traits\HttpResponses;
 use Illuminate\Support\Facades\Auth;
 
-class ActivitiesController extends Controller
+class BooksController extends Controller
 {
     use HttpResponses;
 
     public function index()
     {
-        return activities::with('profiles')->get();
+        return books::with('profiles')->get();
     }
 
     public function store(Request $request)
     {
-        $activities = activities::create([
+        $books = books::create([
             'name' => $request->name,
+            'publisher' => $request->pyblisher,
             'year' => $request->year,
         ]);
 
-        $activities->profiles()->syncWithoutDetaching($request->profile_id);
+        $books->profiles()->syncWithoutDetaching($request->profile_id);
 
         return response()->json(['status' => 204]);
     }
 
-    public function update(Request $request, activities $activities)
+    public function update(Request $request, books $books)
     {
         return $this->error('', 'You are not authorized to make this request', 403);
 
-        $activities->update($request->all());
+        $books->update($request->all());
 
         return response()->json(['status' => 204]);
     }
 
-    public function destroy(activities $activities)
+    public function destroy(books $books)
     {
-        return $this->isNotAuthorized($activities) ? $this->isNotAuthorized($activities) : $activities->delete();
+        return $this->isNotAuthorized($books) ? $this->isNotAuthorized($books) : $books->delete();
     }
 
-    private function isNotAuthorized($activities)
+    private function isNotAuthorized($books)
     {
         if (!Auth::user()->id) {
             return $this->error('', 'You are not authorized to make this request', 403);

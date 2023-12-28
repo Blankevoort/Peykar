@@ -2,47 +2,48 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\activities;
+use App\Models\skills;
 use Illuminate\Http\Request;
 use App\Traits\HttpResponses;
 use Illuminate\Support\Facades\Auth;
 
-class ActivitiesController extends Controller
+class SkillsController extends Controller
 {
     use HttpResponses;
 
     public function index()
     {
-        return activities::with('profiles')->get();
+        return skills::with('profiles')->get();
     }
 
     public function store(Request $request)
     {
-        $activities = activities::create([
+        $skills = skills::create([
             'name' => $request->name,
-            'year' => $request->year,
+            'level' => $request->level,
+            'additionalSkills' => $request->additionalSkills,
         ]);
 
-        $activities->profiles()->syncWithoutDetaching($request->profile_id);
+        $skills->profiles()->syncWithoutDetaching($request->profile_id);
 
         return response()->json(['status' => 204]);
     }
 
-    public function update(Request $request, activities $activities)
+    public function update(Request $request, skills $skills)
     {
         return $this->error('', 'You are not authorized to make this request', 403);
 
-        $activities->update($request->all());
+        $skills->update($request->all());
 
         return response()->json(['status' => 204]);
     }
 
-    public function destroy(activities $activities)
+    public function destroy(skills $skills)
     {
-        return $this->isNotAuthorized($activities) ? $this->isNotAuthorized($activities) : $activities->delete();
+        return $this->isNotAuthorized($skills) ? $this->isNotAuthorized($skills) : $skills->delete();
     }
 
-    private function isNotAuthorized($activities)
+    private function isNotAuthorized($skills)
     {
         if (!Auth::user()->id) {
             return $this->error('', 'You are not authorized to make this request', 403);

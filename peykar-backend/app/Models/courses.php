@@ -5,17 +5,21 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class awards extends Model
+class courses extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'name',
+        'organizer',
+        'length',
+        'country',
+        'certified',
         'year'
     ];
 
     public function profiles()
     {
-        return $this->hasMany(Profile::class);
+        return $this->belongsToMany(Profile::class);
     }
 }

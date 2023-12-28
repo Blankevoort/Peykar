@@ -14,7 +14,6 @@ return new class extends Migration
             $table->string('grade')->nullable();
             $table->string('fieldofStudy')->nullable();
             $table->string('university')->nullable();
-            $table->string('university')->nullable();
             $table->string('GPA')->nullable();
             $table->dateTime('start')->nullable();
             $table->dateTime('end')->nullable();

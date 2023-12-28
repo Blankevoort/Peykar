@@ -2,47 +2,47 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\activities;
+use App\Models\Socials;
 use Illuminate\Http\Request;
 use App\Traits\HttpResponses;
 use Illuminate\Support\Facades\Auth;
 
-class ActivitiesController extends Controller
+class SocialsController extends Controller
 {
     use HttpResponses;
 
     public function index()
     {
-        return activities::with('profiles')->get();
+        return Socials::with('profiles')->get();
     }
 
     public function store(Request $request)
     {
-        $activities = activities::create([
+        $socials = Socials::create([
             'name' => $request->name,
-            'year' => $request->year,
+            'address' => $request->address,
         ]);
 
-        $activities->profiles()->syncWithoutDetaching($request->profile_id);
+        $socials->profiles()->syncWithoutDetaching($request->profile_id);
 
         return response()->json(['status' => 204]);
     }
 
-    public function update(Request $request, activities $activities)
+    public function update(Request $request, Socials $socials)
     {
         return $this->error('', 'You are not authorized to make this request', 403);
 
-        $activities->update($request->all());
+        $socials->update($request->all());
 
         return response()->json(['status' => 204]);
     }
 
-    public function destroy(activities $activities)
+    public function destroy(Socials $socials)
     {
-        return $this->isNotAuthorized($activities) ? $this->isNotAuthorized($activities) : $activities->delete();
+        return $this->isNotAuthorized($socials) ? $this->isNotAuthorized($socials) : $socials->delete();
     }
 
-    private function isNotAuthorized($activities)
+    private function isNotAuthorized($socials)
     {
         if (!Auth::user()->id) {
             return $this->error('', 'You are not authorized to make this request', 403);

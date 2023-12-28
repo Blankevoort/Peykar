@@ -2,47 +2,51 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\activities;
+use App\Models\courses;
 use Illuminate\Http\Request;
 use App\Traits\HttpResponses;
 use Illuminate\Support\Facades\Auth;
 
-class ActivitiesController extends Controller
+class CoursesController extends Controller
 {
     use HttpResponses;
 
     public function index()
     {
-        return activities::with('profiles')->get();
+        return courses::with('profiles')->get();
     }
 
     public function store(Request $request)
     {
-        $activities = activities::create([
+        $courses = courses::create([
             'name' => $request->name,
+            'organizer' => $request->organizer,
+            'length' => $request->length,
+            'country' => $request->country,
+            'certified' => $request->certified,
             'year' => $request->year,
         ]);
 
-        $activities->profiles()->syncWithoutDetaching($request->profile_id);
+        $courses->profiles()->syncWithoutDetaching($request->profile_id);
 
         return response()->json(['status' => 204]);
     }
 
-    public function update(Request $request, activities $activities)
+    public function update(Request $request, courses $courses)
     {
         return $this->error('', 'You are not authorized to make this request', 403);
 
-        $activities->update($request->all());
+        $courses->update($request->all());
 
         return response()->json(['status' => 204]);
     }
 
-    public function destroy(activities $activities)
+    public function destroy(courses $courses)
     {
-        return $this->isNotAuthorized($activities) ? $this->isNotAuthorized($activities) : $activities->delete();
+        return $this->isNotAuthorized($courses) ? $this->isNotAuthorized($courses) : $courses->delete();
     }
 
-    private function isNotAuthorized($activities)
+    private function isNotAuthorized($courses)
     {
         if (!Auth::user()->id) {
             return $this->error('', 'You are not authorized to make this request', 403);

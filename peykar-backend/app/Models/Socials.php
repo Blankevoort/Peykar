@@ -17,6 +17,6 @@ class Socials extends Model
 
     public function profile()
     {
-        return $this->hasOne(Socials::class);
+        return $this->belongsToMany(Socials::class);
     }
 }

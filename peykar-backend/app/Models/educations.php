@@ -15,7 +15,6 @@ class educations extends Model
         "grade",
         "fieldofStudy",
         "university",
-        "university",
         "GPA",
         "start",
         "end",
@@ -25,6 +24,6 @@ class educations extends Model
 
     public function profiles()
     {
-        return $this->hasMany(Profile::class);
+        return $this->belongsToMany(Profile::class);
     }
 }

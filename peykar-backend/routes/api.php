@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AcademicExperienceController;
+use App\Http\Controllers\ActivitiesController;
 use App\Http\Controllers\AdminPanelController;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -7,8 +9,16 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AwardsController;
+use App\Http\Controllers\BooksController;
+use App\Http\Controllers\CoursesController;
+use App\Http\Controllers\EducationsController;
 use App\Http\Controllers\JobTagRelationController;
+use App\Http\Controllers\LangsController;
+use App\Http\Controllers\PartnersController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SkillsController;
+use App\Http\Controllers\SocialsController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\TicketController;
 
@@ -36,11 +46,35 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::resource('tickets', TicketController::class);
 
     Route::resource('profiles', ProfileController::class);
+
+    Route::prefix('user-cv')->group(function () {
+
+        Route::resource('academic-exp', AcademicExperienceController::class);
+
+        Route::resource('activity', ActivitiesController::class);
+
+        Route::resource('awards', AwardsController::class);
+
+        Route::resource('books', BooksController::class);
+
+        Route::resource('courses', CoursesController::class);
+
+        Route::resource('educations', EducationsController::class);
+
+        Route::resource('partner', PartnersController::class);
+
+        Route::resource('langs', LangsController::class);
+
+        Route::resource('skills', SkillsController::class);
+
+        Route::resource('socials', SocialsController::class);
+
+    });
 });
 
 Route::post('add-tag', [JobTagRelationController::class, 'addTag']);
 
-//Protected Routes
+//Admin Only Routes
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
 

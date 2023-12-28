@@ -21,17 +21,6 @@ return new class extends Migration
             $table->string("region")->nullable();
             $table->string("expectedSalary")->nullable();
             $table->string("preferredJob")->nullable();
-            $table->unsignedBigInteger("educations")->nullable();
-            $table->unsignedBigInteger("experience")->nullable();
-            $table->unsignedBigInteger("langs")->nullable();
-            $table->unsignedBigInteger("skills")->nullable();
-            $table->unsignedBigInteger("partners")->nullable();
-            $table->unsignedBigInteger("courses")->nullable();
-            $table->unsignedBigInteger("awards")->nullable();
-            $table->unsignedBigInteger("academicExperience")->nullable();
-            $table->unsignedBigInteger("books")->nullable();
-            $table->unsignedBigInteger("activities")->nullable();
-            $table->unsignedBigInteger("social_id")->unique();
             $table->unsignedBigInteger("user_id")->unique();
             $table->timestamps();
         });

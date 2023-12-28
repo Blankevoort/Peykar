@@ -5,18 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class books extends Model
+class partners extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'name',
-        'publisher',
-        'year'
+        'role',
+        'company',
+        'phone'
     ];
 
     public function profiles()
     {
-        return $this->hasMany(Profile::class);
+        return $this->belongsToMany(Profile::class);
     }
 }

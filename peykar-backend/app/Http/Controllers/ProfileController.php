@@ -13,7 +13,7 @@ class ProfileController extends Controller
 
     public function index()
     {
-        return Profile::where('user_id', Auth::user()->id)->get();
+        return Profile::with('academicEXPS')->where('user_id', Auth::user()->id)->get();
     }
 
     public function store(Request $request)
@@ -33,7 +33,7 @@ class ProfileController extends Controller
             'preferredJob' => $request->preferredJob,
         ]);
 
-        return $profile;
+        return response()->json(['status' => 204]);
     }
 
     public function update(Request $request, Profile $profile)
@@ -44,7 +44,7 @@ class ProfileController extends Controller
 
         $profile->update($request->all());
 
-        return $profile;
+        return response()->json(['status' => 204]);
     }
 
     public function destroy(Profile $profile)

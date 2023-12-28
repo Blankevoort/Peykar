@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Carbon\Carbon;
 use App\Models\Job;
 use Illuminate\Http\Request;
 use App\Traits\HttpResponses;
