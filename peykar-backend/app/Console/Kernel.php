@@ -37,7 +37,7 @@ class Kernel extends ConsoleKernel
                     }
                 }
             }
-        })->everyMinute();
+        })->monthlyOn(1, '12:00');
     }
 
     protected function commands()

@@ -25,8 +25,9 @@ Route::post('register', function (Request $request) {
 
 Route::post('login', [AuthController::class, 'login']);
 
+// Protected Routes
 
-Route::group(['middleware' => ['auth:sanctum', 'role:Admin']], function () {
+Route::group(['middleware' => ['auth:sanctum']], function () {
 
     Route::resource('jobs', JobController::class);
 
