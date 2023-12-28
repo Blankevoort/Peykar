@@ -35,7 +35,9 @@ class JobController extends Controller
             'description' => $request->description,
         ]);
 
-        return $job;
+        $job->tags()->syncWithoutDetaching($request->tag_id);
+
+        return response()->json(['status' => 204]);
     }
 
     public function update(Request $request, Job $job)
@@ -46,7 +48,7 @@ class JobController extends Controller
 
         $job->update($request->all());
 
-        return $job;
+        return response()->json(['status' => 204]);
     }
 
     public function destroy(Job $job)

@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\JobTagRelationController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\TicketController;
@@ -24,9 +25,23 @@ Route::post('register', function (Request $request) {
 
 Route::post('login', [AuthController::class, 'login']);
 
-//Protected Routes
 
 Route::group(['middleware' => ['auth:sanctum', 'role:Admin']], function () {
+
+    Route::resource('jobs', JobController::class);
+
+    Route::resource('tags', TagController::class);
+
+    Route::resource('tickets', TicketController::class);
+
+    Route::resource('profiles', ProfileController::class);
+});
+
+Route::post('add-tag', [JobTagRelationController::class, 'addTag']);
+
+//Protected Routes
+
+Route::group(['middleware' => ['auth:sanctum']], function () {
 
     Route::post('create-user', function (Request $request) {
         $user = new User;

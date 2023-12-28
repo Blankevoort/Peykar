@@ -20,10 +20,17 @@ class ProfileController extends Controller
     {
         $profile = Profile::create([
             'user_id' => Auth::user()->id,
-            'name' => $request->name,
             'birth' => $request->birth,
             'resume' => $request->resume,
             'description' => $request->description,
+            'phone' => $request->phone,
+            'gender' => $request->gender,
+            'maritalStatus' => $request->maritalStatus,
+            'militaryServiceStatus' => $request->militaryServiceStatus,
+            'city' => $request->city,
+            'region' => $request->region,
+            'expectedSalary' => $request->expectedSalary,
+            'preferredJob' => $request->preferredJob,
         ]);
 
         return $profile;
