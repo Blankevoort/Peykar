@@ -11,9 +11,20 @@ class JobController extends Controller
 {
     use HttpResponses;
 
-    public function index()
+    public function index(Request $request)
     {
-        return Job::with('tags')->get();
+        $jobs = Job::all();
+        foreach ($jobs as $job) {
+            $job->likeCount = $job->likes->count();
+            //return $job->likes;
+            if ($job->likes->where('id', $request->user()->id)->first()) {
+                $liked = true;
+            } else {
+                $liked = false;
+            }
+            $job->liked = $liked;
+        }
+        return $jobs;
     }
 
     public function store(Request $request)
