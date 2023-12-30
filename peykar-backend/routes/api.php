@@ -1,7 +1,5 @@
 <?php
 
-use App\Http\Controllers\AcademicExperienceController;
-use App\Http\Controllers\ActivitiesController;
 use App\Http\Controllers\AdminPanelController;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -9,18 +7,20 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\AwardsController;
-use App\Http\Controllers\BooksController;
-use App\Http\Controllers\CoursesController;
-use App\Http\Controllers\EducationsController;
-use App\Http\Controllers\JobTagRelationController;
-use App\Http\Controllers\LangsController;
-use App\Http\Controllers\PartnersController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\SkillsController;
-use App\Http\Controllers\SocialsController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\TicketController;
+
+use App\Http\Controllers\ProfileControllers\AcademicExperienceController;
+use App\Http\Controllers\ProfileControllers\ActivitiesController;
+use App\Http\Controllers\ProfileControllers\AwardsController;
+use App\Http\Controllers\ProfileControllers\BooksController;
+use App\Http\Controllers\ProfileControllers\CoursesController;
+use App\Http\Controllers\ProfileControllers\EducationsController;
+use App\Http\Controllers\ProfileControllers\LangsController;
+use App\Http\Controllers\ProfileControllers\PartnersController;
+use App\Http\Controllers\ProfileControllers\SkillsController;
+use App\Http\Controllers\ProfileControllers\SocialsController;
 
 //User Login And Register Requests
 
@@ -61,7 +61,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
         Route::resource('educations', EducationsController::class);
 
-        Route::resource('partner', PartnersController::class);
+        Route::resource('partners', PartnersController::class);
 
         Route::resource('langs', LangsController::class);
 
@@ -71,8 +71,6 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     });
 });
-
-Route::post('add-tag', [JobTagRelationController::class, 'addTag']);
 
 //Admin Only Routes
 

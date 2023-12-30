@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\ProfileControllers;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Traits\HttpResponses;
-use App\Models\academicExperience;
+use App\Models\Profile\academicExperience;
 use Illuminate\Support\Facades\Auth;
 
 class AcademicExperienceController extends Controller

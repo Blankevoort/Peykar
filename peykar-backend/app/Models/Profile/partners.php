@@ -1,17 +1,20 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Profile;
 
+use App\Models\Profile;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class langs extends Model
+class partners extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'name',
-        'level'
+        'role',
+        'company',
+        'phone'
     ];
 
     public function profiles()

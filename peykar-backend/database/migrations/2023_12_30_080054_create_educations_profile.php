@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('educations_profile', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger("profile_id");
-            $table->unsignedBigInteger("education_id");
+            $table->unsignedBigInteger("educations_id");
             $table->timestamps();
         });
     }

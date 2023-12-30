@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\ProfileControllers;
 
-use App\Models\langs;
+use App\Http\Controllers\Controller;
+use App\Models\Profile\langs;
 use Illuminate\Http\Request;
 use App\Traits\HttpResponses;
 use Illuminate\Support\Facades\Auth;
@@ -19,8 +20,8 @@ class LangsController extends Controller
     public function store(Request $request)
     {
         $langs = langs::create([
-            'name' => $request->name,
-            'year' => $request->year,
+            'lang' => $request->lang,
+            'level' => $request->level,
         ]);
 
         $langs->profiles()->syncWithoutDetaching($request->profile_id);
@@ -30,16 +31,14 @@ class LangsController extends Controller
 
     public function update(Request $request, langs $langs)
     {
-        return $this->error('', 'You are not authorized to make this request', 403);
-
-        $langs->update($request->all());
+        $langs->find($request->langs_id)->update($request->all());
 
         return response()->json(['status' => 204]);
     }
 
-    public function destroy(langs $langs)
+    public function destroy(langs $langs, Request $request)
     {
-        return $this->isNotAuthorized($langs) ? $this->isNotAuthorized($langs) : $langs->delete();
+        return $this->isNotAuthorized($langs) ? $this->isNotAuthorized($langs) : $langs->find($request->langs_id)->delete();
     }
 
     private function isNotAuthorized($langs)

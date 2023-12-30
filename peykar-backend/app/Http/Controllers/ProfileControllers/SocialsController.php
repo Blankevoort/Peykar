@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\ProfileControllers;
 
-use App\Models\Socials;
+use App\Http\Controllers\Controller;
+use App\Models\Profile\Socials;
 use Illuminate\Http\Request;
 use App\Traits\HttpResponses;
 use Illuminate\Support\Facades\Auth;

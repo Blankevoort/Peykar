@@ -13,7 +13,7 @@ class ProfileController extends Controller
 
     public function index()
     {
-        return Profile::with('academicEXPS')->where('user_id', Auth::user()->id)->get();
+        return Profile::with('academicEXPS', 'awards', 'books', 'activities')->where('user_id', Auth::user()->id)->get();
     }
 
     public function store(Request $request)

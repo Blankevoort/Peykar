@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\ProfileControllers;
 
-use App\Models\courses;
+use App\Http\Controllers\Controller;
+use App\Models\Profile\courses;
 use Illuminate\Http\Request;
 use App\Traits\HttpResponses;
 use Illuminate\Support\Facades\Auth;
@@ -21,9 +22,9 @@ class CoursesController extends Controller
         $courses = courses::create([
             'name' => $request->name,
             'organizer' => $request->organizer,
-            'length' => $request->length,
             'country' => $request->country,
             'certified' => $request->certified,
+            'length' => $request->length,
             'year' => $request->year,
         ]);
 
@@ -34,16 +35,14 @@ class CoursesController extends Controller
 
     public function update(Request $request, courses $courses)
     {
-        return $this->error('', 'You are not authorized to make this request', 403);
-
-        $courses->update($request->all());
+        $courses->find($request->courses_id)->update($request->all());
 
         return response()->json(['status' => 204]);
     }
 
-    public function destroy(courses $courses)
+    public function destroy(courses $courses, Request $request)
     {
-        return $this->isNotAuthorized($courses) ? $this->isNotAuthorized($courses) : $courses->delete();
+        return $this->isNotAuthorized($courses) ? $this->isNotAuthorized($courses) : $courses->find($request->courses_id)->delete();
     }
 
     private function isNotAuthorized($courses)

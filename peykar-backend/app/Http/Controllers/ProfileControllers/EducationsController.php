@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\ProfileControllers;
 
-use App\Models\educations;
+use App\Http\Controllers\Controller;
+use App\Models\Profile\educations;
 use Illuminate\Http\Request;
 use App\Traits\HttpResponses;
 use Illuminate\Support\Facades\Auth;
@@ -37,16 +38,14 @@ class EducationsController extends Controller
 
     public function update(Request $request, educations $educations)
     {
-        return $this->error('', 'You are not authorized to make this request', 403);
-
-        $educations->update($request->all());
+        $educations->find($request->educations_id)->update($request->all());
 
         return response()->json(['status' => 204]);
     }
 
-    public function destroy(educations $educations)
+    public function destroy(educations $educations, Request $request)
     {
-        return $this->isNotAuthorized($educations) ? $this->isNotAuthorized($educations) : $educations->delete();
+        return $this->isNotAuthorized($educations) ? $this->isNotAuthorized($educations) : $educations->find($request->educations_id)->delete();
     }
 
     private function isNotAuthorized($educations)

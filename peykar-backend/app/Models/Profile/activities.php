@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Profile;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Profile;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class academicExperience extends Model
+class activities extends Model
 {
     use HasFactory;
 

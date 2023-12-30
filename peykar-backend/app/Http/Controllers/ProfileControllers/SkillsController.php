@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\ProfileControllers;
 
-use App\Models\skills;
+use App\Http\Controllers\Controller;
+use App\Models\Profile\skills;
 use Illuminate\Http\Request;
 use App\Traits\HttpResponses;
 use Illuminate\Support\Facades\Auth;
@@ -31,16 +32,14 @@ class SkillsController extends Controller
 
     public function update(Request $request, skills $skills)
     {
-        return $this->error('', 'You are not authorized to make this request', 403);
-
-        $skills->update($request->all());
+        $skills->find($request->skills_id)->update($request->all());
 
         return response()->json(['status' => 204]);
     }
 
-    public function destroy(skills $skills)
+    public function destroy(skills $skills, Request $request)
     {
-        return $this->isNotAuthorized($skills) ? $this->isNotAuthorized($skills) : $skills->delete();
+        return $this->isNotAuthorized($skills) ? $this->isNotAuthorized($skills) : $skills->find($request->skills_id)->delete();
     }
 
     private function isNotAuthorized($skills)

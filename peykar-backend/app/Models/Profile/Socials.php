@@ -1,21 +1,21 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Profile;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Profile;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class books extends Model
+class Socials extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'name',
-        'publisher',
-        'year'
+        'address'
     ];
 
-    public function profiles()
+    public function profile()
     {
         return $this->belongsToMany(Profile::class);
     }

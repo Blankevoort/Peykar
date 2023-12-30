@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\ProfileControllers;
 
-use App\Models\books;
+use App\Http\Controllers\Controller;
+use App\Models\Profile\books;
 use Illuminate\Http\Request;
 use App\Traits\HttpResponses;
 use Illuminate\Support\Facades\Auth;
@@ -20,7 +21,7 @@ class BooksController extends Controller
     {
         $books = books::create([
             'name' => $request->name,
-            'publisher' => $request->pyblisher,
+            'publisher' =>$request->publisher,
             'year' => $request->year,
         ]);
 
@@ -31,16 +32,14 @@ class BooksController extends Controller
 
     public function update(Request $request, books $books)
     {
-        return $this->error('', 'You are not authorized to make this request', 403);
-
-        $books->update($request->all());
+        $books->find($request->books_id)->update($request->all());
 
         return response()->json(['status' => 204]);
     }
 
-    public function destroy(books $books)
+    public function destroy(books $books, Request $request)
     {
-        return $this->isNotAuthorized($books) ? $this->isNotAuthorized($books) : $books->delete();
+        return $this->isNotAuthorized($books) ? $this->isNotAuthorized($books) : $books->find($request->books_id)->delete();
     }
 
     private function isNotAuthorized($books)

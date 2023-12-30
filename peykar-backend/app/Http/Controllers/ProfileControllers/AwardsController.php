@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\ProfileControllers;
 
-use App\Models\awards;
+use App\Http\Controllers\Controller;
+use App\Models\Profile\awards;
 use Illuminate\Http\Request;
 use App\Traits\HttpResponses;
 use Illuminate\Support\Facades\Auth;
@@ -30,16 +31,14 @@ class AwardsController extends Controller
 
     public function update(Request $request, awards $awards)
     {
-        return $this->error('', 'You are not authorized to make this request', 403);
-
-        $awards->update($request->all());
+        $awards->find($request->awards_id)->update($request->all());
 
         return response()->json(['status' => 204]);
     }
 
-    public function destroy(awards $awards)
+    public function destroy(awards $awards, Request $request)
     {
-        return $this->isNotAuthorized($awards) ? $this->isNotAuthorized($awards) : $awards->delete();
+        return $this->isNotAuthorized($awards) ? $this->isNotAuthorized($awards) : $awards->find($request->awards_id)->delete();
     }
 
     private function isNotAuthorized($awards)
