@@ -13,12 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tickets', function (Blueprint $table) {
+        Schema::create('histories', function (Blueprint $table) {
             $table->id();
-            $table->string("title");
-            $table->string("priority")->default('low');
-            $table->string("description");
-            $table->boolean("closed")->default(false);
+            $table->unsignedBigInteger('user_id');
+            $table->string('search');
             $table->timestamps();
         });
     }
@@ -30,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tickets');
+        Schema::dropIfExists('histories');
     }
 };

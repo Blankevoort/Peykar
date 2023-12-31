@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\History;
 use App\Models\Profile;
 use App\Models\Request;
 use App\Models\Requests;
@@ -52,5 +53,10 @@ class User extends Authenticatable
     public function requests()
     {
         return $this->hasMany(Request::class);
+    }
+
+    public function history()
+    {
+        return $this->hasMany(History::class);
     }
 }

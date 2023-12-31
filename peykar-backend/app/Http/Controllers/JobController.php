@@ -29,7 +29,7 @@ class JobController extends Controller
             } else {
                 $requested = false;
             }
-            
+
             $job->requested = $requested;
             $job->liked = $liked;
         }
@@ -78,6 +78,24 @@ class JobController extends Controller
     public function userJobs()
     {
         return Job::where('user_id', Auth::user()->id)->get();
+    }
+
+    public function search(Request $request)
+    {
+        $search = $request->search;
+
+        $request->user()->history()->create(['search' => $search]);
+
+        $jobs = Job::where(function ($query) use ($search) {
+            $query->where('title', 'like', "%$search%");
+        })
+            ->orWhereHas('tags', function ($query) use ($search) {
+                $query->where('name', 'like', "%$search%");
+            })
+            ->with('tags')
+            ->get();
+
+        return $jobs;
     }
 
     private function isNotAuthorized($jobs)
