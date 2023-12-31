@@ -44,7 +44,7 @@ class Profile extends Model
     }
 
     public function socials() {
-        $this->belongsToMany(Socials::class);
+        return $this->belongsToMany(Socials::class, 'socials_profile');
     }
 
     public function activities()

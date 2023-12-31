@@ -24,23 +24,21 @@ class SocialsController extends Controller
             'address' => $request->address,
         ]);
 
-        $socials->profiles()->syncWithoutDetaching($request->profile_id);
+        $socials->profile()->syncWithoutDetaching($request->profile_id);
 
         return response()->json(['status' => 204]);
     }
 
     public function update(Request $request, Socials $socials)
     {
-        return $this->error('', 'You are not authorized to make this request', 403);
-
-        $socials->update($request->all());
+        $socials->find($request->socials_id)->update($request->all());
 
         return response()->json(['status' => 204]);
     }
 
-    public function destroy(Socials $socials)
+    public function destroy(Socials $socials, Request $request)
     {
-        return $this->isNotAuthorized($socials) ? $this->isNotAuthorized($socials) : $socials->delete();
+        return $this->isNotAuthorized($socials) ? $this->isNotAuthorized($socials) : $socials->find($request->socials_id)->delete();
     }
 
     private function isNotAuthorized($socials)
