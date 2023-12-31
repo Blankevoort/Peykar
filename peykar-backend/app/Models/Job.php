@@ -4,6 +4,8 @@ namespace App\Models;
 
 use App\Models\Tag;
 use App\Models\User;
+use App\Models\Request;
+use App\Models\Requests;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -38,5 +40,10 @@ class Job extends Model
     public function likes()
     {
         return $this->hasMany(Like::class);
+    }
+
+    public function requests()
+    {
+        return $this->hasMany(Request::class);
     }
 }

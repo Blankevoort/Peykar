@@ -16,12 +16,21 @@ class JobController extends Controller
         $jobs = Job::all();
         foreach ($jobs as $job) {
             $job->likeCount = $job->likes->count();
-            //return $job->likes;
+            $job->requestCount = $job->requests->count();
+
             if ($job->likes->where('id', $request->user()->id)->first()) {
                 $liked = true;
             } else {
                 $liked = false;
             }
+
+            if ($job->requests->where('id', $request->user()->id)->first()) {
+                $requested = true;
+            } else {
+                $requested = false;
+            }
+            
+            $job->requested = $requested;
             $job->liked = $liked;
         }
         return $jobs;
