@@ -590,7 +590,9 @@
     <!-- Footer -->
 
     <q-footer class="bg-dark text-white row justify-center">
-      <div class="col-8 row q-my-md">
+      <!-- 4k Screen Content -->
+
+      <div class="col-8 row q-my-md gt-lg">
         <div class="text-h6 text-weight-bold col-12 q-mt-md">سوالات متداول</div>
 
         <!-- Question Box and Answers -->
@@ -714,81 +716,77 @@
           <!-- Right Side Content -->
 
           <div class="col-8 row justify-between">
+            <div class="col-6 row justify-between">
+              <div class="col-8 br-10">
+                <div class="row">
+                  <div class="text-bold col-12 q-mt-md">کارجویان</div>
 
-            <!-- md+ Content -->
+                  <div class="full-width q-py-xs q-mt-md">
+                    <q-btn flat label="رزومه ساز دو زبانه" />
+                  </div>
 
-            <div class="col-6 row justify-between gt-md">
-              <div class="col-6 br-10">
-                <div class="row full-width">
-                  <div class="col-6">
-                    <div class="text-bold col-12 q-mt-md">کارجویان</div>
+                  <div class="full-width q-py-xs">
+                    <q-btn flat label="جستجوی فرصت‌ها" />
+                  </div>
 
-                    <div class="q-mt-md">
-                      <q-btn flat>
-                        <span>رزومه ساز دو زبانه</span>
-                      </q-btn>
+                  <q-expansion-item
+                    class="full-width q-py-xs"
+                    label="آزمون‌های خود شناسی"
+                  >
+                    <div class="flex justify-end">
+                      <q-btn class="full-width q-my-xs" flat label="MBTI" />
+
+                      <q-btn class="full-width q-my-xs" flat label="Holland" />
+
+                      <q-btn class="full-width q-my-xs" flat label="NEO" />
+
+                      <q-btn
+                        class="full-width q-my-xs"
+                        flat
+                        label="هوش های چندگانه"
+                      />
+
+                      <q-btn class="full-width q-my-xs" flat label="Bar-On" />
                     </div>
+                  </q-expansion-item>
 
-                    <div class="full-width">
-                      <q-btn flat label="جستجوی فرصت‌های شغلی" />
-                    </div>
+                  <div class="full-width q-py-xs">
+                    <q-btn flat label="سوالات متداول" />
+                  </div>
 
-                    <q-expansion-item
-                      class="full-width"
-                      expand-separator
-                      label="آزمون‌های خود شناسی"
-                    >
-                      <q-btn flat label="آزمون شخصیت شناسی MBTI" />
+                  <div class="full-width q-py-xs">
+                    <q-btn flat label="دوره‌های آموزشی" />
+                  </div>
 
-                      <q-btn flat label="آزمون تیپ سنجی شغلی Holland" />
+                  <div class="full-width q-py-xs">
+                    <q-btn flat label="رده بندی شرکت ها" />
+                  </div>
 
-                      <q-btn flat label="آزمون شخصیت شناسی NEO" />
-
-                      <q-btn flat label="آشنایی با شرکت ها" />
-
-                      <q-btn flat label="آزمون هوش های چندگانه" />
-
-                      <q-btn flat label="آزمون هوش هیجانی Bar-On" />
-                    </q-expansion-item>
-
-                    <div class="full-width">
-                      <q-btn flat label="سوالات متداول" />
-                    </div>
-
-                    <div class="full-width">
-                      <q-btn flat label="دوره‌های آموزشی" />
-                    </div>
-
-                    <div class="full-width">
-                      <q-btn flat label="رده بندی شرکت ها" />
-                    </div>
-
-                    <div class="full-width">
-                      <q-btn flat label="آشنایی با شرکت ها" />
-                    </div>
+                  <div class="full-width q-py-xs">
+                    <q-btn flat label="آشنایی با شرکت ها" />
                   </div>
                 </div>
               </div>
 
-              <div class="col-6 row br-10">
+              <div class="col-4 br-10">
                 <div class="col-12 q-mt-md">
                   <div class="text-weight-bold">درباره جاب ویژن</div>
                 </div>
 
-                <q-list dense>
+                <q-list class="q-mt-md">
                   <q-item>
                     <q-btn flat label="درباره ما" />
                   </q-item>
 
-                  <q-item>
+                  <q-item class="q-my-xs">
                     <q-btn flat label="سوالات متداول" />
                   </q-item>
 
-                  <q-item>
+                  <q-item class="q-my-xs">
                     <q-btn flat label="تماس با ما" />
                   </q-item>
 
-                  <q-item>
+                  <q-item class="q-my-xs">
                     <q-btn flat label="قوانین و مقررات" />
                   </q-item>
                 </q-list>
@@ -797,59 +795,279 @@
 
             <!-- lg- Content -->
 
-            <div class="col-6 row justify-between lt-lg">
-              <div class="col-6 br-10" style="background: #575b64">
-                <div class="row full-width">
-                  <div class="col-6">
-                    <div class="text-h6 text-weight-bold col-12 q-mt-md">
-                      کارجویان
-                    </div>
-                    <div class="col-12 q-mt-md">
-                      <q-btn flat label="رزومه ساز دو زبانه" />
-                    </div>
+            <div class="col-6 row justify-between lt-md">
+              <div class="col-8 br-10">
+                <div class="row">
+                  <div class="text-bold col-12 q-mt-md">کارجویان</div>
 
-                    <div class="col-12">
-                      <q-btn flat label="جستجوی فرصت‌های شغلی" />
-                    </div>
+                  <div class="full-width q-py-xs q-mt-md">
+                    <q-btn flat label="رزومه ساز دو زبانه" />
+                  </div>
 
-                    <q-expansion-item
-                      class="col-12"
-                      expand-separator
-                      label="آزمون‌های خود شناسی"
-                    >
-                      <q-btn flat label="آزمون شخصیت شناسی MBTI" />
-                      <q-btn flat label="آزمون تیپ سنجی شغلی Holland" />
-                      <q-btn flat label="آزمون شخصیت شناسی NEO" />
-                      <q-btn flat label="آشنایی با شرکت ها" />
-                      <q-btn flat label="آزمون هوش های چندگانه" />
-                      <q-btn flat label="آزمون هوش هیجانی Bar-On" />
-                    </q-expansion-item>
+                  <div class="full-width q-py-xs">
+                    <q-btn flat label="جستجوی فرصت‌ها" />
+                  </div>
 
-                    <div class="col-12">
-                      <q-btn flat label="سوالات متداول" />
-                    </div>
+                  <q-expansion-item
+                    class="full-width q-py-xs"
+                    label="آزمون‌های خود شناسی"
+                  >
+                    <div class="flex justify-end">
+                      <q-btn class="full-width q-my-xs" flat label="MBTI" />
 
-                    <div class="col-12">
-                      <q-btn flat label="دوره‌های آموزشی" />
-                    </div>
+                      <q-btn class="full-width q-my-xs" flat label="Holland" />
 
-                    <div class="col-12">
-                      <q-btn flat label="رده بندی شرکت ها" />
-                    </div>
+                      <q-btn class="full-width q-my-xs" flat label="NEO" />
 
-                    <div class="col-12">
-                      <q-btn flat label="آشنایی با شرکت ها" />
+                      <q-btn
+                        class="full-width q-my-xs"
+                        flat
+                        label="هوش های چندگانه"
+                      />
+
+                      <q-btn class="full-width q-my-xs" flat label="Bar-On" />
                     </div>
+                  </q-expansion-item>
+
+                  <div class="full-width q-py-xs">
+                    <q-btn flat label="سوالات متداول" />
+                  </div>
+
+                  <div class="full-width q-py-xs">
+                    <q-btn flat label="دوره‌های آموزشی" />
+                  </div>
+
+                  <div class="full-width q-py-xs">
+                    <q-btn flat label="رده بندی شرکت ها" />
+                  </div>
+
+                  <div class="full-width q-py-xs">
+                    <q-btn flat label="آشنایی با شرکت ها" />
                   </div>
                 </div>
               </div>
 
-              <div class="col-6 row br-10" style="background: #575b64">
+              <div class="col-4 br-10">
                 <div class="col-12 q-mt-md">
-                  <div class="text-h6 text-weight-bold">درباره جاب ویژن</div>
+                  <div class="text-weight-bold">درباره جاب ویژن</div>
                 </div>
 
-                <q-list dense>
+                <q-list class="q-mt-md">
+                  <q-item>
+                    <q-btn flat label="درباره ما" />
+                  </q-item>
+
+                  <q-item class="q-my-xs">
+                    <q-btn flat label="سوالات متداول" />
+                  </q-item>
+
+                  <q-item class="q-my-xs">
+                    <q-btn flat label="تماس با ما" />
+                  </q-item>
+
+                  <q-item class="q-my-xs">
+                    <q-btn flat label="قوانین و مقررات" />
+                  </q-item>
+                </q-list>
+              </div>
+            </div>
+          </div>
+
+          <!-- National Registration Address -->
+
+          <div class="col-4 row justify-end content-center">
+            <q-img
+              style="width: 175px; height: 175px"
+              src="../assets/logo.png"
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- Tablet, Laptop and Large Laptop Content -->
+
+      <div class="col-12 row q-my-md gt-xs lt-xl q-px-md">
+        <div class="text-h6 text-weight-bold col-12 q-mt-md">سوالات متداول</div>
+
+        <!-- Question Box and Answers -->
+
+        <div class="col-12 q-my-md">
+          <q-list bordered class="background border-18 q-my-md">
+            <q-expansion-item
+              expand-separator
+              hide-expand-icon
+              icon="question_mark"
+              label="سایت استخدامی جاب ویژن، چه مزیتی نسبت به دیگر سایت‌های کاریابی و استخدامی دارد؟"
+            >
+              <q-card class="background border-18-bottom">
+                <q-separator color="white" />
+
+                <q-card-section>
+                  وبسایت جاب ویژن با بیش از 40 هزار آگهی استخدام فعال و استفاده
+                  از هوش مصنوعی برای پیشنهاد مرتبط‌ترین آگهی‌ها به کارجویان،
+                  فرایند کاریابی را بسیار آسان‌تر کرده است.
+                </q-card-section>
+              </q-card>
+            </q-expansion-item>
+          </q-list>
+
+          <q-list bordered class="background border-18 q-my-md">
+            <q-expansion-item
+              expand-separator
+              hide-expand-icon
+              icon="question_mark"
+              label="آیا ساخت و ارسال رزومه در جاب ویژن برای من هزینه‌ای دارد؟"
+            >
+              <q-card class="background border-18-bottom">
+                <q-separator color="white" />
+
+                <q-card-section>
+                  خیر، کارجویان می‌توانند بدون پرداخت هیچ هزینه‌ای در سایت
+                  کاریابی جاب ویژن رزومه بسازند و برای آگهی‌های استخدام ارسال
+                  کنند.
+                </q-card-section>
+              </q-card>
+            </q-expansion-item>
+          </q-list>
+
+          <q-list bordered class="background border-18 q-my-md">
+            <q-expansion-item
+              expand-separator
+              hide-expand-icon
+              icon="question_mark"
+              label="چگونه می‌توانم آگهی‌های استخدام مشاغل مرتبط با خودم را پیدا کنم؟"
+            >
+              <q-card class="background border-18-bottom">
+                <q-separator color="white" />
+
+                <q-card-section>
+                  شما می‌توانید به راحتی با استفاده از نوار جستجوی بالای سایت و
+                  انتخاب فیلترهای مختلف، آگهی‌های استخدامی حوزه مرتبط با خودتان
+                  را پیدا کنید.
+                </q-card-section>
+              </q-card>
+            </q-expansion-item>
+          </q-list>
+
+          <q-list bordered class="background border-18 q-my-md">
+            <q-expansion-item
+              expand-separator
+              hide-expand-icon
+              icon="question_mark"
+              label="چگونه می‌توانم از جدیدترین آگهی‌های استخدام مطلع شوم؟"
+            >
+              <q-card class="background border-18-bottom">
+                <q-separator color="white" />
+
+                <q-card-section>
+                  شما می‌توانید با فعالسازی گزینه ایمیل اطلاع رسانی و عضویت در
+                  بات تلگرامی جاب ویژن، از جدیدترین آگهی‌های استخدام و کاریابی
+                  حوزه شغلی خود مطلع شوید.
+                </q-card-section>
+              </q-card>
+            </q-expansion-item>
+          </q-list>
+
+          <q-list bordered class="background border-18 q-my-md">
+            <q-expansion-item
+              expand-separator
+              hide-expand-icon
+              icon="question_mark"
+              label="آیا آگهی‌های استخدام شهرستان‌ها نیز در سایت جاب ویژن منتشر می‌شوند؟"
+            >
+              <q-card class="background border-18-bottom">
+                <q-separator color="white" />
+
+                <q-card-section>
+                  بله؛ تمامی شهرها و شهرستان‌های استان‌های مختلف ایران در سایت
+                  جاب ویژن وجود دارند و شما می‌توانید با استفاده از فیلتر «شهر»
+                  در نوار جستجوی بالای سایت، هرکدام از آن‌ها را انتخاب کنید.
+                </q-card-section>
+              </q-card>
+            </q-expansion-item>
+          </q-list>
+
+          <q-list bordered class="background border-18 q-my-md">
+            <q-expansion-item
+              expand-separator
+              hide-expand-icon
+              icon="question_mark"
+              label="آیا محدودیتی در ارسال رزومه برای آگهی‌های استخدامی در سایت جاب ویژن وجود دارد؟"
+            >
+              <q-card class="background border-18-bottom">
+                <q-separator color="white" />
+
+                <q-card-section>
+                  خیر؛ شما می‌توانید رزومه خودتان را به صورت کاملا رایگان برای
+                  تعداد نامحدودی از آگهی‌های استخدام ارسال کنید.
+                </q-card-section>
+              </q-card>
+            </q-expansion-item>
+          </q-list>
+        </div>
+
+        <div class="full-width row justify-between">
+          <!-- Right Side Content -->
+
+          <div class="col-8 row justify-between">
+            <div class="col-6 row justify-between">
+              <div class="col-8 br-10">
+                <div class="row">
+                  <div class="text-bold col-12 q-mt-md">کارجویان</div>
+
+                  <div class="full-width q-mt-md">
+                    <q-btn flat label="رزومه ساز دو زبانه" />
+                  </div>
+
+                  <div class="full-width">
+                    <q-btn flat label="جستجوی فرصت‌ها" />
+                  </div>
+
+                  <q-expansion-item
+                    class="full-width"
+                    label="آزمون‌های خود شناسی"
+                  >
+                    <div class="flex justify-end">
+                      <q-btn class="full-width q-my-xs" flat label="MBTI" />
+
+                      <q-btn class="full-width q-my-xs" flat label="Holland" />
+
+                      <q-btn class="full-width q-my-xs" flat label="NEO" />
+
+                      <q-btn
+                        class="full-width q-my-xs"
+                        flat
+                        label="هوش های چندگانه"
+                      />
+
+                      <q-btn class="full-width q-my-xs" flat label="Bar-On" />
+                    </div>
+                  </q-expansion-item>
+
+                  <div class="full-width">
+                    <q-btn flat label="سوالات متداول" />
+                  </div>
+
+                  <div class="full-width">
+                    <q-btn flat label="دوره‌های آموزشی" />
+                  </div>
+
+                  <div class="full-width">
+                    <q-btn flat label="رده بندی شرکت ها" />
+                  </div>
+
+                  <div class="full-width">
+                    <q-btn flat label="آشنایی با شرکت ها" />
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-4 br-10">
+                <div class="col-12 q-mt-md">
+                  <div class="text-weight-bold">درباره جاب ویژن</div>
+                </div>
+
+                <q-list class="q-mt-md">
                   <q-item>
                     <q-btn flat label="درباره ما" />
                   </q-item>
@@ -873,6 +1091,221 @@
           <!-- National Registration Address -->
 
           <div class="col-4 row justify-end content-center">
+            <q-img
+              style="width: 175px; height: 175px"
+              src="../assets/logo.png"
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile Content -->
+
+      <div class="col-12 row q-my-md lt-md q-px-md">
+        <div class="text-h6 text-weight-bold col-12 q-mt-md">سوالات متداول</div>
+
+        <!-- Question Box and Answers -->
+
+        <div class="col-12 q-my-md">
+          <q-list bordered class="background border-18 q-my-md">
+            <q-expansion-item
+              expand-separator
+              hide-expand-icon
+              icon="question_mark"
+              label="سایت استخدامی جاب ویژن، چه مزیتی نسبت به دیگر سایت‌های کاریابی و استخدامی دارد؟"
+            >
+              <q-card class="background border-18-bottom">
+                <q-separator color="white" />
+
+                <q-card-section>
+                  وبسایت جاب ویژن با بیش از 40 هزار آگهی استخدام فعال و استفاده
+                  از هوش مصنوعی برای پیشنهاد مرتبط‌ترین آگهی‌ها به کارجویان،
+                  فرایند کاریابی را بسیار آسان‌تر کرده است.
+                </q-card-section>
+              </q-card>
+            </q-expansion-item>
+          </q-list>
+
+          <q-list bordered class="background border-18 q-my-md">
+            <q-expansion-item
+              expand-separator
+              hide-expand-icon
+              icon="question_mark"
+              label="آیا ساخت و ارسال رزومه در جاب ویژن برای من هزینه‌ای دارد؟"
+            >
+              <q-card class="background border-18-bottom">
+                <q-separator color="white" />
+
+                <q-card-section>
+                  خیر، کارجویان می‌توانند بدون پرداخت هیچ هزینه‌ای در سایت
+                  کاریابی جاب ویژن رزومه بسازند و برای آگهی‌های استخدام ارسال
+                  کنند.
+                </q-card-section>
+              </q-card>
+            </q-expansion-item>
+          </q-list>
+
+          <q-list bordered class="background border-18 q-my-md">
+            <q-expansion-item
+              expand-separator
+              hide-expand-icon
+              icon="question_mark"
+              label="چگونه می‌توانم آگهی‌های استخدام مشاغل مرتبط با خودم را پیدا کنم؟"
+            >
+              <q-card class="background border-18-bottom">
+                <q-separator color="white" />
+
+                <q-card-section>
+                  شما می‌توانید به راحتی با استفاده از نوار جستجوی بالای سایت و
+                  انتخاب فیلترهای مختلف، آگهی‌های استخدامی حوزه مرتبط با خودتان
+                  را پیدا کنید.
+                </q-card-section>
+              </q-card>
+            </q-expansion-item>
+          </q-list>
+
+          <q-list bordered class="background border-18 q-my-md">
+            <q-expansion-item
+              expand-separator
+              hide-expand-icon
+              icon="question_mark"
+              label="چگونه می‌توانم از جدیدترین آگهی‌های استخدام مطلع شوم؟"
+            >
+              <q-card class="background border-18-bottom">
+                <q-separator color="white" />
+
+                <q-card-section>
+                  شما می‌توانید با فعالسازی گزینه ایمیل اطلاع رسانی و عضویت در
+                  بات تلگرامی جاب ویژن، از جدیدترین آگهی‌های استخدام و کاریابی
+                  حوزه شغلی خود مطلع شوید.
+                </q-card-section>
+              </q-card>
+            </q-expansion-item>
+          </q-list>
+
+          <q-list bordered class="background border-18 q-my-md">
+            <q-expansion-item
+              expand-separator
+              hide-expand-icon
+              icon="question_mark"
+              label="آیا آگهی‌های استخدام شهرستان‌ها نیز در سایت جاب ویژن منتشر می‌شوند؟"
+            >
+              <q-card class="background border-18-bottom">
+                <q-separator color="white" />
+
+                <q-card-section>
+                  بله؛ تمامی شهرها و شهرستان‌های استان‌های مختلف ایران در سایت
+                  جاب ویژن وجود دارند و شما می‌توانید با استفاده از فیلتر «شهر»
+                  در نوار جستجوی بالای سایت، هرکدام از آن‌ها را انتخاب کنید.
+                </q-card-section>
+              </q-card>
+            </q-expansion-item>
+          </q-list>
+
+          <q-list bordered class="background border-18 q-my-md">
+            <q-expansion-item
+              expand-separator
+              hide-expand-icon
+              icon="question_mark"
+              label="آیا محدودیتی در ارسال رزومه برای آگهی‌های استخدامی در سایت جاب ویژن وجود دارد؟"
+            >
+              <q-card class="background border-18-bottom">
+                <q-separator color="white" />
+
+                <q-card-section>
+                  خیر؛ شما می‌توانید رزومه خودتان را به صورت کاملا رایگان برای
+                  تعداد نامحدودی از آگهی‌های استخدام ارسال کنید.
+                </q-card-section>
+              </q-card>
+            </q-expansion-item>
+          </q-list>
+        </div>
+
+        <div class="full-width row justify-between">
+          <!-- Right Side Content -->
+
+          <div class="full-width">
+            <q-expansion-item
+              v-model="expandedTwo"
+              label="کارجویان"
+              class="full-width"
+            >
+              <div class="full-width q-py-xs q-mt-md">
+                <q-btn flat label="رزومه ساز دو زبانه" />
+              </div>
+
+              <div class="full-width q-py-xs">
+                <q-btn flat label="جستجوی فرصت‌ها" />
+              </div>
+
+              <q-expansion-item
+                class="full-width q-py-xs"
+                label="آزمون‌های خود شناسی"
+              >
+                <div class="flex justify-end">
+                  <q-btn class="full-width q-my-xs" flat label="MBTI" />
+
+                  <q-btn class="full-width q-my-xs" flat label="Holland" />
+
+                  <q-btn class="full-width q-my-xs" flat label="NEO" />
+
+                  <q-btn
+                    class="full-width q-my-xs"
+                    flat
+                    label="هوش های چندگانه"
+                  />
+
+                  <q-btn class="full-width q-my-xs" flat label="Bar-On" />
+                </div>
+              </q-expansion-item>
+
+              <div class="full-width q-py-xs">
+                <q-btn flat label="سوالات متداول" />
+              </div>
+
+              <div class="full-width q-py-xs">
+                <q-btn flat label="دوره‌های آموزشی" />
+              </div>
+
+              <div class="full-width q-py-xs">
+                <q-btn flat label="رده بندی شرکت ها" />
+              </div>
+
+              <div class="full-width q-py-xs">
+                <q-btn flat label="آشنایی با شرکت ها" />
+              </div>
+            </q-expansion-item>
+          </div>
+
+          <div class="full-width">
+            <q-expansion-item
+              v-model="expandedThree"
+              label="درباره جاب ویژن"
+              class="full-width"
+            >
+              <q-list class="q-mt-md">
+                <q-item>
+                  <q-btn flat label="درباره ما" />
+                </q-item>
+
+                <q-item class="q-my-xs">
+                  <q-btn flat label="سوالات متداول" />
+                </q-item>
+
+                <q-item class="q-my-xs">
+                  <q-btn flat label="تماس با ما" />
+                </q-item>
+
+                <q-item class="q-my-xs">
+                  <q-btn flat label="قوانین و مقررات" />
+                </q-item>
+              </q-list>
+            </q-expansion-item>
+          </div>
+
+          <!-- National Registration Address -->
+
+          <div class="col-12 row justify-end content-center">
             <q-img
               style="width: 175px; height: 175px"
               src="../assets/logo.png"
@@ -962,10 +1395,16 @@ export default defineComponent({
   setup() {
     const drawer = ref();
     const width = ref(window.innerWidth);
+    const expanded = ref(false);
+    const expandedTwo = ref(false);
+    const expandedThree = ref(false);
 
     return {
       drawer,
       width,
+      expanded,
+      expandedTwo,
+      expandedThree,
     };
   },
 });
@@ -995,17 +1434,6 @@ export default defineComponent({
 .q-layout__section--marginal {
   background-color: white;
   color: black;
-}
-
-#q-app
-  > div
-  > header
-  > div
-  > div.q-toolbar__title.ellipsis.col-6.flex.justify-right
-  > hr {
-  border-radius: 8px;
-  width: 2px;
-  padding: 0;
 }
 
 .q-btn {
