@@ -3,42 +3,361 @@
     <!-- Header -->
 
     <q-header class="row justify-center shadow" style="height: 70px">
-      <q-toolbar class="col-8">
+      <q-toolbar class="col-8 gt-md">
         <!-- Logo And Links -->
 
-        <div class="col-6">
-          <div class="row">
-            <img
-              class="q-mr-lg"
-              src="https://jobvision.ir/assets/images/header/logo-bg-white.svg"
-              @click="$router.push('/')"
-            />
+        <div class="col-9 row">
+          <img
+            class="q-mr-lg"
+            src="https://jobvision.ir/assets/images/header/logo-bg-white.svg"
+            @click="$router.push('/')"
+          />
 
-            <div>
-              <q-btn
-                flat
-                label="فرصت های شغلی"
-                to="/jobs"
-                class="btn--no-hover button-effect"
-              />
-              <q-btn
-                flat
-                label="فرصت های شغلی پیشنهادی"
-                to="/recommended-jobs"
-                class="btn--no-hover button-effect"
-              />
-              <q-btn flat label="رزومه من" to="/my-cv" class="btn--no-hover" />
-              <q-btn
-                flat
-                label="رده‌بندی شرکت‌ها"
-                to="/top-companies"
-                class="btn--no-hover"
-              />
-            </div>
+          <div>
+            <q-btn
+              flat
+              label="فرصت های شغلی"
+              to="/jobs"
+              class="btn--no-hover button-effect"
+            />
+            <q-btn
+              flat
+              label="فرصت های شغلی پیشنهادی"
+              to="/recommended-jobs"
+              class="btn--no-hover button-effect"
+            />
+            <q-btn flat label="رزومه من" to="/my-cv" class="btn--no-hover" />
+            <q-btn
+              flat
+              label="رده‌بندی شرکت‌ها"
+              to="/top-companies"
+              class="btn--no-hover"
+            />
           </div>
         </div>
 
-        <q-toolbar-title class="col-6 row justify-end">
+        <q-toolbar-title class="col-3 row justify-end">
+          <!-- Notification Button -->
+
+          <q-btn round flat>
+            <q-icon
+              @click="$router.push('/notifications')"
+              size="24px"
+              name="notifications"
+            />
+          </q-btn>
+
+          <q-btn-dropdown flat color="grey-7" icon="person" padding="8px 20px">
+            <div class="q-pa-md text-black row">
+              <div class="col-12">
+                <q-item class="full-width">
+                  <q-item-section top avatar>
+                    <q-avatar size="50px" color="grey-4">
+                      <q-icon name="person" color="grey-7" size="69px" />
+                    </q-avatar>
+                  </q-item-section>
+
+                  <!-- Full Namem, Job And Edit Button -->
+
+                  <q-item-section>
+                    <q-item-label>معین صداقتی</q-item-label>
+                    <q-item-label lines="2">
+                      <div class="text-black q-mt-sm" style="font-size: 12px">
+                        دولوپر فول استک در شرکت آیترونیک.
+                      </div>
+
+                      <q-btn flat>
+                        <q-icon size="20px" name="edit" />
+                      </q-btn>
+                    </q-item-label>
+                  </q-item-section>
+                </q-item>
+
+                <div>
+                  <q-btn
+                    class="full-width text-bold"
+                    outline
+                    color="black"
+                    label="رزومه من"
+                    icon="badge"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <q-list class="q-px-md">
+              <q-item clickable v-ripple>
+                <q-item-section avatar>
+                  <q-icon name="hotel_class" />
+                </q-item-section>
+                <q-item-section>مشاغل پیشنهادی</q-item-section>
+                <div class="q-mx-lg"></div>
+                <q-item-section side>
+                  <q-badge
+                    class="text-bold"
+                    color="green-2"
+                    text-color="green-8"
+                    label="31"
+                  />
+                </q-item-section>
+              </q-item>
+
+              <q-item clickable v-ripple>
+                <q-item-section avatar>
+                  <q-icon name="drive_folder_upload" />
+                </q-item-section>
+                <q-item-section>رزومه های ارسال شده</q-item-section>
+                <div class="q-mx-lg"></div>
+              </q-item>
+
+              <q-item clickable v-ripple>
+                <q-item-section avatar>
+                  <q-icon name="favorite_outline" />
+                </q-item-section>
+                <q-item-section>مشاغل نشان شده</q-item-section>
+                <div class="q-mx-lg"></div>
+              </q-item>
+
+              <q-item clickable v-ripple>
+                <q-item-section avatar>
+                  <q-icon name="saved_search" />
+                </q-item-section>
+                <q-item-section>جستجو های ذخیره شده</q-item-section>
+                <div class="q-mx-lg"></div>
+                <q-item-section side>1</q-item-section>
+              </q-item>
+
+              <q-item clickable v-ripple>
+                <q-item-section avatar>
+                  <q-icon name="apartment" />
+                </q-item-section>
+                <q-item-section>شرکت های دنبال شده</q-item-section>
+                <div class="q-mx-lg"></div>
+              </q-item>
+
+              <q-item clickable v-ripple>
+                <q-item-section avatar>
+                  <q-icon name="school" />
+                </q-item-section>
+                <q-item-section>دوره های آموزشی پیشنهادی</q-item-section>
+                <div class="q-mx-lg"></div>
+              </q-item>
+
+              <q-item clickable v-ripple>
+                <q-item-section avatar>
+                  <q-icon name="business_center" />
+                </q-item-section>
+                <q-item-section>نمایشگاه کار</q-item-section>
+                <div class="q-mx-lg"></div>
+              </q-item>
+
+              <q-item clickable v-ripple>
+                <q-item-section avatar>
+                  <q-icon name="settings" />
+                </q-item-section>
+                <q-item-section>تنظیمات ناحیه کاربری</q-item-section>
+              </q-item>
+
+              <q-separator />
+
+              <q-item class="text-red" clickable v-ripple>
+                <q-item-section avatar>
+                  <q-icon name="logout " />
+                </q-item-section>
+                <q-item-section>خروج از حساب</q-item-section>
+              </q-item>
+            </q-list>
+          </q-btn-dropdown>
+        </q-toolbar-title>
+      </q-toolbar>
+
+      <q-toolbar class="col-12 gt-sm lt-lg" style="max-height: 70px">
+        <!-- Logo And Links -->
+
+        <div class="col-9 row">
+          <img
+            class="q-pr-lg"
+            src="https://jobvision.ir/assets/images/header/logo-bg-white.svg"
+            @click="$router.push('/')"
+          />
+
+          <div>
+            <q-btn
+              flat
+              label="فرصت های شغلی"
+              to="/jobs"
+              class="btn--no-hover button-effect"
+            />
+            <q-btn
+              flat
+              label="فرصت های شغلی پیشنهادی"
+              to="/recommended-jobs"
+              class="btn--no-hover button-effect"
+            />
+            <q-btn flat label="رزومه من" to="/my-cv" class="btn--no-hover" />
+            <q-btn
+              flat
+              label="رده‌بندی شرکت‌ها"
+              to="/top-companies"
+              class="btn--no-hover"
+            />
+          </div>
+        </div>
+
+        <q-toolbar-title class="col-3 row justify-end">
+          <!-- Notification Button -->
+
+          <q-btn round flat>
+            <q-icon
+              @click="$router.push('/notifications')"
+              size="24px"
+              name="notifications"
+            />
+          </q-btn>
+
+          <q-btn-dropdown flat color="grey-7" icon="person" padding="8px 20px">
+            <div class="q-pa-md text-black row">
+              <div class="col-12">
+                <q-item class="full-width">
+                  <q-item-section top avatar>
+                    <q-avatar size="50px" color="grey-4">
+                      <q-icon name="person" color="grey-7" size="69px" />
+                    </q-avatar>
+                  </q-item-section>
+
+                  <!-- Full Namem, Job And Edit Button -->
+
+                  <q-item-section>
+                    <q-item-label>معین صداقتی</q-item-label>
+                    <q-item-label lines="2">
+                      <div class="text-black q-mt-sm" style="font-size: 12px">
+                        دولوپر فول استک در شرکت آیترونیک.
+                      </div>
+
+                      <q-btn flat>
+                        <q-icon size="20px" name="edit" />
+                      </q-btn>
+                    </q-item-label>
+                  </q-item-section>
+                </q-item>
+
+                <div>
+                  <q-btn
+                    class="full-width text-bold"
+                    outline
+                    color="black"
+                    label="رزومه من"
+                    icon="badge"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <q-list class="q-px-md">
+              <q-item clickable v-ripple>
+                <q-item-section avatar>
+                  <q-icon name="hotel_class" />
+                </q-item-section>
+                <q-item-section>مشاغل پیشنهادی</q-item-section>
+                <div class="q-mx-lg"></div>
+                <q-item-section side>
+                  <q-badge
+                    class="text-bold"
+                    color="green-2"
+                    text-color="green-8"
+                    label="31"
+                  />
+                </q-item-section>
+              </q-item>
+
+              <q-item clickable v-ripple>
+                <q-item-section avatar>
+                  <q-icon name="drive_folder_upload" />
+                </q-item-section>
+                <q-item-section>رزومه های ارسال شده</q-item-section>
+                <div class="q-mx-lg"></div>
+              </q-item>
+
+              <q-item clickable v-ripple>
+                <q-item-section avatar>
+                  <q-icon name="favorite_outline" />
+                </q-item-section>
+                <q-item-section>مشاغل نشان شده</q-item-section>
+                <div class="q-mx-lg"></div>
+              </q-item>
+
+              <q-item clickable v-ripple>
+                <q-item-section avatar>
+                  <q-icon name="saved_search" />
+                </q-item-section>
+                <q-item-section>جستجو های ذخیره شده</q-item-section>
+                <div class="q-mx-lg"></div>
+                <q-item-section side>1</q-item-section>
+              </q-item>
+
+              <q-item clickable v-ripple>
+                <q-item-section avatar>
+                  <q-icon name="apartment" />
+                </q-item-section>
+                <q-item-section>شرکت های دنبال شده</q-item-section>
+                <div class="q-mx-lg"></div>
+              </q-item>
+
+              <q-item clickable v-ripple>
+                <q-item-section avatar>
+                  <q-icon name="school" />
+                </q-item-section>
+                <q-item-section>دوره های آموزشی پیشنهادی</q-item-section>
+                <div class="q-mx-lg"></div>
+              </q-item>
+
+              <q-item clickable v-ripple>
+                <q-item-section avatar>
+                  <q-icon name="business_center" />
+                </q-item-section>
+                <q-item-section>نمایشگاه کار</q-item-section>
+                <div class="q-mx-lg"></div>
+              </q-item>
+
+              <q-item clickable v-ripple>
+                <q-item-section avatar>
+                  <q-icon name="settings" />
+                </q-item-section>
+                <q-item-section>تنظیمات ناحیه کاربری</q-item-section>
+              </q-item>
+
+              <q-separator />
+
+              <q-item class="text-red" clickable v-ripple>
+                <q-item-section avatar>
+                  <q-icon name="logout " />
+                </q-item-section>
+                <q-item-section>خروج از حساب</q-item-section>
+              </q-item>
+            </q-list>
+          </q-btn-dropdown>
+        </q-toolbar-title>
+      </q-toolbar>
+
+      <q-toolbar class="col-12 lt-md" style="max-height: 70px">
+        <!-- Logo And Links -->
+
+        <div class="col-9 row">
+          <q-btn
+            flat
+            @click="drawer = !drawer"
+            class="btn--no-hover button-effect"
+            icon="menu"
+          />
+
+          <img
+            class="q-pl-lg"
+            src="https://jobvision.ir/assets/images/header/logo-bg-white.svg"
+            @click="$router.push('/')"
+          />
+        </div>
+
+        <q-toolbar-title class="col-3 row justify-end">
           <!-- Notification Button -->
 
           <q-btn round flat>
@@ -174,6 +493,94 @@
       </q-toolbar>
     </q-header>
 
+    <!-- Drawer for Tablet And Mobile -->
+
+    <q-drawer
+      v-model="drawer"
+      behavior="mobile"
+      show-if-above
+      :mini="!drawer || miniState"
+      @click.capture="drawerClick"
+      :breakpoint="500"
+      :width="width"
+      no-swipe-open
+    >
+      <div class="row q-px-md">
+        <div class="full-width row justify-between q-py-md">
+          <div class="col-6">
+            <img
+              src="https://jobvision.ir/assets/images/header/logo-bg-white.svg"
+              @click="$router.push('/')"
+            />
+          </div>
+
+          <div class="col-6 flex justify-end">
+            <q-btn
+              flat
+              @click="drawer = !drawer"
+              class="btn--no-hover button-effect"
+              icon="close"
+            />
+          </div>
+        </div>
+
+        <div class="full-width row">
+          <div class="col-12 row justify-between">
+            <div class="col-6">
+              <q-btn
+                flat
+                to="/jobs"
+                class="btn--no-hover q-my-sm button-effect"
+              >
+                <span class="text-bold">فرصت های شغلی</span>
+              </q-btn>
+            </div>
+
+            <div class="col-6 flex justify-end">
+              <q-btn flat to="jobs">
+                <q-icon name="arrow_back_ios" size="16px" />
+              </q-btn>
+            </div>
+          </div>
+
+          <div class="col-12">
+            <q-btn
+              flat
+              to="/recommended-jobs"
+              class="btn--no-hover col-6 q-my-sm button-effect"
+            >
+              <span class="text-bold">فرصت های شغلی پیشنهادی</span>
+            </q-btn>
+          </div>
+
+          <div class="col-12">
+            <q-btn flat to="/my-cv" class="btn--no-hover col-6 q-my-sm">
+              <span class="text-bold">رزومه من</span>
+            </q-btn>
+          </div>
+
+          <div class="col-12">
+            <q-btn flat to="/top-companies" class="btn--no-hover col-6 q-my-sm">
+              <span class="text-bold">رده‌بندی شرکت‌ها</span>
+            </q-btn>
+          </div>
+
+          <div class="col-12">
+            <q-btn
+              dense
+              color="accent"
+              to="/jobfair"
+              class="btn--no-hover col-6 q-my-sm"
+            >
+              <span class="text-bold text-white q-py-xs"
+                >دومین نمایشگاه کار اصفهان</span
+              >
+            </q-btn>
+          </div>
+        </div>
+      </div>
+    </q-drawer>
+
     <!-- Page Container -->
 
     <q-page-container>
@@ -185,6 +592,9 @@
     <q-footer class="bg-dark text-white row justify-center">
       <div class="col-8 row q-my-md">
         <div class="text-h6 text-weight-bold col-12 q-mt-md">سوالات متداول</div>
+
+        <!-- Question Box and Answers -->
+
         <div class="col-12 q-my-md">
           <q-list bordered class="background border-18 q-my-md">
             <q-expansion-item
@@ -300,78 +710,174 @@
           </q-list>
         </div>
 
-        <div class="col-6 row justify-between">
-          <div class="col-5 row full-width">
-            <div class="col-6">
-              <div class="text-h6 text-weight-bold col-12 q-mt-md">
-                کارجویان
-              </div>
-              <div class="col-12 q-mt-md">
-                <q-btn flat label="رزومه ساز دو زبانه" />
+        <div class="full-width row justify-between">
+          <!-- Right Side Content -->
+
+          <div class="col-8 row justify-between">
+
+            <!-- md+ Content -->
+
+            <div class="col-6 row justify-between gt-md">
+              <div class="col-6 br-10">
+                <div class="row full-width">
+                  <div class="col-6">
+                    <div class="text-bold col-12 q-mt-md">کارجویان</div>
+
+                    <div class="q-mt-md">
+                      <q-btn flat>
+                        <span>رزومه ساز دو زبانه</span>
+                      </q-btn>
+                    </div>
+
+                    <div class="full-width">
+                      <q-btn flat label="جستجوی فرصت‌های شغلی" />
+                    </div>
+
+                    <q-expansion-item
+                      class="full-width"
+                      expand-separator
+                      label="آزمون‌های خود شناسی"
+                    >
+                      <q-btn flat label="آزمون شخصیت شناسی MBTI" />
+
+                      <q-btn flat label="آزمون تیپ سنجی شغلی Holland" />
+
+                      <q-btn flat label="آزمون شخصیت شناسی NEO" />
+
+                      <q-btn flat label="آشنایی با شرکت ها" />
+
+                      <q-btn flat label="آزمون هوش های چندگانه" />
+
+                      <q-btn flat label="آزمون هوش هیجانی Bar-On" />
+                    </q-expansion-item>
+
+                    <div class="full-width">
+                      <q-btn flat label="سوالات متداول" />
+                    </div>
+
+                    <div class="full-width">
+                      <q-btn flat label="دوره‌های آموزشی" />
+                    </div>
+
+                    <div class="full-width">
+                      <q-btn flat label="رده بندی شرکت ها" />
+                    </div>
+
+                    <div class="full-width">
+                      <q-btn flat label="آشنایی با شرکت ها" />
+                    </div>
+                  </div>
+                </div>
               </div>
 
-              <div class="col-12">
-                <q-btn flat label="جستجوی فرصت‌های شغلی" />
-              </div>
+              <div class="col-6 row br-10">
+                <div class="col-12 q-mt-md">
+                  <div class="text-weight-bold">درباره جاب ویژن</div>
+                </div>
 
-              <q-expansion-item
-                class="col-12"
-                expand-separator
-                label="آزمون‌های خود شناسی"
-              >
-                <q-btn flat label="آزمون شخصیت شناسی MBTI" />
-                <q-btn flat label="آزمون تیپ سنجی شغلی Holland" />
-                <q-btn flat label="آزمون شخصیت شناسی NEO" />
-                <q-btn flat label="آشنایی با شرکت ها" />
-                <q-btn flat label="آزمون هوش های چندگانه" />
-                <q-btn flat label="آزمون هوش هیجانی Bar-On" />
-              </q-expansion-item>
+                <q-list dense>
+                  <q-item>
+                    <q-btn flat label="درباره ما" />
+                  </q-item>
 
-              <div class="col-12">
-                <q-btn flat label="سوالات متداول" />
-              </div>
+                  <q-item>
+                    <q-btn flat label="سوالات متداول" />
+                  </q-item>
 
-              <div class="col-12">
-                <q-btn flat label="دوره‌های آموزشی" />
-              </div>
+                  <q-item>
+                    <q-btn flat label="تماس با ما" />
+                  </q-item>
 
-              <div class="col-12">
-                <q-btn flat label="رده بندی شرکت ها" />
-              </div>
-
-              <div class="col-12">
-                <q-btn flat label="آشنایی با شرکت ها" />
+                  <q-item>
+                    <q-btn flat label="قوانین و مقررات" />
+                  </q-item>
+                </q-list>
               </div>
             </div>
 
-            <div class="col-6 row items-center q-px-md">
-              <div class="text-h6 text-weight-bold col-12 q-mt-md">
-                درباره جاب ویژن
+            <!-- lg- Content -->
+
+            <div class="col-6 row justify-between lt-lg">
+              <div class="col-6 br-10" style="background: #575b64">
+                <div class="row full-width">
+                  <div class="col-6">
+                    <div class="text-h6 text-weight-bold col-12 q-mt-md">
+                      کارجویان
+                    </div>
+                    <div class="col-12 q-mt-md">
+                      <q-btn flat label="رزومه ساز دو زبانه" />
+                    </div>
+
+                    <div class="col-12">
+                      <q-btn flat label="جستجوی فرصت‌های شغلی" />
+                    </div>
+
+                    <q-expansion-item
+                      class="col-12"
+                      expand-separator
+                      label="آزمون‌های خود شناسی"
+                    >
+                      <q-btn flat label="آزمون شخصیت شناسی MBTI" />
+                      <q-btn flat label="آزمون تیپ سنجی شغلی Holland" />
+                      <q-btn flat label="آزمون شخصیت شناسی NEO" />
+                      <q-btn flat label="آشنایی با شرکت ها" />
+                      <q-btn flat label="آزمون هوش های چندگانه" />
+                      <q-btn flat label="آزمون هوش هیجانی Bar-On" />
+                    </q-expansion-item>
+
+                    <div class="col-12">
+                      <q-btn flat label="سوالات متداول" />
+                    </div>
+
+                    <div class="col-12">
+                      <q-btn flat label="دوره‌های آموزشی" />
+                    </div>
+
+                    <div class="col-12">
+                      <q-btn flat label="رده بندی شرکت ها" />
+                    </div>
+
+                    <div class="col-12">
+                      <q-btn flat label="آشنایی با شرکت ها" />
+                    </div>
+                  </div>
+                </div>
               </div>
 
-              <q-list dense>
-                <q-item>
-                  <q-btn flat label="درباره ما" />
-                </q-item>
+              <div class="col-6 row br-10" style="background: #575b64">
+                <div class="col-12 q-mt-md">
+                  <div class="text-h6 text-weight-bold">درباره جاب ویژن</div>
+                </div>
 
-                <q-item>
-                  <q-btn flat label="سوالات متداول" />
-                </q-item>
+                <q-list dense>
+                  <q-item>
+                    <q-btn flat label="درباره ما" />
+                  </q-item>
 
-                <q-item>
-                  <q-btn flat label="تماس با ما" />
-                </q-item>
+                  <q-item>
+                    <q-btn flat label="سوالات متداول" />
+                  </q-item>
 
-                <q-item>
-                  <q-btn flat label="قوانین و مقررات" />
-                </q-item>
-              </q-list>
+                  <q-item>
+                    <q-btn flat label="تماس با ما" />
+                  </q-item>
+
+                  <q-item>
+                    <q-btn flat label="قوانین و مقررات" />
+                  </q-item>
+                </q-list>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div class="col-6 row justify-end content-center">
-          <q-img style="width: 175px; height: 175px" src="../assets/logo.png" />
+          <!-- National Registration Address -->
+
+          <div class="col-4 row justify-end content-center">
+            <q-img
+              style="width: 175px; height: 175px"
+              src="../assets/logo.png"
+            />
+          </div>
         </div>
       </div>
 
@@ -448,14 +954,21 @@
 </template>
 
 <script>
-import { ref } from "vue";
-import { useRouter } from "vue-router";
+import { defineComponent, ref } from "vue";
 
-export default {
+export default defineComponent({
+  name: "MainLayout",
+
   setup() {
-    return {};
+    const drawer = ref();
+    const width = ref(window.innerWidth);
+
+    return {
+      drawer,
+      width,
+    };
   },
-};
+});
 </script>
 
 <style scoped>
@@ -492,6 +1005,7 @@ export default {
   > hr {
   border-radius: 8px;
   width: 2px;
+  padding: 0;
 }
 
 .q-btn {
@@ -537,5 +1051,9 @@ export default {
 .border-18-bottom {
   border-bottom-left-radius: 18.5px;
   border-bottom-right-radius: 18.5px;
+}
+
+.br-10 {
+  border-radius: 10px;
 }
 </style>
