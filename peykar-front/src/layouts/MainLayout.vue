@@ -1613,7 +1613,7 @@
     <q-footer class="bg-dark text-white row justify-center">
       <!-- 4k Screen Content -->
 
-      <div class="col-8 row q-my-md gt-lg">
+      <div class="col-8 row q-my-md gt-md">
         <div class="text-h6 text-weight-bold col-12 q-mt-md">سوالات متداول</div>
 
         <!-- Question Box and Answers -->
