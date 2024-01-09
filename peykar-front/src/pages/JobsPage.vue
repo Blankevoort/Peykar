@@ -1026,6 +1026,7 @@
                         label="جدید"
                       />
                     </div>
+                    
                     <q-item-label>نام فرصت شغلی</q-item-label>
                     <q-item-label caption>
                       توضیحات کلی درباره فرصت شغلی

@@ -3,65 +3,88 @@
     <div class="row justify-center">
       <!-- Inputs -->
 
-      <div style="background-color: white" class="col-12 row justify-center">
-        <div class="col-8 row justify-center q-my-md">
-          <q-select
-            class="col-4 q-pl-lg"
-            outlined
-            v-model="model"
-            :options="options"
-            label="عنوان شغلی یا شرکت"
-            use-input
-            hide-selected
-            fill-input
-            hide-dropdown-icon
+      <div
+        style="background-color: white"
+        class="full-width row justify-center"
+      >
+        <div
+          class="col-xs-12 col-sm-12 col-md-12 col-lg-8 col-xl-8 q-px-lg q-my-md"
+        >
+          <div
+            class="lt-md full-width q-py-xs"
+            style="border: 1px solid #ebebeb; border-radius: 5px"
           >
-            <template v-slot:prepend>
-              <q-icon name="search" />
-            </template>
-          </q-select>
+            <q-btn flat>
+              <q-icon name="search" size="24px" />
+              <span class="text-grey-6">جستجو در آگهی های جدید</span>
+            </q-btn>
+          </div>
 
-          <q-select
-            class="col-3"
-            outlined
-            v-model="model"
-            :options="options"
-            label="گروه شغلی"
-          >
-            <template v-slot:prepend>
-              <q-icon name="work" />
-            </template>
-          </q-select>
+          <!-- Larger Screen Inputs -->
 
-          <q-select
-            class="col-3 q-px-sm"
-            outlined
-            v-model="model"
-            :options="options"
-            label="شهر"
-            use-input
-            hide-selected
-            fill-input
-          >
-            <template v-slot:prepend>
-              <q-icon name="location_on" />
-            </template>
-          </q-select>
+          <div class="gt-sm row justify-center">
+            <div class="col-7 row">
+              <q-select
+                class="col-8"
+                outlined
+                v-model="model"
+                :options="options"
+                label="عنوان شغلی یا شرکت"
+                use-input
+                hide-selected
+                fill-input
+                hide-dropdown-icon
+              >
+                <template v-slot:prepend>
+                  <q-icon name="search" />
+                </template>
+              </q-select>
 
-          <q-btn
-            color="primary"
-            label="جستجو در مشاغل"
-            to="/jobs"
-            class="col-2 q-px-sm text-weight-bold"
-          />
+              <q-select
+                class="col-4"
+                outlined
+                v-model="model"
+                :options="options"
+                label="گروه شغلی"
+              >
+                <template v-slot:prepend>
+                  <q-icon name="work" />
+                </template>
+              </q-select>
+            </div>
+
+            <q-select
+              class="col-3 q-px-sm"
+              outlined
+              v-model="model"
+              :options="options"
+              label="شهر"
+              use-input
+              hide-selected
+              fill-input
+            >
+              <template v-slot:prepend>
+                <q-icon name="location_on" />
+              </template>
+            </q-select>
+
+            <div class="col-2">
+              <q-btn
+                color="primary"
+                label="جستجو در مشاغل"
+                to="/jobs"
+                class="text-weight-bold full-height"
+              />
+            </div>
+          </div>
         </div>
       </div>
 
       <!-- tabs -->
 
-      <div class="col-8 row q-my-md q-pl-lg">
-        <div class="col-2 q-px-sm">
-          <q-card bordered>
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-8 col-xl-8 row q-my-md">
+        <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-2 q-pl-lg">
+          <q-card class="gt-sm" bordered>
             <q-tabs
               inline-label
               vertical
@@ -102,12 +125,54 @@
               />
             </q-tabs>
           </q-card>
+
+          <q-card class="lt-md q-mb-md q-mr-lg">
+            <q-tabs
+              class="full-width"
+              inline-label
+              indicator-color="transparent"
+              active-class="active-tab-small"
+              v-model="tab"
+            >
+              <q-tab
+                icon="upload_file"
+                class="text-black"
+                style="background: white; border-radius: 8px"
+                name="CVSent"
+                label="رزومه های ارسال شده"
+              />
+
+              <q-tab
+                icon="star_outline"
+                class="text-black"
+                style="background: white; border-radius: 8px"
+                name="suggestion"
+                label="مشاغل پیشنهادی"
+              />
+
+              <q-tab
+                icon="favorite_outline"
+                class="text-black"
+                style="background: white; border-radius: 8px"
+                name="savedOffers"
+                label="مشاغل نشان شده"
+              />
+
+              <q-tab
+                icon="apartment"
+                class="text-black"
+                style="background: white; border-radius: 8px"
+                name="followingCompanies"
+                label="شرکت های دنبال شده"
+              />
+            </q-tabs>
+          </q-card>
         </div>
 
         <!-- tabs Content -->
 
         <q-tab-panels
-          class="col-10"
+          class="col-xs-12 col-sm-12 col-md-9 col-lg-9 col-xl-10"
           v-model="tab"
           animated
           swipeable
@@ -118,8 +183,10 @@
           <q-tab-panel class="row" name="CVSent">
             <!-- Sorting -->
 
-            <div class="col-9">
-              <div class="full-width row justify-start">
+            <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 col-xl-8 q-px-md">
+              <div
+                class="col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-2 q-pl-lg"
+              >
                 <q-tabs
                   active-class="active-category"
                   indicator-color="transparent"
@@ -222,41 +289,30 @@
                       expand-separator
                     >
                       <template v-slot:header>
-                        <q-item-section class="q-pb-sm" avatar>
-                          <q-img src="../assets/logo.png" />
-                        </q-item-section>
-
                         <q-item-section class="q-pb-sm text-bold">
-                          برنامه‌نویس (Front-End (Vuejs
-                          <br />
-                          <div class="text-caption text-grey-7">
+                          <span style="font-size: 14px">برنامه نویس</span>
+
+                          <div class="text-caption text-grey-7 q-mt-xs">
                             ارسال شده برای
                             <span class="text-bold">داده نگار</span> امروز
                           </div>
-                        </q-item-section>
 
-                        <q-item-section class="q-pb-sm" side>
-                          <div
-                            class="row items-center text-bold q-pb-md"
-                            style="font-size: 13px"
-                          >
+                          <div class="text-bold text-grey-8">
                             تعیین وضعیت نشده
                           </div>
                         </q-item-section>
                       </template>
 
-                      <q-card>
-                        <q-separator style="height: 2px" />
+                      <q-separator style="height: 2px" />
 
-                        <q-card-section style="padding: 8px 0 16px 0">
-                          <q-btn
-                            flat
-                            class="text-red"
-                            label="انصراف از درخواست"
-                            icon="delete"
-                          />
-                        </q-card-section>
-                      </q-card>
+                      <div style="padding: 8px 0 16px 0">
+                        <q-btn
+                          flat
+                          class="text-red"
+                          label="انصراف از درخواست"
+                          icon="delete"
+                        />
+                      </div>
                     </q-expansion-item>
                   </q-list>
 
@@ -440,7 +496,9 @@
 
             <!-- LeftSide Content -->
 
-            <div class="col-3 justify-center q-pl-sm">
+            <div
+              class="col-md-5 col-lg-5 col-xl-4 row justify-center gt-sm q-pr-xl"
+            >
               <q-card class="shadow-2">
                 <q-card-section>
                   <div class="text-weight-bold text-h6">سوالات متداول</div>
@@ -705,177 +763,125 @@
           <q-tab-panel class="row" name="suggestion">
             <!-- jobs Count and Sorting -->
 
-            <div class="col-8 row">
-              <div
-                style="background-color: white; height: 50px"
-                class="col-12 row justify-between"
-              >
-                <div class="col-6 q-px-md q-my-md text-grey-7">
-                  40 فرصت شغلی
-                </div>
+            <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 col-xl-8 q-px-md">
+              <div class="full-width bg-white">
+                <div class="row justify-between">
+                  <div class="col-6 q-px-md q-my-md text-grey-7">
+                    40 فرصت شغلی
+                  </div>
 
-                <div class="col-6 q-px-md text-right">
-                  <q-btn-dropdown
-                    class="q-my-sm"
-                    label="منطبق ترین"
-                    dropdown-icon="arrow_drop_down"
-                    icon="sort"
-                    flat
-                  >
-                    <q-tabs
-                      vertical
-                      active-class="active-sort-type"
-                      indicator-color="transparent"
-                      v-model="tab"
+                  <div class="col-6 q-px-md text-right">
+                    <q-btn-dropdown
+                      class="q-my-sm"
+                      label="منطبق ترین"
+                      dropdown-icon="arrow_drop_down"
+                      icon="sort"
+                      flat
                     >
-                      <q-tab
-                        class="q-mx-xs q-my-xs text-black"
-                        style="border-radius: 8px"
-                        name="recent"
-                        label="جدیدترین"
-                      />
+                      <q-tabs
+                        vertical
+                        active-class="active-sort-type"
+                        indicator-color="transparent"
+                        v-model="tab"
+                      >
+                        <q-tab
+                          class="q-mx-xs q-my-xs text-black"
+                          style="border-radius: 8px"
+                          name="recent"
+                          label="جدیدترین"
+                        />
 
-                      <q-tab
-                        class="q-mx-xs q-my-xs text-black"
-                        style="border-radius: 8px"
-                        name="suitable"
-                        label="منطبق ترین"
-                      />
+                        <q-tab
+                          class="q-mx-xs q-my-xs text-black"
+                          style="border-radius: 8px"
+                          name="suitable"
+                          label="منطبق ترین"
+                        />
 
-                      <q-tab
-                        class="q-mx-xs q-my-xs text-black"
-                        style="border-radius: 8px"
-                        name="mostSalary"
-                        label="بیشترین حقوق"
-                      />
-                    </q-tabs>
-                  </q-btn-dropdown>
+                        <q-tab
+                          class="q-mx-xs q-my-xs text-black"
+                          style="border-radius: 8px"
+                          name="mostSalary"
+                          label="بیشترین حقوق"
+                        />
+                      </q-tabs>
+                    </q-btn-dropdown>
+                  </div>
                 </div>
               </div>
 
               <!-- jobs List -->
 
               <div
-                style="margin-top: -250px"
                 class="col-12 row justify-between content-center items-center"
               >
                 <div class="col-12 q-my-xs row justify-center items-center">
-                  <q-list
-                    class="custom-border col-12 bg-white q-my-sm"
-                    bordered
-                    separator
-                  >
-                    <q-item class="col-12 q-my-xs">
-                      <q-item-section class="q-pa-md" top avatar>
-                        <q-avatar>
-                          <img
-                            src="https://cdn.quasar.dev/img/boy-avatar.png"
-                          />
-                        </q-avatar>
-                        <q-badge class="q-mt-sm">
-                          5.0
-                          <q-icon
-                            name="star"
-                            color="green"
-                            text-color="green"
-                            class="q-ml-xs"
-                          />
-                        </q-badge>
-                      </q-item-section>
-
-                      <q-item-section caption class="q-pa-md">
-                        <div class="row">
+                  <q-list class="col-12 q-my-sm" separator>
+                    <div class="q-my-md bg-white custom-border">
+                      <q-item class="col-12 q-mb-xs">
+                        <q-item-section class="q-pa-md" top avatar>
                           <q-badge
-                            class="q-my-xs q-mx-xs"
-                            color="red-1"
-                            text-color="negative"
+                            class="q-my-sm"
+                            color="red-2"
+                            text-color="red-9"
                             label="فوری"
                           />
-                        </div>
 
-                        <q-item-label class="text-weight-bold"
-                          >نام فرصت شغلی</q-item-label
-                        >
-                        <q-item-label class="text-weight-thin q-pt-xs">
-                          نام شرکت
-                        </q-item-label>
-                        <q-item-label caption>
-                          شهر محل کار <span class="text-grey-5"> | </span>
-                          <span class="text-positive"
-                            >20 - 25 میلیون تومان</span
-                          ></q-item-label
-                        >
-                      </q-item-section>
+                          <q-avatar>
+                            <img
+                              src="https://cdn.quasar.dev/img/boy-avatar.png"
+                            />
+                          </q-avatar>
+                          <q-badge class="q-mt-sm">
+                            5.0
+                            <q-icon
+                              name="star"
+                              color="green"
+                              text-color="green"
+                              class="q-ml-xs"
+                            />
+                          </q-badge>
+                        </q-item-section>
 
-                      <q-item-section class="q-pa-md" side top>
-                        <q-btn flat icon="favorite_outline" />
-                        <q-btn flat icon="block" />
-                      </q-item-section>
-                    </q-item>
+                        <q-item-section caption class="q-pb-md q-pl-md q-pr-md">
+                          <q-item-label class="text-weight-bold"
+                            >نام فرصت شغلی</q-item-label
+                          >
+                          <q-item-label class="text-weight-thin q-pt-xs">
+                            نام شرکت
+                          </q-item-label>
 
-                    <div class="row justify-center q-my-md">
-                      <q-separator class="col-10 q-px-md" style="height: 1px" />
+                          <q-item-label
+                            class="q-pt-xs"
+                            style="line-height: 1.6 !important"
+                            caption
+                          >
+                            شهر محل کار <span class="text-grey-5"> | </span>
+                            <span class="text-positive"
+                              >20 - 25 میلیون تومان</span
+                            ></q-item-label
+                          >
+                        </q-item-section>
 
-                      <div class="col-12 row justify-center q-mt-sm">
-                        <div class="col-10 row justify-between items-center">
-                          <div class="col-3">17 روز پیش</div>
+                        <q-item-section class="q-pa-md" side top>
+                          <q-btn flat icon="favorite_outline" />
+                          <q-btn flat icon="block" />
+                        </q-item-section>
+                      </q-item>
 
-                          <div class="col-4 row justify-end">
-                            <q-btn color="positive" label="ارسال رزمه" />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </q-list>
+                      <div class="row justify-center q-my-md">
+                        <q-separator
+                          class="col-10 q-px-md"
+                          style="height: 1px"
+                        />
 
-                  <q-list
-                    class="custom-border col-12 bg-white q-my-sm"
-                    bordered
-                    separator
-                  >
-                    <q-item class="col-12 q-my-xs">
-                      <q-item-section class="q-pa-md" top avatar>
-                        <q-avatar>
-                          <img
-                            src="https://cdn.quasar.dev/img/boy-avatar.png"
-                          />
-                        </q-avatar>
-                        <q-badge class="q-mt-sm">
-                          4.4
-                          <q-icon
-                            name="star"
-                            color="green"
-                            text-color="green"
-                            class="q-ml-xs"
-                          />
-                        </q-badge>
-                      </q-item-section>
+                        <div class="col-12 row justify-center q-mt-sm">
+                          <div class="col-10 row justify-between items-center">
+                            <div class="col-3">17 روز پیش</div>
 
-                      <q-item-section caption class="q-pa-md">
-                        <q-item-label class="text-weight-bold"
-                          >نام فرصت شغلی</q-item-label
-                        >
-                        <q-item-label class="text-weight-thin q-pt-xs">
-                          نام شرکت
-                        </q-item-label>
-                        <q-item-label caption> شهر محل کار </q-item-label>
-                      </q-item-section>
-
-                      <q-item-section class="q-pa-md" side top>
-                        <q-btn flat icon="favorite_outline" />
-                        <q-btn flat icon="block" />
-                      </q-item-section>
-                    </q-item>
-
-                    <div class="row justify-center q-my-md">
-                      <q-separator class="col-10 q-px-md" style="height: 1px" />
-
-                      <div class="col-12 row justify-center q-mt-sm">
-                        <div class="col-10 row justify-between items-center">
-                          <div class="col-3">امروز</div>
-
-                          <div class="col-4 row justify-end">
-                            <q-btn color="positive" label="ارسال رزمه" />
+                            <div class="col-6 row justify-end">
+                              <q-btn color="positive" label="ارسال رزمه" />
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -887,7 +893,9 @@
 
             <!-- LeftSide Content -->
 
-            <div class="col-4 row justify-center q-pl-sm">
+            <div
+              class="col-md-5 col-lg-5 col-xl-4 row justify-center gt-sm q-pr-xl"
+            >
               <q-card class="shadow-2">
                 <q-card-section>
                   <div class="text-weight-medium">
@@ -970,7 +978,7 @@
           <q-tab-panel class="row" name="savedOffers">
             <!-- Sorting -->
 
-            <div class="col-9 row">
+            <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 col-xl-8 q-px-md">
               <div
                 class="col-12 row justify-between content-center items-center"
               >
@@ -996,7 +1004,7 @@
             <!-- LeftSide Content -->
 
             <div
-              class="col-3 row justify-center q-pl-sm bg-white text-center"
+              class="col-md-5 col-lg-5 col-xl-4 row justify-center gt-sm q-pr-xl"
               style="border-radius: 8px; overflow: hidden"
             >
               <div class="col-12 row justify-center q-pa-xs">
@@ -1018,7 +1026,7 @@
           <q-tab-panel class="row" name="followingCompanies">
             <!-- Sorting -->
 
-            <div class="col-9 row">
+            <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 col-xl-8 q-px-md">
               <div
                 class="col-12 row justify-between content-center items-center"
               >
@@ -1048,7 +1056,7 @@
             <!-- LeftSide Content -->
 
             <div
-              class="col-3 row justify-between shadow-1 q-my-md"
+              class="col-md-5 col-lg-5 col-xl-4 row justify-center gt-sm q-pr-xl"
               style="background: white; border-radius: 4px; height: 125px"
             >
               <div
@@ -1106,6 +1114,10 @@ export default {
   font-weight: 500;
 }
 
+.q-item {
+  padding: 0;
+}
+
 .q-badge {
   background-color: transparent;
   color: green;
@@ -1124,12 +1136,18 @@ export default {
   color: white !important;
 }
 
+.active-tab-small {
+  border-bottom: 3px solid;
+  border-color: #5660f2 !important;
+  border-bottom-right-radius: 0px !important;
+  border-bottom-left-radius: 0px !important;
+}
+
 .active-tab {
   border-left: 3px solid;
   border-color: #5660f2 !important;
   border-top-left-radius: 0px !important;
   border-bottom-left-radius: 0px !important;
-  font-weight: bold !important;
 }
 
 .active-sort-type {
