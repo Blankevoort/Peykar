@@ -7,7 +7,7 @@ const routes = [
   {
     path: "/jobs",
     component: () => import("src/layouts/MainLayout.vue"),
-    children: [{ path: "", component: () => import("pages/JobsPage.vue") }],
+    children: [{ path: "", component: () => import("src/pages/JobsListPage.vue") }],
   },
   {
     path: "/recommended-jobs",
@@ -30,6 +30,11 @@ const routes = [
     path: "/company",
     component: () => import("src/layouts/MainLayout.vue"),
     children: [{ path: "", component: () => import("pages/CompanyPage.vue") }],
+  },
+  {
+    path: "/job",
+    component: () => import("src/layouts/MainLayout.vue"),
+    children: [{ path: "", component: () => import("pages/JobInfoPage.vue") }],
   },
   {
     path: "/test",
