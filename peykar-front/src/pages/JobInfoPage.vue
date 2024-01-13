@@ -1,131 +1,183 @@
 <template>
   <q-page style="background-color: #f8f9fa">
     <div class="row justify-center q-pa-md">
-      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-8 col-xl-8 row q-px-lg">
+      <div
+        class="col-xs-12 col-sm-12 col-md-12 col-lg-8 col-xl-8 row q-pl-sm q-pr-lg"
+      >
         <!-- Main Content -->
 
-        <div
-          class="col-xs-12 col-sm-12 col-md-12 col-lg-9 col-xl-9 row justify-center"
-        >
-          <div class="full-width">
-            <!-- Main Card Image -->
+        <div class="full-width row justify-center">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-9 col-xl-9">
+            <!-- Main Card -->
 
-            <q-img
-              style="
-                border-top-right-radius: 10px !important;
-                border-top-left-radius: 10px !important;
-              "
-              src="https://fileapi.jobvision.ir/StaticFiles/Employer/DefaultImages/default-companyHeader.jpeg?v=20231122"
-            />
+            <div>
+              <!-- Main Card Image -->
 
-            <!-- Main Card Content -->
+              <q-img
+                style="
+                  border-top-right-radius: 10px !important;
+                  border-top-left-radius: 10px !important;
+                "
+                src="https://fileapi.jobvision.ir/StaticFiles/Employer/DefaultImages/default-companyHeader.jpeg?v=20231122"
+              />
 
-            <div
-              class="row relative-position"
-              style="z-index: 1; margin-top: -35px"
-            >
-              <div class="full-width bg-white br-10">
-                <div class="full-width row justify-between q-pa-md">
-                  <div class="full-width row">
-                    <div class="col-2">
-                      <q-avatar size="80px">
-                        <img
-                          src="https://fileapi.jobvision.ir/api/v1.0/files/getimage?fileid=4483058&width=80&height=80"
-                        />
-                      </q-avatar>
-                    </div>
+              <!-- Main Card Content -->
 
-                    <div class="col-10 row">
-                      <div class="full-width">
-                        <div class="row justify-between">
-                          <div class="col-10">
-                            <div>
-                              <span class="text-h5 text-bold">
-                                توسعه دهنده Front-End (senior & junior)
-                              </span>
+              <div
+                class="row relative-position"
+                style="z-index: 1; margin-top: -35px"
+              >
+                <div class="full-width bg-white br-10">
+                  <div class="full-width row justify-between q-pa-md">
+                    <div class="full-width row">
+                      <div class="col-2">
+                        <q-avatar size="80px">
+                          <img
+                            src="https://fileapi.jobvision.ir/api/v1.0/files/getimage?fileid=4483058&width=80&height=80"
+                          />
+                        </q-avatar>
+                      </div>
 
-                              <span class="text-grey-6 text-bold">
-                                (12 روز پیش)
-                              </span>
+                      <div class="col-10 row">
+                        <div class="full-width">
+                          <div class="row justify-between">
+                            <div class="col-10">
+                              <div>
+                                <span class="text-h5 text-bold">
+                                  توسعه دهنده Front-End (senior & junior)
+                                </span>
+
+                                <span class="text-grey-6 text-bold">
+                                  (12 روز پیش)
+                                </span>
+                              </div>
+                            </div>
+
+                            <div class="col-2 justify-end row">
+                              <q-btn flat color="primary" icon="share" />
+
+                              <q-btn
+                                flat
+                                color="primary"
+                                icon="favorite_outline"
+                              />
                             </div>
                           </div>
+                        </div>
 
-                          <div class="col-2 justify-end row">
-                            <q-btn flat color="primary" icon="share" />
-
-                            <q-btn
-                              flat
-                              color="primary"
-                              icon="favorite_outline"
-                            />
+                        <div class="full-width row justify-between q-my-md">
+                          <div class="col-6">
+                            <span
+                              class="text-h6 text-bold"
+                              style="color: #5660f2 !important"
+                            >
+                              مجموعه تست هلپر
+                            </span>
                           </div>
-                        </div>
-                      </div>
-
-                      <div class="full-width row justify-between q-my-md">
-                        <div class="col-6">
-                          <span
-                            class="text-h6 text-bold"
-                            style="color: #5660f2 !important"
-                          >
-                            مجموعه تست هلپر
-                          </span>
-                        </div>
-
-                        <div
-                          class="col-4 flex justify-end"
-                          style="font-size: 12px"
-                        >
-                          <div>35 - 25 ميليون تومان</div>
 
                           <div
-                            class="text-primary"
-                            style="border-bottom: 2px dotted"
+                            class="col-4 flex justify-end"
+                            style="font-size: 12px"
                           >
-                            حقوق دریافتی افراد در مشاغل مشابه
+                            <div>35 - 25 ميليون تومان</div>
+
+                            <div
+                              class="text-primary"
+                              style="border-bottom: 2px dotted"
+                            >
+                              حقوق دریافتی افراد در مشاغل مشابه
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="full-width row justify-between q-mb-md">
+                          <div class="col-6">
+                            <span class="text-grey-6" style="font-size: 12px">
+                              تهران، اکباتان
+                            </span>
+                          </div>
+
+                          <div class="col-4 flex justify-end">
+                            <span class="text-grey-6" style="font-size: 12px">
+                              تمام وقت
+                            </span>
                           </div>
                         </div>
                       </div>
+                    </div>
+                  </div>
 
-                      <div class="full-width row justify-between q-mb-md">
-                        <div class="col-6">
-                          <span class="text-grey-6" style="font-size: 12px">
-                            تهران، اکباتان
-                          </span>
+                  <q-separator class="full-width q-mb-md" style="height: 1px" />
+
+                  <div class="full-width row justify-between q-px-lg q-pb-md">
+                    <div class="col-8 row">
+                      <div class="col-6">
+                        <div>روز و ساعت کاری</div>
+                        <div class="text-grey-6 q-pt-sm">
+                          شنبه تا چهارشنبه 9 تا 17 -- پنج شنبه 9 تا 14
                         </div>
+                      </div>
 
-                        <div class="col-4 flex justify-end">
-                          <span class="text-grey-6" style="font-size: 12px">
-                            تمام وقت
-                          </span>
+                      <div class="col-6 q-pl-sm">
+                        <div>سفرهای کاری</div>
+                        <div class="text-grey-6 q-pt-sm">-</div>
+                      </div>
+                    </div>
+
+                    <div class="col-4">
+                      <div>
+                        <div>مزایا و تسهیلات</div>
+                        <div class="text-grey-6 q-pt-sm">
+                          پاداش - ساعت کاری منعطف
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
+              </div>
+            </div>
 
-                <q-separator class="full-width q-mb-md" style="height: 1px" />
+            <div class="q-mt-xl q-mb-lg">
+              <div class="full-width row bg-white br-10">
+                <div>
+                  <q-tabs v-model="tab" class="text-primary">
+                    <q-tab name="about" label="درباره شرکت" />
+                  </q-tabs>
+                </div>
 
-                <div class="full-width row justify-between q-px-lg q-pb-md">
-                  <div class="col-8 row">
+                <div class="col-12 row q-pa-xl">
+                  <div class="col-8 row justify-between">
                     <div class="col-6">
-                      <div>روز و ساعت کاری</div>
-                      <div class="text-grey-6 q-pt-sm">
-                        شنبه تا چهارشنبه 9 تا 17 -- پنج شنبه 9 تا 14
-                      </div>
+                      <div class="text-bold">اندازه سازمان</div>
+
+                      <div class="text-grey-6 q-pt-sm">زیر 10 نفر</div>
                     </div>
 
-                    <div class="col-6 q-pl-sm">
-                      <div>سفرهای کاری</div>
-                      <div class="text-grey-6 q-pt-sm">-</div>
+                    <div class="col-6">
+                      <div class="text-bold">صنعت</div>
+
+                      <div class="text-grey-6 q-pt-sm">
+                        اینترنت / تجارت الکترونیک / خدمات آنلاین
+                      </div>
                     </div>
                   </div>
 
-                  <div class="col-4">
-                    <div>
-                      <div>مزایا و تسهیلات</div>
-                      <div class="text-grey-6 q-pt-sm">
-                        پاداش - ساعت کاری منعطف
+                  <div class="q-pt-lg full-width flex justify-center">
+                    <div v-if="showMore">
+                      <div class="text-bold q-py-md">خدمات و محصولات</div>
+
+                      <div class="text-bold q-pb-sm">توصیف شرکت</div>
+
+                      <div class="text-grey-7 q-pb-sm">
+                        مجموعه ما از دو تیم برنامه نویسی و زبان تشکیل شده است.
+                        در حال حاضر بزرگترین مجموعه در خصوص برگزاری آزمون های
+                        آنلاین تافل در ایران هستیم.
+                      </div>
+
+                      <div class="full-width text-center">
+                        <div class="text-primary q-py-md">
+                          مشاهده سایر موقعیت های شغلی این سازمان
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -136,15 +188,82 @@
 
           <!-- Left Side/Bottom Content -->
 
-          <div class="gt-md col-lg-3 col-xl-3 row justify-center"></div>
+          <div
+            class="gt-md col-lg-3 col-xl-3 row justify-center q-pl-lg q-pr-md"
+          >
+            <div>
+              <q-card class="q-px-md row q-mb-md q-px-md q-pa-md br-10">
+                <div class="q-my-md" style="font-size: 16px">
+                  ارسال رزومه برای مجموعه تست هلپر
+                </div>
+
+                <div class="q-pa-md br-10" style="border: 2px solid #dde1e6">
+                  <div class="full-width">معین صداقتی</div>
+
+                  <div class="full-width text-grey-7">
+                    دولوپر فول استک در شرکت آیترونیک
+                  </div>
+
+                  <div class="full-width">
+                    <q-btn
+                      flat
+                      color="primary"
+                      label="مشاهده رزومه"
+                      to="my-cv"
+                    />
+                  </div>
+                </div>
+                <q-btn
+                  class="full-width q-mt-md"
+                  color="positive"
+                  label="ارسال رزومه"
+                />
+              </q-card>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </q-page>
 </template>
 
+<script>
+import { ref } from "vue";
+
+export default {
+  setup() {
+    const toggleDropdown = ref(false);
+    const showCard = ref(false);
+    const showMore = ref(false)
+    const tab = ref("about");
+
+    function OpenDropdown() {
+      if (toggleDropdown.value == false) {
+        toggleDropdown.value = true;
+        showCard.value = true;
+      } else {
+        toggleDropdown.value = false;
+        showCard.value = false;
+      }
+    }
+
+    return {
+      tab,
+      showMore,
+      showCard,
+      toggleDropdown,
+      OpenDropdown,
+    };
+  },
+};
+</script>
+
 <style scoped>
 .br-10 {
   border-radius: 10px !important;
+}
+
+.q-btn {
+  padding: 4px 0;
 }
 </style>
