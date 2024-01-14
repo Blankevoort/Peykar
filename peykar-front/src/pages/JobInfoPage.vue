@@ -14,6 +14,7 @@
               <!-- Main Card Image -->
 
               <q-img
+                class="gt-xs"
                 style="
                   border-top-right-radius: 10px !important;
                   border-top-left-radius: 10px !important;
@@ -23,26 +24,29 @@
 
               <!-- Main Card Content -->
 
-              <div
-                class="row relative-position"
-                style="z-index: 1; margin-top: -35px"
-              >
+              <div class="row relative-position">
                 <div class="full-width bg-white br-10">
                   <div class="full-width row justify-between q-pa-md">
                     <div class="full-width row">
-                      <div class="col-2">
-                        <q-avatar size="80px">
+                      <div class="col-xs-2 col-sm-1 col-md-1 col-lg-2 col-xl-2">
+                        <q-avatar size="70px" class="gt-md">
+                          <img
+                            src="https://fileapi.jobvision.ir/api/v1.0/files/getimage?fileid=4483058&width=80&height=80"
+                          />
+                        </q-avatar>
+
+                        <q-avatar class="lt-lg">
                           <img
                             src="https://fileapi.jobvision.ir/api/v1.0/files/getimage?fileid=4483058&width=80&height=80"
                           />
                         </q-avatar>
                       </div>
 
-                      <div class="col-10 row">
+                      <div class="col-xs-10 col-sm-11 col-md-11 col-lg-10 col-xl-10 row">
                         <div class="full-width">
                           <div class="row justify-between">
                             <div class="col-10">
-                              <div>
+                              <div class="gt-sm full-width">
                                 <span class="text-h5 text-bold">
                                   توسعه دهنده Front-End (senior & junior)
                                 </span>
@@ -51,9 +55,15 @@
                                   (12 روز پیش)
                                 </span>
                               </div>
+
+                              <div class="lt-md">
+                                <span class="text-bold">
+                                  توسعه دهنده Front-End (senior & junior)
+                                </span>
+                              </div>
                             </div>
 
-                            <div class="col-2 justify-end row">
+                            <div class="col-2 justify-end row gt-xs">
                               <q-btn flat color="primary" icon="share" />
 
                               <q-btn
@@ -64,33 +74,35 @@
                             </div>
                           </div>
                         </div>
+                      </div>
 
-                        <div class="full-width row justify-between q-my-md">
-                          <div class="col-6">
-                            <span
-                              class="text-h6 text-bold"
-                              style="color: #5660f2 !important"
-                            >
-                              مجموعه تست هلپر
-                            </span>
-                          </div>
+                      <div class="full-width row justify-between q-my-md">
+                        <div class="col-6">
+                          <span
+                            class="text-h6 text-bold"
+                            style="color: #5660f2 !important"
+                          >
+                            مجموعه تست هلپر
+                          </span>
+                        </div>
+
+                        <div
+                          class="col-4 flex justify-end gt-xs"
+                          style="font-size: 12px"
+                        >
+                          <div>35 - 25 ميليون تومان</div>
 
                           <div
-                            class="col-4 flex justify-end"
-                            style="font-size: 12px"
+                            class="text-primary"
+                            style="border-bottom: 2px dotted"
                           >
-                            <div>35 - 25 ميليون تومان</div>
-
-                            <div
-                              class="text-primary"
-                              style="border-bottom: 2px dotted"
-                            >
-                              حقوق دریافتی افراد در مشاغل مشابه
-                            </div>
+                            حقوق دریافتی افراد در مشاغل مشابه
                           </div>
                         </div>
 
-                        <div class="full-width row justify-between q-mb-md">
+                        <div
+                          class="full-width row justify-between q-mb-md gt-xs"
+                        >
                           <div class="col-6">
                             <span class="text-grey-6" style="font-size: 12px">
                               تهران، اکباتان
@@ -536,12 +548,12 @@
             <!-- Report Job -->
 
             <div class="q-mt-xl q-mb-lg">
-              <div class="full-width row bg-white br-10 q-pa-lg">
+              <div class="full-width row items-center bg-white br-10 q-pa-lg">
                 <q-icon name="priority_high" color="grey-6" />
 
                 <q-btn
                   flat
-                  class="q-px-md"
+                  class="q-mx-md"
                   color="grey-6"
                   label="گزارش مشکل و تخلف آگهی"
                 />
