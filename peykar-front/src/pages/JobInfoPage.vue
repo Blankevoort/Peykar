@@ -137,6 +137,8 @@
               </div>
             </div>
 
+            <!-- About Company Card -->
+
             <div class="q-mt-xl q-mb-lg">
               <div class="full-width row bg-white br-10">
                 <div>
@@ -182,6 +184,367 @@
                     </div>
                   </div>
                 </div>
+              </div>
+            </div>
+
+            <!-- Job`s Description Card -->
+
+            <div class="q-mt-xl q-mb-lg">
+              <div class="full-width row bg-white br-10 q-pa-lg">
+                <div class="full-width q-pb-lg row items-center">
+                  <div class="text-h6 text-bold">
+                    شاخص های کلیدی از نظر کارفرما
+                  </div>
+
+                  <q-icon
+                    class="q-px-sm"
+                    name="help"
+                    color="primary"
+                    size="24px"
+                  />
+                </div>
+
+                <div class="full-width row items-center">
+                  <q-icon name="check_circle" color="grey-6" size="18px" />
+
+                  <div class="q-px-md">2 سال سابقه کار در گروه شغلی مشابه</div>
+                </div>
+
+                <!-- Skills Section -->
+
+                <div class="full-width row items-center q-py-md">
+                  <q-icon name="check_circle" color="grey-6" size="18px" />
+
+                  <div class="skill-border q-px-md q-mx-md q-my-xs">
+                    Html & CSS - متوسط
+                  </div>
+                </div>
+
+                <div class="full-width q-py-md">
+                  <div class="text-h6 text-bold">شرح شغل و وظایف</div>
+
+                  <div class="q-pt-md">
+                    فرصت همکاری برای دو نیروی Senior و Junior در تیم ما فراهم
+                    است.
+                  </div>
+                </div>
+
+                <!-- Responsibilities -->
+
+                <div class="full-width q-py-md">
+                  <div class="text-bold">وظایف و مسؤلیت ها:</div>
+
+                  <div class="q-pt-md">
+                    <span class="text-grey-6">-</span>
+
+                    <span class="q-px-md">
+                      فرصت همکاری برای دو نیروی Senior و Junior در تیم ما فراهم
+                      است.
+                    </span>
+                  </div>
+
+                  <div class="q-pt-md">
+                    <span class="text-grey-6">-</span>
+
+                    <span class="q-px-md">
+                      فرصت همکاری برای دو نیروی Senior و Junior در تیم ما فراهم
+                      است.
+                    </span>
+                  </div>
+
+                  <div class="q-pt-md">
+                    <span class="text-grey-6">-</span>
+
+                    <span class="q-px-md">
+                      فرصت همکاری برای دو نیروی Senior و Junior در تیم ما فراهم
+                      است.
+                    </span>
+                  </div>
+
+                  <div class="q-pt-md">
+                    <span class="text-grey-6">-</span>
+
+                    <span class="q-px-md">
+                      فرصت همکاری برای دو نیروی Senior و Junior در تیم ما فراهم
+                      است.
+                    </span>
+                  </div>
+
+                  <div class="q-pt-md">
+                    <span class="text-grey-6">-</span>
+
+                    <span class="q-px-md">
+                      فرصت همکاری برای دو نیروی Senior و Junior در تیم ما فراهم
+                      است.
+                    </span>
+                  </div>
+                </div>
+
+                <!-- Required Skills -->
+
+                <div class="full-width q-py-md">
+                  <div class="text-bold">مهارت و تجربه تخصصی مورد نیاز:</div>
+
+                  <div class="q-pt-md">
+                    <span class="text-grey-6">-</span>
+
+                    <span class="q-px-md">
+                      تسلط کامل به برنامه نویسی فرانت HTML ،CSS ،Javascript و
+                      عملکرد مرورگرهای مختلف
+                    </span>
+                  </div>
+
+                  <div class="q-pt-md">
+                    <span class="text-grey-6">-</span>
+
+                    <span class="q-px-md">
+                      تسلط کامل به React.js و Next.js
+                    </span>
+                  </div>
+
+                  <div class="q-pt-md">
+                    <span class="text-grey-6">-</span>
+
+                    <span class="q-px-md">
+                      تسلط کامل به برنامه نویسی فرانت HTML ،CSS ،Javascript و
+                      عملکرد مرورگرهای مختلف
+                    </span>
+                  </div>
+
+                  <div class="q-pt-md">
+                    <span class="text-grey-6">-</span>
+
+                    <span class="q-px-md">
+                      تسلط کامل به React.js و Next.js
+                    </span>
+                  </div>
+
+                  <div class="q-pt-md">
+                    <span class="text-grey-6">-</span>
+
+                    <span class="q-px-md">
+                      تسلط کامل به برنامه نویسی فرانت HTML ،CSS ،Javascript و
+                      عملکرد مرورگرهای مختلف
+                    </span>
+                  </div>
+
+                  <div class="q-pt-md">
+                    <span class="text-grey-6">-</span>
+
+                    <span class="q-px-md">
+                      تسلط کامل به React.js و Next.js
+                    </span>
+                  </div>
+                </div>
+
+                <!-- Individual Skills -->
+
+                <div class="full-width q-py-md">
+                  <div class="text-bold">مهارت های فردی:</div>
+
+                  <div class="q-pt-md">
+                    <span class="text-grey-6">-</span>
+
+                    <span class="q-px-md"> خلاقیت و مسئولیت پذیری </span>
+                  </div>
+
+                  <div class="q-pt-md">
+                    <span class="text-grey-6">-</span>
+
+                    <span class="q-px-md"> روحیه کار تیمی </span>
+                  </div>
+
+                  <div class="q-pt-md">
+                    <span class="text-grey-6">-</span>
+
+                    <span class="q-px-md"> اشتیاق یادگیری </span>
+                  </div>
+                </div>
+
+                <div class="full-width q-my-md text-bold">
+                  حقوق دریافتی با توجه به تجربه و توانایی شما قابل مذاکره است.
+                </div>
+
+                <!-- Employment Conditions -->
+
+                <div class="full-width q-py-md">
+                  <div class="text-bold text-h6">شرایط احراز شغل</div>
+
+                  <div
+                    class="full-width row justify-between items-ceneter q-py-sm"
+                  >
+                    <div class="col-3 background-light">
+                      <div class="text-bold text-grey-7 q-pa-sm">سن</div>
+                    </div>
+
+                    <div class="col-8 background">
+                      <div class="q-pa-sm">از 21 سال</div>
+                    </div>
+                  </div>
+
+                  <div
+                    class="full-width row justify-between items-ceneter q-py-sm"
+                  >
+                    <div class="col-3 background-light">
+                      <div class="text-bold text-grey-7 q-pa-sm">جنسیت</div>
+                    </div>
+
+                    <div class="col-8 background">
+                      <div class="q-pa-sm">تفاوتی ندارد</div>
+                    </div>
+                  </div>
+
+                  <div
+                    class="full-width row justify-between items-ceneter q-py-sm"
+                  >
+                    <div class="col-3 background-light">
+                      <div class="text-bold text-grey-7 q-pa-sm">
+                        نرم افزارها
+                      </div>
+                    </div>
+
+                    <div class="background col-8 row">
+                      <div class="q-py-sm">
+                        <div class="q-mr-md row items-center q-mt-sm">
+                          <div>
+                            <div
+                              class="text-white row q-px-sm q-py-xs"
+                              style="
+                                background-color: #5c6573 !important;
+                                padding-top: 5px;
+                                padding-bottom: 5px;
+                                border-radius: 8px;
+                              "
+                            >
+                              <div
+                                class="text-bold q-ml-sm"
+                                style="font-size: 13px"
+                              >
+                                Html & CSS
+                              </div>
+
+                              <q-separator
+                                color="white"
+                                class="q-mx-sm q-my-xs"
+                                vertical
+                              />
+
+                              <div>پیشرفته</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="q-py-sm">
+                        <div class="q-mr-md row items-center q-mt-sm">
+                          <div>
+                            <div
+                              class="text-white row q-px-sm q-py-xs"
+                              style="
+                                background-color: #5c6573 !important;
+                                padding-top: 5px;
+                                padding-bottom: 5px;
+                                border-radius: 8px;
+                              "
+                            >
+                              <div
+                                class="text-bold q-ml-sm"
+                                style="font-size: 13px"
+                              >
+                                Html & CSS
+                              </div>
+
+                              <q-separator
+                                color="white"
+                                class="q-mx-sm q-my-xs"
+                                vertical
+                              />
+
+                              <div>پیشرفته</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="q-py-sm">
+                        <div class="q-mr-md row items-center q-mt-sm">
+                          <div>
+                            <div
+                              class="text-white row q-px-sm q-py-xs"
+                              style="
+                                background-color: #5c6573 !important;
+                                padding-top: 5px;
+                                padding-bottom: 5px;
+                                border-radius: 8px;
+                              "
+                            >
+                              <div
+                                class="text-bold q-ml-sm"
+                                style="font-size: 13px"
+                              >
+                                Html & CSS
+                              </div>
+
+                              <q-separator
+                                color="white"
+                                class="q-mx-sm q-my-xs"
+                                vertical
+                              />
+
+                              <div>پیشرفته</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="q-py-sm">
+                        <div class="q-mr-md row items-center q-mt-sm">
+                          <div>
+                            <div
+                              class="text-white row q-px-sm q-py-xs"
+                              style="
+                                background-color: #5c6573 !important;
+                                padding-top: 5px;
+                                padding-bottom: 5px;
+                                border-radius: 8px;
+                              "
+                            >
+                              <div
+                                class="text-bold q-ml-sm"
+                                style="font-size: 13px"
+                              >
+                                Html & CSS
+                              </div>
+
+                              <q-separator
+                                color="white"
+                                class="q-mx-sm q-my-xs"
+                                vertical
+                              />
+
+                              <div>پیشرفته</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Report Job -->
+
+            <div class="q-mt-xl q-mb-lg">
+              <div class="full-width row bg-white br-10 q-pa-lg">
+                <q-icon name="priority_high" color="grey-6" />
+
+                <q-btn
+                  flat
+                  class="q-px-md"
+                  color="grey-6"
+                  label="گزارش مشکل و تخلف آگهی"
+                />
               </div>
             </div>
           </div>
@@ -234,7 +597,7 @@ export default {
   setup() {
     const toggleDropdown = ref(false);
     const showCard = ref(false);
-    const showMore = ref(false)
+    const showMore = ref(false);
     const tab = ref("about");
 
     function OpenDropdown() {
@@ -259,11 +622,24 @@ export default {
 </script>
 
 <style scoped>
+.background {
+  background-color: #f8f9fa;
+}
+
+.background-light {
+  background-color: #f6f7f9 !important;
+}
+
 .br-10 {
   border-radius: 10px !important;
 }
 
 .q-btn {
   padding: 4px 0;
+}
+
+.skill-border {
+  border: 1px solid #5c6573 !important;
+  border-radius: 4px !important;
 }
 </style>
