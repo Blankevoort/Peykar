@@ -351,8 +351,15 @@
           />
 
           <img
-            class="q-pl-md"
+            class="q-pl-md gt-sm"
             src="https://jobvision.ir/assets/images/header/logo-bg-white.svg"
+            @click="$router.push('/')"
+          />
+
+          <img
+            class="q-pl-md lt-md"
+            src="https://jobvision.ir/assets/images/header/logo-bg-white.svg"
+            style="width: 90px"
             @click="$router.push('/')"
           />
         </div>
