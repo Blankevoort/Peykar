@@ -1,9 +1,45 @@
 <template>
   <q-page style="background-color: #f8f9fa">
     <div class="row justify-center q-pa-md">
-      <div
-        class="col-xs-12 col-sm-12 col-md-12 col-lg-8 col-xl-8 row q-pl-sm q-pr-lg"
-      >
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-8 col-xl-8 row">
+        <div class="lt-md">
+          <div
+            class="bg-primary q-pa-md text-white full-width fixed-top"
+            style="
+              z-index: 99999;
+              border-bottom-right-radius: 10px !important;
+              border-bottom-left-radius: 10px !important;
+            "
+          >
+            <div class="row justify-between">
+              <div class="col-xs-8 col-sm-6">
+                <div class="text-bold">
+                  توسعه دهنده Front-End (senior & junior)
+                </div>
+                <div class="q-pt-sm">مجموعه تست هلپر</div>
+              </div>
+
+              <div class="col-xs-4 col-sm-6 flex justify-end">
+                <div>
+                  <q-btn flat icon="favorite" />
+
+                  <q-btn flat icon="share" />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="q-mb-md">
+            <q-btn
+              flat
+              color="primary"
+              icon="east"
+              label="لیست فرصت های شغلی "
+              to="#"
+            />
+          </div>
+        </div>
+
         <!-- Main Content -->
 
         <div class="full-width row justify-center">
@@ -1119,7 +1155,7 @@
                           />
                         </div>
 
-                        <div class="=col-sm-6 flex justify-end gt-xs lt-md">
+                        <div class="col-sm-6 flex justify-end gt-xs lt-md">
                           <q-btn
                             no-caps
                             flat
@@ -1128,6 +1164,32 @@
                             href="https://toefl.testhelper.ir/"
                           />
                         </div>
+                      </div>
+
+                      <div class="q-py-sm text-grey-6">
+                        <div>
+                          مجموعه ما از دو تیم برنامه نویسی و زبان تشکیل شده است.
+                        </div>
+
+                        <div>
+                          در حال حاضر بزرگترین مجموعه در خصوص برگزاری آزمون های
+                          آنلاین تافل در ایران هستیم.
+                        </div>
+                      </div>
+
+                      <div class="full-width text-center">
+                        <q-btn
+                          flat
+                          color="primary"
+                          label="مشاهده سایر موقعیت های شغلی این سازمان"
+                          href="#"
+                        />
+                      </div>
+
+                      <div class="full-width q-ma-md">
+                        <q-img
+                          src="https://fileapi.jobvision.ir/StaticFiles/Employer/DefaultImages/default-companyHeader.jpeg?v=20231122"
+                        />
                       </div>
 
                       <div class="q-pt-lg full-width flex justify-center">
@@ -1151,9 +1213,163 @@
                       </div>
                     </q-tab-panel>
 
-                    <q-tab-panel name="companyOffers"> </q-tab-panel>
+                    <q-tab-panel name="companyOffers">
+                      <div class="q-my-md bg-white custom-border">
+                        <q-item class="col-12 q-mb-xs">
+                          <q-item-section class="q-pa-md" top avatar>
+                            <!-- <q-badge
+                              class="q-my-sm"
+                              color="red-2"
+                              text-color="red-9"
+                              label="فوری"
+                            /> -->
 
-                    <q-tab-panel name="resumeHistory"> </q-tab-panel>
+                            <q-avatar>
+                              <img
+                                src="https://cdn.quasar.dev/img/boy-avatar.png"
+                              />
+                            </q-avatar>
+                          </q-item-section>
+
+                          <q-item-section caption class="q-pa-md">
+                            <q-item-label class="text-weight-bold"
+                              >نام فرصت شغلی</q-item-label
+                            >
+                            <q-item-label class="text-weight-thin q-pt-xs">
+                              نام شرکت
+                            </q-item-label>
+
+                            <q-item-label
+                              class="q-pt-xs"
+                              style="line-height: 1.6 !important"
+                              caption
+                            >
+                              شهر محل کار <span class="text-grey-5"> | </span>
+                              <span class="text-positive"
+                                >20 - 25 میلیون تومان</span
+                              ></q-item-label
+                            >
+                          </q-item-section>
+
+                          <q-item-section class="q-pa-sm" side top>
+                            <q-btn flat icon="favorite_outline" />
+                            <q-btn flat icon="block" />
+                          </q-item-section>
+                        </q-item>
+
+                        <div class="row justify-center q-my-md">
+                          <q-separator
+                            class="col-10 q-px-md"
+                            style="height: 1px"
+                          />
+
+                          <div class="col-12 row justify-center q-mt-sm">
+                            <div
+                              class="col-10 row justify-between items-center"
+                            >
+                              <div class="col-3 text-grey-6">17 روز پیش</div>
+
+                              <div class="col-6 row justify-end">
+                                <q-btn
+                                  flat
+                                  color="primary"
+                                  icon-right="west"
+                                  label="مشاهده"
+                                  to="#"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="q-my-md bg-white custom-border">
+                        <q-item class="col-12 q-mb-xs">
+                          <q-item-section class="q-pa-md" top avatar>
+                            <!-- <q-badge
+                              class="q-my-sm"
+                              color="red-2"
+                              text-color="red-9"
+                              label="فوری"
+                            /> -->
+
+                            <q-avatar>
+                              <img
+                                src="https://cdn.quasar.dev/img/boy-avatar.png"
+                              />
+                            </q-avatar>
+                          </q-item-section>
+
+                          <q-item-section caption class="q-pa-md">
+                            <q-item-label class="text-weight-bold"
+                              >نام فرصت شغلی</q-item-label
+                            >
+                            <q-item-label class="text-weight-thin q-pt-xs">
+                              نام شرکت
+                            </q-item-label>
+
+                            <q-item-label
+                              class="q-pt-xs"
+                              style="line-height: 1.6 !important"
+                              caption
+                            >
+                              شهر محل کار <span class="text-grey-5"> | </span>
+                              <span class="text-positive"
+                                >20 - 25 میلیون تومان</span
+                              ></q-item-label
+                            >
+                          </q-item-section>
+
+                          <q-item-section class="q-pa-sm" side top>
+                            <q-btn flat icon="favorite_outline" />
+                            <q-btn flat icon="block" />
+                          </q-item-section>
+                        </q-item>
+
+                        <div class="row justify-center q-my-md">
+                          <q-separator
+                            class="col-10 q-px-md"
+                            style="height: 1px"
+                          />
+
+                          <div class="col-12 row justify-center q-mt-sm">
+                            <div
+                              class="col-10 row justify-between items-center"
+                            >
+                              <div class="col-3 text-grey-6">17 روز پیش</div>
+
+                              <div class="col-6 row justify-end">
+                                <q-btn
+                                  flat
+                                  color="primary"
+                                  icon-right="west"
+                                  label="مشاهده"
+                                  to="#"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </q-tab-panel>
+
+                    <q-tab-panel name="resumeHistory">
+                      <div class="full-width text-caption text-bold">
+                        سوابق ارسال رزومه
+                      </div>
+
+                      <div class="full-width q-my-xl">
+                        <div class="text-center text-grey-6">
+                          تاکنون رزومه‌ای برای این شرکت ارسال نکرده اید!
+                        </div>
+
+                        <div class="q-pa-xl">
+                          <q-img
+                            src="https://jobvision.ir/assets/images/jobs/no-apply-history.svg"
+                          />
+                        </div>
+                      </div>
+                    </q-tab-panel>
                   </q-tab-panels>
                 </div>
               </div>
@@ -1276,5 +1492,10 @@ export default {
   border-color: #5660f2 !important;
   font-weight: bold !important;
   color: #5660f2;
+}
+
+.custom-border {
+  border-radius: 10px !important;
+  border: 2px solid #dde1e6;
 }
 </style>
