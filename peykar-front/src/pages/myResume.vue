@@ -7,28 +7,30 @@
         <div
           class="col-8 row justify-between items-center q-px-md q-py-sm bg-white br-10"
         >
-          <div>
-            <q-icon size="20px" name="visibility" />
-            <span class="q-px-sm"> نحوه نمایش رزومه به: </span>
+          <div class="row items-center">
+            <div>
+              <q-icon class="gt-xs" size="20px" name="visibility" />
+              <span class="q-px-sm"> نحوه نمایش رزومه به: </span>
+            </div>
+
+            <q-btn-dropdown flat :label="preferred">
+              <q-list>
+                <q-item clickable v-close-popup @click="preferred = 'خودم'">
+                  <q-item-section>
+                    <q-item-label>خودم</q-item-label>
+                  </q-item-section>
+                </q-item>
+
+                <q-item clickable v-close-popup @click="preferred = 'کارفرما'">
+                  <q-item-section>
+                    <q-item-label>کارفرما</q-item-label>
+                  </q-item-section>
+                </q-item>
+              </q-list>
+            </q-btn-dropdown>
           </div>
 
-          <q-btn-dropdown flat :label="preferred">
-            <q-list>
-              <q-item clickable v-close-popup @click="preferred = 'خودم'">
-                <q-item-section>
-                  <q-item-label>خودم</q-item-label>
-                </q-item-section>
-              </q-item>
-
-              <q-item clickable v-close-popup @click="preferred = 'کارفرما'">
-                <q-item-section>
-                  <q-item-label>کارفرما</q-item-label>
-                </q-item-section>
-              </q-item>
-            </q-list>
-          </q-btn-dropdown>
-
-          <div class="col-4 row justify-end text-grey-8">
+          <div class="col row justify-end text-grey-8">
             <q-btn flat class="q-mx-sm" label="دانلود رزومه" icon="download" />
 
             <q-btn
@@ -3955,7 +3957,7 @@
 
       <div class="row justify-center q-px-md lt-md">
         <div class="col-12 row justify-between items-center q-py-sm br-10">
-          <div class="col-4 row items-center q-pl-sm">
+          <div class="col-6 row items-center">
             <q-icon size="20px" color="grey-7" name="visibility" />
 
             <q-btn-dropdown flat :label="preferred">
@@ -3976,10 +3978,10 @@
           </div>
 
           <div
-            class="col-8 row justify-end text-grey-8"
+            class="col row justify-end text-grey-8"
             v-if="preferred !== 'کارفرما'"
           >
-            <q-btn flat class="q-mx-sm" label="دانلود رزومه" icon="download" />
+            <q-btn flat class="q-mx-sm" icon="download" />
 
             <q-btn flat class="q-mx-sm" icon="share" />
           </div>
@@ -8338,7 +8340,7 @@ import { ref } from "vue";
 export default {
   setup() {
     const editBTN = ref(false);
-    const preferred = ref("کارفرما");
+    const preferred = ref("خودم");
     const shape = ref();
 
     function editToggle() {
