@@ -3,10 +3,10 @@
     <!-- Header -->
 
     <q-header class="row justify-center shadow q-px-md" style="height: 70px">
-      <q-toolbar class="col-8 gt-md">
+      <q-toolbar class="col-md-12 col-lg-8 col-xl-8 gt-sm">
         <!-- Logo And Links -->
 
-        <div class="col-9 row">
+        <div class="col-8 row">
           <img
             class="q-mr-lg"
             src="https://jobvision.ir/assets/images/header/logo-bg-white.svg"
@@ -20,13 +20,9 @@
               to="/jobs"
               class="btn--no-hover button-effect"
             />
-            <q-btn
-              flat
-              label="فرصت های شغلی پیشنهادی"
-              to="/recommended-jobs"
-              class="btn--no-hover button-effect"
-            />
+
             <q-btn flat label="رزومه من" to="/my-cv" class="btn--no-hover" />
+
             <q-btn
               flat
               label="رده‌بندی شرکت‌ها"
@@ -36,7 +32,7 @@
           </div>
         </div>
 
-        <q-toolbar-title class="col-3 row justify-end">
+        <q-toolbar-title v-if="user" class="col-3 row justify-end">
           <!-- Notification Button -->
 
           <q-btn round flat>
@@ -169,173 +165,20 @@
             </q-list>
           </q-btn-dropdown>
         </q-toolbar-title>
-      </q-toolbar>
 
-      <q-toolbar class="col-12 gt-sm lt-lg" style="max-height: 70px">
-        <!-- Logo And Links -->
-
-        <div class="col-9 row">
-          <img
-            class="q-pr-lg"
-            src="https://jobvision.ir/assets/images/header/logo-bg-white.svg"
-            @click="$router.push('/')"
+        <q-toolbar-title v-else class="col-4 row justify-end">
+          <q-btn
+            color="grey-4"
+            icon="login"
+            class="text-black text-bold"
+            label="ورود | ثبت نام"
+            to="account"
+            style="font-size: 13px"
           />
 
-          <div>
-            <q-btn
-              flat
-              label="فرصت های شغلی"
-              to="/jobs"
-              class="btn--no-hover button-effect"
-            />
-            <q-btn
-              flat
-              label="فرصت های شغلی پیشنهادی"
-              to="/recommended-jobs"
-              class="btn--no-hover button-effect"
-            />
-            <q-btn flat label="رزومه من" to="/my-cv" class="btn--no-hover" />
-            <q-btn
-              flat
-              label="رده‌بندی شرکت‌ها"
-              to="/top-companies"
-              class="btn--no-hover"
-            />
-          </div>
-        </div>
+          <q-separator class="q-mx-md" vertical inset />
 
-        <q-toolbar-title class="col-3 row justify-end">
-          <!-- Notification Button -->
-
-          <q-btn round flat>
-            <q-icon
-              @click="$router.push('/notifications')"
-              size="24px"
-              name="notifications"
-            />
-          </q-btn>
-
-          <q-btn-dropdown flat color="grey-7" icon="person" padding="8px 20px">
-            <div class="q-pa-md text-black row">
-              <div class="col-12">
-                <q-item class="full-width">
-                  <q-item-section top avatar>
-                    <q-avatar size="50px" color="grey-4">
-                      <q-icon name="person" color="grey-7" size="69px" />
-                    </q-avatar>
-                  </q-item-section>
-
-                  <!-- Full Namem, Job And Edit Button -->
-
-                  <q-item-section>
-                    <q-item-label>معین صداقتی</q-item-label>
-                    <q-item-label lines="2">
-                      <div class="text-black q-mt-sm" style="font-size: 12px">
-                        دولوپر فول استک در شرکت آیترونیک.
-                      </div>
-
-                      <q-btn flat>
-                        <q-icon size="20px" name="edit" />
-                      </q-btn>
-                    </q-item-label>
-                  </q-item-section>
-                </q-item>
-
-                <div>
-                  <q-btn
-                    class="full-width text-bold"
-                    outline
-                    color="black"
-                    label="رزومه من"
-                    icon="badge"
-                  />
-                </div>
-              </div>
-            </div>
-
-            <q-list class="q-px-md">
-              <q-item clickable v-ripple>
-                <q-item-section avatar>
-                  <q-icon name="hotel_class" />
-                </q-item-section>
-                <q-item-section>مشاغل پیشنهادی</q-item-section>
-                <div class="q-mx-lg"></div>
-                <q-item-section side>
-                  <q-badge
-                    class="text-bold"
-                    color="green-2"
-                    text-color="green-8"
-                    label="31"
-                  />
-                </q-item-section>
-              </q-item>
-
-              <q-item clickable v-ripple>
-                <q-item-section avatar>
-                  <q-icon name="drive_folder_upload" />
-                </q-item-section>
-                <q-item-section>رزومه های ارسال شده</q-item-section>
-                <div class="q-mx-lg"></div>
-              </q-item>
-
-              <q-item clickable v-ripple>
-                <q-item-section avatar>
-                  <q-icon name="favorite_outline" />
-                </q-item-section>
-                <q-item-section>مشاغل نشان شده</q-item-section>
-                <div class="q-mx-lg"></div>
-              </q-item>
-
-              <q-item clickable v-ripple>
-                <q-item-section avatar>
-                  <q-icon name="saved_search" />
-                </q-item-section>
-                <q-item-section>جستجو های ذخیره شده</q-item-section>
-                <div class="q-mx-lg"></div>
-                <q-item-section side>1</q-item-section>
-              </q-item>
-
-              <q-item clickable v-ripple>
-                <q-item-section avatar>
-                  <q-icon name="apartment" />
-                </q-item-section>
-                <q-item-section>شرکت های دنبال شده</q-item-section>
-                <div class="q-mx-lg"></div>
-              </q-item>
-
-              <q-item clickable v-ripple>
-                <q-item-section avatar>
-                  <q-icon name="school" />
-                </q-item-section>
-                <q-item-section>دوره های آموزشی پیشنهادی</q-item-section>
-                <div class="q-mx-lg"></div>
-              </q-item>
-
-              <q-item clickable v-ripple>
-                <q-item-section avatar>
-                  <q-icon name="business_center" />
-                </q-item-section>
-                <q-item-section>نمایشگاه کار</q-item-section>
-                <div class="q-mx-lg"></div>
-              </q-item>
-
-              <q-item clickable v-ripple>
-                <q-item-section avatar>
-                  <q-icon name="settings" />
-                </q-item-section>
-                <q-item-section>تنظیمات ناحیه کاربری</q-item-section>
-              </q-item>
-
-              <q-separator />
-
-              <q-item class="text-red" clickable v-ripple>
-                <q-item-section avatar>
-                  <q-icon name="logout " />
-                </q-item-section>
-                <q-item-section>خروج از حساب</q-item-section>
-              </q-item>
-            </q-list>
-          </q-btn-dropdown>
+          <q-btn flat label="بخش کارفرمایان" to="employer" />
         </q-toolbar-title>
       </q-toolbar>
 
@@ -364,7 +207,7 @@
           />
         </div>
 
-        <q-toolbar-title class="row justify-end">
+        <q-toolbar-title v-if="user" class="row justify-end">
           <!-- Notification Button -->
 
           <q-btn round flat>
@@ -496,6 +339,17 @@
               </q-item>
             </q-list>
           </q-btn-dropdown>
+        </q-toolbar-title>
+
+        <q-toolbar-title v-else class="row justify-end">
+          <q-btn
+            color="grey-4"
+            icon="login"
+            class="text-black text-bold"
+            label="ورود | ثبت نام"
+            to="account"
+            style="font-size: 13px"
+          />
         </q-toolbar-title>
       </q-toolbar>
     </q-header>
