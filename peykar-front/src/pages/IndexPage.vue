@@ -126,7 +126,11 @@
             پیشنهاد شده بر اساس رفتار و عملکرد شما
           </div>
 
-          <div class="q-px-sm q-my-md col-4">
+          <div
+            v-for="(job, index) in jobs"
+            :key="'job-' + index + 1"
+            class="q-px-sm q-my-md col-4"
+          >
             <q-card flat bordered>
               <q-card-section horizontal>
                 <q-card-section class="col-5 flex flex-center">
@@ -137,11 +141,11 @@
                 </q-card-section>
 
                 <q-card-section>
-                  <div class="q-mt-sm q-mb-xs">توسعه دهنده فرانت</div>
-                  <div class="text-caption">شرکت شبکه هوشمند امید</div>
+                  <div class="q-mt-sm q-mb-xs">{{ job.name }}</div>
+                  <div class="text-caption">{{ job.name }}</div>
                   <div class="text-caption text-grey">
-                    <span>تهران،میرداماد |</span>
-                    <span class="text-positive"> 20 - 25 </span>
+                    <span>{{ job.address }} |</span>
+                    <span class="text-positive"> {{ job.rights }} </span>
                   </div>
                 </q-card-section>
               </q-card-section>
@@ -150,65 +154,9 @@
 
               <q-card-actions class="q-px-sm">
                 <q-btn flat> 6 روز پیش </q-btn>
+
                 <q-space />
-                <q-btn color="positive" label="ارسال رزومه" />
-              </q-card-actions>
-            </q-card>
-          </div>
 
-          <div class="q-px-sm q-my-md col-4">
-            <q-card flat bordered>
-              <q-card-section horizontal>
-                <q-card-section class="col-5 flex flex-center">
-                  <q-img
-                    class="rounded-borders"
-                    src="https://cdn.quasar.dev/img/parallax2.jpg"
-                  />
-                </q-card-section>
-
-                <q-card-section>
-                  <div class="q-mt-sm q-mb-xs">توسعه دهنده فرانت</div>
-                  <div class="text-caption">شرکت شبکه هوشمند امید</div>
-                  <div class="text-caption text-grey">
-                    <span>تهران،میرداماد </span>
-                  </div>
-                </q-card-section>
-              </q-card-section>
-
-              <q-separator inset />
-
-              <q-card-actions class="q-px-sm">
-                <q-btn flat> 6 روز پیش </q-btn>
-                <q-space />
-                <q-btn color="positive" label="ارسال رزومه" />
-              </q-card-actions>
-            </q-card>
-          </div>
-
-          <div class="q-px-sm q-my-md col-4">
-            <q-card flat bordered>
-              <q-card-section horizontal>
-                <q-card-section class="col-5 flex flex-center">
-                  <q-img
-                    class="rounded-borders"
-                    src="https://cdn.quasar.dev/img/parallax2.jpg"
-                  />
-                </q-card-section>
-
-                <q-card-section>
-                  <div class="q-mt-sm q-mb-xs">توسعه دهنده فرانت</div>
-                  <div class="text-caption">شرکت شبکه هوشمند امید</div>
-                  <div class="text-caption text-grey">
-                    <span>تهران،میرداماد</span>
-                  </div>
-                </q-card-section>
-              </q-card-section>
-
-              <q-separator inset />
-
-              <q-card-actions class="q-px-sm">
-                <q-btn flat> 6 روز پیش </q-btn>
-                <q-space />
                 <q-btn color="positive" label="ارسال رزومه" />
               </q-card-actions>
             </q-card>
@@ -526,11 +474,33 @@
 </template>
 
 <script>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
+import { api } from "src/boot/axios";
 
 export default {
   setup() {
+    const isLoading = ref(true);
+    const jobs = ref();
+
+    function getJobs() {
+      api.get("api/jobs").then((r) => {
+        console.log(r.data);
+        // jobs.value = r.data;
+      });
+    }
+
+    onMounted(() => {
+      getJobs();
+
+      setTimeout(() => {
+        isLoading.value = false;
+      }, 2000);
+    });
+    
     return {
+      jobs,
+      getJobs,
+      isLoading,
       model: ref(null),
       tab: ref("suggestions"),
       options: ["Google", "Facebook", "Twitter", "Apple", "Oracle"],
