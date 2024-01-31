@@ -8430,12 +8430,4 @@ export default {
   margin: 0 4px;
   padding: 8px 16px;
 }
-
-.br-8 {
-  border-radius: 8px;
-}
-
-.br-10 {
-  border-radius: 10px !important;
-}
 </style>

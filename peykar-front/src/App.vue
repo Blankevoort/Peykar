@@ -3,9 +3,19 @@
 </template>
 
 <script>
-import { defineComponent } from 'vue'
+import { defineComponent } from "vue";
 
 export default defineComponent({
-  name: 'App'
-})
+  name: "App",
+});
 </script>
+
+<style>
+.br-8 {
+  border-radius: 8px;
+}
+
+.br-10 {
+  border-radius: 10px !important;
+}
+</style>
