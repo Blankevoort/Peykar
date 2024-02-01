@@ -18,4 +18,8 @@ export default defineComponent({
 .br-10 {
   border-radius: 10px !important;
 }
+
+.q-btn.no-hover:hover {
+  animation: none !important;
+}
 </style>

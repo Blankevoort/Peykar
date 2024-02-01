@@ -32,7 +32,7 @@
           </div>
         </div>
 
-        <q-toolbar-title v-if="user" class="col-3 row justify-end">
+        <q-toolbar-title v-if="!user" class="col-3 row justify-end">
           <!-- Notification Button -->
 
           <q-btn round flat>
@@ -207,7 +207,7 @@
           />
         </div>
 
-        <q-toolbar-title v-if="user" class="row justify-end">
+        <q-toolbar-title v-if="!user" class="row justify-end">
           <!-- Notification Button -->
 
           <q-btn round flat>
@@ -2418,6 +2418,7 @@ export default defineComponent({
   name: "MainLayout",
 
   setup() {
+    const user = ref();
     const tab = ref("default");
     const drawer = ref();
     const width = ref(window.innerWidth);
@@ -2427,6 +2428,7 @@ export default defineComponent({
 
     return {
       tab,
+      user,
       drawer,
       width,
       expanded,

@@ -38,6 +38,7 @@
               class="q-mx-sm"
               label="اشتراک گذاری رزومه"
               icon="share"
+              @click="share = true"
             />
           </div>
         </div>
@@ -8331,6 +8332,32 @@
         </div>
       </div>
     </div>
+
+    <!-- Forms And Dialogs -->
+
+    <q-dialog v-model="share">
+      <div class="relative-position bg-white q-pa-md">
+        <div class="absolute-right q-pt-xs">
+          <q-btn flat color="grey-6" icon="cancel" @click="share = false" />
+        </div>
+
+        <div class="full-width q-my-md">
+          <span class="text-grey-6">آدرس یکتا رزومه شما</span>
+
+          <div class="row justify-between">
+            <q-input
+              class="q-my-sm q-px-xs"
+              outlined
+              placeholder="your profile link"
+              color="grey-5"
+              model-value="profile link"
+            />
+
+            <q-btn class="q-px-xs" outline color="primary" label="کپی لینک" />
+          </div>
+        </div>
+      </div>
+    </q-dialog>
   </q-page>
 </template>
 
@@ -8339,6 +8366,7 @@ import { ref } from "vue";
 
 export default {
   setup() {
+    const share = ref(false);
     const editBTN = ref(false);
     const preferred = ref("خودم");
     const shape = ref();
@@ -8352,10 +8380,11 @@ export default {
     }
 
     return {
+      share,
       shape,
-      editToggle,
       editBTN,
       preferred,
+      editToggle,
       model: ref(null),
       val: ref(true),
     };

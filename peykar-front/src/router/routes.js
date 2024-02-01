@@ -19,7 +19,7 @@ const routes = [
   {
     path: "/my-cv",
     component: () => import("src/layouts/MainLayout.vue"),
-    children: [{ path: "", component: () => import("src/pages/Account Managment/Dashboards/myResume.vue") }],
+    children: [{ path: "", component: () => import("src/pages/AccountManagment/Dashboards/myResume.vue") }],
   },
   {
     path: "/top-companies",
@@ -48,7 +48,7 @@ const routes = [
   },
   {
     path: "/test",
-    component: () => import("src/layouts/MainLayout.vue"),
+    component: () => import("src/layouts/BlankLayout.vue"),
     children: [{ path: "", component: () => import("pages/TestPage.vue") }],
   },
 
