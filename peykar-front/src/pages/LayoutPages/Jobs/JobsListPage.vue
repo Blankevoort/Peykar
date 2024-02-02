@@ -381,7 +381,7 @@
                     <div class="col-12 row q-ma-sm q-px-sm">
                       <q-img
                         class="col-12"
-                        src="../assets/logo.svg"
+                        src="/assets/logo.svg"
                         style="width: 75px; height: 100px"
                       />
 
@@ -430,7 +430,7 @@
                     <div class="col-12 row q-ma-sm q-px-sm">
                       <q-img
                         class="col-12"
-                        src="../assets/logo.svg"
+                        src="assets/logo.svg"
                         style="width: 75px; height: 100px"
                       />
 
@@ -479,7 +479,7 @@
                     <div class="col-12 row q-ma-sm q-px-sm">
                       <q-img
                         class="col-12"
-                        src="../assets/logo.svg"
+                        src="assets/logo.svg"
                         style="width: 75px; height: 100px"
                       />
 
@@ -528,7 +528,7 @@
                     <div class="col-12 row q-ma-sm q-px-sm">
                       <q-img
                         class="col-12"
-                        src="../assets/logo.svg"
+                        src="assets/logo.svg"
                         style="width: 75px; height: 100px"
                       />
 
@@ -577,7 +577,7 @@
                     <div class="col-12 row q-ma-sm q-px-sm">
                       <q-img
                         class="col-12"
-                        src="../assets/logo.svg"
+                        src="assets/logo.svg"
                         style="width: 75px; height: 100px"
                       />
 
@@ -626,7 +626,7 @@
                     <div class="col-12 row q-ma-sm q-px-sm">
                       <q-img
                         class="col-12"
-                        src="../assets/logo.svg"
+                        src="assets/logo.svg"
                         style="width: 75px; height: 100px"
                       />
 
@@ -675,7 +675,7 @@
                     <div class="col-12 row q-ma-sm q-px-sm">
                       <q-img
                         class="col-12"
-                        src="../assets/logo.svg"
+                        src="assets/logo.svg"
                         style="width: 75px; height: 100px"
                       />
 
@@ -724,7 +724,7 @@
                     <div class="col-12 row q-ma-sm q-px-sm">
                       <q-img
                         class="col-12"
-                        src="../assets/logo.svg"
+                        src="assets/logo.svg"
                         style="width: 75px; height: 100px"
                       />
 
@@ -1315,13 +1315,13 @@ export default {
   background-color: #f8f9fa;
 }
 
-.active-tab {
-  background-color: #5660f2 !important;
-  color: white !important;
-}
-
 .companies-card {
   border: 2px solid #dde1e6;
   border-radius: 16px;
+}
+
+.active-tab {
+  background-color: #5660f2 !important;
+  color: white !important;
 }
 </style>

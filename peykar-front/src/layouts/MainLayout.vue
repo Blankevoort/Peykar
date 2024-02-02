@@ -1760,7 +1760,7 @@
           <div class="col-4 row justify-end content-center">
             <q-img
               style="width: 175px; height: 175px"
-              src="../assets/logo.png"
+              src="assets/logo.png"
             />
           </div>
         </div>
@@ -1975,7 +1975,7 @@
           <div class="col-4 row justify-end content-center">
             <q-img
               style="width: 175px; height: 175px"
-              src="../assets/logo.png"
+              src="assets/logo.png"
             />
           </div>
         </div>
@@ -2190,7 +2190,7 @@
           <div class="col-12 row justify-center content-center">
             <q-img
               style="width: 175px; height: 175px"
-              src="../assets/logo.png"
+              src="assets/logo.png"
             />
           </div>
         </div>
@@ -2225,7 +2225,7 @@
         <div class="col-12 row justify-between">
           <div class="q-mt-lg q-mb-md col-5">
             <q-img
-              src="../assets/header-logo-white.svg"
+              src="assets/header-logo-white.svg"
               style="width: 75px; height: 35px"
             />
           </div>
@@ -2297,7 +2297,7 @@
         <div class="col-12 row justify-between">
           <div class="q-mt-lg q-mb-md col-5">
             <q-img
-              src="../assets/header-logo-white.svg"
+              src="assets/header-logo-white.svg"
               style="width: 75px; height: 35px"
             />
           </div>
@@ -2367,7 +2367,7 @@
         <div class="col-12 row justify-between">
           <div class="q-mt-lg q-mb-md">
             <q-img
-              src="../assets/header-logo-white.svg"
+              src="assets/header-logo-white.svg"
               style="width: 75px; height: 35px"
             />
           </div>

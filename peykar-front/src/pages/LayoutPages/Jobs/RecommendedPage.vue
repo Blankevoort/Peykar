@@ -343,7 +343,7 @@
                       >
                         <template v-slot:header>
                           <q-item-section class="q-pb-sm" avatar>
-                            <q-img src="../assets/logo.png" />
+                            <q-img src="assets/logo.png" />
                           </q-item-section>
 
                           <q-item-section class="q-pb-sm text-bold">

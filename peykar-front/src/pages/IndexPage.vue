@@ -19,7 +19,7 @@
         <div class="row justify-center">
           <img
             style="width: 350px; height: 350px"
-            src="../assets/IR-Map.svg"
+            src="/assets/IR-Map.svg"
             alt="iranMap"
           />
         </div>
@@ -496,7 +496,7 @@ export default {
         isLoading.value = false;
       }, 2000);
     });
-    
+
     return {
       jobs,
       getJobs,
