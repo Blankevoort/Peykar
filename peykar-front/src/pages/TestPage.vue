@@ -598,7 +598,11 @@
                 </div>
 
                 <div v-if="showBirth" class="q-pt-sm full-width">
-                  <q-date v-model="birth" mask="YYYY-MM-DD" color="purple" />
+                  <q-date
+                    v-model="birth"
+                    mask="YYYY/MM/DD"
+                    calendar="persian"
+                  />
                 </div>
               </div>
 
@@ -652,7 +656,7 @@ export default {
       "Oracle",
     ]);
     const region = ref();
-    const birth = ref("2019-02-22");
+    const birth = ref();
 
     const en = ref({
       title: "Full Stack Develeoper at Aytronic",
@@ -680,13 +684,16 @@ export default {
     }
 
     function getDate() {
-      var time = new Date();
-      var dd = String(time.getDate()).padStart(2, "0");
-      var mm = String(time.getMonth() + 1).padStart(2, "0"); //January is 0!
-      var yyyy = time.getFullYear();
+      var currentdate = new Date();
 
-      time = mm + "/" + dd + "/" + yyyy;
-      birth.value = time;
+      var dateTime =
+        currentdate.getFullYear() +
+        "/" +
+        (currentdate.getMonth() + 1) +
+        "/" +
+        currentdate.getDate();
+
+      birth.value = dateTime;
     }
 
     onMounted(() => {
