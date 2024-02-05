@@ -229,6 +229,8 @@
           </div>
 
           <div class="q-mt-md q-mb-sm">
+            <!-- Name -->
+
             <div class="row justify-between items-center q-my-md">
               <div class="col-6 q-px-sm">
                 <div class="text-grey-7">
@@ -251,6 +253,8 @@
               </div>
             </div>
 
+            <!-- Familty -->
+
             <div class="row justify-between items-center q-my-md">
               <div class="col-6 q-px-sm">
                 <div class="text-grey-7">
@@ -272,6 +276,8 @@
                 </div>
               </div>
             </div>
+
+            <!-- Gender -->
 
             <div class="row justify-between items-center q-my-md">
               <div class="col-6 q-px-sm">
@@ -311,6 +317,8 @@
               </div>
             </div>
 
+            <!-- Marital Status -->
+
             <div class="row justify-between items-center q-my-md">
               <div class="col-6 q-px-sm">
                 <div class="text-grey-7 q-pb-sm">
@@ -348,6 +356,8 @@
                 </div>
               </div>
             </div>
+
+            <!-- Military Service Status -->
 
             <div class="row justify-between items-center q-my-md">
               <div class="col-6 q-px-sm">
@@ -505,6 +515,8 @@
               </div>
             </div>
 
+            <!-- City -->
+
             <div class="row justify-between items-center q-my-md">
               <div class="col-6 q-px-sm">
                 <div class="text-grey-7">
@@ -520,7 +532,17 @@
                     clearable
                     use-input
                     @filter="filterFn"
-                  />
+                  >
+                    <template v-slot:selected>
+                      <div
+                        class="q-pa-sm br-4"
+                        style="background: #e0e0e0 !important"
+                        v-if="city !== null"
+                      >
+                        {{ city }}
+                      </div>
+                    </template>
+                  </q-select>
                 </div>
               </div>
 
@@ -531,17 +553,30 @@
 
                 <div class="q-pt-sm full-width" style="direction: ltr">
                   <q-select
-                    v-model="city"
+                    v-model="enCity"
                     :options="cityOptions"
                     color="primary"
+                    use-chips
                     outlined
                     clearable
                     use-input
                     @filter="filterFn"
-                  />
+                  >
+                    <template v-slot:selected>
+                      <div
+                        class="q-pa-sm br-4"
+                        style="background: #e0e0e0 !important"
+                        v-if="enCity !== null"
+                      >
+                        {{ enCity }}
+                      </div>
+                    </template>
+                  </q-select>
                 </div>
               </div>
             </div>
+
+            <!-- Region -->
 
             <div class="row justify-between items-center q-my-md">
               <div class="col-6 q-px-sm">
@@ -555,9 +590,9 @@
                       class="bg-blue-9 br-8"
                       style="width: 175px; font-size: 13px"
                     >
-                      در صورتی که کارفرما بخواهد با شما تماس بگیرد و موبایل شما
-                      در دسترس نباشد این شماره تلفن ثابت به شما کمک می کند که
-                      تماس کارفرما را از دست ندهید
+                      وارد کردن محل سکونت دقیق به ما کمک می کند که پیشنهادهای
+                      شغلی نزدیک تر به محل زندگی شما را با اولویت بالاتری به شما
+                      پیشنهاد دهیم
                     </q-tooltip>
                   </q-btn>
                 </div>
@@ -578,10 +613,66 @@
               </div>
             </div>
 
+            <!-- Birth -->
+
             <div class="row justify-between items-center q-my-md">
               <div class="col-6 q-px-sm">
                 <div @click="showBirth = true" class="text-grey-7">
                   <span>تاریخ تولد</span>
+
+                  <q-btn-dropdown
+                    content-class="text-center"
+                    no-caps
+                    unelevated
+                    class="full-width q-py-sm q-mt-sm"
+                    color="primary"
+                  >
+                    <template v-slot:label>
+                      <div class="full-width text-left">
+                        <div>انتخاب تاریخ</div>
+                      </div>
+                    </template>
+
+                    <q-date
+                      minimal
+                      v-model="birth"
+                      mask="YYYY/MM/DD"
+                      calendar="persian"
+                    />
+                  </q-btn-dropdown>
+                </div>
+              </div>
+
+              <div class="col-6 q-px-sm flex justify-end">
+                <div class="text-grey-7">
+                  <span>Birth Date</span>
+                </div>
+
+                <q-btn-dropdown
+                  content-class="text-center"
+                  no-caps
+                  unelevated
+                  style="direction: ltr"
+                  class="full-width q-py-sm q-mt-sm"
+                  color="primary"
+                >
+                  <template v-slot:label>
+                    <div class="full-width text-right">
+                      <div>Select Date</div>
+                    </div>
+                  </template>
+
+                  <q-date minimal v-model="enBirth" />
+                </q-btn-dropdown>
+              </div>
+            </div>
+
+            <!-- Number -->
+
+            <div class="row justify-between items-center q-my-md">
+              <div class="col-6 q-px-sm">
+                <div class="text-grey-7">
+                  <span>شماره تلفن ثابت (اختیاری)</span>
 
                   <q-btn flat color="primary" dense icon="info">
                     <q-tooltip
@@ -597,22 +688,408 @@
                   </q-btn>
                 </div>
 
-                <div v-if="showBirth" class="q-pt-sm full-width">
-                  <q-date
-                    v-model="birth"
-                    mask="YYYY/MM/DD"
-                    calendar="persian"
+                <div class="q-pt-sm full-width">
+                  <q-input outlined type="number" v-model.number="number" />
+                </div>
+              </div>
+
+              <div class="col-6 q-px-sm flex justify-end q-pt-sm">
+                <div class="text-grey-7">
+                  <span>Phone Number (Optional)</span>
+                </div>
+
+                <div class="q-pt-sm full-width">
+                  <q-input type="number" outlined v-model.number="enNumber" />
+                </div>
+              </div>
+            </div>
+
+            <!-- Minimum Expected Salary -->
+
+            <div class="row justify-between items-center q-my-md">
+              <div class="col-6 q-px-sm">
+                <div class="text-grey-7">
+                  <span>حقوق درخواستی</span>
+                </div>
+
+                <div class="q-pt-sm full-width">
+                  <q-btn-dropdown
+                    no-caps
+                    class="full-width"
+                    style="height: 55px"
+                    outline
+                    color="grey-7"
+                    align="left"
+                  >
+                    <template v-slot:label>
+                      <div class="full-width text-left">
+                        <div>{{ expectedSalary }}</div>
+                      </div>
+                    </template>
+
+                    <div>
+                      <q-list>
+                        <q-item
+                          clickable
+                          v-close-popup
+                          @click="expectedSalary = '3 - 2 میلیون تومان'"
+                        >
+                          <q-item-section>
+                            <q-item-label>3 - 2 میلیون تومان</q-item-label>
+                          </q-item-section>
+                        </q-item>
+
+                        <q-item
+                          clickable
+                          v-close-popup
+                          @click="expectedSalary = '4 - 3 میلیون تومان'"
+                        >
+                          <q-item-section>
+                            <q-item-label>4 - 3 میلیون تومان</q-item-label>
+                          </q-item-section>
+                        </q-item>
+
+                        <q-item
+                          clickable
+                          v-close-popup
+                          @click="expectedSalary = '5 - 4 میلیون تومان'"
+                        >
+                          <q-item-section>
+                            <q-item-label>5 - 4 میلیون تومان</q-item-label>
+                          </q-item-section>
+                        </q-item>
+
+                        <q-item
+                          clickable
+                          v-close-popup
+                          @click="expectedSalary = '6 - 5 میلیون تومان'"
+                        >
+                          <q-item-section>
+                            <q-item-label>6 - 5 میلیون تومان</q-item-label>
+                          </q-item-section>
+                        </q-item>
+
+                        <q-item
+                          clickable
+                          v-close-popup
+                          @click="expectedSalary = '8 - 6 میلیون تومان'"
+                        >
+                          <q-item-section>
+                            <q-item-label>8 - 6 میلیون تومان</q-item-label>
+                          </q-item-section>
+                        </q-item>
+
+                        <q-item
+                          clickable
+                          v-close-popup
+                          @click="expectedSalary = '10 - 8 میلیون تومان'"
+                        >
+                          <q-item-section>
+                            <q-item-label>10 - 8 میلیون تومان</q-item-label>
+                          </q-item-section>
+                        </q-item>
+
+                        <q-item
+                          clickable
+                          v-close-popup
+                          @click="expectedSalary = '12 - 10 میلیون تومان'"
+                        >
+                          <q-item-section>
+                            <q-item-label>12 - 10 میلیون تومان</q-item-label>
+                          </q-item-section>
+                        </q-item>
+
+                        <q-item
+                          clickable
+                          v-close-popup
+                          @click="expectedSalary = '15 - 12 میلیون تومان'"
+                        >
+                          <q-item-section>
+                            <q-item-label>15 - 12 میلیون تومان</q-item-label>
+                          </q-item-section>
+                        </q-item>
+
+                        <q-item
+                          clickable
+                          v-close-popup
+                          @click="expectedSalary = '25 - 20 میلیون تومان'"
+                        >
+                          <q-item-section>
+                            <q-item-label>25 - 20 میلیون تومان</q-item-label>
+                          </q-item-section>
+                        </q-item>
+
+                        <q-item
+                          clickable
+                          v-close-popup
+                          @click="expectedSalary = '35 - 25 ميليون تومان'"
+                        >
+                          <q-item-section>
+                            <q-item-label>35 - 25 ميليون تومان</q-item-label>
+                          </q-item-section>
+                        </q-item>
+
+                        <q-item
+                          clickable
+                          v-close-popup
+                          @click="expectedSalary = '45 - 35 ميليون تومان'"
+                        >
+                          <q-item-section>
+                            <q-item-label>45 - 35 ميليون تومان</q-item-label>
+                          </q-item-section>
+                        </q-item>
+
+                        <q-item
+                          clickable
+                          v-close-popup
+                          @click="expectedSalary = '60 - 45 میلیون تومان'"
+                        >
+                          <q-item-section>
+                            <q-item-label>60 - 45 میلیون تومان</q-item-label>
+                          </q-item-section>
+                        </q-item>
+
+                        <q-item
+                          clickable
+                          v-close-popup
+                          @click="expectedSalary = '60 میلیون تومان به بالا'"
+                        >
+                          <q-item-section>
+                            <q-item-label>60 میلیون تومان به بالا</q-item-label>
+                          </q-item-section>
+                        </q-item>
+                      </q-list>
+                    </div>
+                  </q-btn-dropdown>
+                </div>
+              </div>
+
+              <div class="col-6 q-px-sm flex justify-end">
+                <div class="text-grey-7">
+                  <span>Minimum Expected Salary</span>
+                </div>
+
+                <div class="q-pt-sm full-width">
+                  <q-btn-dropdown
+                    no-caps
+                    class="full-width"
+                    style="height: 55px; direction: ltr"
+                    outline
+                    color="grey-7"
+                    align="left"
+                  >
+                    <template v-slot:label>
+                      <div class="full-width text-right">
+                        <div>{{ enMilitaryService }}</div>
+                      </div>
+                    </template>
+
+                    <div>
+                      <q-list>
+                        <q-item
+                          clickable
+                          v-close-popup
+                          @click="expectedSalary = '2 - 3 Million Tomans'"
+                        >
+                          <q-item-section>
+                            <q-item-label>2 - 3 Million Tomans</q-item-label>
+                          </q-item-section>
+                        </q-item>
+
+                        <q-item
+                          clickable
+                          v-close-popup
+                          @click="expectedSalary = '3 - 4 Million Tomans'"
+                        >
+                          <q-item-section>
+                            <q-item-label>3 - 4 Million Tomans</q-item-label>
+                          </q-item-section>
+                        </q-item>
+
+                        <q-item
+                          clickable
+                          v-close-popup
+                          @click="expectedSalary = '5 - 6 Million Tomans'"
+                        >
+                          <q-item-section>
+                            <q-item-label>5 - 6 Million Tomans</q-item-label>
+                          </q-item-section>
+                        </q-item>
+
+                        <q-item
+                          clickable
+                          v-close-popup
+                          @click="expectedSalary = '6 - 8 Million Tomans'"
+                        >
+                          <q-item-section>
+                            <q-item-label>6 - 8 Million Tomans</q-item-label>
+                          </q-item-section>
+                        </q-item>
+
+                        <q-item
+                          clickable
+                          v-close-popup
+                          @click="expectedSalary = '8 - 10 Million Tomans'"
+                        >
+                          <q-item-section>
+                            <q-item-label>8 - 10 Million Tomans</q-item-label>
+                          </q-item-section>
+                        </q-item>
+
+                        <q-item
+                          clickable
+                          v-close-popup
+                          @click="expectedSalary = '10 - 12 Million Tomans'"
+                        >
+                          <q-item-section>
+                            <q-item-label>10 - 12 Million Tomans</q-item-label>
+                          </q-item-section>
+                        </q-item>
+
+                        <q-item
+                          clickable
+                          v-close-popup
+                          @click="expectedSalary = '12 - 15 Million Tomans'"
+                        >
+                          <q-item-section>
+                            <q-item-label>12 - 15 Million Tomans</q-item-label>
+                          </q-item-section>
+                        </q-item>
+
+                        <q-item
+                          clickable
+                          v-close-popup
+                          @click="expectedSalary = '15 - 20 Million Tomans'"
+                        >
+                          <q-item-section>
+                            <q-item-label>15 - 20 Million Tomans</q-item-label>
+                          </q-item-section>
+                        </q-item>
+
+                        <q-item
+                          clickable
+                          v-close-popup
+                          @click="expectedSalary = '20 - 25 Million Tomans'"
+                        >
+                          <q-item-section>
+                            <q-item-label>20 - 25 Million Tomans</q-item-label>
+                          </q-item-section>
+                        </q-item>
+
+                        <q-item
+                          clickable
+                          v-close-popup
+                          @click="expectedSalary = '25 - 35 Million Tomans'"
+                        >
+                          <q-item-section>
+                            <q-item-label>25 - 35 Million Tomans</q-item-label>
+                          </q-item-section>
+                        </q-item>
+
+                        <q-item
+                          clickable
+                          v-close-popup
+                          @click="expectedSalary = '35 - 45 Million Tomans'"
+                        >
+                          <q-item-section>
+                            <q-item-label>35 - 45 Million Tomans</q-item-label>
+                          </q-item-section>
+                        </q-item>
+
+                        <q-item
+                          clickable
+                          v-close-popup
+                          @click="expectedSalary = '45 - 60 Million Tomans'"
+                        >
+                          <q-item-section>
+                            <q-item-label>45 - 60 Million Tomans</q-item-label>
+                          </q-item-section>
+                        </q-item>
+
+                        <q-item
+                          clickable
+                          v-close-popup
+                          @click="expectedSalary = 'Above 60 Million Tomans'"
+                        >
+                          <q-item-section>
+                            <q-item-label>Above 60 Million Tomans</q-item-label>
+                          </q-item-section>
+                        </q-item>
+                      </q-list>
+                    </div>
+                  </q-btn-dropdown>
+                </div>
+              </div>
+            </div>
+
+            <!-- Preferred Job Category -->
+
+            <div class="row justify-between items-center q-my-md">
+              <div class="col-6 q-px-sm">
+                <div class="text-grey-7">
+                  <span
+                    >علاقمند به استخدام در کدام حوزه شغلی هستید؟ (حداکثر ۳
+                    مورد)</span
+                  >
+
+                  <q-btn flat color="primary" dense icon="info">
+                    <q-tooltip
+                      anchor="center left"
+                      self="center right"
+                      class="bg-blue-9 br-8"
+                      style="width: 175px; font-size: 13px"
+                    >
+                      شما با وارد کردن گروه های شغلی مورد علاقه خود می توانید
+                      آگهی های شغلی مرتبط با این گروه ها را در قالب ایمیل دریافت
+                      کنید.
+                    </q-tooltip>
+                  </q-btn>
+                </div>
+
+                <div class="q-pt-sm full-width">
+                  <q-select
+                    v-model="jobCategory"
+                    :options="jobOptions"
+                    color="primary"
+                    outlined
+                    clearable
+                    use-input
+                    use-chips
+                    multiple
+                    stack-label
+                    @filter="filterJobs"
+                    input-debounce="0"
                   />
                 </div>
               </div>
 
               <div class="col-6 q-px-sm flex justify-end q-pt-sm">
                 <div class="text-grey-7">
-                  <span>Birth Date</span>
+                  <span>Preferred Job Category</span>
                 </div>
 
-                <div class="q-pt-sm full-width">
-                  <q-input outlined v-model="en.birth" />
+                <div class="q-pt-sm full-width" style="direction: ltr">
+                  <q-select
+                    v-model="enJobCategory"
+                    :options="jobOptions"
+                    color="primary"
+                    use-chips
+                    outlined
+                    clearable
+                    use-input
+                    multiple
+                    @filter="filtersFn"
+                  >
+                    <template v-slot:selected>
+                      <div
+                        class="q-pa-sm br-4"
+                        style="background: #e0e0e0 !important"
+                        v-if="enJobCategory !== null"
+                      >
+                        {{ enJobCategory }}
+                      </div>
+                    </template>
+                  </q-select>
                 </div>
               </div>
             </div>
@@ -624,9 +1101,9 @@
           style="position: sticky; bottom: 0"
         >
           <div class="q-mt-md">
-            <q-btn flat color="grey-7" label="انصراف" />
+            <q-btn flat color="grey-7" unelevated label="انصراف" />
 
-            <q-btn color="primary" label="ذخیره تغییرات" />
+            <q-btn color="primary" unelevated label="ذخیره تغییرات" />
           </div>
         </div>
       </div>
@@ -636,7 +1113,7 @@
 
 <script>
 import { useQuasar } from "quasar";
-import { onMounted, ref } from "vue";
+import { onMounted, reactive, ref, toRefs } from "vue";
 
 export default {
   setup() {
@@ -657,11 +1134,22 @@ export default {
     ]);
     const region = ref();
     const birth = ref();
+    const number = ref();
+    const expectedSalary = ref();
+    const jobCategory = ref();
+    const jobOptions = ref([
+      "Google",
+      "Facebook",
+      "Twitter",
+      "Apple",
+      "Oracle",
+    ]);
 
-    const en = ref({
-      title: "Full Stack Develeoper at Aytronic",
-      militaryService: "",
-      cityOptions: ["Google", "Facebook", "Twitter", "Apple", "Oracle"],
+    const en = reactive({
+      enTitle: "Full Stack Develeoper at Aytronic",
+      enMilitaryService: "",
+      enCityOptions: ["Google", "Facebook", "Twitter", "Apple", "Oracle"],
+      enBirth: "",
     });
 
     const share = ref(false);
@@ -669,6 +1157,8 @@ export default {
     const information = ref(false);
     const editPicture = ref(false);
     const showBirth = ref(false);
+    const showCalender = ref(false);
+    const showENCalender = ref(false);
 
     function copyLink() {
       navigator.clipboard.writeText(link.value);
@@ -708,17 +1198,24 @@ export default {
       share,
       birth,
       gender,
+      number,
       region,
       getDate,
       linkedin,
       copyLink,
       showBirth,
       editAbout,
+      jobOptions,
       cityOptions,
       information,
+      jobCategory,
       editPicture,
+      showCalender,
       maritalStatus,
+      showENCalender,
+      expectedSalary,
       militaryService,
+
       filterFn(val, update) {
         update(() => {
           const needle = val.toLowerCase();
@@ -727,6 +1224,17 @@ export default {
           );
         });
       },
+
+      filterJobs(val, update) {
+        update(() => {
+          const needle = val.toLowerCase();
+          jobOptions.value = jobOptions.value.filter(
+            (v) => v.toLowerCase().indexOf(needle) > -1
+          );
+        });
+      },
+
+      ...toRefs(en),
     };
   },
 };
@@ -753,5 +1261,9 @@ export default {
   border: 1px solid #eef0f4;
   border-radius: 4px;
   padding: 0rem 0.7rem;
+}
+
+.q-date {
+  box-shadow: none !important;
 }
 </style>

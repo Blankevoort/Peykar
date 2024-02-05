@@ -11,6 +11,9 @@ export default defineComponent({
 </script>
 
 <style>
+.br-4 {
+  border-radius: 4px;
+}
 .br-8 {
   border-radius: 8px;
 }
