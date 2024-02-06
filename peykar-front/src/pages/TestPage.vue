@@ -1,14 +1,26 @@
 <template>
   <q-page>
-    <q-btn label="toggle share" @click="share = true" />
+    <q-btn label="toggle share" no-caps @click="share = true" />
 
-    <q-btn label="toggle about me" @click="editAbout = true" />
+    <q-btn label="toggle about me" no-caps @click="editAbout = true" />
 
-    <q-btn label="toggle picture change" @click="editPicture = true" />
+    <q-btn label="toggle picture change" no-caps @click="editPicture = true" />
 
-    <q-btn label="toggle basic information" @click="information = true" />
+    <q-btn
+      label="toggle basic information"
+      no-caps
+      @click="information = true"
+    />
+
+    <q-btn
+      label="toggle work experience"
+      no-caps
+      @click="createWorkExperience = true"
+    />
 
     <!-- Forms And Dialogs -->
+
+    <!-- Profile Link Dialog -->
 
     <q-dialog class="q-pa-sm" v-model="share">
       <div class="relative-position bg-white q-pa-md" style="width: 600px">
@@ -42,6 +54,8 @@
         </div>
       </div>
     </q-dialog>
+
+    <!-- About Me Dialog -->
 
     <q-dialog class="q-pa-sm" v-model="editAbout">
       <div class="bg-white q-pa-md" style="width: 800px !important">
@@ -162,53 +176,7 @@
       </div>
     </q-dialog>
 
-    <q-dialog class="q-pa-sm" v-model="editPicture">
-      <div class="bg-white q-pa-md" style="width: 600px !important">
-        <div class="full-width relative-position row" style="height: 45px">
-          <div class="absolute-right q-pt-sm">
-            <q-btn flat color="grey-6" @click="editPicture = false">
-              <q-icon name="cancel" size="32px" />
-            </q-btn>
-          </div>
-
-          <div class="text-h6 text-bold">تصویر پروفایل</div>
-        </div>
-
-        <div class="text-center q-pa-md">
-          <q-avatar size="180px">
-            <q-img
-              src="https://fileapi.jobvision.ir/StaticFiles/Candidate/DefaultImages/default-user-Male.png?v=20231122"
-            >
-              <div
-                class="absolute flex items-center justify-center"
-                style="background-color: #acacac70; height: 100%"
-              >
-                <div>
-                  <q-btn
-                    flat
-                    color="white"
-                    label="بارگذاری تصویر"
-                    icon="upload"
-                  />
-                </div>
-              </div>
-            </q-img>
-          </q-avatar>
-
-          <div class="q-mt-md text-grey-7">
-            فرمت‌های JPG, PNG, SVG, JPEG(حداکثر ۵١۲ کیلوبایت)
-          </div>
-        </div>
-
-        <div class="q-pb-md full-width">
-          <q-separator />
-        </div>
-
-        <div class="full-width text-right">
-          <q-btn color="primary" label="ذخیره تغییرات" />
-        </div>
-      </div>
-    </q-dialog>
+    <!-- Basic Information Dialog -->
 
     <q-dialog v-model="information">
       <div class="bg-white" style="width: 800px !important; height: 602px">
@@ -1027,10 +995,7 @@
             <div class="row justify-between items-center q-my-md">
               <div class="col-6 q-px-sm">
                 <div class="text-grey-7">
-                  <span
-                    >علاقمند به استخدام در کدام حوزه شغلی هستید؟ (حداکثر ۳
-                    مورد)</span
-                  >
+                  <span>علاقمند به استخدام در کدام حوزه شغلی هستید؟ </span>
 
                   <q-btn flat color="primary" dense icon="info">
                     <q-tooltip
@@ -1073,24 +1038,837 @@
                     v-model="enJobCategory"
                     :options="jobOptions"
                     color="primary"
-                    use-chips
                     outlined
                     clearable
                     use-input
+                    use-chips
                     multiple
-                    @filter="filtersFn"
+                    stack-label
+                    @filter="filterJobs"
+                    input-debounce="0"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <!-- Foreigner -->
+
+            <div class="row justify-between items-center q-my-md">
+              <div class="col-6 q-px-sm">
+                <div class="text-grey-7">
+                  <q-checkbox v-model="foreigner" />
+
+                  <span> اتباع خارجی هستم </span>
+                </div>
+              </div>
+
+              <div class="col-6 q-px-sm flex justify-end q-pt-sm">
+                <div class="text-grey-7">
+                  <q-checkbox v-model="foreigner" />
+
+                  <span>I am Foreigner</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Disability -->
+
+            <div class="row justify-between items-center q-my-md">
+              <div class="col-6 q-px-sm">
+                <div class="text-grey-7">
+                  <q-checkbox v-model="disability" />
+
+                  <span> دارای معلولیت هستم </span>
+                </div>
+              </div>
+
+              <div class="col-6 q-px-sm flex justify-end q-pt-sm">
+                <div class="text-grey-7">
+                  <q-checkbox v-model="disability" />
+
+                  <span>I have a disability</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="full-width bg-white q-pa-md text-right"
+          style="position: sticky; bottom: 0"
+        >
+          <div class="q-mt-md">
+            <q-btn flat color="grey-7" unelevated label="انصراف" />
+
+            <q-btn color="primary" unelevated label="ذخیره تغییرات" />
+          </div>
+        </div>
+      </div>
+    </q-dialog>
+
+    <!-- Work Experience Dialog -->
+
+    <q-dialog v-model="createWorkExperience">
+      <div class="bg-white" style="width: 800px !important; height: 602px">
+        <div
+          class="full-width relative-position row justify-center"
+          style="height: 45px"
+        >
+          <div class="absolute-right q-pt-sm">
+            <q-btn flat color="grey-6" @click="createWorkExperience = false">
+              <q-icon name="cancel" size="32px" />
+            </q-btn>
+          </div>
+
+          <div class="absolute-center text-h6 text-bold">
+            افزودن سابقه شغلی جدید
+          </div>
+        </div>
+
+        <div class="q-pa-md">
+          <!-- Job Title -->
+
+          <div class="row justify-between items-center q-my-md">
+            <div class="col-6 q-px-sm">
+              <div class="text-grey-7">
+                <span>عنوان شغل</span>
+              </div>
+
+              <div class="q-pt-sm full-width">
+                <q-input outlined v-model="jobTitle" />
+              </div>
+            </div>
+
+            <div class="col-6 q-px-sm flex justify-end">
+              <div class="text-grey-7">
+                <span>Job Title</span>
+              </div>
+
+              <div class="q-pt-sm full-width">
+                <q-input outlined v-model="enJobTitle" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Job Category -->
+
+          <div class="row justify-between items-center q-my-md">
+            <div class="col-6 q-px-sm">
+              <div class="text-grey-7">
+                <span>زمینه فعالیت شما در این شرکت </span>
+
+                <q-btn flat color="primary" dense icon="info">
+                  <q-tooltip
+                    anchor="center left"
+                    self="center right"
+                    class="bg-blue-9 br-8"
+                    style="width: 175px; font-size: 13px"
                   >
-                    <template v-slot:selected>
+                    مثلا زمینه فعالیت شغل حسابدار،مالی و حسابداری می باشد
+                  </q-tooltip>
+                </q-btn>
+              </div>
+
+              <div class="q-pt-sm full-width">
+                <q-select
+                  v-model="whatJobCategory"
+                  :options="whatJobOptions"
+                  color="primary"
+                  outlined
+                  clearable
+                  use-input
+                  use-chips
+                  stack-label
+                  @filter="filterWhatJobs"
+                  input-debounce="0"
+                >
+                  <template v-slot:selected>
+                    <div v-if="whatJobCategory">
                       <div
                         class="q-pa-sm br-4"
                         style="background: #e0e0e0 !important"
-                        v-if="enJobCategory !== null"
                       >
-                        {{ enJobCategory }}
+                        {{ whatJobCategory }}
+                      </div>
+                    </div>
+                  </template>
+                </q-select>
+              </div>
+            </div>
+
+            <div class="col-6 q-px-sm flex justify-end q-pt-sm">
+              <div class="text-grey-7">
+                <span>Job Category</span>
+              </div>
+
+              <div class="q-pt-sm full-width" style="direction: ltr">
+                <q-select
+                  v-model="enWhatJobCategory"
+                  :options="enWhatJobOptions"
+                  color="primary"
+                  outlined
+                  clearable
+                  use-input
+                  use-chips
+                  stack-label
+                  @filter="filterWhatJobs"
+                  input-debounce="0"
+                >
+                  <template v-slot:selected>
+                    <div v-if="enWhatJobCategory">
+                      <div
+                        class="q-pa-sm br-4"
+                        style="background: #e0e0e0 !important"
+                      >
+                        {{ enWhatJobCategory }}
+                      </div>
+                    </div>
+                  </template>
+                </q-select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Seniority Level -->
+
+          <div class="row justify-between items-center q-my-md">
+            <div class="col-6 q-px-sm">
+              <div class="text-grey-7">
+                <span>رده سازمانی </span>
+              </div>
+
+              <div class="q-pt-sm full-width">
+                <q-select
+                  v-model="seniorityLevel"
+                  :options="seniorityLevelOptions"
+                  color="primary"
+                  outlined
+                  clearable
+                  use-input
+                  use-chips
+                  stack-label
+                  @filter="filterSeniorityLevel"
+                  input-debounce="0"
+                >
+                  <template v-slot:selected>
+                    <div v-if="seniorityLevel">
+                      <div
+                        class="q-pa-sm br-4"
+                        style="background: #e0e0e0 !important"
+                      >
+                        {{ seniorityLevel }}
+                      </div>
+                    </div>
+                  </template>
+                </q-select>
+              </div>
+            </div>
+
+            <div class="col-6 q-px-sm flex justify-end q-pt-sm">
+              <div class="text-grey-7">
+                <span>Seniority Level</span>
+              </div>
+
+              <div class="q-pt-sm full-width" style="direction: ltr">
+                <q-select
+                  v-model="seniorityLevel"
+                  :options="enSeniorityLevelOptions"
+                  color="primary"
+                  outlined
+                  clearable
+                  use-input
+                  use-chips
+                  stack-label
+                  @filter="filterSeniorityLevel"
+                  input-debounce="0"
+                >
+                  <template v-slot:selected>
+                    <div v-if="enSeniorityLevel">
+                      <div
+                        class="q-pa-sm br-4"
+                        style="background: #e0e0e0 !important"
+                      >
+                        {{ enSeniorityLevel }}
+                      </div>
+                    </div>
+                  </template>
+                </q-select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Company Name -->
+
+          <div class="row justify-between items-center q-my-md">
+            <div class="col-6 q-px-sm">
+              <div class="text-grey-7">
+                <span>نام سازمان</span>
+              </div>
+
+              <div class="q-pt-sm full-width">
+                <q-input outlined v-model="companyName" />
+              </div>
+            </div>
+
+            <div class="col-6 q-px-sm flex justify-end">
+              <div class="text-grey-7">
+                <span>Company Name</span>
+              </div>
+
+              <div class="q-pt-sm full-width">
+                <q-input outlined v-model="enCompanyName" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Industry (Optional) -->
+
+          <div class="row justify-between items-center q-my-md">
+            <div class="col-6 q-px-sm">
+              <div class="text-grey-7">
+                <span>زمینه فعالیت شرکت (اختیاری) </span>
+
+                <q-btn flat color="primary" dense icon="info">
+                  <q-tooltip
+                    anchor="center left"
+                    self="center right"
+                    class="bg-blue-9 br-8"
+                    style="width: 175px; font-size: 13px"
+                  >
+                    زمینه فعالیت شرکتی که در آن مشغول بودید (مثال: مدیر مالی
+                    شرکت کاله - زمینه فعالیت شرکت: کالاهای مصرفی و تند گردش)
+                  </q-tooltip>
+                </q-btn>
+              </div>
+
+              <div class="q-pt-sm full-width">
+                <q-select
+                  v-model="industry"
+                  :options="industryOptions"
+                  color="primary"
+                  outlined
+                  clearable
+                  use-input
+                  use-chips
+                  stack-label
+                  @filter="filterIndustry"
+                  input-debounce="0"
+                >
+                  <template v-slot:selected>
+                    <div v-if="seniorityLevel">
+                      <div
+                        class="q-pa-sm br-4"
+                        style="background: #e0e0e0 !important"
+                      >
+                        {{ seniorityLevel }}
+                      </div>
+                    </div>
+                  </template>
+                </q-select>
+              </div>
+            </div>
+
+            <div class="col-6 q-px-sm flex justify-end q-pt-sm">
+              <div class="text-grey-7">
+                <span>Industry (Optional) </span>
+              </div>
+
+              <div class="q-pt-sm full-width" style="direction: ltr">
+                <q-select
+                  v-model="enIndustry"
+                  :options="enIndustryOptions"
+                  color="primary"
+                  outlined
+                  clearable
+                  use-input
+                  use-chips
+                  stack-label
+                  @filter="filterENIndustry"
+                  input-debounce="0"
+                >
+                  <template v-slot:selected>
+                    <div v-if="enIndustry">
+                      <div
+                        class="q-pa-sm br-4"
+                        style="background: #e0e0e0 !important"
+                      >
+                        {{ enIndustry }}
+                      </div>
+                    </div>
+                  </template>
+                </q-select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Country And City -->
+
+          <div class="row justify-between items-center q-my-md">
+            <div class="col-6 q-px-sm row">
+              <div class="col-6 q-pr-sm">
+                <div class="text-grey-7">
+                  <span>کشور </span>
+                </div>
+
+                <div class="q-pt-sm full-width">
+                  <q-select
+                    v-model="country"
+                    :options="countryOptions"
+                    color="primary"
+                    outlined
+                    clearable
+                    use-input
+                    use-chips
+                    stack-label
+                    @filter="filterCountry"
+                    input-debounce="0"
+                  >
+                    <template v-slot:selected>
+                      <div v-if="country">
+                        <div
+                          class="q-pa-sm br-4"
+                          style="background: #e0e0e0 !important"
+                        >
+                          {{ country }}
+                        </div>
                       </div>
                     </template>
                   </q-select>
                 </div>
+              </div>
+
+              <div class="col-6 q-pl-sm">
+                <div class="text-grey-7">
+                  <span>شهر </span>
+                </div>
+
+                <div class="q-pt-sm full-width">
+                  <q-select
+                    v-model="city"
+                    :options="cityOptions"
+                    color="primary"
+                    outlined
+                    clearable
+                    use-input
+                    use-chips
+                    stack-label
+                    @filter="filterCity"
+                    input-debounce="0"
+                  >
+                    <template v-slot:selected>
+                      <div v-if="city">
+                        <div
+                          class="q-pa-sm br-4"
+                          style="background: #e0e0e0 !important"
+                        >
+                          {{ city }}
+                        </div>
+                      </div>
+                    </template>
+                  </q-select>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-6 q-px-sm flex justify-end q-pt-sm">
+              <div class="col-6 q-px-sm row" style="direction: ltr">
+                <div class="col-6 q-pl-sm">
+                  <div class="text-grey-7">
+                    <span>Country </span>
+                  </div>
+
+                  <div class="full-width">
+                    <q-select
+                      v-model="enCountry"
+                      :options="enCountryOptions"
+                      color="primary"
+                      outlined
+                      clearable
+                      use-input
+                      use-chips
+                      stack-label
+                      @filter="filterENCountry"
+                      input-debounce="0"
+                    >
+                      <template v-slot:selected>
+                        <div v-if="enCountry">
+                          <div
+                            class="q-pa-sm br-4"
+                            style="background: #e0e0e0 !important"
+                          >
+                            {{ enCountry }}
+                          </div>
+                        </div>
+                      </template>
+                    </q-select>
+                  </div>
+                </div>
+
+                <div class="col-6 q-pr-sm">
+                  <div class="text-grey-7">
+                    <span>City </span>
+                  </div>
+
+                  <div class="full-width">
+                    <q-select
+                      v-model="enCity"
+                      :options="enCityOptions"
+                      color="primary"
+                      outlined
+                      clearable
+                      use-input
+                      use-chips
+                      stack-label
+                      @filter="filterENCity"
+                      input-debounce="0"
+                    >
+                      <template v-slot:selected>
+                        <div v-if="enCity">
+                          <div
+                            class="q-pa-sm br-4"
+                            style="background: #e0e0e0 !important"
+                          >
+                            {{ enCity }}
+                          </div>
+                        </div>
+                      </template>
+                    </q-select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Start Month And Year -->
+
+          <div class="row justify-between items-center q-my-md">
+            <div class="col-6 q-px-sm row">
+              <div class="col-6 q-pr-sm">
+                <div class="text-grey-7">
+                  <span>ماه شروع </span>
+                </div>
+
+                <div class="q-pt-sm full-width">
+                  <q-select
+                    v-model="fromMonth"
+                    :options="fromMonthOptions"
+                    color="primary"
+                    outlined
+                    clearable
+                    use-input
+                    use-chips
+                    stack-label
+                    @filter="filterFromMonth"
+                    input-debounce="0"
+                  >
+                    <template v-slot:selected>
+                      <div v-if="fromMonth">
+                        <div
+                          class="q-pa-sm br-4"
+                          style="background: #e0e0e0 !important"
+                        >
+                          {{ fromMonth }}
+                        </div>
+                      </div>
+                    </template>
+                  </q-select>
+                </div>
+              </div>
+
+              <div class="col-6 q-pl-sm">
+                <div class="text-grey-7">
+                  <span>سال شروع </span>
+                </div>
+
+                <div class="q-pt-sm full-width">
+                  <q-select
+                    v-model="fromYear"
+                    :options="fromYearOptions"
+                    color="primary"
+                    outlined
+                    clearable
+                    use-input
+                    use-chips
+                    stack-label
+                    @filter="filterFromYear"
+                    input-debounce="0"
+                  >
+                    <template v-slot:selected>
+                      <div v-if="fromYear">
+                        <div
+                          class="q-pa-sm br-4"
+                          style="background: #e0e0e0 !important"
+                        >
+                          {{ fromYear }}
+                        </div>
+                      </div>
+                    </template>
+                  </q-select>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-6 q-px-sm flex justify-end q-pt-sm">
+              <div class="col-6 q-px-sm row" style="direction: ltr">
+                <div class="col-6 q-pl-sm">
+                  <div class="text-grey-7">
+                    <span>From Month </span>
+                  </div>
+
+                  <div class="full-width">
+                    <q-select
+                      v-model="enFromMonth"
+                      :options="enFromMonthOptions"
+                      color="primary"
+                      outlined
+                      clearable
+                      use-input
+                      use-chips
+                      stack-label
+                      @filter="filterENFromMonth"
+                      input-debounce="0"
+                    >
+                      <template v-slot:selected>
+                        <div v-if="enFromMonth">
+                          <div
+                            class="q-pa-sm br-4"
+                            style="background: #e0e0e0 !important"
+                          >
+                            {{ enFromMonth }}
+                          </div>
+                        </div>
+                      </template>
+                    </q-select>
+                  </div>
+                </div>
+
+                <div class="col-6 q-pr-sm">
+                  <div class="text-grey-7">
+                    <span>From Year </span>
+                  </div>
+
+                  <div class="full-width">
+                    <q-select
+                      v-model="enFromYear"
+                      :options="enFromYearOptions"
+                      color="primary"
+                      outlined
+                      clearable
+                      use-input
+                      use-chips
+                      stack-label
+                      @filter="filterENFromYear"
+                      input-debounce="0"
+                    >
+                      <template v-slot:selected>
+                        <div v-if="enFromYear">
+                          <div
+                            class="q-pa-sm br-4"
+                            style="background: #e0e0e0 !important"
+                          >
+                            {{ enFromYear }}
+                          </div>
+                        </div>
+                      </template>
+                    </q-select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- End Month And Year -->
+
+          <div
+            v-if="!currentJob"
+            class="row justify-between items-center q-my-md"
+          >
+            <div class="col-6 q-px-sm row">
+              <div class="col-6 q-pr-sm">
+                <div class="text-grey-7">
+                  <span>ماه پایان </span>
+                </div>
+
+                <div class="q-pt-sm full-width">
+                  <q-select
+                    v-model="toMonth"
+                    :options="toMonthOptions"
+                    color="primary"
+                    outlined
+                    clearable
+                    use-input
+                    use-chips
+                    stack-label
+                    @filter="filterToMonth"
+                    input-debounce="0"
+                  >
+                    <template v-slot:selected>
+                      <div v-if="toMonth">
+                        <div
+                          class="q-pa-sm br-4"
+                          style="background: #e0e0e0 !important"
+                        >
+                          {{ toMonth }}
+                        </div>
+                      </div>
+                    </template>
+                  </q-select>
+                </div>
+              </div>
+
+              <div class="col-6 q-pl-sm">
+                <div class="text-grey-7">
+                  <span>سال پایان </span>
+                </div>
+
+                <div class="q-pt-sm full-width">
+                  <q-select
+                    v-model="toYear"
+                    :options="toYearOptions"
+                    color="primary"
+                    outlined
+                    clearable
+                    use-input
+                    use-chips
+                    stack-label
+                    @filter="filterToYear"
+                    input-debounce="0"
+                  >
+                    <template v-slot:selected>
+                      <div v-if="toYear">
+                        <div
+                          class="q-pa-sm br-4"
+                          style="background: #e0e0e0 !important"
+                        >
+                          {{ toYear }}
+                        </div>
+                      </div>
+                    </template>
+                  </q-select>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-6 q-px-sm flex justify-end q-pt-sm">
+              <div class="col-6 q-px-sm row" style="direction: ltr">
+                <div class="col-6 q-pl-sm">
+                  <div class="text-grey-7">
+                    <span>To Month </span>
+                  </div>
+
+                  <div class="full-width">
+                    <q-select
+                      v-model="enToMonth"
+                      :options="enToMonthOptions"
+                      color="primary"
+                      outlined
+                      clearable
+                      use-input
+                      use-chips
+                      stack-label
+                      @filter="filterENToMonth"
+                      input-debounce="0"
+                    >
+                      <template v-slot:selected>
+                        <div v-if="enToMonth">
+                          <div
+                            class="q-pa-sm br-4"
+                            style="background: #e0e0e0 !important"
+                          >
+                            {{ enToMonth }}
+                          </div>
+                        </div>
+                      </template>
+                    </q-select>
+                  </div>
+                </div>
+
+                <div class="col-6 q-pr-sm">
+                  <div class="text-grey-7">
+                    <span>To Year </span>
+                  </div>
+
+                  <div class="full-width">
+                    <q-select
+                      v-model="enToYear"
+                      :options="enToYearOptions"
+                      color="primary"
+                      outlined
+                      clearable
+                      use-input
+                      use-chips
+                      stack-label
+                      @filter="filterENToYear"
+                      input-debounce="0"
+                    >
+                      <template v-slot:selected>
+                        <div v-if="enToYear">
+                          <div
+                            class="q-pa-sm br-4"
+                            style="background: #e0e0e0 !important"
+                          >
+                            {{ enToYear }}
+                          </div>
+                        </div>
+                      </template>
+                    </q-select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Current Job -->
+
+          <div class="row justify-between items-center q-my-md">
+            <div class="col-6 q-px-sm">
+              <div class="text-grey-7">
+                <q-checkbox v-model="currentJob" />
+
+                <span> هنوز در این شرکت مشغول به کار هستم. </span>
+              </div>
+            </div>
+
+            <div class="col-6 q-px-sm flex justify-end q-pt-sm">
+              <div class="text-grey-7">
+                <q-checkbox v-model="currentJob" />
+
+                <span>It is my current job </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Achievements -->
+
+          <div class="row justify-between items-center q-my-md">
+            <div class="col-6 q-px-sm">
+              <div class="text-grey-7">
+                <span>دستاورد‌ها و وظایف کلیدی (اختیاری)</span>
+
+                <q-btn flat color="primary" dense icon="info">
+                  <q-tooltip
+                    anchor="center left"
+                    self="center right"
+                    class="bg-blue-9 br-8"
+                    style="width: 175px; font-size: 13px"
+                  >
+                    مثلا زمینه فعالیت شغل حسابدار،مالی و حسابداری می باشد
+                  </q-tooltip>
+                </q-btn>
+              </div>
+
+              <div class="q-pt-sm full-width">
+                <q-input v-model="achievements" outlined type="textarea" />
+              </div>
+            </div>
+
+            <div class="col-6 q-px-sm flex justify-end q-mt-sm">
+              <div class="text-grey-7">
+                <span>Achievements (Optional) </span>
+              </div>
+
+              <div class="q-pt-sm full-width">
+                <q-input v-model="enAchievements" outlined type="textarea" />
               </div>
             </div>
           </div>
@@ -1144,6 +1922,73 @@ export default {
       "Apple",
       "Oracle",
     ]);
+    const jobTitle = ref();
+    const whatJobCategory = ref();
+    const whatJobOptions = ref([
+      "Google",
+      "Facebook",
+      "Twitter",
+      "Apple",
+      "Oracle",
+    ]);
+    const seniorityLevel = ref();
+    const seniorityLevelOptions = ref([
+      "Google",
+      "Facebook",
+      "Twitter",
+      "Apple",
+      "Oracle",
+    ]);
+    const companyName = ref();
+    const industry = ref();
+    const industryOptions = ref([
+      "Google",
+      "Facebook",
+      "Twitter",
+      "Apple",
+      "Oracle",
+    ]);
+    const country = ref();
+    const countryOptions = ref([
+      "Google",
+      "Facebook",
+      "Twitter",
+      "Apple",
+      "Oracle",
+    ]);
+    const fromMonth = ref();
+    const fromMonthOptions = ref([
+      "Google",
+      "Facebook",
+      "Twitter",
+      "Apple",
+      "Oracle",
+    ]);
+    const fromYear = ref();
+    const fromYearOptions = ref([
+      "Google",
+      "Facebook",
+      "Twitter",
+      "Apple",
+      "Oracle",
+    ]);
+    const toMonth = ref();
+    const toMonthOptions = ref([
+      "Google",
+      "Facebook",
+      "Twitter",
+      "Apple",
+      "Oracle",
+    ]);
+    const toYear = ref();
+    const toYearOptions = ref([
+      "Google",
+      "Facebook",
+      "Twitter",
+      "Apple",
+      "Oracle",
+    ]);
+    const achievements = ref();
 
     const en = reactive({
       enTitle: "Full Stack Develeoper at Aytronic",
@@ -1152,13 +1997,22 @@ export default {
       enBirth: "",
     });
 
+    // Dialogs Names
+
     const share = ref(false);
     const editAbout = ref(false);
     const information = ref(false);
+    const createWorkExperience = ref(false);
+
+    // Dialogs Content
+
     const editPicture = ref(false);
     const showBirth = ref(false);
     const showCalender = ref(false);
     const showENCalender = ref(false);
+    const foreigner = ref(false);
+    const disability = ref(false);
+    const currentJob = ref(false);
 
     function copyLink() {
       navigator.clipboard.writeText(link.value);
@@ -1200,21 +2054,44 @@ export default {
       gender,
       number,
       region,
+      toYear,
+      toMonth,
       getDate,
+      country,
+      industry,
+      jobTitle,
+      fromYear,
       linkedin,
       copyLink,
+      fromMonth,
+      foreigner,
       showBirth,
       editAbout,
+      disability,
       jobOptions,
+      currentJob,
       cityOptions,
       information,
       jobCategory,
+      companyName,
       editPicture,
+      achievements,
       showCalender,
+      toYearOptions,
       maritalStatus,
+      countryOptions,
+      seniorityLevel,
+      whatJobOptions,
       showENCalender,
       expectedSalary,
+      toMonthOptions,
+      fromYearOptions,
       militaryService,
+      whatJobCategory,
+      industryOptions,
+      fromMonthOptions,
+      createWorkExperience,
+      seniorityLevelOptions,
 
       filterFn(val, update) {
         update(() => {
@@ -1229,6 +2106,60 @@ export default {
         update(() => {
           const needle = val.toLowerCase();
           jobOptions.value = jobOptions.value.filter(
+            (v) => v.toLowerCase().indexOf(needle) > -1
+          );
+        });
+      },
+
+      filterWhatJobs(val, update) {
+        update(() => {
+          const needle = val.toLowerCase();
+          whatJobOptions.value = whatJobOptions.value.filter(
+            (v) => v.toLowerCase().indexOf(needle) > -1
+          );
+        });
+      },
+
+      filterSeniorityLevel(val, update) {
+        update(() => {
+          const needle = val.toLowerCase();
+          seniorityLevelOptions.value = seniorityLevelOptions.value.filter(
+            (v) => v.toLowerCase().indexOf(needle) > -1
+          );
+        });
+      },
+
+      filterFromMonth(val, update) {
+        update(() => {
+          const needle = val.toLowerCase();
+          fromMonthOptions.value = fromMonthOptions.value.filter(
+            (v) => v.toLowerCase().indexOf(needle) > -1
+          );
+        });
+      },
+
+      filterFromYear(val, update) {
+        update(() => {
+          const needle = val.toLowerCase();
+          fromYearOptions.value = fromYearOptions.value.filter(
+            (v) => v.toLowerCase().indexOf(needle) > -1
+          );
+        });
+      },
+
+      filterToMonth(val, update) {
+        update(() => {
+          const needle = val.toLowerCase();
+          toMonthOptions.value = toMonthOptions.value.filter(
+            (v) => v.toLowerCase().indexOf(needle) > -1
+          );
+        });
+      },
+
+      filterToYear(val, update) {
+        update(() => {
+          const needle = val.toLowerCase();
+          toYearOptions.value = toYearOptions.value.filter(
             (v) => v.toLowerCase().indexOf(needle) > -1
           );
         });
