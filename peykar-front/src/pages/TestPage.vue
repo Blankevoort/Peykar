@@ -18,6 +18,14 @@
       @click="createWorkExperience = true"
     />
 
+    <q-btn label="toggle lang" no-caps @click="addLang = true" />
+
+    <q-btn
+      label="toggle add application"
+      no-caps
+      @click="addApplication = true"
+    />
+
     <!-- Forms And Dialogs -->
 
     <!-- Profile Link Dialog -->
@@ -1106,7 +1114,7 @@
       </div>
     </q-dialog>
 
-    <!-- Work Experience Dialog -->
+    <!-- Create Work Experience Dialog -->
 
     <q-dialog v-model="createWorkExperience">
       <div class="bg-white" style="width: 800px !important; height: 602px">
@@ -1858,7 +1866,13 @@
               </div>
 
               <div class="q-pt-sm full-width">
-                <q-input v-model="achievements" outlined type="textarea" />
+                <q-input
+                  maxlength="3000"
+                  counter
+                  v-model="achievements"
+                  outlined
+                  type="textarea"
+                />
               </div>
             </div>
 
@@ -1868,7 +1882,536 @@
               </div>
 
               <div class="q-pt-sm full-width">
-                <q-input v-model="enAchievements" outlined type="textarea" />
+                <q-input
+                  maxlength="3000"
+                  counter
+                  v-model="enAchievements"
+                  outlined
+                  type="textarea"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="full-width bg-white q-pa-md text-right"
+          style="position: sticky; bottom: 0"
+        >
+          <div class="q-mt-md">
+            <q-btn flat color="grey-7" unelevated label="انصراف" />
+
+            <q-btn color="primary" unelevated label="ذخیره تغییرات" />
+          </div>
+        </div>
+      </div>
+    </q-dialog>
+
+    <!-- Add Language And Level Dialog -->
+
+    <q-dialog v-model="addLang">
+      <div class="bg-white" style="width: 600px !important">
+        <div
+          class="full-width relative-position row justify-center"
+          style="height: 45px"
+        >
+          <div class="absolute-right q-pt-sm">
+            <q-btn flat color="grey-6" @click="addLang = false">
+              <q-icon name="cancel" size="32px" />
+            </q-btn>
+          </div>
+
+          <div class="absolute-center text-h6 text-bold">افزودن زبان</div>
+        </div>
+
+        <div class="q-pa-md">
+          <!-- Language -->
+
+          <div class="row justify-between items-center q-my-md">
+            <div class="col-6 q-px-sm">
+              <div class="text-grey-7">
+                <span>زبان </span>
+              </div>
+
+              <div class="q-pt-sm full-width">
+                <q-select
+                  v-model="lang"
+                  :options="langOptions"
+                  color="primary"
+                  outlined
+                  clearable
+                  use-input
+                  use-chips
+                  stack-label
+                  @filter="filterLang"
+                  input-debounce="0"
+                >
+                  <template v-slot:selected>
+                    <div v-if="lang">
+                      <div
+                        class="q-pa-sm br-4"
+                        style="background: #e0e0e0 !important"
+                      >
+                        {{ lang }}
+                      </div>
+                    </div>
+                  </template>
+                </q-select>
+              </div>
+            </div>
+
+            <div class="col-6 q-px-sm flex justify-end">
+              <div class="text-grey-7">
+                <span>Language</span>
+              </div>
+
+              <div class="q-pt-sm full-width" style="direction: ltr">
+                <q-select
+                  v-model="enLang"
+                  :options="enLangOptions"
+                  color="primary"
+                  outlined
+                  clearable
+                  use-input
+                  use-chips
+                  stack-label
+                  @filter="filterENLang"
+                  input-debounce="0"
+                >
+                  <template v-slot:selected>
+                    <div v-if="enLang">
+                      <div
+                        class="q-pa-sm br-4"
+                        style="background: #e0e0e0 !important"
+                      >
+                        {{ enLang }}
+                      </div>
+                    </div>
+                  </template>
+                </q-select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Level -->
+
+          <div class="row justify-between items-center q-my-md">
+            <div class="col-6 q-px-sm">
+              <div class="text-grey-7">
+                <span>سطح مهارت </span>
+              </div>
+
+              <div class="q-pt-sm full-width">
+                <q-select
+                  v-model="langSkill"
+                  :options="langSkillOptions"
+                  color="primary"
+                  outlined
+                  clearable
+                  use-input
+                  use-chips
+                  stack-label
+                  @filter="filterLangSkill"
+                  input-debounce="0"
+                >
+                  <template v-slot:selected>
+                    <div v-if="langSkill">
+                      <div
+                        class="q-pa-sm br-4"
+                        style="background: #e0e0e0 !important"
+                      >
+                        {{ langSkill }}
+                      </div>
+                    </div>
+                  </template>
+                </q-select>
+              </div>
+            </div>
+
+            <div class="col-6 q-px-sm flex justify-end">
+              <div class="text-grey-7">
+                <span>Skill Level</span>
+              </div>
+
+              <div class="q-pt-sm full-width" style="direction: ltr">
+                <q-select
+                  v-model="enLangSkill"
+                  :options="enLangSkillOptions"
+                  color="primary"
+                  outlined
+                  clearable
+                  use-input
+                  use-chips
+                  stack-label
+                  @filter="filterENLangSkill"
+                  input-debounce="0"
+                >
+                  <template v-slot:selected>
+                    <div v-if="enLangSkill">
+                      <div
+                        class="q-pa-sm br-4"
+                        style="background: #e0e0e0 !important"
+                      >
+                        {{ enLangSkill }}
+                      </div>
+                    </div>
+                  </template>
+                </q-select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="full-width bg-white q-pa-md text-right"
+          style="position: sticky; bottom: 0"
+        >
+          <div class="q-mt-md">
+            <q-btn flat color="grey-7" unelevated label="انصراف" />
+
+            <q-btn color="primary" unelevated label="ذخیره تغییرات" />
+          </div>
+        </div>
+      </div>
+    </q-dialog>
+
+    <!-- Add Application Dialog -->
+
+    <q-dialog v-model="addApplication">
+      <div class="bg-white" style="width: 800px !important; height: 530px">
+        <div
+          class="full-width relative-position row justify-center"
+          style="height: 45px"
+        >
+          <div class="absolute-right q-pt-sm">
+            <q-btn flat color="grey-6" @click="addApplication = false">
+              <q-icon name="cancel" size="32px" />
+            </q-btn>
+          </div>
+
+          <div class="absolute-center text-h6 text-bold">افزودن نرم افزار</div>
+        </div>
+
+        <div class="q-px-lg">
+          <!-- Applications -->
+
+          <div class="full-width">
+            <div class="col-12 row q-my-lg">
+              <div class="q-mr-md row items-center q-mt-sm">
+                <div>
+                  <div
+                    class="text-white row q-px-sm q-py-xs br-8"
+                    style="
+                      background-color: #5c6573 !important;
+                      padding-top: 5px;
+                      padding-bottom: 5px;
+                    "
+                  >
+                    <q-icon
+                      size="20px"
+                      class="q-px-xs"
+                      color="grey-5"
+                      name="delete"
+                    />
+
+                    <div class="text-bold q-ml-sm" style="font-size: 13px">
+                      Html & CSS
+                    </div>
+
+                    <q-separator
+                      color="white"
+                      class="q-mx-sm q-my-xs"
+                      vertical
+                    />
+
+                    <div>پیشرفته</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="q-mr-md row items-center q-mt-sm">
+                <div>
+                  <div
+                    class="text-white row q-px-sm q-py-xs br-8"
+                    style="
+                      background-color: #5c6573 !important;
+                      padding-top: 5px;
+                      padding-bottom: 5px;
+                    "
+                  >
+                    <q-icon
+                      size="20px"
+                      class="q-px-xs"
+                      color="grey-5"
+                      name="delete"
+                    />
+
+                    <div class="text-bold q-ml-sm" style="font-size: 13px">
+                      VueJS
+                    </div>
+
+                    <q-separator
+                      color="white"
+                      class="q-mx-sm q-my-xs"
+                      vertical
+                    />
+
+                    <div>پیشرفته</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="q-mr-md row items-center q-mt-sm">
+                <div>
+                  <div
+                    class="text-white row q-px-sm q-py-xs br-8"
+                    style="
+                      background-color: #5c6573 !important;
+                      padding-top: 5px;
+                      padding-bottom: 5px;
+                    "
+                  >
+                    <q-icon
+                      size="20px"
+                      class="q-px-xs"
+                      color="grey-5"
+                      name="delete"
+                    />
+
+                    <div class="text-bold q-ml-sm" style="font-size: 13px">
+                      Figma
+                    </div>
+
+                    <q-separator
+                      color="white"
+                      class="q-mx-sm q-my-xs"
+                      vertical
+                    />
+
+                    <div>پیشرفته</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="q-mr-md row items-center q-mt-sm">
+                <div>
+                  <div
+                    class="text-white row q-px-sm q-py-xs br-8"
+                    style="
+                      background-color: #5c6573 !important;
+                      padding-top: 5px;
+                      padding-bottom: 5px;
+                    "
+                  >
+                    <q-icon
+                      size="20px"
+                      class="q-px-xs"
+                      color="grey-5"
+                      name="delete"
+                    />
+
+                    <div class="text-bold q-ml-sm" style="font-size: 13px">
+                      Laravel
+                    </div>
+
+                    <q-separator
+                      color="white"
+                      class="q-mx-sm q-my-xs"
+                      vertical
+                    />
+
+                    <div>متوسط</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <q-input
+              outlined
+              clearable
+              v-model="searchApp"
+              placeholder="جستجوی نرم افزار"
+            >
+              <template v-slot:prepend>
+                <q-icon name="search" />
+              </template>
+            </q-input>
+          </div>
+        </div>
+
+        <div class="q-mx-lg">
+          <div
+            class="full-width br-10 q-my-md"
+            v-if="searchApp == ''"
+            style="background: #f4f4f4"
+            @click="openList = true"
+          >
+            <q-btn-dropdown
+              color="black"
+              class="q-py-md"
+              flat
+              unelevated
+              label="نرم افزار های آفیس"
+              v-model="openList"
+            >
+              <q-list style="width: 235px; height: 240px">
+                <q-item
+                  class="q-py-sm"
+                  clickable
+                  v-close-popup
+                  @click="onItemClick"
+                >
+                  <q-item-section>
+                    <q-item-label>نرم افزارهای آفیس</q-item-label>
+                  </q-item-section>
+                </q-item>
+
+                <q-separator inset />
+
+                <q-item
+                  class="q-py-sm"
+                  clickable
+                  v-close-popup
+                  @click="onItemClick"
+                >
+                  <q-item-section>
+                    <q-item-label
+                      >نرم افزارها و زبان های برنامه نویسی /
+                      DevOps</q-item-label
+                    >
+                  </q-item-section>
+                </q-item>
+
+                <q-separator inset />
+
+                <q-item
+                  class="q-py-sm"
+                  clickable
+                  v-close-popup
+                  @click="onItemClick"
+                >
+                  <q-item-section>
+                    <q-item-label>شبکه و سخت افزار / سیستم عامل</q-item-label>
+                  </q-item-section>
+                </q-item>
+
+                <q-separator inset />
+
+                <q-item
+                  class="q-py-sm"
+                  clickable
+                  v-close-popup
+                  @click="onItemClick"
+                >
+                  <q-item-section>
+                    <q-item-label>طراحی گرافیک / طراحی محصول</q-item-label>
+                  </q-item-section>
+                </q-item>
+
+                <q-separator inset />
+
+                <q-item
+                  class="q-py-sm"
+                  clickable
+                  v-close-popup
+                  @click="onItemClick"
+                >
+                  <q-item-section>
+                    <q-item-label
+                      >نرم افزارهای مهندسی برق و مهندسی پزشکی</q-item-label
+                    >
+                  </q-item-section>
+                </q-item>
+
+                <q-separator inset />
+
+                <q-item
+                  class="q-py-sm"
+                  clickable
+                  v-close-popup
+                  @click="onItemClick"
+                >
+                  <q-item-section>
+                    <q-item-label
+                      >نرم افزارهای مهندسی مکانیک و هوافضا</q-item-label
+                    >
+                  </q-item-section>
+                </q-item>
+
+                <q-separator inset />
+
+                <q-item
+                  class="q-py-sm"
+                  clickable
+                  v-close-popup
+                  @click="onItemClick"
+                >
+                  <q-item-section>
+                    <q-item-label>نرم افزارهای مهندسی معدن و مواد</q-item-label>
+                  </q-item-section>
+                </q-item>
+
+                <q-separator inset />
+              </q-list>
+            </q-btn-dropdown>
+
+            <q-separator inset />
+
+            <div class="q-py-md row">
+              <div class="addApplicationCards q-ma-xs">
+                <span> Microsoft Word</span>
+
+                <q-icon name="add" class="q-pl-sm" size="22px" />
+              </div>
+
+              <div class="addApplicationCards q-ma-xs">
+                <span> Microsoft Excel</span>
+
+                <q-icon name="add" class="q-pl-sm" size="22px" />
+              </div>
+
+              <div class="addApplicationCards q-ma-xs">
+                <span> Microsoft Access</span>
+
+                <q-icon name="add" class="q-pl-sm" size="22px" />
+              </div>
+
+              <div class="addApplicationCards q-ma-xs">
+                <span> Microsoft Powerpoint</span>
+
+                <q-icon name="add" class="q-pl-sm" size="22px" />
+              </div>
+
+              <div class="addApplicationCards q-ma-xs">
+                <span> Microsoft Visio</span>
+
+                <q-icon name="add" class="q-pl-sm" size="22px" />
+              </div>
+
+              <div class="addApplicationCards q-ma-xs">
+                <span> Microsoft Project</span>
+
+                <q-icon name="add" class="q-pl-sm" size="22px" />
+              </div>
+
+              <div class="addApplicationCards q-ma-xs">
+                <span> Microsoft One Note</span>
+
+                <q-icon name="add" class="q-pl-sm" size="22px" />
+              </div>
+
+              <div class="addApplicationCards q-ma-xs">
+                <span> Microsoft Outlook</span>
+
+                <q-icon name="add" class="q-pl-sm" size="22px" />
+              </div>
+
+              <div class="addApplicationCards q-ma-xs">
+                <span> MathType</span>
+
+                <q-icon name="add" class="q-pl-sm" size="22px" />
               </div>
             </div>
           </div>
@@ -1989,6 +2532,23 @@ export default {
       "Oracle",
     ]);
     const achievements = ref();
+    const lang = ref();
+    const langOptions = ref([
+      "Google",
+      "Facebook",
+      "Twitter",
+      "Apple",
+      "Oracle",
+    ]);
+    const langSkill = ref();
+    const langSkillOptions = ref([
+      "Google",
+      "Facebook",
+      "Twitter",
+      "Apple",
+      "Oracle",
+    ]);
+    const searchApp = ref("");
 
     const en = reactive({
       enTitle: "Full Stack Develeoper at Aytronic",
@@ -2003,6 +2563,7 @@ export default {
     const editAbout = ref(false);
     const information = ref(false);
     const createWorkExperience = ref(false);
+    const openList = ref(false);
 
     // Dialogs Content
 
@@ -2013,6 +2574,8 @@ export default {
     const foreigner = ref(false);
     const disability = ref(false);
     const currentJob = ref(false);
+    const addLang = ref(false);
+    const addApplication = ref(false);
 
     function copyLink() {
       navigator.clipboard.writeText(link.value);
@@ -2048,6 +2611,7 @@ export default {
       en,
       link,
       city,
+      lang,
       title,
       share,
       birth,
@@ -2055,6 +2619,7 @@ export default {
       number,
       region,
       toYear,
+      addLang,
       toMonth,
       getDate,
       country,
@@ -2063,9 +2628,12 @@ export default {
       fromYear,
       linkedin,
       copyLink,
+      openList,
+      searchApp,
       fromMonth,
       foreigner,
       showBirth,
+      langSkill,
       editAbout,
       disability,
       jobOptions,
@@ -2075,6 +2643,7 @@ export default {
       jobCategory,
       companyName,
       editPicture,
+      langOptions,
       achievements,
       showCalender,
       toYearOptions,
@@ -2085,11 +2654,13 @@ export default {
       showENCalender,
       expectedSalary,
       toMonthOptions,
+      addApplication,
       fromYearOptions,
       militaryService,
       whatJobCategory,
       industryOptions,
       fromMonthOptions,
+      langSkillOptions,
       createWorkExperience,
       seniorityLevelOptions,
 
@@ -2165,6 +2736,24 @@ export default {
         });
       },
 
+      filterLang(val, update) {
+        update(() => {
+          const needle = val.toLowerCase();
+          langOptions.value = langOptions.value.filter(
+            (v) => v.toLowerCase().indexOf(needle) > -1
+          );
+        });
+      },
+
+      filterLangSkill(val, update) {
+        update(() => {
+          const needle = val.toLowerCase();
+          langSkillOptions.value = langSkillOptions.value.filter(
+            (v) => v.toLowerCase().indexOf(needle) > -1
+          );
+        });
+      },
+
       ...toRefs(en),
     };
   },
@@ -2196,5 +2785,12 @@ export default {
 
 .q-date {
   box-shadow: none !important;
+}
+
+.addApplicationCards {
+  background: white;
+  border-radius: 40px;
+  padding: 10px 16px;
+  border: 1px solid #e0e0e0;
 }
 </style>
