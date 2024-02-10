@@ -4778,35 +4778,6 @@
         </div>
       </div>
     </q-dialog>
-
-    <!--
-       <div class="flex justify-center">
-      <div class="q-my-sm" style="max-width: 240px">
-        <q-tabs
-          class="active-forms-tab-parent"
-          active-class="active-forms-tab"
-          indicator-color="transparent"
-          v-model="editAbout"
-          no-caps
-        >
-          <q-tab name="persian" label="فارسی" />
-          <q-tab name="english" label="انگلیسی" />
-        </q-tabs>
-      </div>
-    </div>
-
-    <q-separator />
-       -->
-
-    <!--
-        <div class="full-width relative-position form-buttons">
-          <div class="absolute-center">
-            <q-btn flat color="grey-7" label="انصراف" />
-
-            <q-btn color="primary" label="ذخیره تغییرات" />
-          </div>
-        </div>
-         -->
   </q-page>
 </template>
 
