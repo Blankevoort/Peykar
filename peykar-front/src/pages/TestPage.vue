@@ -449,7 +449,7 @@
                 </div>
               </div>
 
-              <div class="col-6 q-px-sm">
+              <div class="col-6 q-px-sm flex justify-end">
                 <div class="text-grey-7">
                   <span>First Name</span>
                 </div>
@@ -473,7 +473,7 @@
                 </div>
               </div>
 
-              <div class="col-6 q-px-sm">
+              <div class="col-6 q-px-sm flex justify-end">
                 <div class="text-grey-7">
                   <span>Last Name</span>
                 </div>
@@ -505,7 +505,7 @@
                 </div>
               </div>
 
-              <div class="col-6 q-px-sm">
+              <div class="col-6 q-px-sm flex justify-end">
                 <div class="text-grey-7 q-pb-sm">
                   <span>Gender</span>
                 </div>
@@ -545,7 +545,7 @@
                 </div>
               </div>
 
-              <div class="col-6 q-px-sm">
+              <div class="col-6 q-px-sm flex justify-end">
                 <div class="text-grey-7 q-pb-sm">
                   <span>Marital Status</span>
                 </div>
@@ -644,7 +644,7 @@
                 </div>
               </div>
 
-              <div class="col-6 q-px-sm">
+              <div class="col-6 q-px-sm flex justify-end">
                 <div class="text-grey-7">
                   <span>Military Service Status</span>
                 </div>
@@ -753,7 +753,7 @@
                 </div>
               </div>
 
-              <div class="col-6 q-px-sm q-pt-sm">
+              <div class="col-6 q-px-sm q-pt-sm flex justify-end">
                 <div class="text-grey-7">
                   <span>City</span>
                 </div>
@@ -809,7 +809,7 @@
                 </div>
               </div>
 
-              <div class="col-6 q-px-sm q-pt-sm">
+              <div class="col-6 q-px-sm q-pt-sm flex justify-end">
                 <div class="text-grey-7">
                   <span>Region</span>
                 </div>
@@ -850,7 +850,7 @@
                 </div>
               </div>
 
-              <div class="col-6 q-px-sm">
+              <div class="col-6 q-px-sm flex justify-end">
                 <div class="text-grey-7">
                   <span>Birth Date</span>
                 </div>
@@ -900,7 +900,7 @@
                 </div>
               </div>
 
-              <div class="col-6 q-px-sm q-pt-sm">
+              <div class="col-6 q-px-sm q-pt-sm flex justify-end">
                 <div class="text-grey-7">
                   <span>Phone Number (Optional)</span>
                 </div>
@@ -1071,7 +1071,7 @@
                 </div>
               </div>
 
-              <div class="col-6 q-px-sm">
+              <div class="col-6 q-px-sm flex justify-end">
                 <div class="text-grey-7">
                   <span>Minimum Expected Salary</span>
                 </div>
@@ -1233,8 +1233,10 @@
 
             <div class="row justify-between items-center q-my-md">
               <div class="col-6 q-px-sm">
-                <div class="text-grey-7">
-                  <span>علاقمند به استخدام در کدام حوزه شغلی هستید؟ </span>
+                <div class="row">
+                  <span class="text-grey-7"
+                    >علاقمند به استخدام در کدام حوزه شغلی هستید؟ (حداکثر ۳ مورد)
+                  </span>
 
                   <q-btn flat color="primary" dense icon="info">
                     <q-tooltip
@@ -1250,7 +1252,7 @@
                   </q-btn>
                 </div>
 
-                <div class="q-pt-sm full-width">
+                <div class="full-width">
                   <q-select
                     v-model="jobCategory"
                     :options="jobOptions"
@@ -1260,6 +1262,7 @@
                     use-input
                     use-chips
                     multiple
+                    max-values="3"
                     stack-label
                     @filter="filterJobs"
                     input-debounce="0"
@@ -1267,12 +1270,12 @@
                 </div>
               </div>
 
-              <div class="col-6 q-px-sm q-pt-sm">
-                <div class="text-grey-7">
-                  <span>Preferred Job Category</span>
+              <div class="col-6 q-px-sm" style="direction: ltr">
+                <div>
+                  <span class="text-grey-7">Preferred Job Category</span>
                 </div>
 
-                <div class="q-pt-sm full-width" style="direction: ltr">
+                <div class="q-pt-sm full-width q-mt-lg">
                   <q-select
                     v-model="enJobCategory"
                     :options="jobOptions"
@@ -1281,6 +1284,7 @@
                     clearable
                     use-input
                     use-chips
+                    max-values="3"
                     multiple
                     stack-label
                     @filter="filterJobs"
@@ -1301,7 +1305,7 @@
                 </div>
               </div>
 
-              <div class="col-6 q-px-sm q-pt-sm">
+              <div class="col-6 q-px-sm q-pt-sm flex justify-end">
                 <div class="text-grey-7">
                   <q-checkbox v-model="foreigner" />
 
@@ -1321,7 +1325,7 @@
                 </div>
               </div>
 
-              <div class="col-6 q-px-sm q-pt-sm">
+              <div class="col-6 q-px-sm q-pt-sm flex justify-end">
                 <div class="text-grey-7">
                   <q-checkbox v-model="disability" />
 
@@ -1838,7 +1842,10 @@
                 <div class="q-my-md">
                   <div class="q-px-sm">
                     <div class="text-grey-7">
-                      <span>علاقمند به استخدام در کدام حوزه شغلی هستید؟ </span>
+                      <span
+                        >علاقمند به استخدام در کدام حوزه شغلی هستید؟ (حداکثر ۳
+                        مورد)
+                      </span>
 
                       <q-btn flat color="primary" dense icon="info">
                         <q-tooltip
@@ -1859,6 +1866,7 @@
                         v-model="jobCategory"
                         :options="jobOptions"
                         color="primary"
+                        max-values="3"
                         outlined
                         clearable
                         use-input
@@ -2346,11 +2354,12 @@
                       <span>Preferred Job Category</span>
                     </div>
 
-                    <div class="q-pt-sm full-width" style="direction: ltr">
+                    <div class="q-pt-sm full-width">
                       <q-select
                         v-model="enJobCategory"
                         :options="jobOptions"
                         color="primary"
+                        max-values="3"
                         outlined
                         clearable
                         use-input
