@@ -36,7 +36,7 @@
 
     <!-- Profile Link Dialog - Responsive -->
 
-    <q-dialog class="q-pa-sm" v-model="share">
+    <q-dialog v-model="share">
       <div class="relative-position bg-white q-pa-md" style="width: 600px">
         <div class="absolute-right q-pt-xs">
           <q-btn flat color="grey-6" icon="cancel" @click="share = false" />
@@ -51,7 +51,7 @@
                 class="input-box"
                 outlined
                 color="grey-5"
-                v-model="link"
+                v-model="shareLink"
               />
             </div>
 
@@ -73,7 +73,7 @@
 
     <!-- Change About Me Dialog - Responsive -->
 
-    <q-dialog class="q-pa-sm" v-model="editAboutForm">
+    <q-dialog v-model="editAboutForm">
       <!-- Medium+ Content -->
 
       <div class="bg-white q-pa-md gt-sm" style="width: 800px !important">
@@ -137,13 +137,17 @@
                   </q-btn>
                 </div>
 
-                <q-input outlined v-model="title" />
+                <q-input outlined v-model="editAboutTitle" />
               </div>
 
               <div class="col-6 q-px-sm q-mt-sm">
                 <div class="text-grey-7 q-pb-sm">Job Title</div>
 
-                <q-input class="full-width" outlined v-model="en.title" />
+                <q-input
+                  class="full-width"
+                  outlined
+                  v-model="enEditAboutTitle"
+                />
               </div>
             </div>
           </div>
@@ -152,7 +156,11 @@
             <div class="full-width flex items-center">
               <div class="q-pb-sm text-grey-7">آدرس پروفایل لینکدین شما</div>
 
-              <q-input outlined v-model="linkedin" class="full-width" />
+              <q-input
+                outlined
+                v-model="editAboutLinkedin"
+                class="full-width"
+              />
             </div>
           </div>
 
@@ -165,7 +173,11 @@
                   <span class="q-pb-sm">xxxx / 1000</span>
                 </div>
 
-                <q-input outlined type="textarea" v-model="description" />
+                <q-input
+                  outlined
+                  type="textarea"
+                  v-model="editAboutDescription"
+                />
               </div>
 
               <div class="col-6 q-px-sm">
@@ -179,7 +191,7 @@
                   class="full-width"
                   outlined
                   type="textarea"
-                  v-model="en.description"
+                  v-model="enEditAboutDescription"
                 />
               </div>
             </div>
@@ -197,7 +209,7 @@
 
       <!-- Medium- Content -->
 
-      <div class="bg-white q-pa-sm lt-md" style="width: 600px !important">
+      <div class="bg-white lt-md" style="width: 600px !important">
         <div>
           <div
             class="full-width relative-position row justify-center"
@@ -220,7 +232,7 @@
                 class="active-forms-tab-parent"
                 active-class="active-forms-tab"
                 indicator-color="transparent"
-                v-model="editAbout"
+                v-model="editAboutTabs"
                 no-caps
               >
                 <q-tab name="persian" label="فارسی" />
@@ -232,7 +244,7 @@
           <q-separator />
         </div>
 
-        <q-tab-panels v-model="editAbout">
+        <q-tab-panels v-model="editAboutTabs">
           <q-tab-panel name="persian">
             <div class="q-pa-md">
               <div class="q-pt-sm">
@@ -286,7 +298,11 @@
                     </q-btn>
                   </div>
 
-                  <q-input outlined v-model="title" class="full-width" />
+                  <q-input
+                    outlined
+                    v-model="editAboutTitle"
+                    class="full-width"
+                  />
                 </div>
               </div>
 
@@ -296,7 +312,11 @@
                     آدرس پروفایل لینکدین شما
                   </div>
 
-                  <q-input outlined v-model="linkedin" class="full-width" />
+                  <q-input
+                    outlined
+                    v-model="editAboutLinkedin"
+                    class="full-width"
+                  />
                 </div>
               </div>
 
@@ -310,7 +330,7 @@
                     counter
                     outlined
                     type="textarea"
-                    v-model="description"
+                    v-model="editAboutDescription"
                   />
                 </div>
               </div>
@@ -323,7 +343,11 @@
                 <div class="q-px-sm q-mt-sm">
                   <div class="text-grey-7 q-pb-sm">Job Title</div>
 
-                  <q-input class="full-width" outlined v-model="en.title" />
+                  <q-input
+                    class="full-width"
+                    outlined
+                    v-model="enEditAboutTitle"
+                  />
                 </div>
               </div>
 
@@ -338,7 +362,7 @@
                     class="full-width"
                     outlined
                     type="textarea"
-                    v-model="en.description"
+                    v-model="enEditAboutDescription"
                   />
                 </div>
               </div>
@@ -346,8 +370,10 @@
           </q-tab-panel>
         </q-tab-panels>
 
-        <div class="full-width relative-position q-mb-lg">
-          <div class="absolute-center">
+        <div
+          class="full-width relative-position form-buttons flex justify-center items-center"
+        >
+          <div>
             <q-btn flat color="grey-7" label="انصراف" />
 
             <q-btn color="primary" label="ذخیره تغییرات" />
@@ -358,7 +384,7 @@
 
     <!-- Change Profile Picture Dialog - Responsive -->
 
-    <q-dialog class="q-pa-sm" v-model="editPicture">
+    <q-dialog v-model="editPicture">
       <div class="bg-white q-pa-md" style="width: 600px !important">
         <div class="full-width relative-position row" style="height: 45px">
           <div class="absolute-right q-pt-sm">
@@ -445,7 +471,7 @@
                 </div>
 
                 <div class="q-pt-sm full-width">
-                  <q-input outlined v-model="name" />
+                  <q-input outlined v-model="infoName" />
                 </div>
               </div>
 
@@ -455,7 +481,7 @@
                 </div>
 
                 <div class="q-pt-sm full-width">
-                  <q-input outlined v-model="en.name" />
+                  <q-input outlined v-model="enInfoName" />
                 </div>
               </div>
             </div>
@@ -469,7 +495,7 @@
                 </div>
 
                 <div class="q-pt-sm full-width">
-                  <q-input outlined v-model="lname" />
+                  <q-input outlined v-model="infoLastName" />
                 </div>
               </div>
 
@@ -479,7 +505,7 @@
                 </div>
 
                 <div class="q-pt-sm full-width">
-                  <q-input outlined v-model="en.lname" />
+                  <q-input outlined v-model="enInfoLastName" />
                 </div>
               </div>
             </div>
@@ -495,7 +521,7 @@
                 <div class="q-pt-sm full-width gender-section">
                   <q-tabs
                     indicator-color="transparent"
-                    v-model="gender"
+                    v-model="infoGender"
                     no-caps
                     active-class="active-tab"
                   >
@@ -513,7 +539,7 @@
                 <div class="q-pt-sm full-width gender-section">
                   <q-tabs
                     indicator-color="transparent"
-                    v-model="gender"
+                    v-model="enInfoGender"
                     no-caps
                     active-class="active-tab"
                   >
@@ -535,7 +561,7 @@
                 <div class="q-pt-sm full-width gender-section">
                   <q-tabs
                     indicator-color="transparent"
-                    v-model="maritalStatus"
+                    v-model="infoMaritalStatus"
                     no-caps
                     active-class="active-tab"
                   >
@@ -553,7 +579,7 @@
                 <div class="q-pt-sm full-width gender-section">
                   <q-tabs
                     indicator-color="transparent"
-                    v-model="maritalStatus"
+                    v-model="enInfoMaritalStatus"
                     no-caps
                     active-class="active-tab"
                   >
@@ -583,7 +609,7 @@
                   >
                     <template v-slot:label>
                       <div class="full-width text-left">
-                        <div>{{ militaryService }}</div>
+                        <div>{{ infoMilitaryService }}</div>
                       </div>
                     </template>
 
@@ -660,7 +686,7 @@
                   >
                     <template v-slot:label>
                       <div class="full-width text-right">
-                        <div>{{ en.militaryService }}</div>
+                        <div>{{ enInfoMilitaryService }}</div>
                       </div>
                     </template>
 
@@ -669,7 +695,7 @@
                         <q-item
                           clickable
                           v-close-popup
-                          @click="en.militaryService = 'Completed'"
+                          @click="militaryService = 'Completed'"
                         >
                           <q-item-section>
                             <q-item-label>Completed</q-item-label>
@@ -679,7 +705,7 @@
                         <q-item
                           clickable
                           v-close-popup
-                          @click="en.militaryService = 'Exempted'"
+                          @click="militaryService = 'Exempted'"
                         >
                           <q-item-section>
                             <q-item-label>Exempted</q-item-label>
@@ -689,7 +715,7 @@
                         <q-item
                           clickable
                           v-close-popup
-                          @click="en.militaryService = 'Educational Exemption'"
+                          @click="militaryService = 'Educational Exemption'"
                         >
                           <q-item-section>
                             <q-item-label>Educational Exemption</q-item-label>
@@ -699,7 +725,7 @@
                         <q-item
                           clickable
                           v-close-popup
-                          @click="en.militaryService = 'Ongoing'"
+                          @click="militaryService = 'Ongoing'"
                         >
                           <q-item-section>
                             <q-item-label>Ongoing</q-item-label>
@@ -709,7 +735,7 @@
                         <q-item
                           clickable
                           v-close-popup
-                          @click="en.militaryService = 'Not served yet'"
+                          @click="militaryService = 'Not served yet'"
                         >
                           <q-item-section>
                             <q-item-label>Not served yet</q-item-label>
@@ -732,21 +758,21 @@
 
                 <div class="q-pt-sm full-width">
                   <q-select
-                    v-model="city"
-                    :options="cityOptions"
+                    v-model="infoCity"
+                    :options="infoOptionsCity"
                     color="primary"
                     outlined
                     clearable
                     use-input
-                    @filter="filterFn"
+                    @filter="filterCity"
                   >
                     <template v-slot:selected>
                       <div
                         class="q-pa-sm br-4"
                         style="background: #e0e0e0 !important"
-                        v-if="city !== null"
+                        v-if="infoCity !== null"
                       >
-                        {{ city }}
+                        {{ infoCity }}
                       </div>
                     </template>
                   </q-select>
@@ -760,22 +786,22 @@
 
                 <div class="q-pt-sm full-width" style="direction: ltr">
                   <q-select
-                    v-model="enCity"
-                    :options="cityOptions"
+                    v-model="enInfoCity"
+                    :options="enInfoOptionsCity"
                     color="primary"
                     use-chips
                     outlined
                     clearable
                     use-input
-                    @filter="filterFn"
+                    @filter="filterCity"
                   >
                     <template v-slot:selected>
                       <div
                         class="q-pa-sm br-4"
                         style="background: #e0e0e0 !important"
-                        v-if="enCity !== null"
+                        v-if="enInfoCity !== null"
                       >
-                        {{ enCity }}
+                        {{ enInfoCity }}
                       </div>
                     </template>
                   </q-select>
@@ -805,7 +831,7 @@
                 </div>
 
                 <div class="q-pt-sm full-width">
-                  <q-input outlined v-model="region" />
+                  <q-input outlined v-model="infoRegion" />
                 </div>
               </div>
 
@@ -815,7 +841,7 @@
                 </div>
 
                 <div class="q-pt-sm full-width">
-                  <q-input outlined v-model="en.region" />
+                  <q-input outlined v-model="enInfoRegion" />
                 </div>
               </div>
             </div>
@@ -842,7 +868,7 @@
 
                     <q-date
                       minimal
-                      v-model="birth"
+                      v-model="infoBirth"
                       mask="YYYY/MM/DD"
                       calendar="persian"
                     />
@@ -869,7 +895,7 @@
                     </div>
                   </template>
 
-                  <q-date minimal v-model="enBirth" />
+                  <q-date minimal v-model="enInfoBirth" />
                 </q-btn-dropdown>
               </div>
             </div>
@@ -896,7 +922,7 @@
                 </div>
 
                 <div class="q-pt-sm full-width">
-                  <q-input outlined type="number" v-model.number="number" />
+                  <q-input outlined type="number" v-model.number="infoNumber" />
                 </div>
               </div>
 
@@ -906,7 +932,11 @@
                 </div>
 
                 <div class="q-pt-sm full-width">
-                  <q-input type="number" outlined v-model.number="enNumber" />
+                  <q-input
+                    type="number"
+                    outlined
+                    v-model.number="enInfoNumber"
+                  />
                 </div>
               </div>
             </div>
@@ -930,7 +960,7 @@
                   >
                     <template v-slot:label>
                       <div class="full-width text-left">
-                        <div>{{ expectedSalary }}</div>
+                        <div>{{ infoinfoExpectedSalary }}</div>
                       </div>
                     </template>
 
@@ -939,7 +969,7 @@
                         <q-item
                           clickable
                           v-close-popup
-                          @click="expectedSalary = '3 - 2 میلیون تومان'"
+                          @click="infoinfoExpectedSalary = '3 - 2 میلیون تومان'"
                         >
                           <q-item-section>
                             <q-item-label>3 - 2 میلیون تومان</q-item-label>
@@ -949,7 +979,7 @@
                         <q-item
                           clickable
                           v-close-popup
-                          @click="expectedSalary = '4 - 3 میلیون تومان'"
+                          @click="infoinfoExpectedSalary = '4 - 3 میلیون تومان'"
                         >
                           <q-item-section>
                             <q-item-label>4 - 3 میلیون تومان</q-item-label>
@@ -959,7 +989,7 @@
                         <q-item
                           clickable
                           v-close-popup
-                          @click="expectedSalary = '5 - 4 میلیون تومان'"
+                          @click="infoinfoExpectedSalary = '5 - 4 میلیون تومان'"
                         >
                           <q-item-section>
                             <q-item-label>5 - 4 میلیون تومان</q-item-label>
@@ -969,7 +999,7 @@
                         <q-item
                           clickable
                           v-close-popup
-                          @click="expectedSalary = '6 - 5 میلیون تومان'"
+                          @click="infoinfoExpectedSalary = '6 - 5 میلیون تومان'"
                         >
                           <q-item-section>
                             <q-item-label>6 - 5 میلیون تومان</q-item-label>
@@ -979,7 +1009,7 @@
                         <q-item
                           clickable
                           v-close-popup
-                          @click="expectedSalary = '8 - 6 میلیون تومان'"
+                          @click="infoinfoExpectedSalary = '8 - 6 میلیون تومان'"
                         >
                           <q-item-section>
                             <q-item-label>8 - 6 میلیون تومان</q-item-label>
@@ -989,7 +1019,9 @@
                         <q-item
                           clickable
                           v-close-popup
-                          @click="expectedSalary = '10 - 8 میلیون تومان'"
+                          @click="
+                            infoinfoExpectedSalary = '10 - 8 میلیون تومان'
+                          "
                         >
                           <q-item-section>
                             <q-item-label>10 - 8 میلیون تومان</q-item-label>
@@ -999,7 +1031,9 @@
                         <q-item
                           clickable
                           v-close-popup
-                          @click="expectedSalary = '12 - 10 میلیون تومان'"
+                          @click="
+                            infoinfoExpectedSalary = '12 - 10 میلیون تومان'
+                          "
                         >
                           <q-item-section>
                             <q-item-label>12 - 10 میلیون تومان</q-item-label>
@@ -1009,7 +1043,9 @@
                         <q-item
                           clickable
                           v-close-popup
-                          @click="expectedSalary = '15 - 12 میلیون تومان'"
+                          @click="
+                            infoinfoExpectedSalary = '15 - 12 میلیون تومان'
+                          "
                         >
                           <q-item-section>
                             <q-item-label>15 - 12 میلیون تومان</q-item-label>
@@ -1019,7 +1055,9 @@
                         <q-item
                           clickable
                           v-close-popup
-                          @click="expectedSalary = '25 - 20 میلیون تومان'"
+                          @click="
+                            infoinfoExpectedSalary = '25 - 20 میلیون تومان'
+                          "
                         >
                           <q-item-section>
                             <q-item-label>25 - 20 میلیون تومان</q-item-label>
@@ -1029,7 +1067,9 @@
                         <q-item
                           clickable
                           v-close-popup
-                          @click="expectedSalary = '35 - 25 ميليون تومان'"
+                          @click="
+                            infoinfoExpectedSalary = '35 - 25 ميليون تومان'
+                          "
                         >
                           <q-item-section>
                             <q-item-label>35 - 25 ميليون تومان</q-item-label>
@@ -1039,7 +1079,9 @@
                         <q-item
                           clickable
                           v-close-popup
-                          @click="expectedSalary = '45 - 35 ميليون تومان'"
+                          @click="
+                            infoinfoExpectedSalary = '45 - 35 ميليون تومان'
+                          "
                         >
                           <q-item-section>
                             <q-item-label>45 - 35 ميليون تومان</q-item-label>
@@ -1049,7 +1091,9 @@
                         <q-item
                           clickable
                           v-close-popup
-                          @click="expectedSalary = '60 - 45 میلیون تومان'"
+                          @click="
+                            infoinfoExpectedSalary = '60 - 45 میلیون تومان'
+                          "
                         >
                           <q-item-section>
                             <q-item-label>60 - 45 میلیون تومان</q-item-label>
@@ -1059,7 +1103,9 @@
                         <q-item
                           clickable
                           v-close-popup
-                          @click="expectedSalary = '60 میلیون تومان به بالا'"
+                          @click="
+                            infoinfoExpectedSalary = '60 میلیون تومان به بالا'
+                          "
                         >
                           <q-item-section>
                             <q-item-label>60 میلیون تومان به بالا</q-item-label>
@@ -1087,7 +1133,7 @@
                   >
                     <template v-slot:label>
                       <div class="full-width text-right">
-                        <div>{{ enMilitaryService }}</div>
+                        <div>{{ enInfoinfoExpectedSalary }}</div>
                       </div>
                     </template>
 
@@ -1096,7 +1142,9 @@
                         <q-item
                           clickable
                           v-close-popup
-                          @click="expectedSalary = '2 - 3 Million Tomans'"
+                          @click="
+                            enInfoinfoExpectedSalary = '2 - 3 Million Tomans'
+                          "
                         >
                           <q-item-section>
                             <q-item-label>2 - 3 Million Tomans</q-item-label>
@@ -1106,7 +1154,9 @@
                         <q-item
                           clickable
                           v-close-popup
-                          @click="expectedSalary = '3 - 4 Million Tomans'"
+                          @click="
+                            enInfoinfoExpectedSalary = '3 - 4 Million Tomans'
+                          "
                         >
                           <q-item-section>
                             <q-item-label>3 - 4 Million Tomans</q-item-label>
@@ -1116,7 +1166,9 @@
                         <q-item
                           clickable
                           v-close-popup
-                          @click="expectedSalary = '5 - 6 Million Tomans'"
+                          @click="
+                            enInfoinfoExpectedSalary = '5 - 6 Million Tomans'
+                          "
                         >
                           <q-item-section>
                             <q-item-label>5 - 6 Million Tomans</q-item-label>
@@ -1126,7 +1178,9 @@
                         <q-item
                           clickable
                           v-close-popup
-                          @click="expectedSalary = '6 - 8 Million Tomans'"
+                          @click="
+                            enInfoinfoExpectedSalary = '6 - 8 Million Tomans'
+                          "
                         >
                           <q-item-section>
                             <q-item-label>6 - 8 Million Tomans</q-item-label>
@@ -1136,7 +1190,9 @@
                         <q-item
                           clickable
                           v-close-popup
-                          @click="expectedSalary = '8 - 10 Million Tomans'"
+                          @click="
+                            enInfoinfoExpectedSalary = '8 - 10 Million Tomans'
+                          "
                         >
                           <q-item-section>
                             <q-item-label>8 - 10 Million Tomans</q-item-label>
@@ -1146,7 +1202,9 @@
                         <q-item
                           clickable
                           v-close-popup
-                          @click="expectedSalary = '10 - 12 Million Tomans'"
+                          @click="
+                            enInfoinfoExpectedSalary = '10 - 12 Million Tomans'
+                          "
                         >
                           <q-item-section>
                             <q-item-label>10 - 12 Million Tomans</q-item-label>
@@ -1156,7 +1214,9 @@
                         <q-item
                           clickable
                           v-close-popup
-                          @click="expectedSalary = '12 - 15 Million Tomans'"
+                          @click="
+                            enInfoinfoExpectedSalary = '12 - 15 Million Tomans'
+                          "
                         >
                           <q-item-section>
                             <q-item-label>12 - 15 Million Tomans</q-item-label>
@@ -1166,7 +1226,9 @@
                         <q-item
                           clickable
                           v-close-popup
-                          @click="expectedSalary = '15 - 20 Million Tomans'"
+                          @click="
+                            enInfoinfoExpectedSalary = '15 - 20 Million Tomans'
+                          "
                         >
                           <q-item-section>
                             <q-item-label>15 - 20 Million Tomans</q-item-label>
@@ -1176,7 +1238,9 @@
                         <q-item
                           clickable
                           v-close-popup
-                          @click="expectedSalary = '20 - 25 Million Tomans'"
+                          @click="
+                            enInfoinfoExpectedSalary = '20 - 25 Million Tomans'
+                          "
                         >
                           <q-item-section>
                             <q-item-label>20 - 25 Million Tomans</q-item-label>
@@ -1186,7 +1250,9 @@
                         <q-item
                           clickable
                           v-close-popup
-                          @click="expectedSalary = '25 - 35 Million Tomans'"
+                          @click="
+                            enInfoinfoExpectedSalary = '25 - 35 Million Tomans'
+                          "
                         >
                           <q-item-section>
                             <q-item-label>25 - 35 Million Tomans</q-item-label>
@@ -1196,7 +1262,9 @@
                         <q-item
                           clickable
                           v-close-popup
-                          @click="expectedSalary = '35 - 45 Million Tomans'"
+                          @click="
+                            enInfoinfoExpectedSalary = '35 - 45 Million Tomans'
+                          "
                         >
                           <q-item-section>
                             <q-item-label>35 - 45 Million Tomans</q-item-label>
@@ -1206,7 +1274,9 @@
                         <q-item
                           clickable
                           v-close-popup
-                          @click="expectedSalary = '45 - 60 Million Tomans'"
+                          @click="
+                            enInfoinfoExpectedSalary = '45 - 60 Million Tomans'
+                          "
                         >
                           <q-item-section>
                             <q-item-label>45 - 60 Million Tomans</q-item-label>
@@ -1216,7 +1286,9 @@
                         <q-item
                           clickable
                           v-close-popup
-                          @click="expectedSalary = 'Above 60 Million Tomans'"
+                          @click="
+                            enInfoinfoExpectedSalary = 'Above 60 Million Tomans'
+                          "
                         >
                           <q-item-section>
                             <q-item-label>Above 60 Million Tomans</q-item-label>
@@ -1254,8 +1326,8 @@
 
                 <div class="full-width">
                   <q-select
-                    v-model="jobCategory"
-                    :options="jobOptions"
+                    v-model="infoJobCategory"
+                    :options="InfoOptionJobCategory"
                     color="primary"
                     outlined
                     clearable
@@ -1266,7 +1338,21 @@
                     stack-label
                     @filter="filterJobs"
                     input-debounce="0"
-                  />
+                  >
+                    <template v-slot:selected-item="scope">
+                      <q-chip
+                        style="direction: ltr"
+                        removable
+                        dense
+                        @remove="scope.removeAtIndex(scope.index)"
+                        :tabindex="scope.tabindex"
+                      >
+                        <div class="q-px-sm">
+                          {{ scope.opt.label }}
+                        </div>
+                      </q-chip>
+                    </template>
+                  </q-select>
                 </div>
               </div>
 
@@ -1277,8 +1363,8 @@
 
                 <div class="q-pt-sm full-width q-mt-lg">
                   <q-select
-                    v-model="enJobCategory"
-                    :options="jobOptions"
+                    v-model="enInfoJobCategory"
+                    :options="enInfoOptionJobCategory"
                     color="primary"
                     outlined
                     clearable
@@ -1289,7 +1375,20 @@
                     stack-label
                     @filter="filterJobs"
                     input-debounce="0"
-                  />
+                  >
+                    <template v-slot:selected-item="scope">
+                      <q-chip
+                        removable
+                        dense
+                        @remove="scope.removeAtIndex(scope.index)"
+                        :tabindex="scope.tabindex"
+                      >
+                        <div class="q-px-sm">
+                          {{ scope.opt.label }}
+                        </div>
+                      </q-chip>
+                    </template>
+                  </q-select>
                 </div>
               </div>
             </div>
@@ -1299,7 +1398,7 @@
             <div class="row justify-between items-center q-my-md">
               <div class="col-6 q-px-sm">
                 <div class="text-grey-7">
-                  <q-checkbox v-model="foreigner" />
+                  <q-checkbox v-model="infoForeigner" />
 
                   <span> اتباع خارجی هستم </span>
                 </div>
@@ -1307,7 +1406,7 @@
 
               <div class="col-6 q-px-sm q-pt-sm flex justify-end">
                 <div class="text-grey-7">
-                  <q-checkbox v-model="foreigner" />
+                  <q-checkbox v-model="enInfoForeigner" />
 
                   <span>I am Foreigner</span>
                 </div>
@@ -1319,7 +1418,7 @@
             <div class="row justify-between items-center q-my-md">
               <div class="col-6 q-px-sm">
                 <div class="text-grey-7">
-                  <q-checkbox v-model="disability" />
+                  <q-checkbox v-model="infoDisability" />
 
                   <span> دارای معلولیت هستم </span>
                 </div>
@@ -1327,7 +1426,7 @@
 
               <div class="col-6 q-px-sm q-pt-sm flex justify-end">
                 <div class="text-grey-7">
-                  <q-checkbox v-model="disability" />
+                  <q-checkbox v-model="enInfoDisability" />
 
                   <span>I have a disability</span>
                 </div>
@@ -1375,7 +1474,7 @@
                   class="active-forms-tab-parent"
                   active-class="active-forms-tab"
                   indicator-color="transparent"
-                  v-model="basicInfomation"
+                  v-model="basicInfomationTabs"
                   no-caps
                 >
                   <q-tab name="persian" label="فارسی" />
@@ -1387,7 +1486,7 @@
             <q-separator />
           </div>
 
-          <q-tab-panels v-model="basicInfomation">
+          <q-tab-panels v-model="basicInfomationTabs">
             <q-tab-panel name="persian">
               <div class="q-mt-md q-mb-sm">
                 <!-- Name -->
@@ -1399,7 +1498,7 @@
                     </div>
 
                     <div class="q-pt-sm full-width">
-                      <q-input outlined v-model="name" />
+                      <q-input outlined v-model="infoName" />
                     </div>
                   </div>
                 </div>
@@ -1413,7 +1512,7 @@
                     </div>
 
                     <div class="q-pt-sm full-width">
-                      <q-input outlined v-model="lname" />
+                      <q-input outlined v-model="infoLastName" />
                     </div>
                   </div>
                 </div>
@@ -1429,7 +1528,7 @@
                     <div class="q-pt-sm full-width gender-section">
                       <q-tabs
                         indicator-color="transparent"
-                        v-model="gender"
+                        v-model="infoGender"
                         no-caps
                         active-class="active-tab"
                       >
@@ -1451,7 +1550,7 @@
                     <div class="q-pt-sm full-width gender-section">
                       <q-tabs
                         indicator-color="transparent"
-                        v-model="maritalStatus"
+                        v-model="infoMaritalStatus"
                         no-caps
                         active-class="active-tab"
                       >
@@ -1481,7 +1580,7 @@
                       >
                         <template v-slot:label>
                           <div class="full-width text-left">
-                            <div>{{ militaryService }}</div>
+                            <div>{{ infoMilitaryService }}</div>
                           </div>
                         </template>
 
@@ -1490,7 +1589,7 @@
                             <q-item
                               clickable
                               v-close-popup
-                              @click="militaryService = 'انجام شده'"
+                              @click="infoMilitaryService = 'انجام شده'"
                             >
                               <q-item-section>
                                 <q-item-label>انجام شده</q-item-label>
@@ -1500,7 +1599,7 @@
                             <q-item
                               clickable
                               v-close-popup
-                              @click="militaryService = 'معاف دائم'"
+                              @click="infoMilitaryService = 'معاف دائم'"
                             >
                               <q-item-section>
                                 <q-item-label>معاف دائم</q-item-label>
@@ -1510,7 +1609,7 @@
                             <q-item
                               clickable
                               v-close-popup
-                              @click="militaryService = 'معافیت تحصیلی'"
+                              @click="infoMilitaryService = 'معافیت تحصیلی'"
                             >
                               <q-item-section>
                                 <q-item-label>معافیت تحصیلی</q-item-label>
@@ -1520,7 +1619,7 @@
                             <q-item
                               clickable
                               v-close-popup
-                              @click="militaryService = 'در حال انجام'"
+                              @click="infoMilitaryService = 'در حال انجام'"
                             >
                               <q-item-section>
                                 <q-item-label>در حال انجام</q-item-label>
@@ -1530,7 +1629,7 @@
                             <q-item
                               clickable
                               v-close-popup
-                              @click="militaryService = 'مشمول'"
+                              @click="infoMilitaryService = 'مشمول'"
                             >
                               <q-item-section>
                                 <q-item-label>مشمول</q-item-label>
@@ -1553,21 +1652,21 @@
 
                     <div class="q-pt-sm full-width">
                       <q-select
-                        v-model="city"
-                        :options="cityOptions"
+                        v-model="infoCity"
+                        :options="infoOptionsCity"
                         color="primary"
                         outlined
                         clearable
                         use-input
-                        @filter="filterFn"
+                        @filter="filterCity"
                       >
                         <template v-slot:selected>
                           <div
                             class="q-pa-sm br-4"
                             style="background: #e0e0e0 !important"
-                            v-if="city !== null"
+                            v-if="infoCity !== null"
                           >
-                            {{ city }}
+                            {{ infoCity }}
                           </div>
                         </template>
                       </q-select>
@@ -1597,7 +1696,7 @@
                     </div>
 
                     <div class="q-pt-sm full-width">
-                      <q-input outlined v-model="region" />
+                      <q-input outlined v-model="infoRegion" />
                     </div>
                   </div>
                 </div>
@@ -1624,7 +1723,7 @@
 
                         <q-date
                           minimal
-                          v-model="birth"
+                          v-model="infoBirth"
                           mask="YYYY/MM/DD"
                           calendar="persian"
                         />
@@ -1655,7 +1754,11 @@
                     </div>
 
                     <div class="q-pt-sm full-width">
-                      <q-input outlined type="number" v-model.number="number" />
+                      <q-input
+                        outlined
+                        type="number"
+                        v-model.number="infoNumber"
+                      />
                     </div>
                   </div>
                 </div>
@@ -1679,7 +1782,7 @@
                       >
                         <template v-slot:label>
                           <div class="full-width text-left">
-                            <div>{{ expectedSalary }}</div>
+                            <div>{{ infoExpectedSalary }}</div>
                           </div>
                         </template>
 
@@ -1688,7 +1791,7 @@
                             <q-item
                               clickable
                               v-close-popup
-                              @click="expectedSalary = '3 - 2 میلیون تومان'"
+                              @click="infoExpectedSalary = '3 - 2 میلیون تومان'"
                             >
                               <q-item-section>
                                 <q-item-label>3 - 2 میلیون تومان</q-item-label>
@@ -1698,7 +1801,7 @@
                             <q-item
                               clickable
                               v-close-popup
-                              @click="expectedSalary = '4 - 3 میلیون تومان'"
+                              @click="infoExpectedSalary = '4 - 3 میلیون تومان'"
                             >
                               <q-item-section>
                                 <q-item-label>4 - 3 میلیون تومان</q-item-label>
@@ -1708,7 +1811,7 @@
                             <q-item
                               clickable
                               v-close-popup
-                              @click="expectedSalary = '5 - 4 میلیون تومان'"
+                              @click="infoExpectedSalary = '5 - 4 میلیون تومان'"
                             >
                               <q-item-section>
                                 <q-item-label>5 - 4 میلیون تومان</q-item-label>
@@ -1718,7 +1821,7 @@
                             <q-item
                               clickable
                               v-close-popup
-                              @click="expectedSalary = '6 - 5 میلیون تومان'"
+                              @click="infoExpectedSalary = '6 - 5 میلیون تومان'"
                             >
                               <q-item-section>
                                 <q-item-label>6 - 5 میلیون تومان</q-item-label>
@@ -1728,7 +1831,7 @@
                             <q-item
                               clickable
                               v-close-popup
-                              @click="expectedSalary = '8 - 6 میلیون تومان'"
+                              @click="infoExpectedSalary = '8 - 6 میلیون تومان'"
                             >
                               <q-item-section>
                                 <q-item-label>8 - 6 میلیون تومان</q-item-label>
@@ -1738,7 +1841,9 @@
                             <q-item
                               clickable
                               v-close-popup
-                              @click="expectedSalary = '10 - 8 میلیون تومان'"
+                              @click="
+                                infoExpectedSalary = '10 - 8 میلیون تومان'
+                              "
                             >
                               <q-item-section>
                                 <q-item-label>10 - 8 میلیون تومان</q-item-label>
@@ -1748,7 +1853,9 @@
                             <q-item
                               clickable
                               v-close-popup
-                              @click="expectedSalary = '12 - 10 میلیون تومان'"
+                              @click="
+                                infoExpectedSalary = '12 - 10 میلیون تومان'
+                              "
                             >
                               <q-item-section>
                                 <q-item-label
@@ -1760,7 +1867,9 @@
                             <q-item
                               clickable
                               v-close-popup
-                              @click="expectedSalary = '15 - 12 میلیون تومان'"
+                              @click="
+                                infoExpectedSalary = '15 - 12 میلیون تومان'
+                              "
                             >
                               <q-item-section>
                                 <q-item-label
@@ -1772,7 +1881,9 @@
                             <q-item
                               clickable
                               v-close-popup
-                              @click="expectedSalary = '25 - 20 میلیون تومان'"
+                              @click="
+                                infoExpectedSalary = '25 - 20 میلیون تومان'
+                              "
                             >
                               <q-item-section>
                                 <q-item-label
@@ -1784,7 +1895,9 @@
                             <q-item
                               clickable
                               v-close-popup
-                              @click="expectedSalary = '35 - 25 ميليون تومان'"
+                              @click="
+                                infoExpectedSalary = '35 - 25 ميليون تومان'
+                              "
                             >
                               <q-item-section>
                                 <q-item-label
@@ -1796,7 +1909,9 @@
                             <q-item
                               clickable
                               v-close-popup
-                              @click="expectedSalary = '45 - 35 ميليون تومان'"
+                              @click="
+                                infoExpectedSalary = '45 - 35 ميليون تومان'
+                              "
                             >
                               <q-item-section>
                                 <q-item-label
@@ -1808,7 +1923,9 @@
                             <q-item
                               clickable
                               v-close-popup
-                              @click="expectedSalary = '60 - 45 میلیون تومان'"
+                              @click="
+                                infoExpectedSalary = '60 - 45 میلیون تومان'
+                              "
                             >
                               <q-item-section>
                                 <q-item-label
@@ -1821,7 +1938,7 @@
                               clickable
                               v-close-popup
                               @click="
-                                expectedSalary = '60 میلیون تومان به بالا'
+                                infoExpectedSalary = '60 میلیون تومان به بالا'
                               "
                             >
                               <q-item-section>
@@ -1863,8 +1980,8 @@
 
                     <div class="q-pt-sm full-width">
                       <q-select
-                        v-model="jobCategory"
-                        :options="jobOptions"
+                        v-model="infoJobCategory"
+                        :options="InfoOptionJobCategory"
                         color="primary"
                         max-values="3"
                         outlined
@@ -1875,7 +1992,21 @@
                         stack-label
                         @filter="filterJobs"
                         input-debounce="0"
-                      />
+                      >
+                        <template v-slot:selected-item="scope">
+                          <q-chip
+                            style="direction: ltr"
+                            removable
+                            dense
+                            @remove="scope.removeAtIndex(scope.index)"
+                            :tabindex="scope.tabindex"
+                          >
+                            <div class="q-px-sm">
+                              {{ scope.opt }}
+                            </div>
+                          </q-chip>
+                        </template>
+                      </q-select>
                     </div>
                   </div>
                 </div>
@@ -1885,7 +2016,7 @@
                 <div class="q-my-md">
                   <div class="q-px-sm">
                     <div class="text-grey-7">
-                      <q-checkbox v-model="foreigner" />
+                      <q-checkbox v-model="infoForeigner" />
 
                       <span> اتباع خارجی هستم </span>
                     </div>
@@ -1897,7 +2028,7 @@
                 <div class="q-my-md">
                   <div class="q-px-sm">
                     <div class="text-grey-7">
-                      <q-checkbox v-model="disability" />
+                      <q-checkbox v-model="infoDisability" />
 
                       <span> دارای معلولیت هستم </span>
                     </div>
@@ -1917,7 +2048,7 @@
                     </div>
 
                     <div class="q-pt-sm full-width">
-                      <q-input outlined v-model="en.name" />
+                      <q-input outlined v-model="enInfoName" />
                     </div>
                   </div>
                 </div>
@@ -1931,7 +2062,7 @@
                     </div>
 
                     <div class="q-pt-sm full-width">
-                      <q-input outlined v-model="en.lname" />
+                      <q-input outlined v-model="enInfoLastName" />
                     </div>
                   </div>
                 </div>
@@ -1947,7 +2078,7 @@
                     <div class="q-pt-sm full-width gender-section">
                       <q-tabs
                         indicator-color="transparent"
-                        v-model="gender"
+                        v-model="enInfoGender"
                         no-caps
                         active-class="active-tab"
                       >
@@ -1969,7 +2100,7 @@
                     <div class="q-pt-sm full-width gender-section">
                       <q-tabs
                         indicator-color="transparent"
-                        v-model="maritalStatus"
+                        v-model="enInfoMaritalStatus"
                         no-caps
                         active-class="active-tab"
                       >
@@ -1999,7 +2130,7 @@
                       >
                         <template v-slot:label>
                           <div class="full-width text-right">
-                            <div>{{ en.militaryService }}</div>
+                            <div>{{ enInfoMilitaryService }}</div>
                           </div>
                         </template>
 
@@ -2008,7 +2139,7 @@
                             <q-item
                               clickable
                               v-close-popup
-                              @click="en.militaryService = 'Completed'"
+                              @click="enInfoMilitaryService = 'Completed'"
                             >
                               <q-item-section>
                                 <q-item-label>Completed</q-item-label>
@@ -2018,7 +2149,7 @@
                             <q-item
                               clickable
                               v-close-popup
-                              @click="en.militaryService = 'Exempted'"
+                              @click="enInfoMilitaryService = 'Exempted'"
                             >
                               <q-item-section>
                                 <q-item-label>Exempted</q-item-label>
@@ -2029,7 +2160,7 @@
                               clickable
                               v-close-popup
                               @click="
-                                en.militaryService = 'Educational Exemption'
+                                enInfoMilitaryService = 'Educational Exemption'
                               "
                             >
                               <q-item-section>
@@ -2042,7 +2173,7 @@
                             <q-item
                               clickable
                               v-close-popup
-                              @click="en.militaryService = 'Ongoing'"
+                              @click="enInfoMilitaryService = 'Ongoing'"
                             >
                               <q-item-section>
                                 <q-item-label>Ongoing</q-item-label>
@@ -2052,7 +2183,7 @@
                             <q-item
                               clickable
                               v-close-popup
-                              @click="en.militaryService = 'Not served yet'"
+                              @click="enInfoMilitaryService = 'Not served yet'"
                             >
                               <q-item-section>
                                 <q-item-label>Not served yet</q-item-label>
@@ -2075,22 +2206,22 @@
 
                     <div class="q-pt-sm full-width" style="direction: ltr">
                       <q-select
-                        v-model="enCity"
-                        :options="cityOptions"
+                        v-model="enInfoCity"
+                        :options="enInfoOptionsCity"
                         color="primary"
                         use-chips
                         outlined
                         clearable
                         use-input
-                        @filter="filterFn"
+                        @filter="filterCity"
                       >
                         <template v-slot:selected>
                           <div
                             class="q-pa-sm br-4"
                             style="background: #e0e0e0 !important"
-                            v-if="enCity !== null"
+                            v-if="enInfoCity !== null"
                           >
-                            {{ enCity }}
+                            {{ enInfoCity }}
                           </div>
                         </template>
                       </q-select>
@@ -2107,7 +2238,7 @@
                     </div>
 
                     <div class="q-pt-sm full-width">
-                      <q-input outlined v-model="en.region" />
+                      <q-input outlined v-model="enInfoRegion" />
                     </div>
                   </div>
                 </div>
@@ -2134,7 +2265,7 @@
                         </div>
                       </template>
 
-                      <q-date minimal v-model="enBirth" />
+                      <q-date minimal v-model="enInfoBirth" />
                     </q-btn-dropdown>
                   </div>
                 </div>
@@ -2151,7 +2282,7 @@
                       <q-input
                         type="number"
                         outlined
-                        v-model.number="enNumber"
+                        v-model.number="enInfoNumber"
                       />
                     </div>
                   </div>
@@ -2176,7 +2307,7 @@
                       >
                         <template v-slot:label>
                           <div class="full-width text-right">
-                            <div>{{ enMilitaryService }}</div>
+                            <div>{{ enInfoinfoExpectedSalary }}</div>
                           </div>
                         </template>
 
@@ -2185,7 +2316,10 @@
                             <q-item
                               clickable
                               v-close-popup
-                              @click="expectedSalary = '2 - 3 Million Tomans'"
+                              @click="
+                                enInfoinfoExpectedSalary =
+                                  '2 - 3 Million Tomans'
+                              "
                             >
                               <q-item-section>
                                 <q-item-label
@@ -2197,7 +2331,10 @@
                             <q-item
                               clickable
                               v-close-popup
-                              @click="expectedSalary = '3 - 4 Million Tomans'"
+                              @click="
+                                enInfoinfoExpectedSalary =
+                                  '3 - 4 Million Tomans'
+                              "
                             >
                               <q-item-section>
                                 <q-item-label
@@ -2209,7 +2346,10 @@
                             <q-item
                               clickable
                               v-close-popup
-                              @click="expectedSalary = '5 - 6 Million Tomans'"
+                              @click="
+                                enInfoinfoExpectedSalary =
+                                  '5 - 6 Million Tomans'
+                              "
                             >
                               <q-item-section>
                                 <q-item-label
@@ -2221,7 +2361,10 @@
                             <q-item
                               clickable
                               v-close-popup
-                              @click="expectedSalary = '6 - 8 Million Tomans'"
+                              @click="
+                                enInfoinfoExpectedSalary =
+                                  '6 - 8 Million Tomans'
+                              "
                             >
                               <q-item-section>
                                 <q-item-label
@@ -2233,7 +2376,10 @@
                             <q-item
                               clickable
                               v-close-popup
-                              @click="expectedSalary = '8 - 10 Million Tomans'"
+                              @click="
+                                enInfoinfoExpectedSalary =
+                                  '8 - 10 Million Tomans'
+                              "
                             >
                               <q-item-section>
                                 <q-item-label
@@ -2245,7 +2391,10 @@
                             <q-item
                               clickable
                               v-close-popup
-                              @click="expectedSalary = '10 - 12 Million Tomans'"
+                              @click="
+                                enInfoinfoExpectedSalary =
+                                  '10 - 12 Million Tomans'
+                              "
                             >
                               <q-item-section>
                                 <q-item-label
@@ -2257,7 +2406,10 @@
                             <q-item
                               clickable
                               v-close-popup
-                              @click="expectedSalary = '12 - 15 Million Tomans'"
+                              @click="
+                                enInfoinfoExpectedSalary =
+                                  '12 - 15 Million Tomans'
+                              "
                             >
                               <q-item-section>
                                 <q-item-label
@@ -2269,7 +2421,10 @@
                             <q-item
                               clickable
                               v-close-popup
-                              @click="expectedSalary = '15 - 20 Million Tomans'"
+                              @click="
+                                enInfoinfoExpectedSalary =
+                                  '15 - 20 Million Tomans'
+                              "
                             >
                               <q-item-section>
                                 <q-item-label
@@ -2281,7 +2436,10 @@
                             <q-item
                               clickable
                               v-close-popup
-                              @click="expectedSalary = '20 - 25 Million Tomans'"
+                              @click="
+                                enInfoinfoExpectedSalary =
+                                  '20 - 25 Million Tomans'
+                              "
                             >
                               <q-item-section>
                                 <q-item-label
@@ -2293,7 +2451,10 @@
                             <q-item
                               clickable
                               v-close-popup
-                              @click="expectedSalary = '25 - 35 Million Tomans'"
+                              @click="
+                                enInfoinfoExpectedSalary =
+                                  '25 - 35 Million Tomans'
+                              "
                             >
                               <q-item-section>
                                 <q-item-label
@@ -2305,7 +2466,10 @@
                             <q-item
                               clickable
                               v-close-popup
-                              @click="expectedSalary = '35 - 45 Million Tomans'"
+                              @click="
+                                enInfoinfoExpectedSalary =
+                                  '35 - 45 Million Tomans'
+                              "
                             >
                               <q-item-section>
                                 <q-item-label
@@ -2317,7 +2481,10 @@
                             <q-item
                               clickable
                               v-close-popup
-                              @click="expectedSalary = '45 - 60 Million Tomans'"
+                              @click="
+                                enInfoinfoExpectedSalary =
+                                  '45 - 60 Million Tomans'
+                              "
                             >
                               <q-item-section>
                                 <q-item-label
@@ -2330,7 +2497,8 @@
                               clickable
                               v-close-popup
                               @click="
-                                expectedSalary = 'Above 60 Million Tomans'
+                                enInfoinfoExpectedSalary =
+                                  'Above 60 Million Tomans'
                               "
                             >
                               <q-item-section>
@@ -2354,10 +2522,10 @@
                       <span>Preferred Job Category</span>
                     </div>
 
-                    <div class="q-pt-sm full-width">
+                    <div class="q-pt-sm full-width" style="direction: rtl">
                       <q-select
-                        v-model="enJobCategory"
-                        :options="jobOptions"
+                        v-model="enInfoJobCategory"
+                        :options="enInfoOptionJobCategory"
                         color="primary"
                         max-values="3"
                         outlined
@@ -2368,7 +2536,20 @@
                         stack-label
                         @filter="filterJobs"
                         input-debounce="0"
-                      />
+                      >
+                        <template v-slot:selected-item="scope">
+                          <q-chip
+                            removable
+                            dense
+                            @remove="scope.removeAtIndex(scope.index)"
+                            :tabindex="scope.tabindex"
+                          >
+                            <div class="q-px-sm">
+                              {{ scope.opt.label }}
+                            </div>
+                          </q-chip>
+                        </template>
+                      </q-select>
                     </div>
                   </div>
                 </div>
@@ -2378,7 +2559,7 @@
                 <div class="q-my-md">
                   <div class="q-px-sm q-pt-sm">
                     <div class="text-grey-7">
-                      <q-checkbox v-model="foreigner" />
+                      <q-checkbox v-model="enInfoForeigner" />
 
                       <span>I am Foreigner</span>
                     </div>
@@ -2390,7 +2571,7 @@
                 <div class="q-my-md">
                   <div class="q-px-sm q-pt-sm">
                     <div class="text-grey-7">
-                      <q-checkbox v-model="disability" />
+                      <q-checkbox v-model="enInfoDisability" />
 
                       <span>I have a disability</span>
                     </div>
@@ -2401,8 +2582,10 @@
           </q-tab-panels>
         </div>
 
-        <div class="full-width relative-position form-buttons">
-          <div class="absolute-center">
+        <div
+          class="full-width relative-position form-buttons flex justify-center items-center"
+        >
+          <div>
             <q-btn flat color="grey-7" label="انصراف" />
 
             <q-btn color="primary" label="ذخیره تغییرات" />
@@ -4050,8 +4233,10 @@
           </q-tab-panel>
         </q-tab-panels>
 
-        <div class="full-width relative-position form-buttons">
-          <div class="absolute-center">
+        <div
+          class="full-width relative-position form-buttons flex justify-center items-center"
+        >
+          <div>
             <q-btn flat color="grey-7" label="انصراف" />
 
             <q-btn color="primary" label="ذخیره تغییرات" />
@@ -4797,32 +4982,75 @@ import { onMounted, reactive, ref, toRefs } from "vue";
 export default {
   setup() {
     const $q = useQuasar();
-    const link = ref("jobvision.ir/cv/83836552-092743");
+    const shareLink = ref("jobvision.ir/cv/83836552-092743");
+
+    const editAbout = reactive({
+      editAboutTitle: "",
+      editAboutLinkedin: "",
+      editAboutDescription: "",
+
+      // English Forms/Content
+
+      enEditAboutTitle: "",
+      enEditAboutDescription: "",
+    });
+
+    const infoDialog = reactive({
+      infoName: "",
+      infoLastName: "",
+      infoGender: "",
+      infoMaritalStatus: "",
+      infoCity: "",
+      infoMilitaryService: "",
+      infoRegion: "",
+      infoBirth: "",
+      infoNumber: "",
+      infoinfoExpectedSalary: "",
+      infoJobCategory: "",
+      infoForeigner: false,
+      infoDisability: false,
+
+      // English Forms/Content
+
+      enInfoName: "",
+      enInfoLastName: "",
+      enInfoGender: "",
+      enInfoMaritalStatus: "",
+      enInfoCity: "",
+      enInfoMilitaryService: "",
+      enInfoRegion: "",
+      enInfoBirth: "",
+      enInfoNumber: "",
+      enInfoinfoExpectedSalary: "",
+      enInfoJobCategory: "",
+      enInfoForeigner: false,
+      enInfoDisability: false,
+    });
+
+    const options = reactive({
+      infoOptionsCity: ["Google", "Facebook", "Twitter", "Apple", "Oracle"],
+      InfoOptionJobCategory: [
+        "Google",
+        "Facebook",
+        "Twitter",
+        "Apple",
+        "Oracle",
+      ],
+
+      // English Options
+
+      enInfoOptionsCity: ["Google", "Facebook", "Twitter", "Apple", "Oracle"],
+      enInfoOptionJobCategory: [
+        "Google",
+        "Facebook",
+        "Twitter",
+        "Apple",
+        "Oracle",
+      ],
+    });
+
     const title = ref("دولوپر فول استک در شرکت آیترونیک");
     const linkedin = ref();
-    const gender = ref("male");
-    const maritalStatus = ref("single");
-    const militaryService = ref();
-    const city = ref();
-    const cityOptions = ref([
-      "Google",
-      "Facebook",
-      "Twitter",
-      "Apple",
-      "Oracle",
-    ]);
-    const region = ref();
-    const birth = ref();
-    const number = ref();
-    const expectedSalary = ref();
-    const jobCategory = ref();
-    const jobOptions = ref([
-      "Google",
-      "Facebook",
-      "Twitter",
-      "Apple",
-      "Oracle",
-    ]);
     const jobTitle = ref();
     const whatJobCategory = ref();
     const whatJobOptions = ref([
@@ -4907,40 +5135,31 @@ export default {
       "Oracle",
     ]);
     const searchApp = ref("");
-    const editAbout = ref("persian");
-    const basicInfomation = ref("persian");
+    const editAboutTabs = ref("persian");
+    const basicInfomationTabs = ref("persian");
     const createExperience = ref("persian");
     const addLang = ref("persian");
-
-    const en = reactive({
-      enTitle: "Full Stack Develeoper at Aytronic",
-      enMilitaryService: "",
-      enCityOptions: ["Google", "Facebook", "Twitter", "Apple", "Oracle"],
-      enBirth: "",
-    });
 
     // Dialogs Names
 
     const share = ref(false);
-    const editAboutForm = ref(false);
-    const information = ref(false);
-    const createWorkExperience = ref(false);
     const openList = ref(false);
+    const editPicture = ref(false);
+    const information = ref(false);
+    const editAboutForm = ref(false);
+    const createWorkExperience = ref(false);
 
     // Dialogs Content
 
-    const editPicture = ref(false);
     const showBirth = ref(false);
     const showCalender = ref(false);
     const showENCalender = ref(false);
-    const foreigner = ref(false);
-    const disability = ref(false);
     const currentJob = ref(false);
     const addLangDialog = ref(false);
     const addApplication = ref(false);
 
     function copyLink() {
-      navigator.clipboard.writeText(link.value);
+      navigator.clipboard.writeText(shareLink.value);
 
       $q.notify({
         group: false,
@@ -4962,7 +5181,7 @@ export default {
         "/" +
         currentdate.getDate();
 
-      birth.value = dateTime;
+      infoDialog.infoBirth = dateTime;
     }
 
     onMounted(() => {
@@ -4970,16 +5189,9 @@ export default {
     });
 
     return {
-      en,
-      link,
-      city,
       lang,
       title,
       share,
-      birth,
-      gender,
-      number,
-      region,
       toYear,
       addLang,
       toMonth,
@@ -4991,49 +5203,42 @@ export default {
       linkedin,
       copyLink,
       openList,
+      shareLink,
       searchApp,
       fromMonth,
-      foreigner,
       showBirth,
       langSkill,
-      editAbout,
-      disability,
-      jobOptions,
       currentJob,
-      cityOptions,
       information,
-      jobCategory,
       companyName,
       editPicture,
       langOptions,
       achievements,
       showCalender,
+      editAboutTabs,
       addLangDialog,
       editAboutForm,
       toYearOptions,
-      maritalStatus,
       countryOptions,
       seniorityLevel,
       whatJobOptions,
       showENCalender,
-      expectedSalary,
       toMonthOptions,
       addApplication,
-      basicInfomation,
       fromYearOptions,
-      militaryService,
       whatJobCategory,
       industryOptions,
+      createExperience,
       fromMonthOptions,
       langSkillOptions,
-      createExperience,
+      basicInfomationTabs,
       createWorkExperience,
       seniorityLevelOptions,
 
-      filterFn(val, update) {
+      filterCity(val, update) {
         update(() => {
           const needle = val.toLowerCase();
-          cityOptions.value = cityOptions.value.filter(
+          options.infoOptionsCity = options.infoOptionsCity.filter(
             (v) => v.toLowerCase().indexOf(needle) > -1
           );
         });
@@ -5042,7 +5247,7 @@ export default {
       filterJobs(val, update) {
         update(() => {
           const needle = val.toLowerCase();
-          jobOptions.value = jobOptions.value.filter(
+          options.InfoOptionJobCategory = InfoOptionJobCategory.filter(
             (v) => v.toLowerCase().indexOf(needle) > -1
           );
         });
@@ -5120,7 +5325,7 @@ export default {
         });
       },
 
-      ...toRefs(en),
+      ...toRefs(editAbout, infoDialog, options),
     };
   },
 };
