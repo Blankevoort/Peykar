@@ -769,8 +769,8 @@
                     <template v-slot:selected>
                       <div
                         class="q-pa-sm br-4"
+                        v-if="infoCity"
                         style="background: #e0e0e0 !important"
-                        v-if="infoCity !== null"
                       >
                         {{ infoCity }}
                       </div>
@@ -793,13 +793,13 @@
                     outlined
                     clearable
                     use-input
-                    @filter="filterCity"
+                    @filter="enFilterCity"
                   >
                     <template v-slot:selected>
                       <div
                         class="q-pa-sm br-4"
                         style="background: #e0e0e0 !important"
-                        v-if="enInfoCity !== null"
+                        v-if="enInfoCity"
                       >
                         {{ enInfoCity }}
                       </div>
@@ -1325,10 +1325,11 @@
                 </div>
 
                 <div class="full-width">
+                  <!-- @filter="filterJobs" -->
                   <q-select
                     v-model="infoJobCategory"
                     :options="InfoOptionJobCategory"
-                    color="primary"
+                    color="dark"
                     outlined
                     clearable
                     use-input
@@ -1337,22 +1338,7 @@
                     max-values="3"
                     stack-label
                     @filter="filterJobs"
-                    input-debounce="0"
-                  >
-                    <template v-slot:selected-item="scope">
-                      <q-chip
-                        style="direction: ltr"
-                        removable
-                        dense
-                        @remove="scope.removeAtIndex(scope.index)"
-                        :tabindex="scope.tabindex"
-                      >
-                        <div class="q-px-sm">
-                          {{ scope.opt.label }}
-                        </div>
-                      </q-chip>
-                    </template>
-                  </q-select>
+                  />
                 </div>
               </div>
 
@@ -1365,7 +1351,7 @@
                   <q-select
                     v-model="enInfoJobCategory"
                     :options="enInfoOptionJobCategory"
-                    color="primary"
+                    color="dark"
                     outlined
                     clearable
                     use-input
@@ -1373,8 +1359,7 @@
                     max-values="3"
                     multiple
                     stack-label
-                    @filter="filterJobs"
-                    input-debounce="0"
+                    @filter="enFilterJobs"
                   >
                     <template v-slot:selected-item="scope">
                       <q-chip
@@ -1654,7 +1639,7 @@
                       <q-select
                         v-model="infoCity"
                         :options="infoOptionsCity"
-                        color="primary"
+                        color="dark"
                         outlined
                         clearable
                         use-input
@@ -1664,7 +1649,7 @@
                           <div
                             class="q-pa-sm br-4"
                             style="background: #e0e0e0 !important"
-                            v-if="infoCity !== null"
+                            v-if="infoCity"
                           >
                             {{ infoCity }}
                           </div>
@@ -1982,7 +1967,7 @@
                       <q-select
                         v-model="infoJobCategory"
                         :options="InfoOptionJobCategory"
-                        color="primary"
+                        color="dark"
                         max-values="3"
                         outlined
                         clearable
@@ -1991,7 +1976,6 @@
                         multiple
                         stack-label
                         @filter="filterJobs"
-                        input-debounce="0"
                       >
                         <template v-slot:selected-item="scope">
                           <q-chip
@@ -2002,7 +1986,7 @@
                             :tabindex="scope.tabindex"
                           >
                             <div class="q-px-sm">
-                              {{ scope.opt }}
+                              {{ scope.opt.label }}
                             </div>
                           </q-chip>
                         </template>
@@ -2208,18 +2192,18 @@
                       <q-select
                         v-model="enInfoCity"
                         :options="enInfoOptionsCity"
-                        color="primary"
+                        color="dark"
                         use-chips
                         outlined
                         clearable
                         use-input
-                        @filter="filterCity"
+                        @filter="enFilterCity"
                       >
                         <template v-slot:selected>
                           <div
                             class="q-pa-sm br-4"
                             style="background: #e0e0e0 !important"
-                            v-if="enInfoCity !== null"
+                            v-if="enInfoCity"
                           >
                             {{ enInfoCity }}
                           </div>
@@ -2526,7 +2510,7 @@
                       <q-select
                         v-model="enInfoJobCategory"
                         :options="enInfoOptionJobCategory"
-                        color="primary"
+                        color="dark"
                         max-values="3"
                         outlined
                         clearable
@@ -2534,8 +2518,7 @@
                         use-chips
                         multiple
                         stack-label
-                        @filter="filterJobs"
-                        input-debounce="0"
+                        @filter="enFilterJobs"
                       >
                         <template v-slot:selected-item="scope">
                           <q-chip
@@ -2626,7 +2609,7 @@
               </div>
 
               <div class="q-pt-sm full-width">
-                <q-input outlined v-model="jobTitle" />
+                <q-input outlined v-model="workEXPJobTitle" />
               </div>
             </div>
 
@@ -2636,7 +2619,7 @@
               </div>
 
               <div class="q-pt-sm full-width">
-                <q-input outlined v-model="enJobTitle" />
+                <q-input outlined v-model="enWorkEXPJobTitle" />
               </div>
             </div>
           </div>
@@ -2662,24 +2645,24 @@
 
               <div class="q-pt-sm full-width">
                 <q-select
-                  v-model="whatJobCategory"
-                  :options="whatJobOptions"
-                  color="primary"
+                  v-model="workEXPWhatJobCategory"
+                  :options="workEXPOptionsWhatJob"
+                  color="dark"
                   outlined
                   clearable
                   use-input
                   use-chips
                   stack-label
-                  @filter="filterWhatJobs"
+                  @filter="workEXPFilterWhatJobs"
                   input-debounce="0"
                 >
                   <template v-slot:selected>
-                    <div v-if="whatJobCategory">
+                    <div v-if="workEXPWhatJobCategory">
                       <div
                         class="q-pa-sm br-4"
                         style="background: #e0e0e0 !important"
                       >
-                        {{ whatJobCategory }}
+                        {{ workEXPWhatJobCategory }}
                       </div>
                     </div>
                   </template>
@@ -2696,7 +2679,7 @@
                 <q-select
                   v-model="enWhatJobCategory"
                   :options="enWhatJobOptions"
-                  color="primary"
+                  color="dark"
                   outlined
                   clearable
                   use-input
@@ -2730,24 +2713,24 @@
 
               <div class="q-pt-sm full-width">
                 <q-select
-                  v-model="seniorityLevel"
-                  :options="seniorityLevelOptions"
-                  color="primary"
+                  v-model="workEXPSeniorityLevel"
+                  :options="workEXPOptionsSeniorityLevel"
+                  color="dark"
                   outlined
                   clearable
                   use-input
                   use-chips
                   stack-label
-                  @filter="filterSeniorityLevel"
+                  @filter="workEXPSeniorityLevelFilter"
                   input-debounce="0"
                 >
                   <template v-slot:selected>
-                    <div v-if="seniorityLevel">
+                    <div v-if="workEXPSeniorityLevel">
                       <div
                         class="q-pa-sm br-4"
                         style="background: #e0e0e0 !important"
                       >
-                        {{ seniorityLevel }}
+                        {{ workEXPSeniorityLevel }}
                       </div>
                     </div>
                   </template>
@@ -2762,24 +2745,24 @@
 
               <div class="q-pt-sm full-width" style="direction: ltr">
                 <q-select
-                  v-model="seniorityLevel"
-                  :options="enSeniorityLevelOptions"
-                  color="primary"
+                  v-model="enWorkEXPSeniorityLevel"
+                  :options="enWorkEXPOptionsSeniorityLevel"
+                  color="dark"
                   outlined
                   clearable
                   use-input
                   use-chips
                   stack-label
-                  @filter="filterSeniorityLevel"
+                  @filter="enWorkEXPSeniorityLevelFilter"
                   input-debounce="0"
                 >
                   <template v-slot:selected>
-                    <div v-if="enSeniorityLevel">
+                    <div v-if="enWorkEXPSeniorityLevel">
                       <div
                         class="q-pa-sm br-4"
                         style="background: #e0e0e0 !important"
                       >
-                        {{ enSeniorityLevel }}
+                        {{ enWorkEXPSeniorityLevel }}
                       </div>
                     </div>
                   </template>
@@ -2797,7 +2780,7 @@
               </div>
 
               <div class="q-pt-sm full-width">
-                <q-input outlined v-model="companyName" />
+                <q-input outlined v-model="workEXPCompanyName" />
               </div>
             </div>
 
@@ -2807,7 +2790,7 @@
               </div>
 
               <div class="q-pt-sm full-width">
-                <q-input outlined v-model="enCompanyName" />
+                <q-input outlined v-model="enWorkEXPCompanyName" />
               </div>
             </div>
           </div>
@@ -2834,24 +2817,24 @@
 
               <div class="q-pt-sm full-width">
                 <q-select
-                  v-model="industry"
-                  :options="industryOptions"
-                  color="primary"
+                  v-model="workEXPIndustry"
+                  :options="workEXPIndustryOptions"
+                  color="dark"
                   outlined
                   clearable
                   use-input
                   use-chips
                   stack-label
-                  @filter="filterIndustry"
+                  @filter="workEXPIFilterIndustry"
                   input-debounce="0"
                 >
                   <template v-slot:selected>
-                    <div v-if="seniorityLevel">
+                    <div v-if="workEXPIndustryFilter">
                       <div
                         class="q-pa-sm br-4"
                         style="background: #e0e0e0 !important"
                       >
-                        {{ seniorityLevel }}
+                        {{ workEXPIndustry }}
                       </div>
                     </div>
                   </template>
@@ -2866,24 +2849,24 @@
 
               <div class="q-pt-sm full-width" style="direction: ltr">
                 <q-select
-                  v-model="enIndustry"
-                  :options="enIndustryOptions"
-                  color="primary"
+                  v-model="enWorkEXPIndustry"
+                  :options="enWorkEXPIndustryOptions"
+                  color="dark"
                   outlined
                   clearable
                   use-input
                   use-chips
                   stack-label
-                  @filter="filterENIndustry"
+                  @filter="enWorkEXPIndustryFilter"
                   input-debounce="0"
                 >
                   <template v-slot:selected>
-                    <div v-if="enIndustry">
+                    <div v-if="enWorkEXPIndustry">
                       <div
                         class="q-pa-sm br-4"
                         style="background: #e0e0e0 !important"
                       >
-                        {{ enIndustry }}
+                        {{ enWorkEXPIndustry }}
                       </div>
                     </div>
                   </template>
@@ -2903,24 +2886,24 @@
 
                 <div class="q-pt-sm full-width">
                   <q-select
-                    v-model="country"
-                    :options="countryOptions"
-                    color="primary"
+                    v-model="workEXPCountry"
+                    :options="workEXPCountryOptions"
+                    color="dark"
                     outlined
                     clearable
                     use-input
                     use-chips
                     stack-label
-                    @filter="filterCountry"
+                    @filter="workEXPCountryFilter"
                     input-debounce="0"
                   >
                     <template v-slot:selected>
-                      <div v-if="country">
+                      <div v-if="workEXPCountry">
                         <div
                           class="q-pa-sm br-4"
                           style="background: #e0e0e0 !important"
                         >
-                          {{ country }}
+                          {{ workEXPCountry }}
                         </div>
                       </div>
                     </template>
@@ -2935,24 +2918,24 @@
 
                 <div class="q-pt-sm full-width">
                   <q-select
-                    v-model="city"
-                    :options="cityOptions"
-                    color="primary"
+                    v-model="workEXPCity"
+                    :options="workEXPCityOptions"
+                    color="dark"
                     outlined
                     clearable
                     use-input
                     use-chips
                     stack-label
-                    @filter="filterCity"
+                    @filter="workEXPCityFilter"
                     input-debounce="0"
                   >
                     <template v-slot:selected>
-                      <div v-if="city">
+                      <div v-if="workEXPCity">
                         <div
                           class="q-pa-sm br-4"
                           style="background: #e0e0e0 !important"
                         >
-                          {{ city }}
+                          {{ workEXPCity }}
                         </div>
                       </div>
                     </template>
@@ -2972,7 +2955,7 @@
                     <q-select
                       v-model="enCountry"
                       :options="enCountryOptions"
-                      color="primary"
+                      color="dark"
                       outlined
                       clearable
                       use-input
@@ -3004,7 +2987,7 @@
                     <q-select
                       v-model="enCity"
                       :options="enCityOptions"
-                      color="primary"
+                      color="dark"
                       outlined
                       clearable
                       use-input
@@ -3041,24 +3024,24 @@
 
                 <div class="q-pt-sm full-width">
                   <q-select
-                    v-model="fromMonth"
-                    :options="fromMonthOptions"
-                    color="primary"
+                    v-model="workEXPFromMonth"
+                    :options="workEXPFromMonthOptions"
+                    color="dark"
                     outlined
                     clearable
                     use-input
                     use-chips
                     stack-label
-                    @filter="filterFromMonth"
+                    @filter="workEXPFFromMonthFilter"
                     input-debounce="0"
                   >
                     <template v-slot:selected>
-                      <div v-if="fromMonth">
+                      <div v-if="workEXPFromMonth">
                         <div
                           class="q-pa-sm br-4"
                           style="background: #e0e0e0 !important"
                         >
-                          {{ fromMonth }}
+                          {{ workEXPFromMonth }}
                         </div>
                       </div>
                     </template>
@@ -3073,24 +3056,24 @@
 
                 <div class="q-pt-sm full-width">
                   <q-select
-                    v-model="fromYear"
-                    :options="fromYearOptions"
-                    color="primary"
+                    v-model="workEXPFromYear"
+                    :options="workEXPFromYearOptions"
+                    color="dark"
                     outlined
                     clearable
                     use-input
                     use-chips
                     stack-label
-                    @filter="filterFromYear"
+                    @filter="workEXPFromYearFilter"
                     input-debounce="0"
                   >
                     <template v-slot:selected>
-                      <div v-if="fromYear">
+                      <div v-if="workEXPFromYear">
                         <div
                           class="q-pa-sm br-4"
                           style="background: #e0e0e0 !important"
                         >
-                          {{ fromYear }}
+                          {{ workEXPFromYear }}
                         </div>
                       </div>
                     </template>
@@ -3108,24 +3091,24 @@
 
                   <div class="full-width">
                     <q-select
-                      v-model="enFromMonth"
-                      :options="enFromMonthOptions"
-                      color="primary"
+                      v-model="enworkEXPFromMonth"
+                      :options="enworkEXPFromMonthOptions"
+                      color="dark"
                       outlined
                       clearable
                       use-input
                       use-chips
                       stack-label
-                      @filter="filterENFromMonth"
+                      @filter="workEXPFromMonthFilter"
                       input-debounce="0"
                     >
                       <template v-slot:selected>
-                        <div v-if="enFromMonth">
+                        <div v-if="enWorkEXPFromMonth">
                           <div
                             class="q-pa-sm br-4"
                             style="background: #e0e0e0 !important"
                           >
-                            {{ enFromMonth }}
+                            {{ enWorkEXPFromMonth }}
                           </div>
                         </div>
                       </template>
@@ -3142,7 +3125,7 @@
                     <q-select
                       v-model="enFromYear"
                       :options="enFromYearOptions"
-                      color="primary"
+                      color="dark"
                       outlined
                       clearable
                       use-input
@@ -3182,24 +3165,24 @@
 
                 <div class="q-pt-sm full-width">
                   <q-select
-                    v-model="toMonth"
-                    :options="toMonthOptions"
-                    color="primary"
+                    v-model="workEXPToMonth"
+                    :options="workEXPToMonthOptions"
+                    color="dark"
                     outlined
                     clearable
                     use-input
                     use-chips
                     stack-label
-                    @filter="filterToMonth"
+                    @filter="workEXPToMonthFilter"
                     input-debounce="0"
                   >
                     <template v-slot:selected>
-                      <div v-if="toMonth">
+                      <div v-if="workEXPToMonth">
                         <div
                           class="q-pa-sm br-4"
                           style="background: #e0e0e0 !important"
                         >
-                          {{ toMonth }}
+                          {{ workEXPToMonth }}
                         </div>
                       </div>
                     </template>
@@ -3214,24 +3197,24 @@
 
                 <div class="q-pt-sm full-width">
                   <q-select
-                    v-model="toYear"
-                    :options="toYearOptions"
-                    color="primary"
+                    v-model="workEXPToYear"
+                    :options="workEXPToYearOptions"
+                    color="dark"
                     outlined
                     clearable
                     use-input
                     use-chips
                     stack-label
-                    @filter="filterToYear"
+                    @filter="workEXPToYearFilter"
                     input-debounce="0"
                   >
                     <template v-slot:selected>
-                      <div v-if="toYear">
+                      <div v-if="workEXPToYear">
                         <div
                           class="q-pa-sm br-4"
                           style="background: #e0e0e0 !important"
                         >
-                          {{ toYear }}
+                          {{ workEXPToYear }}
                         </div>
                       </div>
                     </template>
@@ -3249,24 +3232,24 @@
 
                   <div class="full-width">
                     <q-select
-                      v-model="enToMonth"
-                      :options="enToMonthOptions"
-                      color="primary"
+                      v-model="enWorkEXPToMonth"
+                      :options="enWorkEXPToMonthOptions"
+                      color="dark"
                       outlined
                       clearable
                       use-input
                       use-chips
                       stack-label
-                      @filter="filterENToMonth"
+                      @filter="enWorkEXPToMonthFilter"
                       input-debounce="0"
                     >
                       <template v-slot:selected>
-                        <div v-if="enToMonth">
+                        <div v-if="enWorkEXPToMonth">
                           <div
                             class="q-pa-sm br-4"
                             style="background: #e0e0e0 !important"
                           >
-                            {{ enToMonth }}
+                            {{ enWorkEXPToMonth }}
                           </div>
                         </div>
                       </template>
@@ -3281,24 +3264,24 @@
 
                   <div class="full-width">
                     <q-select
-                      v-model="enToYear"
-                      :options="enToYearOptions"
-                      color="primary"
+                      v-model="enWorkEXPToYear"
+                      :options="enWorkEXPToYearOptions"
+                      color="dark"
                       outlined
                       clearable
                       use-input
                       use-chips
                       stack-label
-                      @filter="filterENToYear"
+                      @filter="enWorkEXPToYearFilter"
                       input-debounce="0"
                     >
                       <template v-slot:selected>
-                        <div v-if="enToYear">
+                        <div v-if="enWorkEXPToYear">
                           <div
                             class="q-pa-sm br-4"
                             style="background: #e0e0e0 !important"
                           >
-                            {{ enToYear }}
+                            {{ enWorkEXPToYear }}
                           </div>
                         </div>
                       </template>
@@ -3314,7 +3297,7 @@
           <div class="row justify-between items-center q-my-md">
             <div class="col-6 q-px-sm">
               <div class="text-grey-7">
-                <q-checkbox v-model="currentJob" />
+                <q-checkbox v-model="workEXPCurrentJob" />
 
                 <span> هنوز در این شرکت مشغول به کار هستم. </span>
               </div>
@@ -3322,7 +3305,7 @@
 
             <div class="col-6 q-px-sm q-pt-sm">
               <div class="text-grey-7">
-                <q-checkbox v-model="currentJob" />
+                <q-checkbox v-model="enWorkEXPCurrentJob" />
 
                 <span>It is my current job </span>
               </div>
@@ -3352,7 +3335,7 @@
                 <q-input
                   maxlength="3000"
                   counter
-                  v-model="achievements"
+                  v-model="workEXPAchievements"
                   outlined
                   type="textarea"
                 />
@@ -3368,7 +3351,7 @@
                 <q-input
                   maxlength="3000"
                   counter
-                  v-model="enAchievements"
+                  v-model="enWorkEXPAchievements"
                   outlined
                   type="textarea"
                 />
@@ -3415,7 +3398,7 @@
                 class="active-forms-tab-parent"
                 active-class="active-forms-tab"
                 indicator-color="transparent"
-                v-model="createExperience"
+                v-model="createExperienceTabs"
                 no-caps
               >
                 <q-tab name="persian" label="فارسی" />
@@ -3427,7 +3410,7 @@
           <q-separator />
         </div>
 
-        <q-tab-panels v-model="createExperience">
+        <q-tab-panels v-model="createExperienceTabs">
           <q-tab-panel name="persian">
             <div class="q-pa-md">
               <!-- Job Title -->
@@ -3439,7 +3422,7 @@
                   </div>
 
                   <div class="q-pt-sm full-width">
-                    <q-input outlined v-model="jobTitle" />
+                    <q-input outlined v-model="workEXPJobTitle" />
                   </div>
                 </div>
               </div>
@@ -3465,24 +3448,24 @@
 
                   <div class="q-pt-sm full-width">
                     <q-select
-                      v-model="whatJobCategory"
-                      :options="whatJobOptions"
-                      color="primary"
+                      v-model="workEXPWhatJobCategory"
+                      :options="workEXPOptionsWhatJob"
+                      color="dark"
                       outlined
                       clearable
                       use-input
                       use-chips
                       stack-label
-                      @filter="filterWhatJobs"
+                      @filter="workEXPFilterWhatJobs"
                       input-debounce="0"
                     >
                       <template v-slot:selected>
-                        <div v-if="whatJobCategory">
+                        <div v-if="workEXPWhatJobCategory">
                           <div
                             class="q-pa-sm br-4"
                             style="background: #e0e0e0 !important"
                           >
-                            {{ whatJobCategory }}
+                            {{ workEXPWhatJobCategory }}
                           </div>
                         </div>
                       </template>
@@ -3501,24 +3484,24 @@
 
                   <div class="q-pt-sm full-width">
                     <q-select
-                      v-model="seniorityLevel"
-                      :options="seniorityLevelOptions"
-                      color="primary"
+                      v-model="workEXPSeniorityLevel"
+                      :options="workEXPOptionsSeniorityLevel"
+                      color="dark"
                       outlined
                       clearable
                       use-input
                       use-chips
                       stack-label
-                      @filter="filterSeniorityLevel"
+                      @filter="workEXPFilterSeniorityLevel"
                       input-debounce="0"
                     >
                       <template v-slot:selected>
-                        <div v-if="seniorityLevel">
+                        <div v-if="workEXPSeniorityLevel">
                           <div
                             class="q-pa-sm br-4"
                             style="background: #e0e0e0 !important"
                           >
-                            {{ seniorityLevel }}
+                            {{ workEXPSeniorityLevel }}
                           </div>
                         </div>
                       </template>
@@ -3536,7 +3519,7 @@
                   </div>
 
                   <div class="q-pt-sm full-width">
-                    <q-input outlined v-model="companyName" />
+                    <q-input outlined v-model="workEXPCompanyName" />
                   </div>
                 </div>
               </div>
@@ -3563,24 +3546,24 @@
 
                   <div class="q-pt-sm full-width">
                     <q-select
-                      v-model="industry"
-                      :options="industryOptions"
-                      color="primary"
+                      v-model="workEXPIndustry"
+                      :options="workEXPIndustryOptions"
+                      color="dark"
                       outlined
                       clearable
                       use-input
                       use-chips
                       stack-label
-                      @filter="filterIndustry"
+                      @filter="workEXPIndustryFilter"
                       input-debounce="0"
                     >
                       <template v-slot:selected>
-                        <div v-if="seniorityLevel">
+                        <div v-if="workEXPIndustry">
                           <div
                             class="q-pa-sm br-4"
                             style="background: #e0e0e0 !important"
                           >
-                            {{ seniorityLevel }}
+                            {{ workEXPIndustry }}
                           </div>
                         </div>
                       </template>
@@ -3600,24 +3583,23 @@
 
                     <div class="q-pt-sm full-width">
                       <q-select
-                        v-model="country"
-                        :options="countryOptions"
-                        color="primary"
+                        v-model="workEXPCountry"
+                        :options="workEXPCountryOptions"
+                        color="dark"
                         outlined
                         clearable
                         use-input
                         use-chips
                         stack-label
-                        @filter="filterCountry"
-                        input-debounce="0"
+                        @filter="workEXPCountryFilter"
                       >
                         <template v-slot:selected>
-                          <div v-if="country">
+                          <div v-if="workEXPCountry">
                             <div
                               class="q-pa-sm br-4"
                               style="background: #e0e0e0 !important"
                             >
-                              {{ country }}
+                              {{ workEXPCountry }}
                             </div>
                           </div>
                         </template>
@@ -3632,24 +3614,23 @@
 
                     <div class="q-pt-sm full-width">
                       <q-select
-                        v-model="city"
-                        :options="cityOptions"
-                        color="primary"
+                        v-model="workEXPCity"
+                        :options="workEXPCityOptions"
+                        color="dark"
                         outlined
                         clearable
                         use-input
                         use-chips
                         stack-label
-                        @filter="filterCity"
-                        input-debounce="0"
+                        @filter="workEXPCityFilter"
                       >
                         <template v-slot:selected>
-                          <div v-if="city">
+                          <div v-if="workEXPCity">
                             <div
                               class="q-pa-sm br-4"
                               style="background: #e0e0e0 !important"
                             >
-                              {{ city }}
+                              {{ workEXPCity }}
                             </div>
                           </div>
                         </template>
@@ -3670,24 +3651,23 @@
 
                     <div class="q-pt-sm full-width">
                       <q-select
-                        v-model="fromMonth"
-                        :options="fromMonthOptions"
-                        color="primary"
+                        v-model="workEXPFromMonth"
+                        :options="workEXPFromMonthOptions"
+                        color="dark"
                         outlined
                         clearable
                         use-input
                         use-chips
                         stack-label
-                        @filter="filterFromMonth"
-                        input-debounce="0"
+                        @filter="workEXPFromMonthFilter"
                       >
                         <template v-slot:selected>
-                          <div v-if="fromMonth">
+                          <div v-if="workEXPFromMonth">
                             <div
                               class="q-pa-sm br-4"
                               style="background: #e0e0e0 !important"
                             >
-                              {{ fromMonth }}
+                              {{ workEXPFromMonth }}
                             </div>
                           </div>
                         </template>
@@ -3702,24 +3682,23 @@
 
                     <div class="q-pt-sm full-width">
                       <q-select
-                        v-model="fromYear"
-                        :options="fromYearOptions"
-                        color="primary"
+                        v-model="workEXPFromYear"
+                        :options="workEXPFromYearOptions"
+                        color="dark"
                         outlined
                         clearable
                         use-input
                         use-chips
                         stack-label
-                        @filter="filterFromYear"
-                        input-debounce="0"
+                        @filter="workEXPFromYearFilter"
                       >
                         <template v-slot:selected>
-                          <div v-if="fromYear">
+                          <div v-if="workEXPFromYear">
                             <div
                               class="q-pa-sm br-4"
                               style="background: #e0e0e0 !important"
                             >
-                              {{ fromYear }}
+                              {{ workEXPFromYear }}
                             </div>
                           </div>
                         </template>
@@ -3740,24 +3719,23 @@
 
                     <div class="q-pt-sm full-width">
                       <q-select
-                        v-model="toMonth"
-                        :options="toMonthOptions"
+                        v-model="workEXPToMonth"
+                        :options="workEXPToMonthOptions"
                         color="primary"
                         outlined
                         clearable
                         use-input
                         use-chips
                         stack-label
-                        @filter="filterToMonth"
-                        input-debounce="0"
+                        @filter="workEXPToMonthFilter"
                       >
                         <template v-slot:selected>
-                          <div v-if="toMonth">
+                          <div v-if="workEXPToMonth">
                             <div
                               class="q-pa-sm br-4"
                               style="background: #e0e0e0 !important"
                             >
-                              {{ toMonth }}
+                              {{ workEXPToMonth }}
                             </div>
                           </div>
                         </template>
@@ -3772,24 +3750,23 @@
 
                     <div class="q-pt-sm full-width">
                       <q-select
-                        v-model="toYear"
-                        :options="toYearOptions"
+                        v-model="workEXPToYear"
+                        :options="workEXPToYearOptions"
                         color="primary"
                         outlined
                         clearable
                         use-input
                         use-chips
                         stack-label
-                        @filter="filterToYear"
-                        input-debounce="0"
+                        @filter="workEXPToYearFilter"
                       >
                         <template v-slot:selected>
-                          <div v-if="toYear">
+                          <div v-if="workEXPToYear">
                             <div
                               class="q-pa-sm br-4"
                               style="background: #e0e0e0 !important"
                             >
-                              {{ toYear }}
+                              {{ workEXPToYear }}
                             </div>
                           </div>
                         </template>
@@ -3804,7 +3781,7 @@
               <div class="q-my-md">
                 <div class="q-px-sm">
                   <div class="text-grey-7">
-                    <q-checkbox v-model="currentJob" />
+                    <q-checkbox v-model="workEXPCurrentJob" />
 
                     <span> هنوز در این شرکت مشغول به کار هستم. </span>
                   </div>
@@ -3834,7 +3811,7 @@
                     <q-input
                       maxlength="3000"
                       counter
-                      v-model="achievements"
+                      v-model="workEXPAchievements"
                       outlined
                       type="textarea"
                     />
@@ -3855,7 +3832,7 @@
                   </div>
 
                   <div class="q-pt-sm full-width">
-                    <q-input outlined v-model="enJobTitle" />
+                    <q-input outlined v-model="enWorkEXPJobTitle" />
                   </div>
                 </div>
               </div>
@@ -3870,24 +3847,24 @@
 
                   <div class="q-pt-sm full-width" style="direction: ltr">
                     <q-select
-                      v-model="enWhatJobCategory"
-                      :options="enWhatJobOptions"
+                      v-model="enWorkEXPWhatJobCategory"
+                      :options="enWorkEXPOptionsWhatJob"
                       color="primary"
                       outlined
                       clearable
                       use-input
                       use-chips
                       stack-label
-                      @filter="filterWhatJobs"
+                      @filter="enWorkEXPWhatJobFilter"
                       input-debounce="0"
                     >
                       <template v-slot:selected>
-                        <div v-if="enWhatJobCategory">
+                        <div v-if="enWorkEXPWhatJobCategory">
                           <div
                             class="q-pa-sm br-4"
                             style="background: #e0e0e0 !important"
                           >
-                            {{ enWhatJobCategory }}
+                            {{ enWorkEXPWhatJobCategory }}
                           </div>
                         </div>
                       </template>
@@ -3906,24 +3883,24 @@
 
                   <div class="q-pt-sm full-width" style="direction: ltr">
                     <q-select
-                      v-model="seniorityLevel"
-                      :options="enSeniorityLevelOptions"
+                      v-model="enWorkEXPSeniorityLevel"
+                      :options="enWorkEXPOptionsSeniorityLevel"
                       color="primary"
                       outlined
                       clearable
                       use-input
                       use-chips
                       stack-label
-                      @filter="filterSeniorityLevel"
+                      @filter="enWorkEXPSeniorityLevelFilter"
                       input-debounce="0"
                     >
                       <template v-slot:selected>
-                        <div v-if="enSeniorityLevel">
+                        <div v-if="enWorkEXPSeniorityLevel">
                           <div
                             class="q-pa-sm br-4"
                             style="background: #e0e0e0 !important"
                           >
-                            {{ enSeniorityLevel }}
+                            {{ enWorkEXPSeniorityLevel }}
                           </div>
                         </div>
                       </template>
@@ -3941,7 +3918,7 @@
                   </div>
 
                   <div class="q-pt-sm full-width">
-                    <q-input outlined v-model="enCompanyName" />
+                    <q-input outlined v-model="enWorkEXPCompanyName" />
                   </div>
                 </div>
               </div>
@@ -3956,24 +3933,24 @@
 
                   <div class="q-pt-sm full-width" style="direction: ltr">
                     <q-select
-                      v-model="enIndustry"
-                      :options="enIndustryOptions"
+                      v-model="enWorkEXPIndustry"
+                      :options="enWorkEXPIndustryOptions"
                       color="primary"
                       outlined
                       clearable
                       use-input
                       use-chips
                       stack-label
-                      @filter="filterENIndustry"
+                      @filter="enWorkEXPIndustryFilter"
                       input-debounce="0"
                     >
                       <template v-slot:selected>
-                        <div v-if="enIndustry">
+                        <div v-if="enWorkEXPIndustry">
                           <div
                             class="q-pa-sm br-4"
                             style="background: #e0e0e0 !important"
                           >
-                            {{ enIndustry }}
+                            {{ enWorkEXPIndustry }}
                           </div>
                         </div>
                       </template>
@@ -3994,24 +3971,24 @@
 
                       <div class="full-width">
                         <q-select
-                          v-model="enCountry"
-                          :options="enCountryOptions"
+                          v-model="enWorkEXPCountry"
+                          :options="enWorkEXPCountryOptions"
                           color="primary"
                           outlined
                           clearable
                           use-input
                           use-chips
                           stack-label
-                          @filter="filterENCountry"
+                          @filter="enWorkEXPCountryFilter"
                           input-debounce="0"
                         >
                           <template v-slot:selected>
-                            <div v-if="enCountry">
+                            <div v-if="enWorkEXPCountry">
                               <div
                                 class="q-pa-sm br-4"
                                 style="background: #e0e0e0 !important"
                               >
-                                {{ enCountry }}
+                                {{ enWorkEXPCountry }}
                               </div>
                             </div>
                           </template>
@@ -4026,24 +4003,24 @@
 
                       <div class="full-width">
                         <q-select
-                          v-model="enCity"
-                          :options="enCityOptions"
+                          v-model="enWorkEXPCity"
+                          :options="enWorkEXPCityOptions"
                           color="primary"
                           outlined
                           clearable
                           use-input
                           use-chips
                           stack-label
-                          @filter="filterENCity"
+                          @filter="enWorkEXPCityOptionsFilter"
                           input-debounce="0"
                         >
                           <template v-slot:selected>
-                            <div v-if="enCity">
+                            <div v-if="enWorkEXPCity">
                               <div
                                 class="q-pa-sm br-4"
                                 style="background: #e0e0e0 !important"
                               >
-                                {{ enCity }}
+                                {{ enWorkEXPCity }}
                               </div>
                             </div>
                           </template>
@@ -4066,24 +4043,24 @@
 
                       <div class="full-width">
                         <q-select
-                          v-model="enFromMonth"
-                          :options="enFromMonthOptions"
+                          v-model="enWorkEXPFromMonth"
+                          :options="enWorkEXPFromMonthOptions"
                           color="primary"
                           outlined
                           clearable
                           use-input
                           use-chips
                           stack-label
-                          @filter="filterENFromMonth"
+                          @filter="enWorkEXPFromMonthFilter"
                           input-debounce="0"
                         >
                           <template v-slot:selected>
-                            <div v-if="enFromMonth">
+                            <div v-if="enWorkEXPFromMonth">
                               <div
                                 class="q-pa-sm br-4"
                                 style="background: #e0e0e0 !important"
                               >
-                                {{ enFromMonth }}
+                                {{ enWorkEXPFromMonth }}
                               </div>
                             </div>
                           </template>
@@ -4098,24 +4075,24 @@
 
                       <div class="full-width">
                         <q-select
-                          v-model="enFromYear"
-                          :options="enFromYearOptions"
+                          v-model="enWorkEXPFromYear"
+                          :options="enWorkEXPFromYearOptions"
                           color="primary"
                           outlined
                           clearable
                           use-input
                           use-chips
                           stack-label
-                          @filter="filterENFromYear"
+                          @filter="enWorkEXPFromYearFilter"
                           input-debounce="0"
                         >
                           <template v-slot:selected>
-                            <div v-if="enFromYear">
+                            <div v-if="enWorkEXPFromYear">
                               <div
                                 class="q-pa-sm br-4"
                                 style="background: #e0e0e0 !important"
                               >
-                                {{ enFromYear }}
+                                {{ enWorkEXPFromYear }}
                               </div>
                             </div>
                           </template>
@@ -4128,7 +4105,7 @@
 
               <!-- End Month And Year -->
 
-              <div v-if="!currentJob" class="q-my-md">
+              <div v-if="!enWorkEXPCurrentJob" class="q-my-md">
                 <div class="q-px-sm q-pt-sm">
                   <div class="col-6 q-px-sm row" style="direction: ltr">
                     <div class="col-6 q-pl-sm">
@@ -4203,7 +4180,7 @@
               <div class="q-my-md">
                 <div class="q-px-sm q-pt-sm">
                   <div class="text-grey-7">
-                    <q-checkbox v-model="currentJob" />
+                    <q-checkbox v-model="enWorkEXPCurrentJob" />
 
                     <span>It is my current job </span>
                   </div>
@@ -4222,7 +4199,7 @@
                     <q-input
                       maxlength="3000"
                       counter
-                      v-model="enAchievements"
+                      v-model="enWorkEXPAchievements"
                       outlined
                       type="textarea"
                     />
@@ -4983,6 +4960,11 @@ export default {
   setup() {
     const $q = useQuasar();
     const shareLink = ref("jobvision.ir/cv/83836552-092743");
+    const title = ref("دولوپر فول استک در شرکت آیترونیک");
+    const linkedin = ref();
+    const jobTitle = ref();
+
+    // Dialogs Content
 
     const editAbout = reactive({
       editAboutTitle: "",
@@ -5007,8 +4989,6 @@ export default {
       infoNumber: "",
       infoinfoExpectedSalary: "",
       infoJobCategory: "",
-      infoForeigner: false,
-      infoDisability: false,
 
       // English Forms/Content
 
@@ -5023,101 +5003,231 @@ export default {
       enInfoNumber: "",
       enInfoinfoExpectedSalary: "",
       enInfoJobCategory: "",
-      enInfoForeigner: false,
-      enInfoDisability: false,
     });
 
-    const options = reactive({
-      infoOptionsCity: ["Google", "Facebook", "Twitter", "Apple", "Oracle"],
-      InfoOptionJobCategory: [
-        "Google",
-        "Facebook",
-        "Twitter",
-        "Apple",
-        "Oracle",
-      ],
+    const workEXP = reactive({
+      workEXPJobTitle: "",
+      workEXPWhatJobCategory: "",
+      workEXPSeniorityLevel: "",
+      workEXPCompanyName: "",
+      workEXPIndustry: "",
+      workEXPCountry: "",
+      workEXPCity: "",
+      workEXPFromMonth: "",
+      workEXPFromYear: "",
+      workEXPToYear: "",
+      workEXPToMonth: "",
+      workEXPCurrentJob: "",
+      workEXPAchievements: "",
 
-      // English Options
+      // English Forms/Content
 
-      enInfoOptionsCity: ["Google", "Facebook", "Twitter", "Apple", "Oracle"],
-      enInfoOptionJobCategory: [
-        "Google",
-        "Facebook",
-        "Twitter",
-        "Apple",
-        "Oracle",
-      ],
+      enWorkEXPJobTitle: "",
+      enWorkEXPWhatJobCategory: "",
+      enWorkEXPSeniorityLevel: "",
+      enWorkEXPCompanyName: "",
+      enWorkEXPIndustry: "",
+      enWorkEXPCountry: "",
+      enWorkEXPCity: "",
+      enWorkEXPFromYear: "",
+      enWorkEXPFromMonth: "",
+      enWorkEXPToYear: "",
+      enWorkEXPToMonth: "",
+      enWorkEXPCurrentJob: "",
+      enWorkEXPAchievements: "",
     });
 
-    const title = ref("دولوپر فول استک در شرکت آیترونیک");
-    const linkedin = ref();
-    const jobTitle = ref();
-    const whatJobCategory = ref();
-    const whatJobOptions = ref([
+    // End of Dialogs Content
+
+    // Checkbox Models EN/FA
+
+    const infoForeigner = ref(false);
+    const infoDisability = ref(false);
+    const enInfoForeigner = ref(false);
+    const enInfoDisability = ref(false);
+
+    // Start Of Options EN/FA
+
+    const infoOptionsCity = ref([
       "Google",
       "Facebook",
       "Twitter",
       "Apple",
       "Oracle",
     ]);
-    const seniorityLevel = ref();
-    const seniorityLevelOptions = ref([
+
+    const infoOptionJobCategory = ref([
       "Google",
       "Facebook",
       "Twitter",
       "Apple",
       "Oracle",
     ]);
-    const companyName = ref();
-    const industry = ref();
-    const industryOptions = ref([
+
+    const workEXPOptionsWhatJob = ref([
       "Google",
       "Facebook",
       "Twitter",
       "Apple",
       "Oracle",
     ]);
-    const country = ref();
-    const countryOptions = ref([
+
+    const workEXPOptionsSeniorityLevel = ref([
       "Google",
       "Facebook",
       "Twitter",
       "Apple",
       "Oracle",
     ]);
-    const fromMonth = ref();
-    const fromMonthOptions = ref([
+
+    const workEXPIndustryOptions = ref([
       "Google",
       "Facebook",
       "Twitter",
       "Apple",
       "Oracle",
     ]);
-    const fromYear = ref();
-    const fromYearOptions = ref([
+
+    const workEXPCountryOptions = ref([
       "Google",
       "Facebook",
       "Twitter",
       "Apple",
       "Oracle",
     ]);
-    const toMonth = ref();
-    const toMonthOptions = ref([
+
+    const workEXPCityOptions = ref([
       "Google",
       "Facebook",
       "Twitter",
       "Apple",
       "Oracle",
     ]);
-    const toYear = ref();
-    const toYearOptions = ref([
+
+    const workEXPFromMonthOptions = ref([
       "Google",
       "Facebook",
       "Twitter",
       "Apple",
       "Oracle",
     ]);
-    const achievements = ref();
+
+    const workEXPFromYearOptions = ref([
+      "Google",
+      "Facebook",
+      "Twitter",
+      "Apple",
+      "Oracle",
+    ]);
+
+    const workEXPToMonthOptions = ref([
+      "Google",
+      "Facebook",
+      "Twitter",
+      "Apple",
+      "Oracle",
+    ]);
+
+    const workEXPToYearOptions = ref([
+      "Google",
+      "Facebook",
+      "Twitter",
+      "Apple",
+      "Oracle",
+    ]);
+
+    // English Options
+
+    const enInfoOptionsCity = ref([
+      "Google",
+      "Facebook",
+      "Twitter",
+      "Apple",
+      "Oracle",
+    ]);
+
+    const enInfoOptionJobCategory = ref([
+      "Google",
+      "Facebook",
+      "Twitter",
+      "Apple",
+      "Oracle",
+    ]);
+
+    const enWorkEXPOptionsWhatJob = ref([
+      "Google",
+      "Facebook",
+      "Twitter",
+      "Apple",
+      "Oracle",
+    ]);
+
+    const enWorkEXPOptionsSeniorityLevel = ref([
+      "Google",
+      "Facebook",
+      "Twitter",
+      "Apple",
+      "Oracle",
+    ]);
+
+    const enWorkEXPIndustryOptions = ref([
+      "Google",
+      "Facebook",
+      "Twitter",
+      "Apple",
+      "Oracle",
+    ]);
+
+    const enWorkEXPCountryOptions = ref([
+      "Google",
+      "Facebook",
+      "Twitter",
+      "Apple",
+      "Oracle",
+    ]);
+
+    const enWorkEXPCityOptions = ref([
+      "Google",
+      "Facebook",
+      "Twitter",
+      "Apple",
+      "Oracle",
+    ]);
+
+    const enWorkEXPFromMonthOptions = ref([
+      "Google",
+      "Facebook",
+      "Twitter",
+      "Apple",
+      "Oracle",
+    ]);
+
+    const enWorkEXPFromYearOptions = ref([
+      "Google",
+      "Facebook",
+      "Twitter",
+      "Apple",
+      "Oracle",
+    ]);
+
+    const enWorkEXPToMonthOptions = ref([
+      "Google",
+      "Facebook",
+      "Twitter",
+      "Apple",
+      "Oracle",
+    ]);
+
+    const enWorkEXPToYearOptions = ref([
+      "Google",
+      "Facebook",
+      "Twitter",
+      "Apple",
+      "Oracle",
+    ]);
+
+    // End Of Options
+
     const lang = ref();
     const langOptions = ref([
       "Google",
@@ -5137,10 +5247,10 @@ export default {
     const searchApp = ref("");
     const editAboutTabs = ref("persian");
     const basicInfomationTabs = ref("persian");
-    const createExperience = ref("persian");
+    const createExperienceTabs = ref("persian");
     const addLang = ref("persian");
 
-    // Dialogs Names
+    // Dialogs List
 
     const share = ref(false);
     const openList = ref(false);
@@ -5192,53 +5302,61 @@ export default {
       lang,
       title,
       share,
-      toYear,
       addLang,
-      toMonth,
       getDate,
-      country,
-      industry,
       jobTitle,
-      fromYear,
       linkedin,
       copyLink,
       openList,
       shareLink,
       searchApp,
-      fromMonth,
       showBirth,
       langSkill,
       currentJob,
       information,
-      companyName,
       editPicture,
       langOptions,
-      achievements,
       showCalender,
+      infoForeigner,
       editAboutTabs,
       addLangDialog,
       editAboutForm,
-      toYearOptions,
-      countryOptions,
-      seniorityLevel,
-      whatJobOptions,
       showENCalender,
-      toMonthOptions,
       addApplication,
-      fromYearOptions,
-      whatJobCategory,
-      industryOptions,
-      createExperience,
-      fromMonthOptions,
+      infoDisability,
+      infoOptionsCity,
+      enInfoForeigner,
+      enInfoDisability,
       langSkillOptions,
+      enInfoOptionsCity,
+      workEXPCityOptions,
       basicInfomationTabs,
+      workEXPToYearOptions,
       createWorkExperience,
-      seniorityLevelOptions,
+      enWorkEXPCityOptions,
+      createExperienceTabs,
+      workEXPToMonthOptions,
+      workEXPOptionsWhatJob,
+      infoOptionJobCategory,
+      workEXPCountryOptions,
+      workEXPFromYearOptions,
+      workEXPIndustryOptions,
+      enWorkEXPToYearOptions,
+      enWorkEXPToMonthOptions,
+      enWorkEXPCountryOptions,
+      workEXPFromMonthOptions,
+      enInfoOptionJobCategory,
+      enWorkEXPOptionsWhatJob,
+      enWorkEXPIndustryOptions,
+      enWorkEXPFromYearOptions,
+      enWorkEXPFromMonthOptions,
+      workEXPOptionsSeniorityLevel,
+      enWorkEXPOptionsSeniorityLevel,
 
       filterCity(val, update) {
         update(() => {
           const needle = val.toLowerCase();
-          options.infoOptionsCity = options.infoOptionsCity.filter(
+          infoOptionsCity.value = infoOptionsCity.value.filter(
             (v) => v.toLowerCase().indexOf(needle) > -1
           );
         });
@@ -5247,13 +5365,13 @@ export default {
       filterJobs(val, update) {
         update(() => {
           const needle = val.toLowerCase();
-          options.InfoOptionJobCategory = InfoOptionJobCategory.filter(
+          InfoOptionJobCategory.value = InfoOptionJobCategory.value.filter(
             (v) => v.toLowerCase().indexOf(needle) > -1
           );
         });
       },
 
-      filterWhatJobs(val, update) {
+      workEXPFilterWhatJobs(val, update) {
         update(() => {
           const needle = val.toLowerCase();
           whatJobOptions.value = whatJobOptions.value.filter(
@@ -5262,7 +5380,7 @@ export default {
         });
       },
 
-      filterSeniorityLevel(val, update) {
+      workEXPFilterSeniorityLevel(val, update) {
         update(() => {
           const needle = val.toLowerCase();
           seniorityLevelOptions.value = seniorityLevelOptions.value.filter(
@@ -5271,7 +5389,7 @@ export default {
         });
       },
 
-      filterFromMonth(val, update) {
+      workEXPFromMonthFilter(val, update) {
         update(() => {
           const needle = val.toLowerCase();
           fromMonthOptions.value = fromMonthOptions.value.filter(
@@ -5280,7 +5398,7 @@ export default {
         });
       },
 
-      filterFromYear(val, update) {
+      workEXPFromYearFilter(val, update) {
         update(() => {
           const needle = val.toLowerCase();
           fromYearOptions.value = fromYearOptions.value.filter(
@@ -5289,7 +5407,7 @@ export default {
         });
       },
 
-      filterToMonth(val, update) {
+      workEXPToMonthFilter(val, update) {
         update(() => {
           const needle = val.toLowerCase();
           toMonthOptions.value = toMonthOptions.value.filter(
@@ -5298,7 +5416,7 @@ export default {
         });
       },
 
-      filterToYear(val, update) {
+      workEXPToYearFilter(val, update) {
         update(() => {
           const needle = val.toLowerCase();
           toYearOptions.value = toYearOptions.value.filter(
@@ -5325,7 +5443,7 @@ export default {
         });
       },
 
-      ...toRefs(editAbout, infoDialog, options),
+      ...toRefs(editAbout, infoDialog, workEXP),
     };
   },
 };
