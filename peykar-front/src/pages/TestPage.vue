@@ -4250,24 +4250,24 @@
 
               <div class="q-pt-sm full-width">
                 <q-select
-                  v-model="lang"
-                  :options="langOptions"
+                  v-model="addLangName"
+                  :options="addLangNameOptions"
                   color="primary"
                   outlined
                   clearable
                   use-input
                   use-chips
                   stack-label
-                  @filter="filterLang"
+                  @filter="addLangNamefilter"
                   input-debounce="0"
                 >
                   <template v-slot:selected>
-                    <div v-if="lang">
+                    <div v-if="addLangName">
                       <div
                         class="q-pa-sm br-4"
                         style="background: #e0e0e0 !important"
                       >
-                        {{ lang }}
+                        {{ addLangName }}
                       </div>
                     </div>
                   </template>
@@ -4282,24 +4282,24 @@
 
               <div class="q-pt-sm full-width" style="direction: ltr">
                 <q-select
-                  v-model="enLang"
-                  :options="enLangOptions"
+                  v-model="enAddLangName"
+                  :options="enAddLangNameOptions"
                   color="primary"
                   outlined
                   clearable
                   use-input
                   use-chips
                   stack-label
-                  @filter="filterENLang"
+                  @filter="enAddLangNamefilter"
                   input-debounce="0"
                 >
                   <template v-slot:selected>
-                    <div v-if="enLang">
+                    <div v-if="enAddLangName">
                       <div
                         class="q-pa-sm br-4"
                         style="background: #e0e0e0 !important"
                       >
-                        {{ enLang }}
+                        {{ enAddLangName }}
                       </div>
                     </div>
                   </template>
@@ -4318,24 +4318,24 @@
 
               <div class="q-pt-sm full-width">
                 <q-select
-                  v-model="langSkill"
-                  :options="langSkillOptions"
+                  v-model="addLangSkill"
+                  :options="addLangSkillOptions"
                   color="primary"
                   outlined
                   clearable
                   use-input
                   use-chips
                   stack-label
-                  @filter="filterLangSkill"
+                  @filter="addLangSkillFilter"
                   input-debounce="0"
                 >
                   <template v-slot:selected>
-                    <div v-if="langSkill">
+                    <div v-if="addLangSkill">
                       <div
                         class="q-pa-sm br-4"
                         style="background: #e0e0e0 !important"
                       >
-                        {{ langSkill }}
+                        {{ addLangSkill }}
                       </div>
                     </div>
                   </template>
@@ -4350,24 +4350,24 @@
 
               <div class="q-pt-sm full-width" style="direction: ltr">
                 <q-select
-                  v-model="enLangSkill"
-                  :options="enLangSkillOptions"
+                  v-model="enAddLangSkill"
+                  :options="enAddLangSkillOptions"
                   color="primary"
                   outlined
                   clearable
                   use-input
                   use-chips
                   stack-label
-                  @filter="filterENLangSkill"
+                  @filter="enAddLangSkillFilter"
                   input-debounce="0"
                 >
                   <template v-slot:selected>
-                    <div v-if="enLangSkill">
+                    <div v-if="enAddLangSkill">
                       <div
                         class="q-pa-sm br-4"
                         style="background: #e0e0e0 !important"
                       >
-                        {{ enLangSkill }}
+                        {{ enAddLangSkill }}
                       </div>
                     </div>
                   </template>
@@ -4410,7 +4410,7 @@
                 class="active-forms-tab-parent"
                 active-class="active-forms-tab"
                 indicator-color="transparent"
-                v-model="addLang"
+                v-model="addLangTabs"
                 no-caps
               >
                 <q-tab name="persian" label="فارسی" />
@@ -4422,7 +4422,7 @@
           <q-separator />
         </div>
 
-        <q-tab-panels v-model="addLang">
+        <q-tab-panels v-model="addLangTabs">
           <q-tab-panel name="persian">
             <div class="q-pa-md">
               <!-- Language -->
@@ -4435,24 +4435,24 @@
 
                   <div class="q-pt-sm full-width">
                     <q-select
-                      v-model="lang"
-                      :options="langOptions"
+                      v-model="addLangName"
+                      :options="addLangNameOptions"
                       color="primary"
                       outlined
                       clearable
                       use-input
                       use-chips
                       stack-label
-                      @filter="filterLang"
+                      @filter="addLangNameFilter"
                       input-debounce="0"
                     >
                       <template v-slot:selected>
-                        <div v-if="lang">
+                        <div v-if="addLangName">
                           <div
                             class="q-pa-sm br-4"
                             style="background: #e0e0e0 !important"
                           >
-                            {{ lang }}
+                            {{ addLangName }}
                           </div>
                         </div>
                       </template>
@@ -4471,24 +4471,24 @@
 
                   <div class="q-pt-sm full-width">
                     <q-select
-                      v-model="langSkill"
-                      :options="langSkillOptions"
+                      v-model="addLangSkill"
+                      :options="addLangSkillOptions"
                       color="primary"
                       outlined
                       clearable
                       use-input
                       use-chips
                       stack-label
-                      @filter="filterLangSkill"
+                      @filter="addLangSkillFilter"
                       input-debounce="0"
                     >
                       <template v-slot:selected>
-                        <div v-if="langSkill">
+                        <div v-if="addLangSkill">
                           <div
                             class="q-pa-sm br-4"
                             style="background: #e0e0e0 !important"
                           >
-                            {{ langSkill }}
+                            {{ addLangSkill }}
                           </div>
                         </div>
                       </template>
@@ -4511,24 +4511,24 @@
 
                   <div class="q-pt-sm full-width" style="direction: ltr">
                     <q-select
-                      v-model="enLang"
-                      :options="enLangOptions"
+                      v-model="enAddLangName"
+                      :options="enAddLangNameOptions"
                       color="primary"
                       outlined
                       clearable
                       use-input
                       use-chips
                       stack-label
-                      @filter="filterENLang"
+                      @filter="enAddLangNameFilter"
                       input-debounce="0"
                     >
                       <template v-slot:selected>
-                        <div v-if="enLang">
+                        <div v-if="enAddLangName">
                           <div
                             class="q-pa-sm br-4"
                             style="background: #e0e0e0 !important"
                           >
-                            {{ enLang }}
+                            {{ enAddLangName }}
                           </div>
                         </div>
                       </template>
@@ -4547,24 +4547,24 @@
 
                   <div class="q-pt-sm full-width" style="direction: ltr">
                     <q-select
-                      v-model="enLangSkill"
-                      :options="enLangSkillOptions"
+                      v-model="enAddLangSkill"
+                      :options="enAddLangSkillOptions"
                       color="primary"
                       outlined
                       clearable
                       use-input
                       use-chips
                       stack-label
-                      @filter="filterENLangSkill"
+                      @filter="enAddLangSkillFilter"
                       input-debounce="0"
                     >
                       <template v-slot:selected>
-                        <div v-if="enLangSkill">
+                        <div v-if="enAddLangSkill">
                           <div
                             class="q-pa-sm br-4"
                             style="background: #e0e0e0 !important"
                           >
-                            {{ enLangSkill }}
+                            {{ enAddLangSkill }}
                           </div>
                         </div>
                       </template>
@@ -5037,6 +5037,16 @@ export default {
       enWorkEXPAchievements: "",
     });
 
+    const addLang = reactive({
+      addLangName: "",
+      addLangSkill: "",
+
+      // English Forms/Content
+
+      enAddLangName: "",
+      enAddLangSkill: "",
+    });
+
     // End of Dialogs Content
 
     // Checkbox Models EN/FA
@@ -5136,6 +5146,22 @@ export default {
       "Oracle",
     ]);
 
+    const addLangNameOptions = ref([
+      "Google",
+      "Facebook",
+      "Twitter",
+      "Apple",
+      "Oracle",
+    ]);
+
+    const addLangSkillOptions = ref([
+      "Google",
+      "Facebook",
+      "Twitter",
+      "Apple",
+      "Oracle",
+    ]);
+
     // English Options
 
     const enInfoOptionsCity = ref([
@@ -5226,29 +5252,29 @@ export default {
       "Oracle",
     ]);
 
+    const enAddLangNameOptions = ref([
+      "Google",
+      "Facebook",
+      "Twitter",
+      "Apple",
+      "Oracle",
+    ]);
+
+    const enAddLangSkillOptions = ref([
+      "Google",
+      "Facebook",
+      "Twitter",
+      "Apple",
+      "Oracle",
+    ]);
+
     // End Of Options
 
-    const lang = ref();
-    const langOptions = ref([
-      "Google",
-      "Facebook",
-      "Twitter",
-      "Apple",
-      "Oracle",
-    ]);
-    const langSkill = ref();
-    const langSkillOptions = ref([
-      "Google",
-      "Facebook",
-      "Twitter",
-      "Apple",
-      "Oracle",
-    ]);
     const searchApp = ref("");
+    const addLangTabs = ref("persian");
     const editAboutTabs = ref("persian");
     const basicInfomationTabs = ref("persian");
     const createExperienceTabs = ref("persian");
-    const addLang = ref("persian");
 
     // Dialogs List
 
@@ -5267,6 +5293,8 @@ export default {
     const currentJob = ref(false);
     const addLangDialog = ref(false);
     const addApplication = ref(false);
+
+    // Functions
 
     function copyLink() {
       navigator.clipboard.writeText(shareLink.value);
@@ -5294,16 +5322,15 @@ export default {
       infoDialog.infoBirth = dateTime;
     }
 
+    // Check On App Load
+
     onMounted(() => {
       getDate();
     });
 
     return {
-      lang,
       title,
       share,
-      addLang,
-      getDate,
       jobTitle,
       linkedin,
       copyLink,
@@ -5311,11 +5338,10 @@ export default {
       shareLink,
       searchApp,
       showBirth,
-      langSkill,
       currentJob,
+      addLangTabs,
       information,
       editPicture,
-      langOptions,
       showCalender,
       infoForeigner,
       editAboutTabs,
@@ -5327,14 +5353,17 @@ export default {
       infoOptionsCity,
       enInfoForeigner,
       enInfoDisability,
-      langSkillOptions,
       enInfoOptionsCity,
       workEXPCityOptions,
+      addLangNameOptions,
       basicInfomationTabs,
+      addLangSkillOptions,
       workEXPToYearOptions,
       createWorkExperience,
       enWorkEXPCityOptions,
       createExperienceTabs,
+      enAddLangNameOptions,
+      enAddLangSkillOptions,
       workEXPToMonthOptions,
       workEXPOptionsWhatJob,
       infoOptionJobCategory,
@@ -5352,6 +5381,12 @@ export default {
       enWorkEXPFromMonthOptions,
       workEXPOptionsSeniorityLevel,
       enWorkEXPOptionsSeniorityLevel,
+
+      // Import Dialog Content
+
+      ...toRefs(editAbout, infoDialog, workEXP, addLang),
+
+      // Filters For Persian Content
 
       filterCity(val, update) {
         update(() => {
@@ -5392,7 +5427,7 @@ export default {
       workEXPFromMonthFilter(val, update) {
         update(() => {
           const needle = val.toLowerCase();
-          fromMonthOptions.value = fromMonthOptions.value.filter(
+          workEXPFromMonthOptions.value = workEXPFromMonthOptions.value.filter(
             (v) => v.toLowerCase().indexOf(needle) > -1
           );
         });
@@ -5401,7 +5436,7 @@ export default {
       workEXPFromYearFilter(val, update) {
         update(() => {
           const needle = val.toLowerCase();
-          fromYearOptions.value = fromYearOptions.value.filter(
+          workEXPFromYearOptions.value = workEXPFromYearOptions.value.filter(
             (v) => v.toLowerCase().indexOf(needle) > -1
           );
         });
@@ -5410,7 +5445,7 @@ export default {
       workEXPToMonthFilter(val, update) {
         update(() => {
           const needle = val.toLowerCase();
-          toMonthOptions.value = toMonthOptions.value.filter(
+          workEXPToMonthOptions.value = workEXPToMonthOptions.value.filter(
             (v) => v.toLowerCase().indexOf(needle) > -1
           );
         });
@@ -5419,7 +5454,7 @@ export default {
       workEXPToYearFilter(val, update) {
         update(() => {
           const needle = val.toLowerCase();
-          toYearOptions.value = toYearOptions.value.filter(
+          workEXPToYearOptions.value = workEXPToYearOptions.value.filter(
             (v) => v.toLowerCase().indexOf(needle) > -1
           );
         });
@@ -5428,7 +5463,7 @@ export default {
       filterLang(val, update) {
         update(() => {
           const needle = val.toLowerCase();
-          langOptions.value = langOptions.value.filter(
+          addLangNameOptions.value = addLangNameOptions.value.filter(
             (v) => v.toLowerCase().indexOf(needle) > -1
           );
         });
@@ -5437,17 +5472,142 @@ export default {
       filterLangSkill(val, update) {
         update(() => {
           const needle = val.toLowerCase();
-          langSkillOptions.value = langSkillOptions.value.filter(
+          addLangSkillFilter.value = addLangSkillFilter.value.filter(
             (v) => v.toLowerCase().indexOf(needle) > -1
           );
         });
       },
 
-      ...toRefs(editAbout, infoDialog, workEXP),
+      // Filters For English Content
+
+      enFilterCity(val, update) {
+        update(() => {
+          const needle = val.toLowerCase();
+          enInfoOptionsCity.value = enInfoOptionsCity.value.filter(
+            (v) => v.toLowerCase().indexOf(needle) > -1
+          );
+        });
+      },
+
+      enFilterJobs(val, update) {
+        update(() => {
+          const needle = val.toLowerCase();
+          enInfoOptionJobCategory.value = enInfoOptionJobCategory.value.filter(
+            (v) => v.toLowerCase().indexOf(needle) > -1
+          );
+        });
+      },
+
+      enWorkEXPFilterWhatJobs(val, update) {
+        update(() => {
+          const needle = val.toLowerCase();
+          enWorkEXPOptionsWhatJob.value = enWorkEXPOptionsWhatJob.value.filter(
+            (v) => v.toLowerCase().indexOf(needle) > -1
+          );
+        });
+      },
+
+      enWorkEXPFilterIndustryOptions(val, update) {
+        update(() => {
+          const needle = val.toLowerCase();
+          enWorkEXPIndustryOptions.value =
+            enWorkEXPIndustryOptions.value.filter(
+              (v) => v.toLowerCase().indexOf(needle) > -1
+            );
+        });
+      },
+
+      enWorkEXPFilterCountry(val, update) {
+        update(() => {
+          const needle = val.toLowerCase();
+          enWorkEXPCountryOptions.value = enWorkEXPCountryOptions.value.filter(
+            (v) => v.toLowerCase().indexOf(needle) > -1
+          );
+        });
+      },
+
+      enWorkEXPFilterCity(val, update) {
+        update(() => {
+          const needle = val.toLowerCase();
+          enWorkEXPCityOptions.value = enWorkEXPCityOptions.value.filter(
+            (v) => v.toLowerCase().indexOf(needle) > -1
+          );
+        });
+      },
+
+      enWorkEXPFilterSeniorityLevel(val, update) {
+        update(() => {
+          const needle = val.toLowerCase();
+          enWorkEXPOptionsSeniorityLevel.value =
+            enWorkEXPOptionsSeniorityLevel.value.filter(
+              (v) => v.toLowerCase().indexOf(needle) > -1
+            );
+        });
+      },
+
+      enWorkEXPFromMonthFilter(val, update) {
+        update(() => {
+          const needle = val.toLowerCase();
+          enWorkEXPFromMonthOptions.value =
+            enWorkEXPFromMonthOptions.value.filter(
+              (v) => v.toLowerCase().indexOf(needle) > -1
+            );
+        });
+      },
+
+      enWorkEXPFromYearFilter(val, update) {
+        update(() => {
+          const needle = val.toLowerCase();
+          enWorkEXPFromYearOptions.value =
+            enWorkEXPFromYearOptions.value.filter(
+              (v) => v.toLowerCase().indexOf(needle) > -1
+            );
+        });
+      },
+
+      enWorkEXPToMonthFilter(val, update) {
+        update(() => {
+          const needle = val.toLowerCase();
+          enWorkEXPToMonthOptions.value = enWorkEXPToMonthOptions.value.filter(
+            (v) => v.toLowerCase().indexOf(needle) > -1
+          );
+        });
+      },
+
+      enWorkEXPToYearFilter(val, update) {
+        update(() => {
+          const needle = val.toLowerCase();
+          enWorkEXPToYearOptions.value = enWorkEXPToYearOptions.value.filter(
+            (v) => v.toLowerCase().indexOf(needle) > -1
+          );
+        });
+      },
+
+      enFilterLang(val, update) {
+        update(() => {
+          const needle = val.toLowerCase();
+          enAddLangNameOptions.value = enAddLangNameOptions.value.filter(
+            (v) => v.toLowerCase().indexOf(needle) > -1
+          );
+        });
+      },
+
+      enFilterLangSkill(val, update) {
+        update(() => {
+          const needle = val.toLowerCase();
+          enAddLangSkillOptions.value = enAddLangSkillOptions.value.filter(
+            (v) => v.toLowerCase().indexOf(needle) > -1
+          );
+        });
+      },
+
+      // End Of Filters
     };
   },
 };
 </script>
+
+<!-- Styles -->
 
 <style scoped>
 :deep(.input-box .q-field__control),
