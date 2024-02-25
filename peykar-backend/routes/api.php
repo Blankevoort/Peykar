@@ -54,11 +54,15 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     Route::resource('request', RequestController::class);
 
+    Route::patch('request', [RequestController::class, 'update']);
+
     Route::resource('profiles', ProfileController::class);
 
     Route::get('search', [JobController::class, 'search']);
 
     Route::resource('history', HistoryController::class);
+
+    Route::post('logout', [AuthController::class, 'logout']);
 
 
     Route::prefix('user-cv')->group(function () {

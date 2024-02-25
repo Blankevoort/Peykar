@@ -46,10 +46,6 @@ class RolesAndPermissions extends Seeder
             'request_create',
             'request_delete',
             'search',
-            'profile_create',
-            'profile_edit',
-            'profile_delete',
-            'profile_access',
             'ticket_create',
             'ticket_edit',
             'ticket_delete',
@@ -61,12 +57,6 @@ class RolesAndPermissions extends Seeder
                 'name' => $permission
             ]);
         }
-
-        Role::create(['name' => 'Admin']);
-
-        Role::create(['name' => 'Freelancer']);
-
-        Role::create(['name' => 'Supporter']);
 
         $role = Role::create(['name' => 'User']);
 
@@ -92,6 +82,8 @@ class RolesAndPermissions extends Seeder
             $role->givePermissionTo($permission);
         }
 
+        $role = Role::create(['name' => 'Freelancer']);
+
         $freelancerPermissions = [
             'job_create',
             'job_edit',
@@ -113,6 +105,8 @@ class RolesAndPermissions extends Seeder
         foreach ($freelancerPermissions as $permission) {
             $role->givePermissionTo($permission);
         }
+
+        $role = Role::create(['name' => 'Supporter']);
 
         $supporterPermissions = [
             'user_management_access',
@@ -144,6 +138,8 @@ class RolesAndPermissions extends Seeder
         foreach ($supporterPermissions as $permission) {
             $role->givePermissionTo($permission);
         }
+
+        $role = Role::create(['name' => 'Admin']);
 
         $adminPermissions = [
             'user_management_access',

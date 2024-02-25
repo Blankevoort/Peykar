@@ -10,6 +10,7 @@ class CreateRequestsTable extends Migration
     {
         Schema::create('requests', function (Blueprint $table) {
             $table->id();
+            $table->string('state')->default('درحال بررسی');
             $table->unsignedBigInteger('job_id');
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
