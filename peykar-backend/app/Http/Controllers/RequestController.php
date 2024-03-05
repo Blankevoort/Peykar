@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Request;
 use App\Traits\HttpResponses;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request as HttpRequest;
 
 class RequestController extends Controller
@@ -33,6 +34,7 @@ class RequestController extends Controller
     {
         $httpRequest->validate([
             'state' => 'required|in:قبول شده,اولویت بررسی,رد شده',
+            'job_id' => 'required|exists:jobs,id',
         ]);
 
         $jobRequest->update($httpRequest->all());
