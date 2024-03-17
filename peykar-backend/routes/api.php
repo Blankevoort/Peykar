@@ -28,15 +28,9 @@ use App\Http\Controllers\ProfileControllers\EducationsController;
 use App\Http\Controllers\ProfileControllers\AcademicExperienceController;
 
 //User Login And Register Requests
+Route::post('check', [AuthController::class, 'loginOrRegister']);
 
-Route::post('register', function (Request $request) {
-    $user = new User;
-    $user->name = $request->name;
-    $user->email = $request->email;
-    $user->password = Hash::make($request->password);
-    $user->save();
-    return response()->json(['status' => true]);
-});
+Route::post('register', [AuthController::class, 'register']);
 
 Route::post('login', [AuthController::class, 'login']);
 
