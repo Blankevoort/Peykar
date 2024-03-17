@@ -22,22 +22,25 @@ class RequestController extends Controller
             'job_id' => 'required|exists:jobs,id',
         ]);
 
-        $request = Request::create([
+        $existingRequest = Request::where('job_id', $httpRequest->input('job_id'))
+            ->where('user_id', Auth::id())
+            ->first();
+
+        if ($existingRequest) {
+            return response()->json(['status' => "You have already sent a request to this job"], 409);
+        }
+
+        Request::create([
             'job_id' => $httpRequest->input('job_id'),
             'user_id' => auth()->id(),
         ]);
 
-        return response()->json(['status' => 'success', 'request' => $request]);
+        return response()->json(['status' => 204], 204);
     }
 
-    public function update(HttpRequest $httpRequest, Request $jobRequest)
+    public function update(HttpRequest $request, Request $jobRequest)
     {
-        $httpRequest->validate([
-            'state' => 'required|in:قبول شده,اولویت بررسی,رد شده',
-            'job_id' => 'required|exists:jobs,id',
-        ]);
-
-        $jobRequest->update($httpRequest->all());
+        $jobRequest->update($request->all());
 
         return response()->json(['status' => 204], 204);
     }

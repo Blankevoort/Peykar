@@ -14,6 +14,7 @@ class JobController extends Controller
     public function index(Request $request)
     {
         $jobs = Job::all();
+        
         foreach ($jobs as $job) {
             $job->likeCount = $job->likes->count();
             $job->requestCount = $job->requests->count();
