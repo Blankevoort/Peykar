@@ -13,7 +13,7 @@ class AuthController extends Controller
 {
     use HttpResponses;
 
-    public function loginOrRegister(Request $request)
+    public function checkStatus(Request $request)
     {
         $userExists = User::where('email', $request->email)->exists();
 
@@ -26,13 +26,13 @@ class AuthController extends Controller
 
     public function login(UserLoginRequest $request)
     {
-        $request->validated();
+        $request->validated($request->only(['email', 'password']));
 
-        if (!Auth::attempt($request->only('email', 'password'))) {
+        if (!Auth::attempt($request->only(['email', 'password']))) {
             return $this->error('', 'Credentials do not match', 401);
         }
 
-        $user = Auth::user();
+        $user = User::where('email', $request->email)->first();
 
         $user->assignRole('User');
 

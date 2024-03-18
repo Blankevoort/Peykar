@@ -133,7 +133,11 @@
               </div>
 
               <div class="q-mb-md">
-                <q-btn class="full-width q-py-md" color="primary">
+                <q-btn
+                  class="full-width q-py-md"
+                  color="primary"
+                  @click="login"
+                >
                   <div class="q-py-sm">ورود</div>
                 </q-btn>
               </div>
@@ -179,15 +183,17 @@
 
           <div class="q-pt-md">
             <div class="full-width">
-              <div class="text-grey-6 q-my-sm">
-                شماره موبایل یا ایمیل خود را وارد کنید
-              </div>
+              <div class="text-grey-6 q-my-sm">ایمیل خود را وارد کنید</div>
 
               <q-input outlined v-model="email" />
 
               <div class="q-my-md">
-                <q-btn class="full-width q-py-md" color="primary">
-                  <div class="q-py-sm">ورود</div>
+                <q-btn
+                  class="full-width q-py-md"
+                  color="primary"
+                  @click="check"
+                >
+                  <div class="q-py-sm">ادامه</div>
                 </q-btn>
               </div>
             </div>
@@ -334,20 +340,108 @@
 
 <script>
 import { ref } from "vue";
+import { api } from "src/boot/axios";
 
 export default {
   setup() {
+    const error = ref();
     const email = ref();
+    const password = ref();
+    const userEmail = ref();
 
     const isPwd = ref(true);
-    const emailSent = ref(true);
     const isLoading = ref(true);
+    const emailSent = ref(false);
+    const checkResult = ref(null);
+
+    function check() {
+      api
+        .post("/api/check", {
+          email: email.value,
+        })
+        .then((r) => {
+          if (r.data) {
+            checkResult.value = r.data.status;
+            localStorage.setItem("email", r.data.email);
+            perform();
+          }
+        })
+        .catch((err) => {
+          if (err.response) {
+            if (err.response.status === 400) {
+              error.value = "با اطلاعات وارد شده نمیتوان وارد شد.";
+            } else if (err.response.status === 401) {
+              error.value = "اطلاعات وارد شده معتبر نیستند.";
+            } else if (err.response.status === 403) {
+              error.value = "دسترسی غیرمجاز.";
+            } else {
+              error.value = "خطای سمت سرور: درخواست نامعتبر.";
+            }
+          } else if (err.request) {
+            error.value = "خطای سمت سرور: درخواست ارسال نشد.";
+          } else {
+            error.value = "خطای سمت سرور: خطای نامشخص رخ داد.";
+          }
+        });
+    }
+
+    function login() {
+      api
+        .post("/api/login", {
+          email: localStorage.getItem("email"),
+          password: password.value,
+        })
+        .then((r) => {
+          if (r.data) {
+            console.log(r.data);
+          }
+        })
+        .catch((err) => {
+          if (err.response) {
+            if (err.response.status === 400) {
+              error.value = "با اطلاعات وارد شده نمیتوان وارد شد.";
+              console.log(error.value);
+            } else if (err.response.status === 401) {
+              error.value = "اطلاعات وارد شده معتبر نیستند.";
+              console.log(error.value);
+            } else if (err.response.status === 403) {
+              error.value = "دسترسی غیرمجاز.";
+              console.log(error.value);
+            } else {
+              error.value = "خطای سمت سرور: درخواست نامعتبر.";
+              console.log(error.value);
+            }
+          } else if (err.request) {
+            error.value = "خطای سمت سرور: درخواست ارسال نشد.";
+            console.log(error.value);
+          } else {
+            error.value = "خطای سمت سرور: خطای نامشخص رخ داد.";
+            console.log(error.value);
+          }
+        });
+    }
+
+    function perform() {
+      if (checkResult.value == "login") {
+        emailSent.value = true;
+        userEmail.value = localStorage.getItem("email");
+      } else {
+        console.log("test");
+      }
+    }
 
     return {
       isPwd,
       email,
+      check,
+      login,
+      error,
+      perform,
+      password,
+      userEmail,
       emailSent,
       isLoading,
+      checkResult,
     };
   },
 };

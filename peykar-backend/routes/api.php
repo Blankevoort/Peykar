@@ -11,7 +11,8 @@ use App\Http\Controllers\LikeController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\HistoryController;
-// Import Profile Controllers
+
+// Profile Controllers
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RequestController;
@@ -27,8 +28,9 @@ use App\Http\Controllers\ProfileControllers\ActivitiesController;
 use App\Http\Controllers\ProfileControllers\EducationsController;
 use App\Http\Controllers\ProfileControllers\AcademicExperienceController;
 
-//User Login And Register Requests
-Route::post('check', [AuthController::class, 'loginOrRegister']);
+// User Existence, Login And Register Requests
+
+Route::post('check', [AuthController::class, 'checkStatus']);
 
 Route::post('register', [AuthController::class, 'register']);
 
