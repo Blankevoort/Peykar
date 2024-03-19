@@ -459,6 +459,8 @@ export default {
       }
     }
 
+    // Register Functions
+
     function handleRegister() {
       if (registerEmailSent.value == true) {
         registerEmailSent.value = true;
@@ -479,7 +481,10 @@ export default {
             password: registerPassword.value,
           })
           .then((r) => {
-            router.push("/");
+            if (r.data) {
+              q.cookies.set("token", r.data.data.token, { expires: 360 });
+              router.push("/");
+            }
           })
           .catch((err) => {
             if (err.response) {
@@ -507,8 +512,6 @@ export default {
           });
       }
     }
-
-    // Register Functions
 
     return {
       // Other
