@@ -59,7 +59,11 @@
               </div>
 
               <div class="q-mb-md">
-                <q-btn class="full-width q-py-md" color="primary">
+                <q-btn
+                  class="full-width q-py-md"
+                  color="primary"
+                  @click="login"
+                >
                   <div class="q-py-sm">ورود</div>
                 </q-btn>
               </div>
@@ -102,7 +106,7 @@
                 رمز عبور خود را وارد کنید
               </div>
 
-              <div class="q-my-md">ورود با moeensedaghaty86@gmail.com</div>
+              <div class="q-my-md">ورود با {{ userEmail }}</div>
             </div>
           </div>
 
@@ -276,8 +280,12 @@
               <q-input outlined v-model="email" />
 
               <div class="q-my-md">
-                <q-btn class="full-width q-py-md" color="primary">
-                  <div class="q-py-sm">ورود</div>
+                <q-btn
+                  class="full-width q-py-md"
+                  color="primary"
+                  @click="check"
+                >
+                  <div class="q-py-sm">ادامه</div>
                 </q-btn>
               </div>
             </div>
@@ -340,19 +348,38 @@
 
 <script>
 import { ref } from "vue";
+import { useQuasar } from "quasar";
+import { useRouter } from "vue-router";
+
 import { api } from "src/boot/axios";
 
 export default {
   setup() {
+    // other
     const error = ref();
     const email = ref();
+    const q = useQuasar();
     const password = ref();
     const userEmail = ref();
+    const router = useRouter();
+    const checkResult = ref(null);
 
     const isPwd = ref(true);
     const isLoading = ref(true);
     const emailSent = ref(false);
-    const checkResult = ref(null);
+
+    // Register
+    const registerEmail = ref();
+    const registerPhone = ref();
+    const registerPassword = ref();
+    const registerEmailConfirm = ref();
+
+    // Views
+
+    const registerEmailSent = ref(false);
+    const registerPhoneSaved = ref(false);
+    const registerPasswordSaved = ref(false);
+    const registerEmailConfirmed = ref(false);
 
     function check() {
       api
@@ -362,7 +389,7 @@ export default {
         .then((r) => {
           if (r.data) {
             checkResult.value = r.data.status;
-            localStorage.setItem("email", r.data.email);
+            q.cookies.set("email", r.data.email);
             perform();
           }
         })
@@ -388,12 +415,13 @@ export default {
     function login() {
       api
         .post("/api/login", {
-          email: localStorage.getItem("email"),
+          email: userEmail.value,
           password: password.value,
         })
         .then((r) => {
           if (r.data) {
-            console.log(r.data);
+            q.cookies.set("token", r.data.data.token, { expires: 360 });
+            router.push("/");
           }
         })
         .catch((err) => {
@@ -424,13 +452,66 @@ export default {
     function perform() {
       if (checkResult.value == "login") {
         emailSent.value = true;
-        userEmail.value = localStorage.getItem("email");
-      } else {
-        console.log("test");
+        userEmail.value = q.cookies.get("email");
+        q.cookies.remove("email");
+      } else if (checkResult.value == "register") {
+        registerEmail.value = true;
       }
     }
 
+    function handleRegister() {
+      if (registerEmailSent.value == true) {
+        registerEmailSent.value = true;
+      } else if (registerPhoneSaved.value == true) {
+        registerEmailSent.value = false;
+        registerPhoneSaved.value = true;
+      } else if (registerPasswordSaved.value == true) {
+        registerPhoneSaved.value = false;
+        registerPasswordSaved.value = true;
+      } else if (registerEmailConfirmed.value == true) {
+        registerPasswordSaved.value = false;
+      } else {
+        api
+          .post("/api/register", {
+            phone: registerPhone.value,
+            email: registerEmail.value,
+            email_confirmation: registerEmailConfirm.value,
+            password: registerPassword.value,
+          })
+          .then((r) => {
+            router.push("/");
+          })
+          .catch((err) => {
+            if (err.response) {
+              destroy.value = true;
+              if (err.response.status === 400) {
+                error.value = "با اطلاعات وارد شده نمیتوان وارد شد.";
+                triggerError();
+              } else if (err.response.status === 401) {
+                error.value = "اطلاعات وارد شده معتبر نیستند.";
+                triggerError();
+              } else if (err.response.status === 403) {
+                error.value = "دسترسی غیرمجاز.";
+                triggerError();
+              } else {
+                error.value = "خطای سمت سرور: درخواست نامعتبر.";
+                triggerError();
+              }
+            } else if (err.request) {
+              error.value = "خطای سمت سرور: درخواست ارسال نشد.";
+              triggerError();
+            } else {
+              error.value = "خطای سمت سرور: خطای نامشخص رخ داد.";
+              triggerError();
+            }
+          });
+      }
+    }
+
+    // Register Functions
+
     return {
+      // Other
       isPwd,
       email,
       check,
@@ -442,6 +523,16 @@ export default {
       emailSent,
       isLoading,
       checkResult,
+      registerEmail,
+      // Register
+      registerPhone,
+      handleRegister,
+      registerPassword,
+      registerEmailSent,
+      registerPhoneSaved,
+      registerEmailConfirm,
+      registerPasswordSaved,
+      registerEmailConfirmed,
     };
   },
 };
