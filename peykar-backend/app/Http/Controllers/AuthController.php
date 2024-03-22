@@ -15,12 +15,22 @@ class AuthController extends Controller
 
     public function checkStatus(Request $request)
     {
-        $userExists = User::where('email', $request->email)->exists();
+        if ($request->email) {
+            $userExistsEmail = User::where('email', $request->email)->exists();
+        } else if ($request->phone) {
+            $userExistsPhone = User::where('phone', $request->phone)->exists();
+        }
 
-        if ($userExists) {
+        if ($userExistsEmail) {
             return response()->json(['status' => 'login', 'email' => $request->email], 200);
         } else {
             return response()->json(['status' => 'register', 'email' => $request->email], 200);
+        }
+
+        if ($userExistsPhone) {
+            return response()->json(['status' => 'login', 'phone' => $request->phone], 200);
+        } else {
+            return response()->json(['status' => 'register', 'phone' => $request->phone], 200);
         }
     }
 

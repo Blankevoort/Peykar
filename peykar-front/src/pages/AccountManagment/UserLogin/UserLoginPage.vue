@@ -1,169 +1,5 @@
 <template>
-  <div v-if="emailSent">
-    <q-page
-      class="gt-sm row justify-center items-center"
-      style="background-color: #f8f9fa"
-    >
-      <div
-        class="bg-white q-pa-lg q-px-xl br-10 relative-position"
-        style="border: 1px solid #dee2e6 !important; width: 400px"
-      >
-        <div class="q-my-lg">
-          <div class="full-width text-center">
-            <div class="relative-position">
-              <q-img
-                style="height: 20px; width: 97.5px"
-                src="https://account.jobvision.ir/images/job-vision-primary.svg"
-              />
-
-              <div class="absolute-left">
-                <q-btn @click="emailSent = false" flat color="grey-7">
-                  <q-icon name="arrow_forward" />
-                </q-btn>
-              </div>
-            </div>
-
-            <div class="full-width q-mt-lg">
-              <div style="font-size: 1.17em !important">
-                رمز عبور خود را وارد کنید
-              </div>
-
-              <div class="q-my-md">ورود با moeensedaghaty86@gmail.com</div>
-            </div>
-          </div>
-
-          <div class="q-pt-md q-pb-lg">
-            <div class="full-width">
-              <div class="text-grey-6 q-my-sm">رمز عبور را وارد کنید</div>
-
-              <q-input
-                v-model="password"
-                outlined
-                :type="isPwd ? 'password' : 'text'"
-              >
-                <template v-slot:append>
-                  <q-icon
-                    :name="isPwd ? 'visibility' : 'visibility_off'"
-                    class="cursor-pointer"
-                    @click="isPwd = !isPwd"
-                  />
-                </template>
-              </q-input>
-
-              <div class="q-my-sm">
-                <q-btn
-                  flat
-                  color="primary"
-                  label="رمز عبور خود را فراموش کرده‌ام"
-                />
-              </div>
-
-              <div class="q-mb-md">
-                <q-btn
-                  class="full-width q-py-md"
-                  color="primary"
-                  @click="login"
-                >
-                  <div class="q-py-sm">ورود</div>
-                </q-btn>
-              </div>
-            </div>
-          </div>
-
-          <div class="absolute-bottom">
-            <q-btn
-              class="full-width q-py-md"
-              color="grey-3"
-              unelevated
-              text-color="primary"
-            >
-              <div class="q-py-md">کارفرما هستید؟</div>
-            </q-btn>
-          </div>
-        </div>
-      </div>
-    </q-page>
-
-    <q-page class="lt-md">
-      <div class="row justify-center items-center bg-white br-10 q-pa-lg">
-        <div class="q-my-lg" style="width: 325px">
-          <div class="full-width text-center">
-            <div class="relative-position">
-              <q-img
-                style="height: 20px; width: 97.5px"
-                src="https://account.jobvision.ir/images/job-vision-primary.svg"
-              />
-
-              <div class="absolute-left">
-                <q-btn @click="emailSent = false" flat color="grey-7">
-                  <q-icon name="arrow_forward" />
-                </q-btn>
-              </div>
-            </div>
-
-            <div class="full-width q-mt-lg">
-              <div style="font-size: 1.17em !important">
-                رمز عبور خود را وارد کنید
-              </div>
-
-              <div class="q-my-md">ورود با {{ userEmail }}</div>
-            </div>
-          </div>
-
-          <div class="q-pt-md q-pb-lg">
-            <div class="full-width">
-              <div class="text-grey-6 q-my-sm">رمز عبور را وارد کنید</div>
-
-              <q-input
-                v-model="password"
-                outlined
-                :type="isPwd ? 'password' : 'text'"
-              >
-                <template v-slot:append>
-                  <q-icon
-                    :name="isPwd ? 'visibility' : 'visibility_off'"
-                    class="cursor-pointer"
-                    @click="isPwd = !isPwd"
-                  />
-                </template>
-              </q-input>
-
-              <div class="q-my-sm">
-                <q-btn
-                  flat
-                  color="primary"
-                  label="رمز عبور خود را فراموش کرده‌ام"
-                />
-              </div>
-
-              <div class="q-mb-md">
-                <q-btn
-                  class="full-width q-py-md"
-                  color="primary"
-                  @click="login"
-                >
-                  <div class="q-py-sm">ورود</div>
-                </q-btn>
-              </div>
-            </div>
-          </div>
-
-          <div class="absolute-bottom">
-            <q-btn
-              class="full-width q-py-md"
-              color="grey-3"
-              unelevated
-              text-color="primary"
-            >
-              <div class="q-py-md">کارفرما هستید؟</div>
-            </q-btn>
-          </div>
-        </div>
-      </div>
-    </q-page>
-  </div>
-
-  <div v-else>
+  <div v-if="enterEmail">
     <q-page
       class="gt-sm row justify-center items-center"
       style="background-color: #f8f9fa"
@@ -344,6 +180,302 @@
       </div>
     </q-page>
   </div>
+
+  <div v-if="emailSent">
+    <q-page
+      class="gt-sm row justify-center items-center"
+      style="background-color: #f8f9fa"
+    >
+      <div
+        class="bg-white q-pa-lg q-px-xl br-10 relative-position"
+        style="border: 1px solid #dee2e6 !important; width: 400px"
+      >
+        <div class="q-my-lg">
+          <div class="full-width text-center">
+            <div class="relative-position">
+              <q-img
+                style="height: 20px; width: 97.5px"
+                src="https://account.jobvision.ir/images/job-vision-primary.svg"
+              />
+
+              <div class="absolute-left">
+                <q-btn @click="emailSent = false" flat color="grey-7">
+                  <q-icon name="arrow_forward" />
+                </q-btn>
+              </div>
+            </div>
+
+            <div class="full-width q-mt-lg">
+              <div style="font-size: 1.17em !important">
+                رمز عبور خود را وارد کنید
+              </div>
+
+              <div class="q-my-md">ورود با moeensedaghaty86@gmail.com</div>
+            </div>
+          </div>
+
+          <div class="q-pt-md q-pb-lg">
+            <div class="full-width">
+              <div class="text-grey-6 q-my-sm">رمز عبور را وارد کنید</div>
+
+              <q-input
+                v-model="password"
+                outlined
+                :type="isPwd ? 'password' : 'text'"
+              >
+                <template v-slot:append>
+                  <q-icon
+                    :name="isPwd ? 'visibility' : 'visibility_off'"
+                    class="cursor-pointer"
+                    @click="isPwd = !isPwd"
+                  />
+                </template>
+              </q-input>
+
+              <div class="q-my-sm">
+                <q-btn
+                  flat
+                  color="primary"
+                  label="رمز عبور خود را فراموش کرده‌ام"
+                />
+              </div>
+
+              <div class="q-mb-md">
+                <q-btn
+                  class="full-width q-py-md"
+                  color="primary"
+                  @click="login"
+                >
+                  <div class="q-py-sm">ورود</div>
+                </q-btn>
+              </div>
+            </div>
+          </div>
+
+          <div class="absolute-bottom">
+            <q-btn
+              class="full-width q-py-md"
+              color="grey-3"
+              unelevated
+              text-color="primary"
+            >
+              <div class="q-py-md">کارفرما هستید؟</div>
+            </q-btn>
+          </div>
+        </div>
+      </div>
+    </q-page>
+
+    <q-page class="lt-md">
+      <div class="row justify-center items-center bg-white br-10 q-pa-lg">
+        <div class="q-my-lg" style="width: 325px">
+          <div class="full-width text-center">
+            <div class="relative-position">
+              <q-img
+                style="height: 20px; width: 97.5px"
+                src="https://account.jobvision.ir/images/job-vision-primary.svg"
+              />
+
+              <div class="absolute-left">
+                <q-btn @click="emailSent = false" flat color="grey-7">
+                  <q-icon name="arrow_forward" />
+                </q-btn>
+              </div>
+            </div>
+
+            <div class="full-width q-mt-lg">
+              <div style="font-size: 1.17em !important">
+                رمز عبور خود را وارد کنید
+              </div>
+
+              <div class="q-my-md">ورود با {{ userEmail }}</div>
+            </div>
+          </div>
+
+          <div class="q-pt-md q-pb-lg">
+            <div class="full-width">
+              <div class="text-grey-6 q-my-sm">رمز عبور را وارد کنید</div>
+
+              <q-input
+                v-model="password"
+                outlined
+                :type="isPwd ? 'password' : 'text'"
+              >
+                <template v-slot:append>
+                  <q-icon
+                    :name="isPwd ? 'visibility' : 'visibility_off'"
+                    class="cursor-pointer"
+                    @click="isPwd = !isPwd"
+                  />
+                </template>
+              </q-input>
+
+              <div class="q-my-sm">
+                <q-btn
+                  flat
+                  color="primary"
+                  label="رمز عبور خود را فراموش کرده‌ام"
+                />
+              </div>
+
+              <div class="q-mb-md">
+                <q-btn
+                  class="full-width q-py-md"
+                  color="primary"
+                  @click="login"
+                >
+                  <div class="q-py-sm">ورود</div>
+                </q-btn>
+              </div>
+            </div>
+          </div>
+
+          <div class="absolute-bottom">
+            <q-btn
+              class="full-width q-py-md"
+              color="grey-3"
+              unelevated
+              text-color="primary"
+            >
+              <div class="q-py-md">کارفرما هستید؟</div>
+            </q-btn>
+          </div>
+        </div>
+      </div>
+    </q-page>
+  </div>
+
+  <!-- moeensedaghaty71@gmail.com -->
+
+  <div v-if="registerEmailSent">
+    <q-page
+      class="gt-sm row justify-center items-center"
+      style="background-color: #f8f9fa"
+    >
+      <div
+        class="bg-white q-pa-lg q-px-xl br-10 relative-position"
+        style="border: 1px solid #dee2e6 !important; width: 400px"
+      >
+        <div class="q-my-lg">
+          <div class="full-width text-center">
+            <div class="relative-position">
+              <q-img
+                style="height: 20px; width: 97.5px"
+                src="https://account.jobvision.ir/images/job-vision-primary.svg"
+              />
+
+              <div class="absolute-left">
+                <q-btn @click="enterEmail = true" flat color="grey-7">
+                  <q-icon name="arrow_forward" />
+                </q-btn>
+              </div>
+            </div>
+
+            <div class="full-width q-mt-lg">
+              <div style="font-size: 1.17em !important">
+                شماره تلفن خود را وارد کنید
+              </div>
+            </div>
+          </div>
+
+          <div class="q-pt-md q-pb-lg">
+            <div class="full-width">
+              <div class="text-grey-6 q-my-sm">شماره تلفن را وارد کنید</div>
+
+              <q-input outlined v-model="registerPhone" />
+
+              <div class="q-my-sm">
+                <q-btn
+                  flat
+                  color="primary"
+                  label="رمز عبور خود را فراموش کرده‌ام"
+                />
+              </div>
+
+              <div class="q-mb-md">
+                <q-btn
+                  class="full-width q-py-md"
+                  color="primary"
+                  @click="handleRegister"
+                >
+                  <div class="q-py-sm">ادامه</div>
+                </q-btn>
+              </div>
+            </div>
+          </div>
+
+          <div class="absolute-bottom">
+            <q-btn
+              class="full-width q-py-md"
+              color="grey-3"
+              unelevated
+              text-color="primary"
+            >
+              <div class="q-py-md">کارفرما هستید؟</div>
+            </q-btn>
+          </div>
+        </div>
+      </div>
+    </q-page>
+
+    <q-page class="lt-md">
+      <div class="row justify-center items-center bg-white br-10 q-pa-lg">
+        <div class="q-my-lg" style="width: 325px">
+          <div class="full-width text-center">
+            <div class="relative-position">
+              <q-img
+                style="height: 20px; width: 97.5px"
+                src="https://account.jobvision.ir/images/job-vision-primary.svg"
+              />
+
+              <div class="absolute-left">
+                <q-btn @click="enterEmail = true" flat color="grey-7">
+                  <q-icon name="arrow_forward" />
+                </q-btn>
+              </div>
+            </div>
+
+            <div class="full-width q-mt-lg">
+              <div style="font-size: 1.17em !important">
+                شماره تلفن خود را وارد کنید
+              </div>
+            </div>
+          </div>
+
+          <div class="q-pt-md q-pb-lg">
+            <div class="full-width">
+              <div class="text-grey-6 q-my-sm">شماره تلفن را وارد کنید</div>
+
+              <q-input outlined v-model="registerPhone" />
+
+              <div class="q-my-lg" />
+
+              <div class="q-mb-md">
+                <q-btn
+                  class="full-width q-py-md"
+                  color="primary"
+                  @click="handleRegister"
+                >
+                  <div class="q-py-sm">ادامه</div>
+                </q-btn>
+              </div>
+            </div>
+          </div>
+
+          <div class="absolute-bottom">
+            <q-btn
+              class="full-width q-py-md"
+              color="grey-3"
+              unelevated
+              text-color="primary"
+            >
+              <div class="q-py-md">کارفرما هستید؟</div>
+            </q-btn>
+          </div>
+        </div>
+      </div>
+    </q-page>
+  </div>
 </template>
 
 <script>
@@ -357,7 +489,7 @@ export default {
   setup() {
     // other
     const error = ref();
-    const email = ref();
+    const email = ref("moeensedaghaty71@gmail.com");
     const q = useQuasar();
     const password = ref();
     const userEmail = ref();
@@ -367,6 +499,7 @@ export default {
     const isPwd = ref(true);
     const isLoading = ref(true);
     const emailSent = ref(false);
+    const enterEmail = ref(true);
 
     // Register
     const registerEmail = ref();
@@ -451,11 +584,12 @@ export default {
 
     function perform() {
       if (checkResult.value == "login") {
-        emailSent.value = true;
+        enterEmail.value = true;
         userEmail.value = q.cookies.get("email");
         q.cookies.remove("email");
-      } else if (checkResult.value == "register") {
-        registerEmail.value = true;
+      } else {
+        registerEmailSent.value = true;
+        enterEmail.value = false;
       }
     }
 
@@ -463,7 +597,8 @@ export default {
 
     function handleRegister() {
       if (registerEmailSent.value == true) {
-        registerEmailSent.value = true;
+        registerEmailSent.value = false;
+        registerPhoneSaved.value = true;
       } else if (registerPhoneSaved.value == true) {
         registerEmailSent.value = false;
         registerPhoneSaved.value = true;
@@ -525,6 +660,7 @@ export default {
       userEmail,
       emailSent,
       isLoading,
+      enterEmail,
       checkResult,
       registerEmail,
       // Register
