@@ -32,6 +32,8 @@ use App\Http\Controllers\ProfileControllers\AcademicExperienceController;
 
 Route::post('check', [AuthController::class, 'checkStatus']);
 
+Route::post('check-duplicate', [AuthController::class, 'checkDuplicate']);
+
 Route::post('register', [AuthController::class, 'register']);
 
 Route::post('login', [AuthController::class, 'login']);
