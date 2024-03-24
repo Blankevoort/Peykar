@@ -14,7 +14,7 @@ class JobController extends Controller
     public function index(Request $request)
     {
         $jobs = Job::all();
-        
+
         foreach ($jobs as $job) {
             $job->likeCount = $job->likes->count();
             $job->requestCount = $job->requests->count();
@@ -53,6 +53,10 @@ class JobController extends Controller
             'workHours' => $request->workHours,
             'workSpace' => $request->workSpace,
             'description' => $request->description,
+            'province' => $request->province,
+            'street' => $request->street,
+            'rights_min' => $request->rightsMin,
+            'rights_max' => $request->rightsMax,
         ]);
 
         $job->tags()->syncWithoutDetaching($request->tag_id);

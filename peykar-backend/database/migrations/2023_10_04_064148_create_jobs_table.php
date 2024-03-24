@@ -20,6 +20,10 @@ return new class extends Migration
             $table->string("workHours");
             $table->string("workSpace");
             $table->string("description")->nullable();
+            $table->string("province")->nullable();
+            $table->string("street")->nullable();
+            $table->string("rights_min")->nullable();
+            $table->string("rights_max")->nullable();
             $table->unsignedBigInteger("user_id");
             $table->timestamps();
         });

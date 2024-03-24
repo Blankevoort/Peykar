@@ -32,7 +32,7 @@
           </div>
         </div>
 
-        <q-toolbar-title v-if="!user" class="col-3 row justify-end">
+        <q-toolbar-title v-if="user" class="col-3 row justify-end">
           <!-- Notification Button -->
 
           <q-btn round flat>
@@ -207,7 +207,7 @@
           />
         </div>
 
-        <q-toolbar-title v-if="!user" class="row justify-end">
+        <q-toolbar-title v-if="user" class="row justify-end">
           <!-- Notification Button -->
 
           <q-btn round flat>
@@ -1758,10 +1758,7 @@
           <!-- National Registration Address -->
 
           <div class="col-4 row justify-end content-center">
-            <q-img
-              style="width: 175px; height: 175px"
-              src="assets/logo.png"
-            />
+            <q-img style="width: 175px; height: 175px" src="assets/logo.png" />
           </div>
         </div>
       </div>
@@ -1973,10 +1970,7 @@
           <!-- National Registration Address -->
 
           <div class="col-4 row justify-end content-center">
-            <q-img
-              style="width: 175px; height: 175px"
-              src="assets/logo.png"
-            />
+            <q-img style="width: 175px; height: 175px" src="assets/logo.png" />
           </div>
         </div>
       </div>
@@ -2188,10 +2182,7 @@
           <!-- National Registration Address -->
 
           <div class="col-12 row justify-center content-center">
-            <q-img
-              style="width: 175px; height: 175px"
-              src="assets/logo.png"
-            />
+            <q-img style="width: 175px; height: 175px" src="assets/logo.png" />
           </div>
         </div>
       </div>
@@ -2412,7 +2403,8 @@
 </template>
 
 <script>
-import { defineComponent, ref } from "vue";
+import { defineComponent, ref, onBeforeMount } from "vue";
+import { api } from "src/boot/axios";
 
 export default defineComponent({
   name: "MainLayout",
@@ -2425,6 +2417,16 @@ export default defineComponent({
     const expanded = ref(false);
     const expandedTwo = ref(false);
     const expandedThree = ref(false);
+
+    function fetchUserData() {
+      api.get("/api/user").then((r) => {
+        user.value = r.data;
+      });
+    }
+
+    onBeforeMount(() => {
+      fetchUserData();
+    });
 
     return {
       tab,

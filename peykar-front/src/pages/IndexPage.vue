@@ -141,11 +141,16 @@
                 </q-card-section>
 
                 <q-card-section>
-                  <div class="q-mt-sm q-mb-xs">{{ job.name }}</div>
+                  <div class="q-mt-sm q-mb-xs">{{ job.title }}</div>
                   <div class="text-caption">{{ job.name }}</div>
                   <div class="text-caption text-grey">
-                    <span>{{ job.address }} |</span>
-                    <span class="text-positive"> {{ job.rights }} </span>
+                    <span>{{ job.province }}، {{ job.street }} |</span>
+                    <span class="text-positive" v-if="rights_min && rights_max">
+                      {{ job.rights_min }} - {{ job.rights_max }}
+                    </span>
+                    <span class="text-positive" v-if="rights_min">
+                      {{ job.rights_min }}+
+                    </span>
                   </div>
                 </q-card-section>
               </q-card-section>
@@ -484,8 +489,7 @@ export default {
 
     function getJobs() {
       api.get("api/jobs").then((r) => {
-        console.log(r.data);
-        // jobs.value = r.data;
+        jobs.value = r.data;
       });
     }
 

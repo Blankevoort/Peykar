@@ -19,6 +19,10 @@ class Job extends Model
         "workHours",
         "workSpace",
         "description",
+        "province",
+        "street",
+        "rights_min",
+        "rights_max",
         "user_id",
     ];
 

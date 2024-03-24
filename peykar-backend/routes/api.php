@@ -81,11 +81,10 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
         Route::resource('skills', SkillsController::class);
 
         Route::resource('socials', SocialsController::class);
-
     });
 
     Route::get('user', function (Request $request) {
-        return $request->user()->likes;
+        return $request->user();
     });
 });
 
