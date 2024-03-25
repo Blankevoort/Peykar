@@ -19,13 +19,13 @@ class JobController extends Controller
             $job->likeCount = $job->likes->count();
             $job->requestCount = $job->requests->count();
 
-            if ($job->likes->where('id', $request->user()->id)->first()) {
+            if (Auth::user() && $job->likes->where('id', $request->user()->id)->first()) {
                 $liked = true;
             } else {
                 $liked = false;
             }
 
-            if ($job->requests->where('id', $request->user()->id)->first()) {
+            if (Auth::user() && $job->requests->where('id', $request->user()->id)->first()) {
                 $requested = true;
             } else {
                 $requested = false;
@@ -34,6 +34,7 @@ class JobController extends Controller
             $job->requested = $requested;
             $job->liked = $liked;
         }
+
         return $jobs;
     }
 
@@ -51,7 +52,6 @@ class JobController extends Controller
             'title' => $request->title,
             'workDate' => $request->workDate,
             'workHours' => $request->workHours,
-            'workSpace' => $request->workSpace,
             'description' => $request->description,
             'province' => $request->province,
             'street' => $request->street,

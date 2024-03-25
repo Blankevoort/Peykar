@@ -144,13 +144,14 @@
                   <div class="q-mt-sm q-mb-xs">{{ job.title }}</div>
                   <div class="text-caption">{{ job.name }}</div>
                   <div class="text-caption text-grey">
-                    <span>{{ job.province }}، {{ job.street }} |</span>
-                    <span class="text-positive" v-if="rights_min && rights_max">
+                    <p>{{ job.province }}، {{ job.street }}</p>
+                    <span v-if="rights_min">|</span>
+                    <p class="text-positive" v-if="rights_min & rights_max">
                       {{ job.rights_min }} - {{ job.rights_max }}
-                    </span>
-                    <span class="text-positive" v-if="rights_min">
+                    </p>
+                    <p class="text-positive" v-if="rights_min">
                       {{ job.rights_min }}+
-                    </span>
+                    </p>
                   </div>
                 </q-card-section>
               </q-card-section>
@@ -479,7 +480,7 @@
 </template>
 
 <script>
-import { ref, onMounted } from "vue";
+import { ref, onBeforeMount, onMounted } from "vue";
 import { api } from "src/boot/axios";
 
 export default {
@@ -493,7 +494,7 @@ export default {
       });
     }
 
-    onMounted(() => {
+    onBeforeMount(() => {
       getJobs();
 
       setTimeout(() => {

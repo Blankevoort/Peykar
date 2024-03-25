@@ -17,7 +17,6 @@ class Job extends Model
         "title",
         "workDate",
         "workHours",
-        "workSpace",
         "description",
         "province",
         "street",

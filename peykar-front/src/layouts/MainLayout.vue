@@ -21,7 +21,13 @@
               class="btn--no-hover button-effect"
             />
 
-            <q-btn flat label="رزومه من" to="/my-cv" class="btn--no-hover" />
+            <q-btn
+              flat
+              label="رزومه من"
+              v-if="user"
+              to="/my-cv"
+              class="btn--no-hover"
+            />
 
             <q-btn
               flat
@@ -417,7 +423,7 @@
                   </q-btn>
                 </div>
 
-                <div class="col-12">
+                <div class="col-12" v-if="user">
                   <q-btn flat to="/my-cv" class="btn--no-hover col-6 q-my-sm">
                     <span class="text-bold">رزومه من</span>
                   </q-btn>

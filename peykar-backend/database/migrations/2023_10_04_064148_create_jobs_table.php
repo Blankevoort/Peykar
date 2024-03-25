@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string("title");
             $table->string("workDate");
             $table->string("workHours");
-            $table->string("workSpace");
             $table->string("description")->nullable();
             $table->string("province")->nullable();
             $table->string("street")->nullable();

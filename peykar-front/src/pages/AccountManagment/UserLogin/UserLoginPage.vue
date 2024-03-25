@@ -1042,8 +1042,12 @@ export default {
         .then((r) => {
           if (r.data) {
             q.cookies.set("token", r.data.data.token, { expires: 360 });
-            router.push("/");
           }
+        })
+        .then((r) => {
+          api.get("/api/user").then((r) => {
+            router.push("/");
+          });
         })
         .catch((err) => {
           errorHandler(err);

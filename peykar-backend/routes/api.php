@@ -38,11 +38,11 @@ Route::post('register', [AuthController::class, 'register']);
 
 Route::post('login', [AuthController::class, 'login']);
 
+Route::resource('jobs', JobController::class);
+
 // Protected Routes
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
-
-    Route::resource('jobs', JobController::class);
 
     Route::resource('tags', TagController::class);
 
