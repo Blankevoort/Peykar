@@ -10,15 +10,27 @@ class LikeController extends Controller
 {
     public function store(Request $request)
     {
-        $request->user()->likes()->syncWithoutDetaching($request->job_id);
+        $user = $request->user();
+        $job = Job::findOrFail($request->job_id);
 
-        return response()->json(['status' => 204,], 204);
+        $existingLike = $user->likes()->where('job_id', $job->id)->first();
+        if ($existingLike) {
+            return response()->json(['like_id' => $existingLike->id], 409);
+        }
+
+        $like = new Like();
+        $like->user()->associate($user);
+        $like->job()->associate($job);
+        $like->save();
+
+        return response()->json('', 204);
     }
+
 
     public function destroy(Like $like)
     {
         $like->delete();
 
-        return response()->json(['status' => 204], 204);
+        return response()->json('', 204);
     }
 }

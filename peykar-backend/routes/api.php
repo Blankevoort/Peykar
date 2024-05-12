@@ -39,6 +39,7 @@ Route::post('register', [AuthController::class, 'register']);
 Route::post('login', [AuthController::class, 'login']);
 
 Route::get('jobs', [JobController::class, "index"]);
+Route::get('job/{id}', [JobController::class, "show"]);
 
 // Protected Routes
 
@@ -49,10 +50,13 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::delete('job/{id}', [JobController::class, "destroy"]);
 
     Route::resource('tags', TagController::class);
+    Route::post('jobs/{id}/tags', [TagController::class, 'addTagToJob']);
+    Route::delete('jobs/{id}/tags/{tagId}', [TagController::class, 'removeTagFromJob']);
 
     Route::resource('tickets', TicketController::class);
 
-    Route::resource('like', LikeController::class);
+    Route::post('like', [LikeController::class, 'store']);
+    Route::delete('like/{like}', [LikeController::class, 'destroy'])->name('like.destroy');
 
     Route::resource('request', RequestController::class);
 

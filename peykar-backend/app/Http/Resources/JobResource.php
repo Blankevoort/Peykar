@@ -15,11 +15,12 @@ class JobResource extends JsonResource
             'street' => $this->street,
             'rights_min' => $this->rights_min,
             'rights_max' => $this->rights_max,
-            'tags' => $this->tags,
-            'like_count' => $this->likes->count(),
-            'request_count' => $this->requests->count(),
+            'like_count' => $this->likeCount,
+            'request_count' => $this->requestCount,
+            'tagsCount' => $this->tagsCount,
             'liked' => $this->liked,
             'requested' => $this->requested,
+            'tagsList' => $this->tagsList,
         ];
     }
 }

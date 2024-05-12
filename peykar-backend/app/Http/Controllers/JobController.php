@@ -19,9 +19,11 @@ class JobController extends Controller
         foreach ($jobs as $job) {
             $job->likeCount = $job->likes->count();
             $job->requestCount = $job->requests->count();
+            $job->tagsCount = $job->tags->count();
 
             $liked = false;
             $requested = false;
+            $tagsList = [];
 
             if ($job->likes) {
                 foreach ($job->likes as $like) {
@@ -41,12 +43,20 @@ class JobController extends Controller
                 }
             }
 
+            if ($job->tags) {
+                foreach ($job->tags as $tag) {
+                    $tagsList[] = $tag->name;
+                }
+            }
+
             $job->requested = $requested;
             $job->liked = $liked;
+            $job->tagsList = $tagsList;
         }
 
         return JobResource::collection($jobs);
     }
+
 
     public function store(Request $request)
     {
@@ -98,6 +108,48 @@ class JobController extends Controller
         return response()->json(['message' => 'Job deleted successfully'], 200);
     }
 
+    public function show($id)
+    {
+        $job = Job::findOrFail($id);
+
+        $job->likeCount = $job->likes->count();
+        $job->requestCount = $job->requests->count();
+        $job->tagsCount = $job->tags->count();
+
+        $liked = false;
+        $requested = false;
+        $tagsList = [];
+
+        if ($job->likes) {
+            foreach ($job->likes as $like) {
+                if ($like->user_id) {
+                    $liked = true;
+                    break;
+                }
+        }
+        }
+
+        if ($job->requests) {
+            foreach ($job->requests as $request) {
+                if ($request->user_id) {
+                    $requested = true;
+                    break;
+                }
+            }
+        }
+
+        if ($job->tags) {
+            foreach ($job->tags as $tag) {
+                $tagsList[] = $tag->name;
+            }
+        }
+
+        $job->requested = $requested;
+        $job->liked = $liked;
+        $job->tagsList = $tagsList;
+
+        return new JobResource($job);
+    }
 
     public function userJobs()
     {

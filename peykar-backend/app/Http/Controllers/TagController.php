@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Job;
 use App\Models\Tag;
+use Illuminate\Http\Request;
 use App\Traits\HttpResponses;
 
 class TagController extends Controller
@@ -21,17 +22,17 @@ class TagController extends Controller
             'name' => 'required|unique:tags',
         ]);
 
-        $tag = Tag::create([
+        Tag::create([
             'name' => $request->name,
         ]);
 
-        return $tag;
+        return response()->json('', 204);
     }
 
     public function update(Request $request, Tag $tag)
     {
         $request->validate([
-            'name' => 'required|unique:tags,name,' . $tag->id, 
+            'name' => 'required|unique:tags,name,' . $tag->id,
         ]);
 
         $tag->update([
@@ -44,6 +45,32 @@ class TagController extends Controller
     public function destroy(Tag $tag)
     {
         $tag->delete();
-        return response()->json(['message' => 'Tag deleted successfully']);
+
+        return response()->json('', 204);
+    }
+
+    public function removeTagFromJob($jobId, $tagId)
+    {
+        $job = Job::findOrFail($jobId);
+
+        // Detach the tag from the job
+        $job->tags()->detach($tagId);
+
+        return response()->json(['message' => 'Tag removed from job successfully'], 200);
+    }
+
+    public function addTagToJob(Request $request, $jobId)
+    {
+        $job = Job::findOrFail($jobId);
+
+        // Validate the request data
+        $request->validate([
+            'tag_id' => 'required|exists:tags,id',
+        ]);
+
+        // Attach the tag to the job
+        $job->tags()->attach($request->tag_id);
+
+        return response()->json(['message' => 'Tag added to job successfully'], 200);
     }
 }

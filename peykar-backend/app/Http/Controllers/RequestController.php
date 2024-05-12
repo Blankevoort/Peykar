@@ -27,7 +27,7 @@ class RequestController extends Controller
             ->first();
 
         if ($existingRequest) {
-            return response()->json(['status' => "You have already sent a request to this job"], 409);
+            return response()->json('', 409);
         }
 
         Request::create([
@@ -35,20 +35,21 @@ class RequestController extends Controller
             'user_id' => auth()->id(),
         ]);
 
-        return response()->json(['status' => 204], 204);
+        return response()->json('', 204);
     }
 
-    public function update(HttpRequest $request, Request $jobRequest)
+    public function update(HttpRequest $request)
     {
+        $jobRequest = Request::findOrFail($request->request_id);
         $jobRequest->update($request->all());
 
-        return response()->json(['status' => 204], 204);
+        return response()->json('', 204);
     }
 
     public function destroy(Request $request)
     {
         $request->delete();
 
-        return response()->json(['status' => 204], 204);
+        return response()->json('', 204);
     }
 }
