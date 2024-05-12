@@ -367,7 +367,7 @@
               class="col-12 row"
               ref="{swiperRef}"
               :slidesPerView="5"
-              :centeredSlides="true"
+              :centeredSlides="false"
               :spaceBetween="5"
               :modules="modules"
               :autoplay="{

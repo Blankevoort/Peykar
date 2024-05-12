@@ -38,11 +38,15 @@ Route::post('register', [AuthController::class, 'register']);
 
 Route::post('login', [AuthController::class, 'login']);
 
-Route::resource('jobs', JobController::class);
+Route::get('jobs', [JobController::class, "index"]);
 
 // Protected Routes
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
+
+    Route::post('job', [JobController::class, "store"]);
+    Route::patch('job/{id}', [JobController::class, "update"]);
+    Route::delete('job/{id}', [JobController::class, "destroy"]);
 
     Route::resource('tags', TagController::class);
 
@@ -59,6 +63,10 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::resource('history', HistoryController::class);
 
     Route::post('logout', [AuthController::class, 'logout']);
+
+    Route::get('user', function (Request $request) {
+        return $request->user();
+    });
 
     Route::prefix('user-cv')->group(function () {
 
@@ -81,10 +89,6 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
         Route::resource('skills', SkillsController::class);
 
         Route::resource('socials', SocialsController::class);
-    });
-
-    Route::get('user', function (Request $request) {
-        return $request->user();
     });
 });
 

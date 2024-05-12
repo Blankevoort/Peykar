@@ -5,13 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\Job;
 use Illuminate\Http\Request;
 use App\Traits\HttpResponses;
+use App\Http\Resources\JobResource;
 use Illuminate\Support\Facades\Auth;
 
 class JobController extends Controller
 {
     use HttpResponses;
 
-    public function index(Request $request)
+    public function index()
     {
         $jobs = Job::all();
 
@@ -19,23 +20,32 @@ class JobController extends Controller
             $job->likeCount = $job->likes->count();
             $job->requestCount = $job->requests->count();
 
-            if (Auth::user() && $job->likes->where('id', $request->user()->id)->first()) {
-                $liked = true;
-            } else {
-                $liked = false;
+            $liked = false;
+            $requested = false;
+
+            if ($job->likes) {
+                foreach ($job->likes as $like) {
+                    if ($like->user_id) {
+                        $liked = true;
+                        break;
+                    }
+                }
             }
 
-            if (Auth::user() && $job->requests->where('id', $request->user()->id)->first()) {
-                $requested = true;
-            } else {
-                $requested = false;
+            if ($job->requests) {
+                foreach ($job->requests as $request) {
+                    if ($request->user_id) {
+                        $requested = true;
+                        break;
+                    }
+                }
             }
 
             $job->requested = $requested;
             $job->liked = $liked;
         }
 
-        return $jobs;
+        return JobResource::collection($jobs);
     }
 
     public function store(Request $request)
@@ -48,7 +58,7 @@ class JobController extends Controller
         ]);
 
         $job = Job::create([
-            'user_id' => Auth::user()->id,
+            'user_id' => $request->user()->id,
             'title' => $request->title,
             'workDate' => $request->workDate,
             'workHours' => $request->workHours,
@@ -66,7 +76,7 @@ class JobController extends Controller
 
     public function update(Request $request, Job $job)
     {
-        if (Auth::user()->id !== $job->user_id) {
+        if (Auth::user()->id == $job->user_id) {
             return $this->error('', 'You are not authorized to make this request', 403);
         }
 
@@ -75,10 +85,19 @@ class JobController extends Controller
         return response()->json(['status' => 204]);
     }
 
-    public function destroy(Job $job)
+    public function destroy($id)
     {
-        return $this->isNotAuthorized($job) ? $this->isNotAuthorized($job) : $job->delete();
+        $job = Job::findOrFail($id);
+
+        if (Auth::user()->id != $job->user_id) {
+            return $this->error('', 'You are not authorized to make this request', 403);
+        }
+
+        $job->delete();
+
+        return response()->json(['message' => 'Job deleted successfully'], 200);
     }
+
 
     public function userJobs()
     {
@@ -101,12 +120,5 @@ class JobController extends Controller
             ->get();
 
         return $jobs;
-    }
-
-    private function isNotAuthorized($jobs)
-    {
-        if (Auth::user()->id !== $jobs->user_id) {
-            return $this->error('', 'You are not authorized to make this request', 403);
-        }
     }
 }

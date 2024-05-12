@@ -1,938 +1,941 @@
 <template>
-  <!-- get number and email and gets checked -->
-  <div v-if="enterEPhone">
-    <q-page
-      class="gt-sm row justify-center items-center"
-      style="background-color: #f8f9fa"
-    >
-      <div
-        class="bg-white q-pa-lg q-px-xl br-10 relative-position"
-        style="border: 1px solid #dee2e6 !important; width: 400px"
+  <q-page>
+    <!-- get number and email and gets checked -->
+    
+    <div v-if="enterEPhone">
+      <q-page
+        class="gt-sm row justify-center items-center"
+        style="background-color: #f8f9fa"
       >
-        <div class="q-my-lg">
-          <div class="full-width text-center">
-            <q-img
-              style="height: 20px; width: 97.5px"
-              src="https://account.jobvision.ir/images/job-vision-primary.svg"
-            />
-
-            <div class="full-width q-mt-lg text-h6">
-              <span class="text-bold">ورود | ثبت‌نام </span>
-              <span>کـارجـو</span>
-            </div>
-          </div>
-
-          <div class="q-pt-md">
-            <div class="full-width">
-              <div class="text-grey-6 q-my-sm">ایمیل خود را وارد کنید</div>
-
-              <q-input
-                outlined
-                v-model="emailPhone"
-                :rules="[(val) => !!val || 'Field is required']"
-              />
-
-              <div class="q-my-md">
-                <q-btn
-                  class="full-width q-py-md"
-                  color="primary"
-                  @click="check"
-                >
-                  <div class="q-py-sm">ادامه</div>
-                </q-btn>
-              </div>
-            </div>
-          </div>
-
-          <div
-            class="q-my-sm"
-            style="
-              width: 100%;
-              text-align: center;
-              border-bottom: 1px solid #dcdcdc;
-              line-height: 0.1em;
-              margin: 25px 0;
-            "
-          >
-            <span style="background: #fff; padding: 0 10px">یا</span>
-          </div>
-
-          <div class="q-pb-lg">
-            <div
-              class="row justify-center q-mb-md"
-              style="border: 1px solid black; height: 44px; padding: 9px 24px"
-            >
-              <q-img
-                style="width: 18px; height: 18px"
-                src="https://account.jobvision.ir/images/login-register/google.svg"
-              />
-
-              <span class="q-px-sm">ادامه با گوگل</span>
-            </div>
-
-            <div
-              class="row justify-center q-my-sm"
-              style="border: 1px solid black; height: 44px; padding: 9px 24px"
-            >
-              <q-img
-                style="width: 18px; height: 18px"
-                src="https://account.jobvision.ir/images/login-register/linkedin.svg"
-              />
-
-              <span class="q-px-sm">ادامه لینکدین</span>
-            </div>
-          </div>
-
-          <div class="absolute-bottom">
-            <q-btn
-              class="full-width q-py-md"
-              color="grey-3"
-              unelevated
-              text-color="primary"
-            >
-              <div class="q-py-md">کارفرما هستید؟</div>
-            </q-btn>
-          </div>
-        </div>
-      </div>
-    </q-page>
-
-    <q-page class="lt-md">
-      <div class="row justify-center items-center bg-white br-10 q-pa-lg">
-        <div class="q-my-lg" style="width: 325px">
-          <div class="full-width text-center">
-            <q-img
-              style="height: 20px; width: 97.5px"
-              src="https://account.jobvision.ir/images/job-vision-primary.svg"
-            />
-
-            <div class="full-width q-mt-lg text-h6">
-              <span class="text-bold">ورود | ثبت‌نام </span>
-              <span>کـارجـو</span>
-            </div>
-          </div>
-
-          <div class="q-pt-md">
-            <div class="full-width">
-              <div class="text-grey-6 q-my-sm">
-                شماره موبایل یا ایمیل خود را وارد کنید
-              </div>
-
-              <q-input
-                outlined
-                v-model="emailPhone"
-                :rules="[(val) => !!val || 'Field is required']"
-              />
-
-              <div class="q-my-md">
-                <q-btn
-                  class="full-width q-py-md"
-                  color="primary"
-                  @click="check"
-                >
-                  <div class="q-py-sm">ادامه</div>
-                </q-btn>
-              </div>
-            </div>
-          </div>
-
-          <div
-            class="q-my-sm"
-            style="
-              width: 100%;
-              text-align: center;
-              border-bottom: 1px solid #dcdcdc;
-              line-height: 0.1em;
-              margin: 25px 0;
-            "
-          >
-            <span style="background: #fff; padding: 0 10px">یا</span>
-          </div>
-
-          <div class="q-pb-lg">
-            <div
-              class="row justify-center q-mb-md"
-              style="border: 1px solid black; height: 44px; padding: 9px 24px"
-            >
-              <q-img
-                style="width: 18px; height: 18px"
-                src="https://account.jobvision.ir/images/login-register/google.svg"
-              />
-
-              <span class="q-px-sm">ادامه با گوگل</span>
-            </div>
-
-            <div
-              class="row justify-center q-my-sm"
-              style="border: 1px solid black; height: 44px; padding: 9px 24px"
-            >
-              <q-img
-                style="width: 18px; height: 18px"
-                src="https://account.jobvision.ir/images/login-register/linkedin.svg"
-              />
-
-              <span class="q-px-sm">ادامه لینکدین</span>
-            </div>
-          </div>
-
-          <div class="absolute-bottom">
-            <q-btn
-              class="full-width q-py-md"
-              color="grey-3"
-              unelevated
-              text-color="primary"
-            >
-              <div class="q-py-md">کارفرما هستید؟</div>
-            </q-btn>
-          </div>
-        </div>
-      </div>
-    </q-page>
-  </div>
-
-  <!-- enters password after check -->
-
-  <div v-if="enterPassword">
-    <q-page
-      class="gt-sm row justify-center items-center"
-      style="background-color: #f8f9fa"
-    >
-      <div
-        class="bg-white q-pa-lg q-px-xl br-10 relative-position"
-        style="border: 1px solid #dee2e6 !important; width: 400px"
-      >
-        <div class="q-my-lg">
-          <div class="full-width text-center">
-            <div class="relative-position">
+        <div
+          class="bg-white q-pa-lg q-px-xl br-10 relative-position"
+          style="border: 1px solid #dee2e6 !important; width: 400px"
+        >
+          <div class="q-my-lg">
+            <div class="full-width text-center">
               <q-img
                 style="height: 20px; width: 97.5px"
                 src="https://account.jobvision.ir/images/job-vision-primary.svg"
               />
 
-              <div class="absolute-left">
-                <q-btn @click="enterPassword = false" flat color="grey-7">
-                  <q-icon name="arrow_forward" />
-                </q-btn>
+              <div class="full-width q-mt-lg text-h6">
+                <span class="text-bold">ورود | ثبت‌نام </span>
+                <span>کـارجـو</span>
               </div>
             </div>
 
-            <div class="full-width q-mt-lg">
-              <div style="font-size: 1.17em !important">
-                رمز عبور خود را وارد کنید
-              </div>
+            <div class="q-pt-md">
+              <div class="full-width">
+                <div class="text-grey-6 q-my-sm">ایمیل خود را وارد کنید</div>
 
-              <div class="q-my-md">ورود با {{ emailPhone }}</div>
-            </div>
-          </div>
-
-          <div class="q-pt-md q-pb-lg">
-            <div class="full-width">
-              <div class="text-grey-6 q-my-sm">رمز عبور را وارد کنید</div>
-
-              <q-input
-                v-model="password"
-                :rules="[
-                  (val) => !!val || 'Field is required',
-                  val && val.length > 6,
-                ]"
-                outlined
-                :type="isPwd ? 'password' : 'text'"
-              >
-                <template v-slot:append>
-                  <q-icon
-                    :name="isPwd ? 'visibility' : 'visibility_off'"
-                    class="cursor-pointer"
-                    @click="isPwd = !isPwd"
-                  />
-                </template>
-              </q-input>
-
-              <div class="q-my-sm">
-                <q-btn
-                  flat
-                  color="primary"
-                  label="رمز عبور خود را فراموش کرده‌ام"
+                <q-input
+                  outlined
+                  v-model="emailPhone"
+                  :rules="[(val) => !!val || 'Field is required']"
                 />
-              </div>
 
-              <div class="q-mb-md">
-                <q-btn
-                  class="full-width q-py-md"
-                  color="primary"
-                  @click="login"
-                >
-                  <div class="q-py-sm">ورود</div>
-                </q-btn>
+                <div class="q-my-md">
+                  <q-btn
+                    class="full-width q-py-md"
+                    color="primary"
+                    @click="check"
+                  >
+                    <div class="q-py-sm">ادامه</div>
+                  </q-btn>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class="absolute-bottom">
-            <q-btn
-              class="full-width q-py-md"
-              color="grey-3"
-              unelevated
-              text-color="primary"
+            <div
+              class="q-my-sm"
+              style="
+                width: 100%;
+                text-align: center;
+                border-bottom: 1px solid #dcdcdc;
+                line-height: 0.1em;
+                margin: 25px 0;
+              "
             >
-              <div class="q-py-md">کارفرما هستید؟</div>
-            </q-btn>
-          </div>
-        </div>
-      </div>
-    </q-page>
-
-    <q-page class="lt-md">
-      <div class="row justify-center items-center bg-white br-10 q-pa-lg">
-        <div class="q-my-lg" style="width: 325px">
-          <div class="full-width text-center">
-            <div class="relative-position">
-              <q-img
-                style="height: 20px; width: 97.5px"
-                src="https://account.jobvision.ir/images/job-vision-primary.svg"
-              />
-
-              <div class="absolute-left">
-                <q-btn @click="enterPassword = false" flat color="grey-7">
-                  <q-icon name="arrow_forward" />
-                </q-btn>
-              </div>
+              <span style="background: #fff; padding: 0 10px">یا</span>
             </div>
 
-            <div class="full-width q-mt-lg">
-              <div style="font-size: 1.17em !important">
-                رمز عبور خود را وارد کنید
-              </div>
-
-              <div class="q-my-md">ورود با {{ emailPhone }}</div>
-            </div>
-          </div>
-
-          <div class="q-pt-md q-pb-lg">
-            <div class="full-width">
-              <div class="text-grey-6 q-my-sm">رمز عبور را وارد کنید</div>
-
-              <q-input
-                v-model="password"
-                :rules="[
-                  (val) => !!val || 'Field is required',
-                  val && val.length > 6,
-                ]"
-                outlined
-                :type="isPwd ? 'password' : 'text'"
+            <div class="q-pb-lg">
+              <div
+                class="row justify-center q-mb-md"
+                style="border: 1px solid black; height: 44px; padding: 9px 24px"
               >
-                <template v-slot:append>
-                  <q-icon
-                    :name="isPwd ? 'visibility' : 'visibility_off'"
-                    class="cursor-pointer"
-                    @click="isPwd = !isPwd"
-                  />
-                </template>
-              </q-input>
-
-              <div class="q-my-sm">
-                <q-btn
-                  flat
-                  color="primary"
-                  label="رمز عبور خود را فراموش کرده‌ام"
+                <q-img
+                  style="width: 18px; height: 18px"
+                  src="https://account.jobvision.ir/images/login-register/google.svg"
                 />
+
+                <span class="q-px-sm">ادامه با گوگل</span>
               </div>
 
-              <div class="q-mb-md">
-                <q-btn
-                  class="full-width q-py-md"
-                  color="primary"
-                  @click="login"
-                >
-                  <div class="q-py-sm">ورود</div>
-                </q-btn>
-              </div>
-            </div>
-          </div>
-
-          <div class="absolute-bottom">
-            <q-btn
-              class="full-width q-py-md"
-              color="grey-3"
-              unelevated
-              text-color="primary"
-            >
-              <div class="q-py-md">کارفرما هستید؟</div>
-            </q-btn>
-          </div>
-        </div>
-      </div>
-    </q-page>
-  </div>
-
-  <!-- enter email if user is logging in with phone -->
-
-  <div v-if="registerPhoneSent">
-    <q-page
-      class="gt-sm row justify-center items-center"
-      style="background-color: #f8f9fa"
-    >
-      <div
-        class="bg-white q-pa-lg q-px-xl br-10 relative-position"
-        style="border: 1px solid #dee2e6 !important; width: 400px"
-      >
-        <div class="q-my-lg">
-          <div class="full-width text-center">
-            <div class="relative-position">
-              <q-img
-                style="height: 20px; width: 97.5px"
-                src="https://account.jobvision.ir/images/job-vision-primary.svg"
-              />
-
-              <div class="absolute-left">
-                <q-btn
-                  @click="(enterEPhone = true), (registerPhoneSent = false)"
-                  flat
-                  color="grey-7"
-                >
-                  <q-icon name="arrow_forward" />
-                </q-btn>
-              </div>
-            </div>
-
-            <div class="full-width q-mt-lg">
-              <div style="font-size: 1.17em !important">
-                ایمیل خود را وارد کنید
-              </div>
-
-              <div class="q-my-md">ورود با {{ emailPhone }}</div>
-            </div>
-          </div>
-
-          <div class="q-pt-md q-pb-lg">
-            <div class="full-width">
-              <div class="text-grey-6 q-my-sm">ایمیل را وارد کنید</div>
-
-              <q-input
-                outlined
-                v-model="email"
-                type="email"
-                :rules="[(val) => !!val || 'Field is required']"
-              />
-
-              <div class="q-my-lg" />
-
-              <div class="q-mb-md">
-                <q-btn
-                  class="full-width q-py-md"
-                  color="primary"
-                  @click="handleRegister"
-                >
-                  <div class="q-py-sm">ادامه</div>
-                </q-btn>
-              </div>
-            </div>
-          </div>
-
-          <div class="absolute-bottom">
-            <q-btn
-              class="full-width q-py-md"
-              color="grey-3"
-              unelevated
-              text-color="primary"
-            >
-              <div class="q-py-md">کارفرما هستید؟</div>
-            </q-btn>
-          </div>
-        </div>
-      </div>
-    </q-page>
-
-    <q-page class="lt-md">
-      <div class="row justify-center items-center bg-white br-10 q-pa-lg">
-        <div class="q-my-lg" style="width: 325px">
-          <div class="full-width text-center">
-            <div class="relative-position">
-              <q-img
-                style="height: 20px; width: 97.5px"
-                src="https://account.jobvision.ir/images/job-vision-primary.svg"
-              />
-
-              <div class="absolute-left">
-                <q-btn
-                  @click="(enterEPhone = true), (registerPhoneSent = false)"
-                  flat
-                  color="grey-7"
-                >
-                  <q-icon name="arrow_forward" />
-                </q-btn>
-              </div>
-            </div>
-
-            <div class="full-width q-mt-lg">
-              <div style="font-size: 1.17em !important">
-                ایمیل خود را وارد کنید
-              </div>
-
-              <div class="q-my-md">ورود با {{ emailPhone }}</div>
-            </div>
-          </div>
-
-          <div class="q-pt-md q-pb-lg">
-            <div class="full-width">
-              <div class="text-grey-6 q-my-sm">ایمیل را وارد کنید</div>
-
-              <q-input
-                outlined
-                v-model="email"
-                type="email"
-                :rules="[(val) => !!val || 'Field is required']"
-              />
-
-              <div class="q-my-lg" />
-
-              <div class="q-mb-md">
-                <q-btn
-                  class="full-width q-py-md"
-                  color="primary"
-                  @click="handleRegister"
-                >
-                  <div class="q-py-sm">ادامه</div>
-                </q-btn>
-              </div>
-            </div>
-          </div>
-
-          <div class="absolute-bottom">
-            <q-btn
-              class="full-width q-py-md"
-              color="grey-3"
-              unelevated
-              text-color="primary"
-            >
-              <div class="q-py-md">کارفرما هستید؟</div>
-            </q-btn>
-          </div>
-        </div>
-      </div>
-    </q-page>
-  </div>
-
-  <!-- enter phone if user is logging in with email -->
-
-  <div v-if="registerEmailSent">
-    <q-page
-      class="gt-sm row justify-center items-center"
-      style="background-color: #f8f9fa"
-    >
-      <div
-        class="bg-white q-pa-lg q-px-xl br-10 relative-position"
-        style="border: 1px solid #dee2e6 !important; width: 400px"
-      >
-        <div class="q-my-lg">
-          <div class="full-width text-center">
-            <div class="relative-position">
-              <q-img
-                style="height: 20px; width: 97.5px"
-                src="https://account.jobvision.ir/images/job-vision-primary.svg"
-              />
-
-              <div class="absolute-left">
-                <q-btn @click="enterEPhone = true" flat color="grey-7">
-                  <q-icon name="arrow_forward" />
-                </q-btn>
-              </div>
-            </div>
-
-            <div class="full-width q-mt-lg">
-              <div style="font-size: 1.17em !important">
-                شماره تلفن خود را وارد کنید
-              </div>
-            </div>
-          </div>
-
-          <div class="q-pt-md q-pb-lg">
-            <div class="full-width">
-              <div class="text-grey-6 q-my-sm">شماره تلفن را وارد کنید</div>
-
-              <q-input
-                outlined
-                v-model="registerPhone"
-                type="tel"
-                :rules="[(val) => !!val || 'Field is required']"
-              />
-
-              <div class="q-my-lg" />
-
-              <div class="q-mb-md">
-                <q-btn
-                  class="full-width q-py-md"
-                  color="primary"
-                  @click="handleRegister"
-                >
-                  <div class="q-py-sm">ادامه</div>
-                </q-btn>
-              </div>
-            </div>
-          </div>
-
-          <div class="absolute-bottom">
-            <q-btn
-              class="full-width q-py-md"
-              color="grey-3"
-              unelevated
-              text-color="primary"
-            >
-              <div class="q-py-md">کارفرما هستید؟</div>
-            </q-btn>
-          </div>
-        </div>
-      </div>
-    </q-page>
-
-    <q-page class="lt-md">
-      <div class="row justify-center items-center bg-white br-10 q-pa-lg">
-        <div class="q-my-lg" style="width: 325px">
-          <div class="full-width text-center">
-            <div class="relative-position">
-              <q-img
-                style="height: 20px; width: 97.5px"
-                src="https://account.jobvision.ir/images/job-vision-primary.svg"
-              />
-
-              <div class="absolute-left">
-                <q-btn @click="enterEPhone = true" flat color="grey-7">
-                  <q-icon name="arrow_forward" />
-                </q-btn>
-              </div>
-            </div>
-
-            <div class="full-width q-mt-lg">
-              <div style="font-size: 1.17em !important">
-                شماره تلفن خود را وارد کنید
-              </div>
-            </div>
-          </div>
-
-          <div class="q-pt-md q-pb-lg">
-            <div class="full-width">
-              <div class="text-grey-6 q-my-sm">شماره تلفن را وارد کنید</div>
-
-              <q-input
-                outlined
-                v-model="registerPhone"
-                type="tel"
-                :rules="[(val) => !!val || 'Field is required']"
-              />
-
-              <div class="q-my-lg" />
-
-              <div class="q-mb-md">
-                <q-btn
-                  class="full-width q-py-md"
-                  color="primary"
-                  @click="handleRegister"
-                >
-                  <div class="q-py-sm">ادامه</div>
-                </q-btn>
-              </div>
-            </div>
-          </div>
-
-          <div class="absolute-bottom">
-            <q-btn
-              class="full-width q-py-md"
-              color="grey-3"
-              unelevated
-              text-color="primary"
-            >
-              <div class="q-py-md">کارفرما هستید؟</div>
-            </q-btn>
-          </div>
-        </div>
-      </div>
-    </q-page>
-  </div>
-
-  <!-- enter password for registration -->
-
-  <div v-if="registerPhoneSaved">
-    <q-page
-      class="gt-sm row justify-center items-center"
-      style="background-color: #f8f9fa"
-    >
-      <div
-        class="bg-white q-pa-lg q-px-xl br-10 relative-position"
-        style="border: 1px solid #dee2e6 !important; width: 400px"
-      >
-        <div class="q-my-lg">
-          <div class="full-width text-center">
-            <div class="relative-position">
-              <q-img
-                style="height: 20px; width: 97.5px"
-                src="https://account.jobvision.ir/images/job-vision-primary.svg"
-              />
-
-              <div class="absolute-left">
-                <q-btn @click="enterEPhone = true" flat color="grey-7">
-                  <q-icon name="arrow_forward" />
-                </q-btn>
-              </div>
-            </div>
-
-            <div class="full-width q-mt-lg">
-              <div style="font-size: 1.17em !important">
-                رمز خود را وارد کنید
-              </div>
-            </div>
-          </div>
-
-          <div class="q-pt-md q-pb-lg">
-            <div class="full-width">
-              <div class="text-grey-6 q-my-sm">رمز خود را وارد کنید</div>
-
-              <q-input
-                v-model="registerPassword"
-                :rules="[(val) => !!val || 'Field is required']"
-                outlined
-                :type="isPwd ? 'password' : 'text'"
+              <div
+                class="row justify-center q-my-sm"
+                style="border: 1px solid black; height: 44px; padding: 9px 24px"
               >
-                <template v-slot:append>
-                  <q-icon
-                    :name="isPwd ? 'visibility' : 'visibility_off'"
-                    class="cursor-pointer"
-                    @click="isPwd = !isPwd"
-                  />
-                </template>
-              </q-input>
+                <q-img
+                  style="width: 18px; height: 18px"
+                  src="https://account.jobvision.ir/images/login-register/linkedin.svg"
+                />
 
-              <div class="q-my-lg" />
-
-              <div class="q-mb-md">
-                <q-btn
-                  class="full-width q-py-md"
-                  color="primary"
-                  @click="handleRegister"
-                >
-                  <div class="q-py-sm">ادامه</div>
-                </q-btn>
-              </div>
-            </div>
-          </div>
-
-          <div class="absolute-bottom">
-            <q-btn
-              class="full-width q-py-md"
-              color="grey-3"
-              unelevated
-              text-color="primary"
-            >
-              <div class="q-py-md">کارفرما هستید؟</div>
-            </q-btn>
-          </div>
-        </div>
-      </div>
-    </q-page>
-
-    <q-page class="lt-md">
-      <div class="row justify-center items-center bg-white br-10 q-pa-lg">
-        <div class="q-my-lg" style="width: 325px">
-          <div class="full-width text-center">
-            <div class="relative-position">
-              <q-img
-                style="height: 20px; width: 97.5px"
-                src="https://account.jobvision.ir/images/job-vision-primary.svg"
-              />
-
-              <div class="absolute-left">
-                <q-btn @click="enterEPhone = true" flat color="grey-7">
-                  <q-icon name="arrow_forward" />
-                </q-btn>
+                <span class="q-px-sm">ادامه لینکدین</span>
               </div>
             </div>
 
-            <div class="full-width q-mt-lg">
-              <div style="font-size: 1.17em !important">
-                رمز عبور خود را وارد کنید
-              </div>
-            </div>
-          </div>
-
-          <div class="q-pt-md q-pb-lg">
-            <div class="full-width">
-              <div class="text-grey-6 q-my-sm">رمز عبور را وارد کنید</div>
-
-              <q-input
-                v-model="registerPassword"
-                :rules="[(val) => !!val || 'Field is required']"
-                outlined
-                :type="isPwd ? 'password' : 'text'"
+            <div class="absolute-bottom">
+              <q-btn
+                class="full-width q-py-md"
+                color="grey-3"
+                unelevated
+                text-color="primary"
               >
-                <template v-slot:append>
-                  <q-icon
-                    :name="isPwd ? 'visibility' : 'visibility_off'"
-                    class="cursor-pointer"
-                    @click="isPwd = !isPwd"
-                  />
-                </template>
-              </q-input>
-
-              <div class="q-my-lg" />
-
-              <div class="q-mb-md">
-                <q-btn
-                  class="full-width q-py-md"
-                  color="primary"
-                  @click="handleRegister"
-                >
-                  <div class="q-py-sm">ادامه</div>
-                </q-btn>
-              </div>
+                <div class="q-py-md">کارفرما هستید؟</div>
+              </q-btn>
             </div>
           </div>
+        </div>
+      </q-page>
 
-          <div class="absolute-bottom">
-            <q-btn
-              class="full-width q-py-md"
-              color="grey-3"
-              unelevated
-              text-color="primary"
+      <q-page class="lt-md">
+        <div class="row justify-center items-center bg-white br-10 q-pa-lg">
+          <div class="q-my-lg" style="width: 325px">
+            <div class="full-width text-center">
+              <q-img
+                style="height: 20px; width: 97.5px"
+                src="https://account.jobvision.ir/images/job-vision-primary.svg"
+              />
+
+              <div class="full-width q-mt-lg text-h6">
+                <span class="text-bold">ورود | ثبت‌نام </span>
+                <span>کـارجـو</span>
+              </div>
+            </div>
+
+            <div class="q-pt-md">
+              <div class="full-width">
+                <div class="text-grey-6 q-my-sm">
+                  شماره موبایل یا ایمیل خود را وارد کنید
+                </div>
+
+                <q-input
+                  outlined
+                  v-model="emailPhone"
+                  :rules="[(val) => !!val || 'Field is required']"
+                />
+
+                <div class="q-my-md">
+                  <q-btn
+                    class="full-width q-py-md"
+                    color="primary"
+                    @click="check"
+                  >
+                    <div class="q-py-sm">ادامه</div>
+                  </q-btn>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="q-my-sm"
+              style="
+                width: 100%;
+                text-align: center;
+                border-bottom: 1px solid #dcdcdc;
+                line-height: 0.1em;
+                margin: 25px 0;
+              "
             >
-              <div class="q-py-md">کارفرما هستید؟</div>
-            </q-btn>
+              <span style="background: #fff; padding: 0 10px">یا</span>
+            </div>
+
+            <div class="q-pb-lg">
+              <div
+                class="row justify-center q-mb-md"
+                style="border: 1px solid black; height: 44px; padding: 9px 24px"
+              >
+                <q-img
+                  style="width: 18px; height: 18px"
+                  src="https://account.jobvision.ir/images/login-register/google.svg"
+                />
+
+                <span class="q-px-sm">ادامه با گوگل</span>
+              </div>
+
+              <div
+                class="row justify-center q-my-sm"
+                style="border: 1px solid black; height: 44px; padding: 9px 24px"
+              >
+                <q-img
+                  style="width: 18px; height: 18px"
+                  src="https://account.jobvision.ir/images/login-register/linkedin.svg"
+                />
+
+                <span class="q-px-sm">ادامه لینکدین</span>
+              </div>
+            </div>
+
+            <div class="absolute-bottom">
+              <q-btn
+                class="full-width q-py-md"
+                color="grey-3"
+                unelevated
+                text-color="primary"
+              >
+                <div class="q-py-md">کارفرما هستید؟</div>
+              </q-btn>
+            </div>
           </div>
         </div>
-      </div>
-    </q-page>
-  </div>
+      </q-page>
+    </div>
 
-  <!-- confirm you email for registration -->
+    <!-- enters password after check -->
 
-  <div v-if="registerPasswordSaved">
-    <q-page
-      class="gt-sm row justify-center items-center"
-      style="background-color: #f8f9fa"
-    >
-      <div
-        class="bg-white q-pa-lg q-px-xl br-10 relative-position"
-        style="border: 1px solid #dee2e6 !important; width: 400px"
+    <div v-if="enterPassword">
+      <q-page
+        class="gt-sm row justify-center items-center"
+        style="background-color: #f8f9fa"
       >
-        <div class="q-my-lg">
-          <div class="full-width text-center">
-            <div class="relative-position">
-              <q-img
-                style="height: 20px; width: 97.5px"
-                src="https://account.jobvision.ir/images/job-vision-primary.svg"
-              />
+        <div
+          class="bg-white q-pa-lg q-px-xl br-10 relative-position"
+          style="border: 1px solid #dee2e6 !important; width: 400px"
+        >
+          <div class="q-my-lg">
+            <div class="full-width text-center">
+              <div class="relative-position">
+                <q-img
+                  style="height: 20px; width: 97.5px"
+                  src="https://account.jobvision.ir/images/job-vision-primary.svg"
+                />
 
-              <div class="absolute-left">
-                <q-btn @click="enterEPhone = true" flat color="grey-7">
-                  <q-icon name="arrow_forward" />
-                </q-btn>
+                <div class="absolute-left">
+                  <q-btn @click="enterPassword = false" flat color="grey-7">
+                    <q-icon name="arrow_forward" />
+                  </q-btn>
+                </div>
+              </div>
+
+              <div class="full-width q-mt-lg">
+                <div style="font-size: 1.17em !important">
+                  رمز عبور خود را وارد کنید
+                </div>
+
+                <div class="q-my-md">ورود با {{ emailPhone }}</div>
               </div>
             </div>
 
-            <div class="full-width q-mt-lg">
-              <div style="font-size: 1.17em !important">
-                ایمیل خود را تایید کنید
-              </div>
-            </div>
-          </div>
+            <div class="q-pt-md q-pb-lg">
+              <div class="full-width">
+                <div class="text-grey-6 q-my-sm">رمز عبور را وارد کنید</div>
 
-          <div class="q-pt-md q-pb-lg">
-            <div class="full-width">
-              <div class="text-grey-6 q-my-sm">ایمیل خود را تایید کنید</div>
-
-              <q-input
-                outlined
-                v-model="registerEmailConfirm"
-                :rules="[(val) => !!val || 'Field is required']"
-              />
-
-              <div class="q-my-lg" />
-
-              <div class="q-mb-md">
-                <q-btn
-                  class="full-width q-py-md"
-                  color="primary"
-                  @click="register"
+                <q-input
+                  v-model="password"
+                  :rules="[
+                    (val) => !!val || 'Field is required',
+                    val && val.length > 6,
+                  ]"
+                  outlined
+                  :type="isPwd ? 'password' : 'text'"
                 >
-                  <div class="q-py-sm">ساخت</div>
-                </q-btn>
+                  <template v-slot:append>
+                    <q-icon
+                      :name="isPwd ? 'visibility' : 'visibility_off'"
+                      class="cursor-pointer"
+                      @click="isPwd = !isPwd"
+                    />
+                  </template>
+                </q-input>
+
+                <div class="q-my-sm">
+                  <q-btn
+                    flat
+                    color="primary"
+                    label="رمز عبور خود را فراموش کرده‌ام"
+                  />
+                </div>
+
+                <div class="q-mb-md">
+                  <q-btn
+                    class="full-width q-py-md"
+                    color="primary"
+                    @click="login"
+                  >
+                    <div class="q-py-sm">ورود</div>
+                  </q-btn>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class="absolute-bottom">
-            <q-btn
-              class="full-width q-py-md"
-              color="grey-3"
-              unelevated
-              text-color="primary"
-            >
-              <div class="q-py-md">کارفرما هستید؟</div>
-            </q-btn>
+            <div class="absolute-bottom">
+              <q-btn
+                class="full-width q-py-md"
+                color="grey-3"
+                unelevated
+                text-color="primary"
+              >
+                <div class="q-py-md">کارفرما هستید؟</div>
+              </q-btn>
+            </div>
           </div>
         </div>
-      </div>
-    </q-page>
+      </q-page>
 
-    <q-page class="lt-md">
-      <div class="row justify-center items-center bg-white br-10 q-pa-lg">
-        <div class="q-my-lg" style="width: 325px">
-          <div class="full-width text-center">
-            <div class="relative-position">
-              <q-img
-                style="height: 20px; width: 97.5px"
-                src="https://account.jobvision.ir/images/job-vision-primary.svg"
-              />
+      <q-page class="lt-md">
+        <div class="row justify-center items-center bg-white br-10 q-pa-lg">
+          <div class="q-my-lg" style="width: 325px">
+            <div class="full-width text-center">
+              <div class="relative-position">
+                <q-img
+                  style="height: 20px; width: 97.5px"
+                  src="https://account.jobvision.ir/images/job-vision-primary.svg"
+                />
 
-              <div class="absolute-left">
-                <q-btn @click="enterEPhone = true" flat color="grey-7">
-                  <q-icon name="arrow_forward" />
-                </q-btn>
+                <div class="absolute-left">
+                  <q-btn @click="enterPassword = false" flat color="grey-7">
+                    <q-icon name="arrow_forward" />
+                  </q-btn>
+                </div>
+              </div>
+
+              <div class="full-width q-mt-lg">
+                <div style="font-size: 1.17em !important">
+                  رمز عبور خود را وارد کنید
+                </div>
+
+                <div class="q-my-md">ورود با {{ emailPhone }}</div>
               </div>
             </div>
 
-            <div class="full-width q-mt-lg">
-              <div style="font-size: 1.17em !important">
-                ایمیل خود را تایید کنید
-              </div>
-            </div>
-          </div>
+            <div class="q-pt-md q-pb-lg">
+              <div class="full-width">
+                <div class="text-grey-6 q-my-sm">رمز عبور را وارد کنید</div>
 
-          <div class="q-pt-md q-pb-lg">
-            <div class="full-width">
-              <div class="text-grey-6 q-my-sm">ایمیل خود را تایید کنید</div>
-
-              <q-input
-                outlined
-                v-model="registerEmailConfirm"
-                :rules="[(val) => !!val || 'Field is required']"
-              />
-
-              <div class="q-my-lg" />
-
-              <div class="q-mb-md">
-                <q-btn
-                  class="full-width q-py-md"
-                  color="primary"
-                  @click="register"
+                <q-input
+                  v-model="password"
+                  :rules="[
+                    (val) => !!val || 'Field is required',
+                    val && val.length > 6,
+                  ]"
+                  outlined
+                  :type="isPwd ? 'password' : 'text'"
                 >
-                  <div class="q-py-sm">ساخت</div>
-                </q-btn>
+                  <template v-slot:append>
+                    <q-icon
+                      :name="isPwd ? 'visibility' : 'visibility_off'"
+                      class="cursor-pointer"
+                      @click="isPwd = !isPwd"
+                    />
+                  </template>
+                </q-input>
+
+                <div class="q-my-sm">
+                  <q-btn
+                    flat
+                    color="primary"
+                    label="رمز عبور خود را فراموش کرده‌ام"
+                  />
+                </div>
+
+                <div class="q-mb-md">
+                  <q-btn
+                    class="full-width q-py-md"
+                    color="primary"
+                    @click="login"
+                  >
+                    <div class="q-py-sm">ورود</div>
+                  </q-btn>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class="absolute-bottom">
-            <q-btn
-              class="full-width q-py-md"
-              color="grey-3"
-              unelevated
-              text-color="primary"
-            >
-              <div class="q-py-md">کارفرما هستید؟</div>
-            </q-btn>
+            <div class="absolute-bottom">
+              <q-btn
+                class="full-width q-py-md"
+                color="grey-3"
+                unelevated
+                text-color="primary"
+              >
+                <div class="q-py-md">کارفرما هستید؟</div>
+              </q-btn>
+            </div>
           </div>
         </div>
-      </div>
-    </q-page>
-  </div>
+      </q-page>
+    </div>
+
+    <!-- enter email if user is logging in with phone -->
+
+    <div v-if="registerPhoneSent">
+      <q-page
+        class="gt-sm row justify-center items-center"
+        style="background-color: #f8f9fa"
+      >
+        <div
+          class="bg-white q-pa-lg q-px-xl br-10 relative-position"
+          style="border: 1px solid #dee2e6 !important; width: 400px"
+        >
+          <div class="q-my-lg">
+            <div class="full-width text-center">
+              <div class="relative-position">
+                <q-img
+                  style="height: 20px; width: 97.5px"
+                  src="https://account.jobvision.ir/images/job-vision-primary.svg"
+                />
+
+                <div class="absolute-left">
+                  <q-btn
+                    @click="(enterEPhone = true), (registerPhoneSent = false)"
+                    flat
+                    color="grey-7"
+                  >
+                    <q-icon name="arrow_forward" />
+                  </q-btn>
+                </div>
+              </div>
+
+              <div class="full-width q-mt-lg">
+                <div style="font-size: 1.17em !important">
+                  ایمیل خود را وارد کنید
+                </div>
+
+                <div class="q-my-md">ورود با {{ emailPhone }}</div>
+              </div>
+            </div>
+
+            <div class="q-pt-md q-pb-lg">
+              <div class="full-width">
+                <div class="text-grey-6 q-my-sm">ایمیل را وارد کنید</div>
+
+                <q-input
+                  outlined
+                  v-model="email"
+                  type="email"
+                  :rules="[(val) => !!val || 'Field is required']"
+                />
+
+                <div class="q-my-lg" />
+
+                <div class="q-mb-md">
+                  <q-btn
+                    class="full-width q-py-md"
+                    color="primary"
+                    @click="handleRegister"
+                  >
+                    <div class="q-py-sm">ادامه</div>
+                  </q-btn>
+                </div>
+              </div>
+            </div>
+
+            <div class="absolute-bottom">
+              <q-btn
+                class="full-width q-py-md"
+                color="grey-3"
+                unelevated
+                text-color="primary"
+              >
+                <div class="q-py-md">کارفرما هستید؟</div>
+              </q-btn>
+            </div>
+          </div>
+        </div>
+      </q-page>
+
+      <q-page class="lt-md">
+        <div class="row justify-center items-center bg-white br-10 q-pa-lg">
+          <div class="q-my-lg" style="width: 325px">
+            <div class="full-width text-center">
+              <div class="relative-position">
+                <q-img
+                  style="height: 20px; width: 97.5px"
+                  src="https://account.jobvision.ir/images/job-vision-primary.svg"
+                />
+
+                <div class="absolute-left">
+                  <q-btn
+                    @click="(enterEPhone = true), (registerPhoneSent = false)"
+                    flat
+                    color="grey-7"
+                  >
+                    <q-icon name="arrow_forward" />
+                  </q-btn>
+                </div>
+              </div>
+
+              <div class="full-width q-mt-lg">
+                <div style="font-size: 1.17em !important">
+                  ایمیل خود را وارد کنید
+                </div>
+
+                <div class="q-my-md">ورود با {{ emailPhone }}</div>
+              </div>
+            </div>
+
+            <div class="q-pt-md q-pb-lg">
+              <div class="full-width">
+                <div class="text-grey-6 q-my-sm">ایمیل را وارد کنید</div>
+
+                <q-input
+                  outlined
+                  v-model="email"
+                  type="email"
+                  :rules="[(val) => !!val || 'Field is required']"
+                />
+
+                <div class="q-my-lg" />
+
+                <div class="q-mb-md">
+                  <q-btn
+                    class="full-width q-py-md"
+                    color="primary"
+                    @click="handleRegister"
+                  >
+                    <div class="q-py-sm">ادامه</div>
+                  </q-btn>
+                </div>
+              </div>
+            </div>
+
+            <div class="absolute-bottom">
+              <q-btn
+                class="full-width q-py-md"
+                color="grey-3"
+                unelevated
+                text-color="primary"
+              >
+                <div class="q-py-md">کارفرما هستید؟</div>
+              </q-btn>
+            </div>
+          </div>
+        </div>
+      </q-page>
+    </div>
+
+    <!-- enter phone if user is logging in with email -->
+
+    <div v-if="registerEmailSent">
+      <q-page
+        class="gt-sm row justify-center items-center"
+        style="background-color: #f8f9fa"
+      >
+        <div
+          class="bg-white q-pa-lg q-px-xl br-10 relative-position"
+          style="border: 1px solid #dee2e6 !important; width: 400px"
+        >
+          <div class="q-my-lg">
+            <div class="full-width text-center">
+              <div class="relative-position">
+                <q-img
+                  style="height: 20px; width: 97.5px"
+                  src="https://account.jobvision.ir/images/job-vision-primary.svg"
+                />
+
+                <div class="absolute-left">
+                  <q-btn @click="enterEPhone = true" flat color="grey-7">
+                    <q-icon name="arrow_forward" />
+                  </q-btn>
+                </div>
+              </div>
+
+              <div class="full-width q-mt-lg">
+                <div style="font-size: 1.17em !important">
+                  شماره تلفن خود را وارد کنید
+                </div>
+              </div>
+            </div>
+
+            <div class="q-pt-md q-pb-lg">
+              <div class="full-width">
+                <div class="text-grey-6 q-my-sm">شماره تلفن را وارد کنید</div>
+
+                <q-input
+                  outlined
+                  v-model="registerPhone"
+                  type="tel"
+                  :rules="[(val) => !!val || 'Field is required']"
+                />
+
+                <div class="q-my-lg" />
+
+                <div class="q-mb-md">
+                  <q-btn
+                    class="full-width q-py-md"
+                    color="primary"
+                    @click="handleRegister"
+                  >
+                    <div class="q-py-sm">ادامه</div>
+                  </q-btn>
+                </div>
+              </div>
+            </div>
+
+            <div class="absolute-bottom">
+              <q-btn
+                class="full-width q-py-md"
+                color="grey-3"
+                unelevated
+                text-color="primary"
+              >
+                <div class="q-py-md">کارفرما هستید؟</div>
+              </q-btn>
+            </div>
+          </div>
+        </div>
+      </q-page>
+
+      <q-page class="lt-md">
+        <div class="row justify-center items-center bg-white br-10 q-pa-lg">
+          <div class="q-my-lg" style="width: 325px">
+            <div class="full-width text-center">
+              <div class="relative-position">
+                <q-img
+                  style="height: 20px; width: 97.5px"
+                  src="https://account.jobvision.ir/images/job-vision-primary.svg"
+                />
+
+                <div class="absolute-left">
+                  <q-btn @click="enterEPhone = true" flat color="grey-7">
+                    <q-icon name="arrow_forward" />
+                  </q-btn>
+                </div>
+              </div>
+
+              <div class="full-width q-mt-lg">
+                <div style="font-size: 1.17em !important">
+                  شماره تلفن خود را وارد کنید
+                </div>
+              </div>
+            </div>
+
+            <div class="q-pt-md q-pb-lg">
+              <div class="full-width">
+                <div class="text-grey-6 q-my-sm">شماره تلفن را وارد کنید</div>
+
+                <q-input
+                  outlined
+                  v-model="registerPhone"
+                  type="tel"
+                  :rules="[(val) => !!val || 'Field is required']"
+                />
+
+                <div class="q-my-lg" />
+
+                <div class="q-mb-md">
+                  <q-btn
+                    class="full-width q-py-md"
+                    color="primary"
+                    @click="handleRegister"
+                  >
+                    <div class="q-py-sm">ادامه</div>
+                  </q-btn>
+                </div>
+              </div>
+            </div>
+
+            <div class="absolute-bottom">
+              <q-btn
+                class="full-width q-py-md"
+                color="grey-3"
+                unelevated
+                text-color="primary"
+              >
+                <div class="q-py-md">کارفرما هستید؟</div>
+              </q-btn>
+            </div>
+          </div>
+        </div>
+      </q-page>
+    </div>
+
+    <!-- enter password for registration -->
+
+    <div v-if="registerPhoneSaved">
+      <q-page
+        class="gt-sm row justify-center items-center"
+        style="background-color: #f8f9fa"
+      >
+        <div
+          class="bg-white q-pa-lg q-px-xl br-10 relative-position"
+          style="border: 1px solid #dee2e6 !important; width: 400px"
+        >
+          <div class="q-my-lg">
+            <div class="full-width text-center">
+              <div class="relative-position">
+                <q-img
+                  style="height: 20px; width: 97.5px"
+                  src="https://account.jobvision.ir/images/job-vision-primary.svg"
+                />
+
+                <div class="absolute-left">
+                  <q-btn @click="enterEPhone = true" flat color="grey-7">
+                    <q-icon name="arrow_forward" />
+                  </q-btn>
+                </div>
+              </div>
+
+              <div class="full-width q-mt-lg">
+                <div style="font-size: 1.17em !important">
+                  رمز خود را وارد کنید
+                </div>
+              </div>
+            </div>
+
+            <div class="q-pt-md q-pb-lg">
+              <div class="full-width">
+                <div class="text-grey-6 q-my-sm">رمز خود را وارد کنید</div>
+
+                <q-input
+                  v-model="registerPassword"
+                  :rules="[(val) => !!val || 'Field is required']"
+                  outlined
+                  :type="isPwd ? 'password' : 'text'"
+                >
+                  <template v-slot:append>
+                    <q-icon
+                      :name="isPwd ? 'visibility' : 'visibility_off'"
+                      class="cursor-pointer"
+                      @click="isPwd = !isPwd"
+                    />
+                  </template>
+                </q-input>
+
+                <div class="q-my-lg" />
+
+                <div class="q-mb-md">
+                  <q-btn
+                    class="full-width q-py-md"
+                    color="primary"
+                    @click="handleRegister"
+                  >
+                    <div class="q-py-sm">ادامه</div>
+                  </q-btn>
+                </div>
+              </div>
+            </div>
+
+            <div class="absolute-bottom">
+              <q-btn
+                class="full-width q-py-md"
+                color="grey-3"
+                unelevated
+                text-color="primary"
+              >
+                <div class="q-py-md">کارفرما هستید؟</div>
+              </q-btn>
+            </div>
+          </div>
+        </div>
+      </q-page>
+
+      <q-page class="lt-md">
+        <div class="row justify-center items-center bg-white br-10 q-pa-lg">
+          <div class="q-my-lg" style="width: 325px">
+            <div class="full-width text-center">
+              <div class="relative-position">
+                <q-img
+                  style="height: 20px; width: 97.5px"
+                  src="https://account.jobvision.ir/images/job-vision-primary.svg"
+                />
+
+                <div class="absolute-left">
+                  <q-btn @click="enterEPhone = true" flat color="grey-7">
+                    <q-icon name="arrow_forward" />
+                  </q-btn>
+                </div>
+              </div>
+
+              <div class="full-width q-mt-lg">
+                <div style="font-size: 1.17em !important">
+                  رمز عبور خود را وارد کنید
+                </div>
+              </div>
+            </div>
+
+            <div class="q-pt-md q-pb-lg">
+              <div class="full-width">
+                <div class="text-grey-6 q-my-sm">رمز عبور را وارد کنید</div>
+
+                <q-input
+                  v-model="registerPassword"
+                  :rules="[(val) => !!val || 'Field is required']"
+                  outlined
+                  :type="isPwd ? 'password' : 'text'"
+                >
+                  <template v-slot:append>
+                    <q-icon
+                      :name="isPwd ? 'visibility' : 'visibility_off'"
+                      class="cursor-pointer"
+                      @click="isPwd = !isPwd"
+                    />
+                  </template>
+                </q-input>
+
+                <div class="q-my-lg" />
+
+                <div class="q-mb-md">
+                  <q-btn
+                    class="full-width q-py-md"
+                    color="primary"
+                    @click="handleRegister"
+                  >
+                    <div class="q-py-sm">ادامه</div>
+                  </q-btn>
+                </div>
+              </div>
+            </div>
+
+            <div class="absolute-bottom">
+              <q-btn
+                class="full-width q-py-md"
+                color="grey-3"
+                unelevated
+                text-color="primary"
+              >
+                <div class="q-py-md">کارفرما هستید؟</div>
+              </q-btn>
+            </div>
+          </div>
+        </div>
+      </q-page>
+    </div>
+
+    <!-- confirm you email for registration -->
+
+    <div v-if="registerPasswordSaved">
+      <q-page
+        class="gt-sm row justify-center items-center"
+        style="background-color: #f8f9fa"
+      >
+        <div
+          class="bg-white q-pa-lg q-px-xl br-10 relative-position"
+          style="border: 1px solid #dee2e6 !important; width: 400px"
+        >
+          <div class="q-my-lg">
+            <div class="full-width text-center">
+              <div class="relative-position">
+                <q-img
+                  style="height: 20px; width: 97.5px"
+                  src="https://account.jobvision.ir/images/job-vision-primary.svg"
+                />
+
+                <div class="absolute-left">
+                  <q-btn @click="enterEPhone = true" flat color="grey-7">
+                    <q-icon name="arrow_forward" />
+                  </q-btn>
+                </div>
+              </div>
+
+              <div class="full-width q-mt-lg">
+                <div style="font-size: 1.17em !important">
+                  ایمیل خود را تایید کنید
+                </div>
+              </div>
+            </div>
+
+            <div class="q-pt-md q-pb-lg">
+              <div class="full-width">
+                <div class="text-grey-6 q-my-sm">ایمیل خود را تایید کنید</div>
+
+                <q-input
+                  outlined
+                  v-model="registerEmailConfirm"
+                  :rules="[(val) => !!val || 'Field is required']"
+                />
+
+                <div class="q-my-lg" />
+
+                <div class="q-mb-md">
+                  <q-btn
+                    class="full-width q-py-md"
+                    color="primary"
+                    @click="register"
+                  >
+                    <div class="q-py-sm">ساخت</div>
+                  </q-btn>
+                </div>
+              </div>
+            </div>
+
+            <div class="absolute-bottom">
+              <q-btn
+                class="full-width q-py-md"
+                color="grey-3"
+                unelevated
+                text-color="primary"
+              >
+                <div class="q-py-md">کارفرما هستید؟</div>
+              </q-btn>
+            </div>
+          </div>
+        </div>
+      </q-page>
+
+      <q-page class="lt-md">
+        <div class="row justify-center items-center bg-white br-10 q-pa-lg">
+          <div class="q-my-lg" style="width: 325px">
+            <div class="full-width text-center">
+              <div class="relative-position">
+                <q-img
+                  style="height: 20px; width: 97.5px"
+                  src="https://account.jobvision.ir/images/job-vision-primary.svg"
+                />
+
+                <div class="absolute-left">
+                  <q-btn @click="enterEPhone = true" flat color="grey-7">
+                    <q-icon name="arrow_forward" />
+                  </q-btn>
+                </div>
+              </div>
+
+              <div class="full-width q-mt-lg">
+                <div style="font-size: 1.17em !important">
+                  ایمیل خود را تایید کنید
+                </div>
+              </div>
+            </div>
+
+            <div class="q-pt-md q-pb-lg">
+              <div class="full-width">
+                <div class="text-grey-6 q-my-sm">ایمیل خود را تایید کنید</div>
+
+                <q-input
+                  outlined
+                  v-model="registerEmailConfirm"
+                  :rules="[(val) => !!val || 'Field is required']"
+                />
+
+                <div class="q-my-lg" />
+
+                <div class="q-mb-md">
+                  <q-btn
+                    class="full-width q-py-md"
+                    color="primary"
+                    @click="register"
+                  >
+                    <div class="q-py-sm">ساخت</div>
+                  </q-btn>
+                </div>
+              </div>
+            </div>
+
+            <div class="absolute-bottom">
+              <q-btn
+                class="full-width q-py-md"
+                color="grey-3"
+                unelevated
+                text-color="primary"
+              >
+                <div class="q-py-md">کارفرما هستید؟</div>
+              </q-btn>
+            </div>
+          </div>
+        </div>
+      </q-page>
+    </div>
+  </q-page>
 </template>
 
 <script>

@@ -79,6 +79,7 @@
                   <q-btn
                     class="full-width text-bold"
                     outline
+                    to="/my-cv"
                     color="black"
                     label="رزومه من"
                     icon="badge"
@@ -254,6 +255,7 @@
                   <q-btn
                     class="full-width text-bold"
                     outline
+                    to="/my-cv"
                     color="black"
                     label="رزومه من"
                     icon="badge"
