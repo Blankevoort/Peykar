@@ -46,7 +46,9 @@
           <span class="text-grey-7">آدرس یکتا رزومه شما</span>
 
           <div class="row justify-between q-my-sm q-px-xs">
-            <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9 col-xl-9 q-mt-sm">
+            <div
+              class="col-xs-12 col-sm-9 col-md-9 col-lg-9 col-xl-9 q-px-sm q-mt-sm"
+            >
               <q-input
                 class="input-box"
                 outlined
@@ -56,10 +58,10 @@
             </div>
 
             <div
-              class="col-xs-12 col-sm-3 col-md-3 col-lg-3 col-xl-3 q-pl-md q-mt-sm text-center"
+              class="col-xs-12 col-sm-3 col-md-3 col-lg-3 col-xl-3 q-px-sm q-mt-sm text-center row"
             >
               <q-btn
-                style="height: 45px"
+                class="col-xs-12 col-sm-12"
                 outline
                 color="primary"
                 label="کپی لینک"

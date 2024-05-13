@@ -8,12 +8,13 @@ use App\Http\Controllers\JobController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\LikeController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\TicketController;
-use App\Http\Controllers\HistoryController;
 
 // Profile Controllers
 
+use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RequestController;
 use App\Http\Controllers\AdminPanelController;
@@ -44,6 +45,8 @@ Route::get('job/{id}', [JobController::class, "show"]);
 // Protected Routes
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
+
+    Route::patch('user/{id}/update', [UserController::class, "update"]);
 
     Route::post('job', [JobController::class, "store"]);
     Route::patch('job/{id}', [JobController::class, "update"]);

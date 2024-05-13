@@ -1,7 +1,7 @@
 <template>
   <q-page>
     <!-- get number and email and gets checked -->
-    
+
     <div v-if="enterEPhone">
       <q-page
         class="gt-sm row justify-center items-center"
@@ -1047,10 +1047,8 @@ export default {
             q.cookies.set("token", r.data.data.token, { expires: 360 });
           }
         })
-        .then((r) => {
-          api.get("/api/user").then((r) => {
-            router.push("/");
-          });
+        .then(() => {
+          router.push("/");
         })
         .catch((err) => {
           errorHandler(err);

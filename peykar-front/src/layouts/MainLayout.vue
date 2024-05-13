@@ -59,10 +59,17 @@
                     </q-avatar>
                   </q-item-section>
 
-                  <!-- Full Namem, Job And Edit Button -->
+                  <!-- Full Name, Job And Edit Button -->
 
                   <q-item-section>
-                    <q-item-label>معین صداقتی</q-item-label>
+                    <q-item-label v-if="user.name">{{
+                      user.name
+                    }}</q-item-label>
+
+                    <q-item-label v-else>
+                      <q-btn flat label="افزودن نام" @click="toggleDialog" />
+                    </q-item-label>
+
                     <q-item-label lines="2">
                       <div class="text-black q-mt-sm" style="font-size: 12px">
                         دولوپر فول استک در شرکت آیترونیک.
@@ -201,13 +208,7 @@
           />
 
           <img
-            class="q-pl-md gt-sm"
-            src="https://jobvision.ir/assets/images/header/logo-bg-white.svg"
-            @click="$router.push('/')"
-          />
-
-          <img
-            class="q-pl-md lt-md"
+            class="q-pl-md"
             src="https://jobvision.ir/assets/images/header/logo-bg-white.svg"
             style="width: 90px"
             @click="$router.push('/')"
@@ -238,7 +239,14 @@
                   <!-- Full Namem, Job And Edit Button -->
 
                   <q-item-section>
-                    <q-item-label>معین صداقتی</q-item-label>
+                    <q-item-label v-if="user.name">
+                      {{ user.name }}
+                    </q-item-label>
+
+                    <q-item-label v-else>
+                      <q-btn flat label="افزودن نام" @click="toggleDialog" />
+                    </q-item-label>
+
                     <q-item-label lines="2">
                       <div class="text-black q-mt-sm" style="font-size: 12px">
                         دولوپر فول استک در شرکت آیترونیک.
@@ -361,6 +369,38 @@
         </q-toolbar-title>
       </q-toolbar>
     </q-header>
+
+    <q-dialog v-model="addName">
+      <div class="relative-position bg-white q-pa-md" style="width: 600px">
+        <div class="absolute-right q-pt-xs">
+          <q-btn flat color="grey-6" icon="cancel" @click="share = false" />
+        </div>
+
+        <div class="full-width q-my-md">
+          <span class="text-grey-7">نام و نام خانوادگی</span>
+
+          <div class="row justify-between q-my-sm q-px-xs">
+            <div
+              class="col-xs-12 col-sm-9 col-md-9 col-lg-9 col-xl-9 q-px-sm q-mt-sm"
+            >
+              <q-input outlined color="grey-5" v-model="user_name" />
+            </div>
+
+            <div
+              class="col-xs-12 col-sm-3 col-md-3 col-lg-3 col-xl-3 q-px-sm q-mt-sm text-center row"
+            >
+              <q-btn
+                class="col-xs-12 col-sm-12"
+                outline
+                color="primary"
+                label="تغییر"
+                @click="changeName"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </q-dialog>
 
     <!-- Drawer for Tablet And Mobile -->
 
@@ -2419,17 +2459,37 @@ export default defineComponent({
 
   setup() {
     const user = ref();
-    const tab = ref("default");
     const drawer = ref();
-    const width = ref(window.innerWidth);
+    const user_name = ref();
+    const tab = ref("default");
+    const addName = ref(false);
     const expanded = ref(false);
     const expandedTwo = ref(false);
     const expandedThree = ref(false);
+    const width = ref(window.innerWidth);
 
     function fetchUserData() {
       api.get("/api/user").then((r) => {
         user.value = r.data;
       });
+    }
+
+    function changeName() {
+      api
+        .patch("/api/user/" + user.value.id + "/update", {
+          name: user_name.value,
+        })
+        .then(() => {
+          fetchUserData();
+        });
+    }
+
+    function toggleDialog() {
+      if (addName.value == false) {
+        addName.value = true;
+      } else {
+        addName.value = false;
+      }
     }
 
     onBeforeMount(() => {
@@ -2439,10 +2499,14 @@ export default defineComponent({
     return {
       tab,
       user,
-      drawer,
       width,
+      drawer,
+      addName,
       expanded,
+      user_name,
+      changeName,
       expandedTwo,
+      toggleDialog,
       expandedThree,
     };
   },
