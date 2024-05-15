@@ -33,7 +33,7 @@ class UserController extends Controller
         $user->name = $validatedData['name'];
         $user->save();
 
-        return response()->json(['message' => 'User name updated successfully'], 200);
+        return response()->json(['message' => 'User name updated successfully'], 204);
     }
 
     public function destroy($id)

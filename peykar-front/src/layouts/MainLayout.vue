@@ -170,7 +170,7 @@
 
               <q-separator />
 
-              <q-item class="text-red" clickable v-ripple>
+              <q-item class="text-red" @click="logout" clickable v-ripple>
                 <q-item-section avatar>
                   <q-icon name="logout " />
                 </q-item-section>
@@ -347,7 +347,7 @@
 
               <q-separator />
 
-              <q-item class="text-red" clickable v-ripple>
+              <q-item class="text-red" @click="logout" clickable v-ripple>
                 <q-item-section avatar>
                   <q-icon name="logout " />
                 </q-item-section>
@@ -622,6 +622,8 @@
               </div>
 
               <!-- Content -->
+
+              <!-- Change To Component -->
 
               <div class="full-width row">
                 <div class="col-12 row justify-between">
@@ -1055,6 +1057,8 @@
               </div>
             </q-tab-panel>
 
+            <!-- End OF Change To Component -->
+
             <q-tab-panel class="full-width" name="cooperationType">
               <!-- Header -->
 
@@ -1076,6 +1080,8 @@
               </div>
 
               <!-- Content -->
+
+              <!-- Change To Component -->
 
               <div class="full-width row">
                 <div class="col-12 row justify-between">
@@ -1505,6 +1511,8 @@
                   </q-btn>
                 </div>
               </div>
+
+              <!-- End OF Change To Component -->
             </q-tab-panel>
           </q-tab-panels>
         </div>
@@ -1522,124 +1530,18 @@
     <q-footer class="bg-dark text-white row justify-center">
       <!-- 4k Screen Content -->
 
-      <div class="col-8 row q-my-md gt-md">
+      <div class="col-8 row q-my-md gt-lg">
         <div class="text-h6 text-weight-bold col-12 q-mt-md">سوالات متداول</div>
 
         <!-- Question Box and Answers -->
 
         <div class="col-12 q-my-md">
-          <q-list bordered class="background border-18 q-my-md">
-            <q-expansion-item
-              expand-separator
-              hide-expand-icon
-              icon="question_mark"
-              label="سایت استخدامی جاب ویژن، چه مزیتی نسبت به دیگر سایت‌های کاریابی و استخدامی دارد؟"
-            >
-              <q-card class="background border-18-bottom">
-                <q-separator color="white" />
-
-                <q-card-section>
-                  وبسایت جاب ویژن با بیش از 40 هزار آگهی استخدام فعال و استفاده
-                  از هوش مصنوعی برای پیشنهاد مرتبط‌ترین آگهی‌ها به کارجویان،
-                  فرایند کاریابی را بسیار آسان‌تر کرده است.
-                </q-card-section>
-              </q-card>
-            </q-expansion-item>
-          </q-list>
-
-          <q-list bordered class="background border-18 q-my-md">
-            <q-expansion-item
-              expand-separator
-              hide-expand-icon
-              icon="question_mark"
-              label="آیا ساخت و ارسال رزومه در جاب ویژن برای من هزینه‌ای دارد؟"
-            >
-              <q-card class="background border-18-bottom">
-                <q-separator color="white" />
-
-                <q-card-section>
-                  خیر، کارجویان می‌توانند بدون پرداخت هیچ هزینه‌ای در سایت
-                  کاریابی جاب ویژن رزومه بسازند و برای آگهی‌های استخدام ارسال
-                  کنند.
-                </q-card-section>
-              </q-card>
-            </q-expansion-item>
-          </q-list>
-
-          <q-list bordered class="background border-18 q-my-md">
-            <q-expansion-item
-              expand-separator
-              hide-expand-icon
-              icon="question_mark"
-              label="چگونه می‌توانم آگهی‌های استخدام مشاغل مرتبط با خودم را پیدا کنم؟"
-            >
-              <q-card class="background border-18-bottom">
-                <q-separator color="white" />
-
-                <q-card-section>
-                  شما می‌توانید به راحتی با استفاده از نوار جستجوی بالای سایت و
-                  انتخاب فیلترهای مختلف، آگهی‌های استخدامی حوزه مرتبط با خودتان
-                  را پیدا کنید.
-                </q-card-section>
-              </q-card>
-            </q-expansion-item>
-          </q-list>
-
-          <q-list bordered class="background border-18 q-my-md">
-            <q-expansion-item
-              expand-separator
-              hide-expand-icon
-              icon="question_mark"
-              label="چگونه می‌توانم از جدیدترین آگهی‌های استخدام مطلع شوم؟"
-            >
-              <q-card class="background border-18-bottom">
-                <q-separator color="white" />
-
-                <q-card-section>
-                  شما می‌توانید با فعالسازی گزینه ایمیل اطلاع رسانی و عضویت در
-                  بات تلگرامی جاب ویژن، از جدیدترین آگهی‌های استخدام و کاریابی
-                  حوزه شغلی خود مطلع شوید.
-                </q-card-section>
-              </q-card>
-            </q-expansion-item>
-          </q-list>
-
-          <q-list bordered class="background border-18 q-my-md">
-            <q-expansion-item
-              expand-separator
-              hide-expand-icon
-              icon="question_mark"
-              label="آیا آگهی‌های استخدام شهرستان‌ها نیز در سایت جاب ویژن منتشر می‌شوند؟"
-            >
-              <q-card class="background border-18-bottom">
-                <q-separator color="white" />
-
-                <q-card-section>
-                  بله؛ تمامی شهرها و شهرستان‌های استان‌های مختلف ایران در سایت
-                  جاب ویژن وجود دارند و شما می‌توانید با استفاده از فیلتر «شهر»
-                  در نوار جستجوی بالای سایت، هرکدام از آن‌ها را انتخاب کنید.
-                </q-card-section>
-              </q-card>
-            </q-expansion-item>
-          </q-list>
-
-          <q-list bordered class="background border-18 q-my-md">
-            <q-expansion-item
-              expand-separator
-              hide-expand-icon
-              icon="question_mark"
-              label="آیا محدودیتی در ارسال رزومه برای آگهی‌های استخدامی در سایت جاب ویژن وجود دارد؟"
-            >
-              <q-card class="background border-18-bottom">
-                <q-separator color="white" />
-
-                <q-card-section>
-                  خیر؛ شما می‌توانید رزومه خودتان را به صورت کاملا رایگان برای
-                  تعداد نامحدودی از آگهی‌های استخدام ارسال کنید.
-                </q-card-section>
-              </q-card>
-            </q-expansion-item>
-          </q-list>
+          <FooterDropdown
+            v-for="(question, index) in questions"
+            :key="'question-' + index"
+            :question="question.question"
+            :answer="question.answer"
+          />
         </div>
 
         <div class="full-width row justify-between">
@@ -1819,118 +1721,12 @@
         <!-- Question Box and Answers -->
 
         <div class="col-12 q-my-md">
-          <q-list bordered class="background border-18 q-my-md">
-            <q-expansion-item
-              expand-separator
-              hide-expand-icon
-              icon="question_mark"
-              label="سایت استخدامی جاب ویژن، چه مزیتی نسبت به دیگر سایت‌های کاریابی و استخدامی دارد؟"
-            >
-              <q-card class="background border-18-bottom">
-                <q-separator color="white" />
-
-                <q-card-section>
-                  وبسایت جاب ویژن با بیش از 40 هزار آگهی استخدام فعال و استفاده
-                  از هوش مصنوعی برای پیشنهاد مرتبط‌ترین آگهی‌ها به کارجویان،
-                  فرایند کاریابی را بسیار آسان‌تر کرده است.
-                </q-card-section>
-              </q-card>
-            </q-expansion-item>
-          </q-list>
-
-          <q-list bordered class="background border-18 q-my-md">
-            <q-expansion-item
-              expand-separator
-              hide-expand-icon
-              icon="question_mark"
-              label="آیا ساخت و ارسال رزومه در جاب ویژن برای من هزینه‌ای دارد؟"
-            >
-              <q-card class="background border-18-bottom">
-                <q-separator color="white" />
-
-                <q-card-section>
-                  خیر، کارجویان می‌توانند بدون پرداخت هیچ هزینه‌ای در سایت
-                  کاریابی جاب ویژن رزومه بسازند و برای آگهی‌های استخدام ارسال
-                  کنند.
-                </q-card-section>
-              </q-card>
-            </q-expansion-item>
-          </q-list>
-
-          <q-list bordered class="background border-18 q-my-md">
-            <q-expansion-item
-              expand-separator
-              hide-expand-icon
-              icon="question_mark"
-              label="چگونه می‌توانم آگهی‌های استخدام مشاغل مرتبط با خودم را پیدا کنم؟"
-            >
-              <q-card class="background border-18-bottom">
-                <q-separator color="white" />
-
-                <q-card-section>
-                  شما می‌توانید به راحتی با استفاده از نوار جستجوی بالای سایت و
-                  انتخاب فیلترهای مختلف، آگهی‌های استخدامی حوزه مرتبط با خودتان
-                  را پیدا کنید.
-                </q-card-section>
-              </q-card>
-            </q-expansion-item>
-          </q-list>
-
-          <q-list bordered class="background border-18 q-my-md">
-            <q-expansion-item
-              expand-separator
-              hide-expand-icon
-              icon="question_mark"
-              label="چگونه می‌توانم از جدیدترین آگهی‌های استخدام مطلع شوم؟"
-            >
-              <q-card class="background border-18-bottom">
-                <q-separator color="white" />
-
-                <q-card-section>
-                  شما می‌توانید با فعالسازی گزینه ایمیل اطلاع رسانی و عضویت در
-                  بات تلگرامی جاب ویژن، از جدیدترین آگهی‌های استخدام و کاریابی
-                  حوزه شغلی خود مطلع شوید.
-                </q-card-section>
-              </q-card>
-            </q-expansion-item>
-          </q-list>
-
-          <q-list bordered class="background border-18 q-my-md">
-            <q-expansion-item
-              expand-separator
-              hide-expand-icon
-              icon="question_mark"
-              label="آیا آگهی‌های استخدام شهرستان‌ها نیز در سایت جاب ویژن منتشر می‌شوند؟"
-            >
-              <q-card class="background border-18-bottom">
-                <q-separator color="white" />
-
-                <q-card-section>
-                  بله؛ تمامی شهرها و شهرستان‌های استان‌های مختلف ایران در سایت
-                  جاب ویژن وجود دارند و شما می‌توانید با استفاده از فیلتر «شهر»
-                  در نوار جستجوی بالای سایت، هرکدام از آن‌ها را انتخاب کنید.
-                </q-card-section>
-              </q-card>
-            </q-expansion-item>
-          </q-list>
-
-          <q-list bordered class="background border-18 q-my-md">
-            <q-expansion-item
-              expand-separator
-              hide-expand-icon
-              icon="question_mark"
-              label="آیا محدودیتی در ارسال رزومه برای آگهی‌های استخدامی در سایت جاب ویژن وجود دارد؟"
-            >
-              <q-card class="background border-18-bottom">
-                <q-separator color="white" />
-
-                <q-card-section>
-                  خیر؛ شما می‌توانید رزومه خودتان را به صورت کاملا رایگان برای
-                  تعداد نامحدودی از آگهی‌های استخدام ارسال کنید.
-                </q-card-section>
-              </q-card>
-            </q-expansion-item>
-          </q-list>
+          <FooterDropdown
+            v-for="(question, index) in questions"
+            :key="'question-' + index"
+            :question="question.question"
+            :answer="question.answer"
+          />
         </div>
 
         <div class="full-width row justify-between">
@@ -2031,118 +1827,12 @@
         <!-- Question Box and Answers -->
 
         <div class="col-12 q-my-md">
-          <q-list bordered class="background border-18 q-my-md">
-            <q-expansion-item
-              expand-separator
-              hide-expand-icon
-              icon="question_mark"
-              label="سایت استخدامی جاب ویژن، چه مزیتی نسبت به دیگر سایت‌های کاریابی و استخدامی دارد؟"
-            >
-              <q-card class="background border-18-bottom">
-                <q-separator color="white" />
-
-                <q-card-section>
-                  وبسایت جاب ویژن با بیش از 40 هزار آگهی استخدام فعال و استفاده
-                  از هوش مصنوعی برای پیشنهاد مرتبط‌ترین آگهی‌ها به کارجویان،
-                  فرایند کاریابی را بسیار آسان‌تر کرده است.
-                </q-card-section>
-              </q-card>
-            </q-expansion-item>
-          </q-list>
-
-          <q-list bordered class="background border-18 q-my-md">
-            <q-expansion-item
-              expand-separator
-              hide-expand-icon
-              icon="question_mark"
-              label="آیا ساخت و ارسال رزومه در جاب ویژن برای من هزینه‌ای دارد؟"
-            >
-              <q-card class="background border-18-bottom">
-                <q-separator color="white" />
-
-                <q-card-section>
-                  خیر، کارجویان می‌توانند بدون پرداخت هیچ هزینه‌ای در سایت
-                  کاریابی جاب ویژن رزومه بسازند و برای آگهی‌های استخدام ارسال
-                  کنند.
-                </q-card-section>
-              </q-card>
-            </q-expansion-item>
-          </q-list>
-
-          <q-list bordered class="background border-18 q-my-md">
-            <q-expansion-item
-              expand-separator
-              hide-expand-icon
-              icon="question_mark"
-              label="چگونه می‌توانم آگهی‌های استخدام مشاغل مرتبط با خودم را پیدا کنم؟"
-            >
-              <q-card class="background border-18-bottom">
-                <q-separator color="white" />
-
-                <q-card-section>
-                  شما می‌توانید به راحتی با استفاده از نوار جستجوی بالای سایت و
-                  انتخاب فیلترهای مختلف، آگهی‌های استخدامی حوزه مرتبط با خودتان
-                  را پیدا کنید.
-                </q-card-section>
-              </q-card>
-            </q-expansion-item>
-          </q-list>
-
-          <q-list bordered class="background border-18 q-my-md">
-            <q-expansion-item
-              expand-separator
-              hide-expand-icon
-              icon="question_mark"
-              label="چگونه می‌توانم از جدیدترین آگهی‌های استخدام مطلع شوم؟"
-            >
-              <q-card class="background border-18-bottom">
-                <q-separator color="white" />
-
-                <q-card-section>
-                  شما می‌توانید با فعالسازی گزینه ایمیل اطلاع رسانی و عضویت در
-                  بات تلگرامی جاب ویژن، از جدیدترین آگهی‌های استخدام و کاریابی
-                  حوزه شغلی خود مطلع شوید.
-                </q-card-section>
-              </q-card>
-            </q-expansion-item>
-          </q-list>
-
-          <q-list bordered class="background border-18 q-my-md">
-            <q-expansion-item
-              expand-separator
-              hide-expand-icon
-              icon="question_mark"
-              label="آیا آگهی‌های استخدام شهرستان‌ها نیز در سایت جاب ویژن منتشر می‌شوند؟"
-            >
-              <q-card class="background border-18-bottom">
-                <q-separator color="white" />
-
-                <q-card-section>
-                  بله؛ تمامی شهرها و شهرستان‌های استان‌های مختلف ایران در سایت
-                  جاب ویژن وجود دارند و شما می‌توانید با استفاده از فیلتر «شهر»
-                  در نوار جستجوی بالای سایت، هرکدام از آن‌ها را انتخاب کنید.
-                </q-card-section>
-              </q-card>
-            </q-expansion-item>
-          </q-list>
-
-          <q-list bordered class="background border-18 q-my-md">
-            <q-expansion-item
-              expand-separator
-              hide-expand-icon
-              icon="question_mark"
-              label="آیا محدودیتی در ارسال رزومه برای آگهی‌های استخدامی در سایت جاب ویژن وجود دارد؟"
-            >
-              <q-card class="background border-18-bottom">
-                <q-separator color="white" />
-
-                <q-card-section>
-                  خیر؛ شما می‌توانید رزومه خودتان را به صورت کاملا رایگان برای
-                  تعداد نامحدودی از آگهی‌های استخدام ارسال کنید.
-                </q-card-section>
-              </q-card>
-            </q-expansion-item>
-          </q-list>
+          <FooterDropdown
+            v-for="(question, index) in questions"
+            :key="'question-' + index"
+            :question="question.question"
+            :answer="question.answer"
+          />
         </div>
 
         <div class="full-width row justify-between">
@@ -2453,9 +2143,14 @@
 <script>
 import { defineComponent, ref, onBeforeMount } from "vue";
 import { api } from "src/boot/axios";
+import FooterDropdown from "../components/FooterDropdown.vue";
 
 export default defineComponent({
   name: "MainLayout",
+
+  components: {
+    FooterDropdown,
+  },
 
   setup() {
     const user = ref();
@@ -2467,6 +2162,45 @@ export default defineComponent({
     const expandedTwo = ref(false);
     const expandedThree = ref(false);
     const width = ref(window.innerWidth);
+
+    // Questions Box Data
+
+    const questions = ref([
+      {
+        question:
+          "سایت استخدامی جاب ویژن، چه مزیتی نسبت به دیگر سایت‌های کاریابی و استخدامی دارد؟",
+        answer:
+          "وبسایت جاب ویژن با بیش از 40 هزار آگهی استخدام فعال و استفاده از هوش مصنوعی برای پیشنهاد مرتبط‌ترین آگهی‌ها به کارجویان، فرایند کاریابی را بسیار آسان‌تر کرده است.",
+      },
+      {
+        question: "آیا ساخت و ارسال رزومه در جاب ویژن برای من هزینه‌ای دارد؟",
+        answer:
+          "خیر، کارجویان می‌توانند بدون پرداخت هیچ هزینه‌ای در سایت کاریابی جاب ویژن رزومه بسازند و برای آگهی‌های استخدام ارسال کنند.",
+      },
+      {
+        question:
+          "چگونه می‌توانم آگهی‌های استخدام مشاغل مرتبط با خودم را پیدا کنم؟",
+        answer:
+          "شما می‌توانید به راحتی با استفاده از نوار جستجوی بالای سایت و انتخاب فیلترهای مختلف، آگهی‌های استخدامی حوزه مرتبط با خودتان را پیدا کنید.",
+      },
+      {
+        question: "چگونه می‌توانم از جدیدترین آگهی‌های استخدام مطلع شوم؟",
+        answer:
+          "شما می‌توانید با فعالسازی گزینه ایمیل اطلاع رسانی و عضویت در بات تلگرامی جاب ویژن، از جدیدترین آگهی‌های استخدام و کاریابی حوزه شغلی خود مطلع شوید.",
+      },
+      {
+        question:
+          "آیا آگهی‌های استخدام شهرستان‌ها نیز در سایت جاب ویژن منتشر می‌شوند؟",
+        answer:
+          "بله؛ تمامی شهرها و شهرستان‌های استان‌های مختلف ایران در سایت جاب ویژن وجود دارند و شما می‌توانید با استفاده از فیلتر «شهر» در نوار جستجوی بالای سایت، هرکدام از آن‌ها را انتخاب کنید.",
+      },
+      {
+        question:
+          "آیا محدودیتی در ارسال رزومه برای آگهی‌های استخدامی در سایت جاب ویژن وجود دارد؟",
+        answer:
+          "خیر؛ شما می‌توانید رزومه خودتان را به صورت کاملا رایگان برای تعداد نامحدودی از آگهی‌های استخدام ارسال کنید.",
+      },
+    ]);
 
     function fetchUserData() {
       api.get("/api/user").then((r) => {
@@ -2492,6 +2226,12 @@ export default defineComponent({
       }
     }
 
+    function logout() {
+      api.post("/api/logout").then(() => {
+        location.reload();
+      });
+    }
+
     onBeforeMount(() => {
       fetchUserData();
     });
@@ -2500,9 +2240,11 @@ export default defineComponent({
       tab,
       user,
       width,
+      logout,
       drawer,
       addName,
       expanded,
+      questions,
       user_name,
       changeName,
       expandedTwo,

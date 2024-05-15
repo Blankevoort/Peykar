@@ -36,9 +36,6 @@
           v-model="model"
           :options="options"
           label="عنوان شغلی یا شرکت"
-          use-input
-          hide-selected
-          fill-input
         >
           <template v-slot:prepend>
             <q-icon name="search" />
@@ -63,9 +60,6 @@
           v-model="model"
           :options="options"
           label="شهر"
-          use-input
-          hide-selected
-          fill-input
         >
           <template v-slot:prepend>
             <q-icon name="location_on" />
@@ -142,16 +136,23 @@
 
                 <q-card-section>
                   <div class="q-mt-sm q-mb-xs">{{ job.title }}</div>
-                  <div class="text-caption">{{ job.name }}</div>
+
+                  <div class="text-caption" v-if="job.company">
+                    {{ job.company.name }}
+                  </div>
+
                   <div class="text-caption text-grey">
                     <p>{{ job.province }}، {{ job.street }}</p>
-                    <span v-if="rights_min">|</span>
-                    <p class="text-positive" v-if="rights_min & rights_max">
-                      {{ job.rights_min }} - {{ job.rights_max }}
-                    </p>
-                    <p class="text-positive" v-if="rights_min">
-                      {{ job.rights_min }}+
-                    </p>
+
+                    <div v-if="rights_min">
+                      <span>|</span>
+
+                      <p class="text-positive" v-if="rights_max">
+                        {{ job.rights_min }} - {{ job.rights_max }}
+                      </p>
+
+                      <p class="text-positive">{{ job.rights_min }}+</p>
+                    </div>
                   </div>
                 </q-card-section>
               </q-card-section>
@@ -246,9 +247,6 @@
           v-model="model"
           :options="options"
           label="عنوان شغلی یا شرکت"
-          use-input
-          hide-selected
-          fill-input
         >
           <template v-slot:prepend>
             <q-icon name="search" />
@@ -273,21 +271,20 @@
           v-model="model"
           :options="options"
           label="شهر"
-          use-input
-          hide-selected
-          fill-input
         >
           <template v-slot:prepend>
             <q-icon name="location_on" />
           </template>
         </q-select>
 
-        <q-btn
-          color="primary"
-          label="جستجو در مشاغل"
-          to="/jobs"
-          class="col-12 q-my-sm q-px-sm"
-        />
+        <div class="full-width q-my-sm q-px-sm">
+          <q-btn
+            class="full-width"
+            color="primary"
+            label="جستجو در مشاغل"
+            to="/jobs"
+          />
+        </div>
       </div>
 
       <!-- New Jobs For User -->
@@ -338,7 +335,11 @@
             پیشنهاد شده بر اساس رفتار و عملکرد شما
           </div>
 
-          <div class="q-px-sm q-my-md col-12">
+          <div
+            class="q-px-sm q-my-md col-12"
+            v-for="(job, index) in jobs"
+            :key="'job-' + index + 1"
+          >
             <q-card flat bordered>
               <q-card-section horizontal>
                 <q-card-section class="col-5 flex flex-center">
@@ -349,69 +350,24 @@
                 </q-card-section>
 
                 <q-card-section>
-                  <div class="q-mt-sm q-mb-xs">توسعه دهنده فرانت</div>
-                  <div class="text-caption">شرکت شبکه هوشمند امید</div>
-                  <div class="text-caption text-grey">
-                    <span>تهران،میرداماد |</span>
-                    <span class="text-positive"> 20 - 25 </span>
+                  <div class="q-mt-sm q-mb-xs">{{ job.title }}</div>
+
+                  <div class="text-caption" v-if="job.company">
+                    {{ job.company.name }}
                   </div>
-                </q-card-section>
-              </q-card-section>
 
-              <q-separator inset />
-
-              <q-card-actions class="q-px-sm">
-                <q-btn flat> 6 روز پیش </q-btn>
-                <q-space />
-                <q-btn color="positive" label="ارسال رزومه" />
-              </q-card-actions>
-            </q-card>
-          </div>
-
-          <div class="q-px-sm q-my-md col-12">
-            <q-card flat bordered>
-              <q-card-section horizontal>
-                <q-card-section class="col-5 flex flex-center">
-                  <q-img
-                    class="rounded-borders"
-                    src="https://cdn.quasar.dev/img/parallax2.jpg"
-                  />
-                </q-card-section>
-
-                <q-card-section>
-                  <div class="q-mt-sm q-mb-xs">توسعه دهنده فرانت</div>
-                  <div class="text-caption">شرکت شبکه هوشمند امید</div>
                   <div class="text-caption text-grey">
-                    <span>تهران،میرداماد </span>
-                  </div>
-                </q-card-section>
-              </q-card-section>
+                    <p>{{ job.province }}، {{ job.street }}</p>
 
-              <q-separator inset />
+                    <div v-if="rights_min">
+                      <span>|</span>
 
-              <q-card-actions class="q-px-sm">
-                <q-btn flat> 6 روز پیش </q-btn>
-                <q-space />
-                <q-btn color="positive" label="ارسال رزومه" />
-              </q-card-actions>
-            </q-card>
-          </div>
+                      <p class="text-positive" v-if="rights_max">
+                        {{ job.rights_min }} - {{ job.rights_max }}
+                      </p>
 
-          <div class="q-px-sm q-my-md col-12">
-            <q-card flat bordered>
-              <q-card-section horizontal>
-                <q-card-section class="col-5 flex flex-center">
-                  <q-img
-                    class="rounded-borders"
-                    src="https://cdn.quasar.dev/img/parallax2.jpg"
-                  />
-                </q-card-section>
-
-                <q-card-section>
-                  <div class="q-mt-sm q-mb-xs">توسعه دهنده فرانت</div>
-                  <div class="text-caption">شرکت شبکه هوشمند امید</div>
-                  <div class="text-caption text-grey">
-                    <span>تهران،میرداماد</span>
+                      <p class="text-positive">{{ job.rights_min }}+</p>
+                    </div>
                   </div>
                 </q-card-section>
               </q-card-section>
@@ -480,17 +436,19 @@
 </template>
 
 <script>
-import { ref, onBeforeMount, onMounted } from "vue";
+import { ref, onBeforeMount } from "vue";
 import { api } from "src/boot/axios";
 
 export default {
   setup() {
     const isLoading = ref(true);
-    const jobs = ref();
+    const jobs = ref([]);
 
     function getJobs() {
       api.get("api/jobs").then((r) => {
-        jobs.value = r.data;
+        jobs.value = r.data.data;
+        console.log(jobs.value[0].rights_min);
+        console.log(jobs.value[0].rights_max);
       });
     }
 
