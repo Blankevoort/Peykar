@@ -2141,8 +2141,8 @@
 </template>
 
 <script>
-import { defineComponent, ref, onBeforeMount } from "vue";
-import { api } from "src/boot/axios";
+import { defineComponent, ref } from "vue";
+
 import FooterDropdown from "../components/FooterDropdown.vue";
 
 export default defineComponent({
@@ -2231,10 +2231,6 @@ export default defineComponent({
         location.reload();
       });
     }
-
-    onBeforeMount(() => {
-      fetchUserData();
-    });
 
     return {
       tab,
