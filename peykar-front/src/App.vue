@@ -9,8 +9,10 @@ const jobDetails = ref({});
 
 onMounted(() => {
   const savedJobDetails = JSON.parse(localStorage.getItem("jobDetails"));
+  const savedUser = JSON.parse(localStorage.getItem("user"));
+  const userLoggedOut = JSON.parse(localStorage.getItem("setUser"));
 
-  if (savedJobDetails) {
+  if (savedJobDetails && savedUser) {
     jobDetails.value = savedJobDetails;
   } else {
     const user = {
@@ -107,59 +109,71 @@ onMounted(() => {
       },
     };
 
-    const jobDetails = {
-      id: 1,
-      backgroundImage:
-        "https://fileapi.jobvision.ir/StaticFiles/Employer/DefaultImages/default-companyHeader.jpeg?v=20231122",
-      image:
-        "https://fileapi.jobvision.ir/api/v1.0/files/getimage?fileid=513699&width=80&height=80",
-      title: "توسعه‌دهنده Front-End",
-      description:
-        "صرافی تبدیل، از شما برای همکاری در موقعیت شغلی Front-End Developer (Vue.js) دعوت به عمل می‌آورد.",
-      technicalSkills: [
-        "HTML, CSS, JavaScript مسلط به",
-        "Vue, Nuxt مسلط به",
-        "TailwindCSS مسلط به",
-        "Vuetify آشنا با",
-        "SASS/SCSS مسلط به",
-        "Git آشنا با",
-        "UI/UX آشنا با مفاهیم",
-        "SEO, Optimization آشنا با مفاهیم",
-        "RESTful آشنا با مفاهیم",
-        "Responsive Design آشنا با مفاهیم",
-        "Clean Code آشنا با مفاهیم",
-      ],
-      generalSkills: [
-        "روحیه کار تیمی",
-        "مسئولیت پذیر و متعهد",
-        "رفتار مناسب با دیگران",
-      ],
-      benefits: [
-        "محیط کار استارتاپی، جوان و پویا با امکان رشد و ارتقا شغلی",
-        "ناهار",
-        "بیمه تکمیلی",
-        "امکان رشد و توسعه در شرکتی پیشرو در صنعت",
-        "بسته‌ها و هدایای مناسبتی",
-      ],
-      workConditions: [
-        "شنبه تا چهارشنبه از ساعت 8:30 الی 17:30 (شروع تایم کاری از 8:30 تا 10 شناور)",
-        "پنج شنبه ها یک هفته در میان از ساعت 9 الی 14 (شروع تایم کاری از 9 تا 10 شناور)",
-      ],
-      keyIndicators: {
-        similarExperience: ["2 سال سابقه کار در گروه شغلی مشابه"],
-        neededSkills: [
-          { name: "Html & CSS", level: "متوسط" },
-          { name: "JavaScript", level: "متوسط" },
-          { name: "VueJS", level: "پیشرفته" },
-          { name: "Rest API", level: "متوسط" },
-          { name: "GIT", level: "متوسط" },
+    const jobDetails = [
+      {
+        id: 1,
+        backgroundImage:
+          "https://fileapi.jobvision.ir/StaticFiles/Employer/DefaultImages/default-companyHeader.jpeg?v=20231122",
+        image:
+          "https://fileapi.jobvision.ir/api/v1.0/files/getimage?fileid=513699&width=80&height=80",
+        title: "توسعه‌دهنده Front-End",
+        description:
+          "صرافی تبدیل، از شما برای همکاری در موقعیت شغلی Front-End Developer (Vue.js) دعوت به عمل می‌آورد.",
+        workDates: "تمام وقت",
+        company: "شرکت",
+        location: "تهران، طرشت",
+        technicalSkills: [
+          "HTML, CSS, JavaScript مسلط به",
+          "Vue, Nuxt مسلط به",
+          "TailwindCSS مسلط به",
+          "Vuetify آشنا با",
+          "SASS/SCSS مسلط به",
+          "Git آشنا با",
+          "UI/UX آشنا با مفاهیم",
+          "SEO, Optimization آشنا با مفاهیم",
+          "RESTful آشنا با مفاهیم",
+          "Responsive Design آشنا با مفاهیم",
+          "Clean Code آشنا با مفاهیم",
         ],
+        generalSkills: [
+          "روحیه کار تیمی",
+          "مسئولیت پذیر و متعهد",
+          "رفتار مناسب با دیگران",
+        ],
+        benefits: [
+          "محیط کار استارتاپی، جوان و پویا با امکان رشد و ارتقا شغلی",
+          "ناهار",
+          "بیمه تکمیلی",
+          "امکان رشد و توسعه در شرکتی پیشرو در صنعت",
+          "بسته‌ها و هدایای مناسبتی",
+        ],
+        workConditions: [
+          "شنبه تا چهارشنبه از ساعت 8:30 الی 17:30 (شروع تایم کاری از 8:30 تا 10 شناور)",
+          "پنج شنبه ها یک هفته در میان از ساعت 9 الی 14 (شروع تایم کاری از 9 تا 10 شناور)",
+        ],
+        keyIndicators: {
+          similarExperience: ["2 سال سابقه کار در گروه شغلی مشابه"],
+          neededSkills: [
+            { name: "Html & CSS", level: "متوسط" },
+            { name: "JavaScript", level: "متوسط" },
+            { name: "VueJS", level: "پیشرفته" },
+            { name: "Rest API", level: "متوسط" },
+            { name: "GIT", level: "متوسط" },
+          ],
+        },
+        rightsMin: "15",
+        rightsMax: "20",
+        postedDate: new Date().toISOString(),
       },
-      postedDate: new Date().toISOString(),
-    };
+    ];
 
-    localStorage.setItem("jobDetails", JSON.stringify(jobDetails));
-    localStorage.setItem("user", JSON.stringify(user));
+    localStorage.setItem("jobs", JSON.stringify(jobDetails));
+    localStorage.setItem("setUser", JSON.stringify(userLoggedOut));
+    if (userLoggedOut == null) {
+      localStorage.setItem("user", JSON.stringify(user));
+    } else {
+      localStorage.removeItem("user");
+    }
     jobDetails.value = jobDetails;
   }
 });

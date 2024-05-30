@@ -2,7 +2,7 @@
   <q-layout view="hHh lpR fFf">
     <!-- Header -->
 
-    <q-header class="row justify-center shadow q-px-md" style="height: 70px">
+    <q-header class="row justify-center shadow q-px-md q-py-sm">
       <q-toolbar class="col-md-12 col-lg-8 col-xl-8 gt-sm">
         <!-- Logo And Links -->
 
@@ -62,22 +62,27 @@
                   <!-- Full Name, Job And Edit Button -->
 
                   <q-item-section>
-                    <q-item-label v-if="user.name">{{
-                      user.name
-                    }}</q-item-label>
-
-                    <q-item-label v-else>
-                      <q-btn flat label="افزودن نام" @click="toggleDialog" />
-                    </q-item-label>
-
-                    <q-item-label lines="2">
-                      <div class="text-black q-mt-sm" style="font-size: 12px">
-                        دولوپر فول استک در شرکت آیترونیک.
-                      </div>
+                    <q-item-label v-if="user.name">
+                      {{ user.name }}
 
                       <q-btn flat>
                         <q-icon size="20px" name="edit" />
                       </q-btn>
+                    </q-item-label>
+
+                    <q-item-label v-else>
+                      <q-btn
+                        color="secondary"
+                        flat
+                        label="افزودن نام"
+                        @click="toggleDialog"
+                      />
+                    </q-item-label>
+
+                    <q-item-label lines="2">
+                      <div class="text-black q-mb-sm" style="font-size: 12px">
+                        دولوپر فول استک در شرکت آیترونیک.
+                      </div>
                     </q-item-label>
                   </q-item-section>
                 </q-item>
@@ -241,20 +246,26 @@
                   <q-item-section>
                     <q-item-label v-if="user.name">
                       {{ user.name }}
+
+                      <q-btn @click="toggleDialog" flat>
+                        <q-icon size="20px" name="edit" />
+                      </q-btn>
                     </q-item-label>
 
                     <q-item-label v-else>
-                      <q-btn flat label="افزودن نام" @click="toggleDialog" />
+                      <q-btn
+                        unelevated
+                        flat
+                        color="secondary"
+                        label="افزودن نام"
+                        @click="toggleDialog"
+                      />
                     </q-item-label>
 
                     <q-item-label lines="2">
-                      <div class="text-black q-mt-sm" style="font-size: 12px">
+                      <div class="text-black q-mb-sm" style="font-size: 12px">
                         دولوپر فول استک در شرکت آیترونیک.
                       </div>
-
-                      <q-btn flat>
-                        <q-icon size="20px" name="edit" />
-                      </q-btn>
                     </q-item-label>
                   </q-item-section>
                 </q-item>
@@ -411,7 +422,7 @@
       :mini="!drawer || miniState"
       @click.capture="drawerClick"
       :breakpoint="500"
-      :width="width"
+      width="full"
       no-swipe-open
     >
       <div class="row q-px-md">
@@ -604,457 +615,31 @@
             <q-tab-panel class="full-width" name="jobsList">
               <!-- Header -->
 
-              <div class="full-width row justify-between q-py-md">
-                <div class="col-6" @click="tab = 'jobs'">
-                  <q-icon name="arrow_forward_ios" size="16px" />
-
-                  <q-btn class="text-bold" flat label="فرصت های شغلی" />
-                </div>
-
-                <div class="col-6 flex justify-end">
-                  <q-btn
-                    flat
-                    @click="drawer = !drawer"
-                    class="btn--no-hover button-effect"
-                    icon="close"
-                  />
-                </div>
-              </div>
+              <PanelHeader
+                :tab="tab"
+                :drawer="drawer"
+                @update-tab="updateTab"
+                @toggle-drawer="toggleDrawer"
+              />
 
               <!-- Content -->
 
-              <!-- Change To Component -->
-
-              <div class="full-width row">
-                <div class="col-12 row justify-between">
-                  <div class="col-12">
-                    <q-btn flat class="btn--no-hover q-my-sm button-effect">
-                      <span class="text-bold text-primary"
-                        >همه فرصت های شغلی</span
-                      >
-                    </q-btn>
-                  </div>
-                </div>
-
-                <div class="full-width">
-                  <q-btn to="" flat>
-                    <span class="border-left"></span>
-                    <span class="text-bold q-pl-md">حسابدار/مالی و...</span>
-                  </q-btn>
-
-                  <div class="q-pl-md">
-                    <div>
-                      <q-btn label="مدیر مالی" to="" flat />
-                    </div>
-
-                    <div>
-                      <q-btn label="رییس حسابداری" to="" flat />
-                    </div>
-
-                    <div>
-                      <q-btn label="کمک حسابدار" to="" flat />
-                    </div>
-
-                    <div>
-                      <q-btn label="حسابرس" to="" flat />
-                    </div>
-                  </div>
-                </div>
-
-                <div class="full-width">
-                  <q-btn to="" flat>
-                    <span class="border-left"></span>
-                    <span class="text-bold q-pl-md"
-                      >معامله گر و تحلیل گر بازار های مالی</span
-                    >
-                  </q-btn>
-                </div>
-
-                <div class="full-width">
-                  <q-btn to="" flat>
-                    <span class="border-left"></span>
-                    <span class="text-bold q-pl-md"
-                      >منشی و مسئول دفتر / امور اداری</span
-                    >
-                  </q-btn>
-                </div>
-
-                <div class="full-width">
-                  <q-btn to="" flat>
-                    <span class="border-left"></span>
-                    <span class="text-bold q-pl-md">منابع انسانی</span>
-                  </q-btn>
-                </div>
-
-                <div class="full-width">
-                  <q-btn to="" flat>
-                    <span class="border-left"></span>
-                    <span class="text-bold q-pl-md"
-                      >فروش و بازاریابی - کارشناس و مدیر</span
-                    >
-                  </q-btn>
-                </div>
-
-                <div class="full-width">
-                  <q-btn to="" flat>
-                    <span class="border-left"></span>
-                    <span class="text-bold q-pl-md"
-                      >فروشنده / بازاریاب / صندوقدار</span
-                    >
-                  </q-btn>
-                </div>
-
-                <div class="full-width">
-                  <q-btn to="" flat>
-                    <span class="border-left"></span>
-                    <span class="text-bold q-pl-md"
-                      >نماینده عملی (Med Rep)</span
-                    >
-                  </q-btn>
-                </div>
-
-                <div class="full-width">
-                  <q-btn to="" flat>
-                    <span class="border-left"></span>
-                    <span class="text-bold q-pl-md"
-                      >پشتیبانی و ارتباط با مشتریان</span
-                    >
-                  </q-btn>
-                </div>
-
-                <div class="full-width">
-                  <q-btn to="" flat>
-                    <span class="border-left"></span>
-                    <span class="text-bold q-pl-md">روابط عمومی</span>
-                  </q-btn>
-                </div>
-
-                <div class="full-width">
-                  <q-btn to="" flat>
-                    <span class="border-left"></span>
-                    <span class="text-bold q-pl-md">دیجیتال مارکتینگ</span>
-                  </q-btn>
-                </div>
-
-                <div class="full-width">
-                  <q-btn to="" flat>
-                    <span class="border-left"></span>
-                    <span class="text-bold q-pl-md">سئو</span>
-                  </q-btn>
-                </div>
-
-                <div class="full-width">
-                  <q-btn to="" flat>
-                    <span class="border-left"></span>
-                    <span class="text-bold q-pl-md">تولید محتوا</span>
-                  </q-btn>
-                </div>
-
-                <div class="full-width">
-                  <q-btn to="" flat>
-                    <span class="border-left"></span>
-                    <span class="text-bold q-pl-md">ترجمه</span>
-                  </q-btn>
-                </div>
-
-                <div class="full-width">
-                  <q-btn to="" flat>
-                    <span class="border-left"></span>
-                    <span class="text-bold q-pl-md"
-                      >برنامه نویسی و توسعه نرم افزار</span
-                    >
-                  </q-btn>
-
-                  <div class="q-pl-md">
-                    <div>
-                      <q-btn label="برنامه نویس پایتون" to="" flat />
-                    </div>
-
-                    <div>
-                      <q-btn label="برنامه نویس جاوا" to="" flat />
-                    </div>
-
-                    <div>
-                      <q-btn label="برنامه نویس .Net" to="" flat />
-                    </div>
-
-                    <div>
-                      <q-btn label="برنامه نویس php" to="" flat />
-                    </div>
-
-                    <div>
-                      <q-btn label="برنامه نویس node.Js" to="" flat />
-                    </div>
-
-                    <div>
-                      <q-btn label="برنامه نویس C++" to="" flat />
-                    </div>
-
-                    <div>
-                      <q-btn label="برنامه نویس فرانت اند" to="" flat />
-                    </div>
-
-                    <div>
-                      <q-btn label="برنامه نویس React" to="" flat />
-                    </div>
-
-                    <div>
-                      <q-btn label="برنامه نویس انگولار" to="" flat />
-                    </div>
-
-                    <div>
-                      <q-btn label="برنامه نویس اندروید" to="" flat />
-                    </div>
-
-                    <div>
-                      <q-btn label="Database Admin" to="" flat />
-                    </div>
-                  </div>
-                </div>
-
-                <div class="full-width">
-                  <q-btn to="" flat>
-                    <span class="border-left"></span>
-                    <span class="text-bold q-pl-md">تست نرم افزار</span>
-                  </q-btn>
-                </div>
-
-                <div class="full-width">
-                  <q-btn to="" flat>
-                    <span class="border-left"></span>
-                    <span class="text-bold q-pl-md"
-                      >علوم داده / هوش مصنوعی</span
-                    >
-                  </q-btn>
-                </div>
-              </div>
+              <JobsList />
             </q-tab-panel>
 
             <q-tab-panel class="full-width" name="provincesAndCities">
               <!-- Header -->
 
-              <div class="full-width row justify-between q-py-md">
-                <div class="col-6" @click="tab = 'jobs'">
-                  <q-icon name="arrow_forward_ios" size="16px" />
-
-                  <q-btn class="text-bold" flat label="فرصت های شغلی" />
-                </div>
-
-                <div class="col-6 flex justify-end">
-                  <q-btn
-                    flat
-                    @click="drawer = !drawer"
-                    class="btn--no-hover button-effect"
-                    icon="close"
-                  />
-                </div>
-              </div>
+              <PanelHeader
+                :tab="tab"
+                :drawer="drawer"
+                @update-tab="updateTab"
+                @toggle-drawer="toggleDrawer"
+              />
 
               <!-- Content -->
 
-              <div class="full-width row">
-                <div class="col-12 row justify-between">
-                  <div class="col-12">
-                    <q-btn flat class="btn--no-hover q-my-sm button-effect">
-                      <span class="text-bold text-primary"
-                        >همه فرصت های شغلی</span
-                      >
-                    </q-btn>
-                  </div>
-                </div>
-
-                <div class="full-width">
-                  <q-btn to="" flat>
-                    <span class="border-left"></span>
-                    <span class="text-bold q-pl-md">حسابدار/مالی و...</span>
-                  </q-btn>
-
-                  <div class="q-pl-md">
-                    <div>
-                      <q-btn label="مدیر مالی" to="" flat />
-                    </div>
-
-                    <div>
-                      <q-btn label="رییس حسابداری" to="" flat />
-                    </div>
-
-                    <div>
-                      <q-btn label="کمک حسابدار" to="" flat />
-                    </div>
-
-                    <div>
-                      <q-btn label="حسابرس" to="" flat />
-                    </div>
-                  </div>
-                </div>
-
-                <div class="full-width">
-                  <q-btn to="" flat>
-                    <span class="border-left"></span>
-                    <span class="text-bold q-pl-md"
-                      >معامله گر و تحلیل گر بازار های مالی</span
-                    >
-                  </q-btn>
-                </div>
-
-                <div class="full-width">
-                  <q-btn to="" flat>
-                    <span class="border-left"></span>
-                    <span class="text-bold q-pl-md"
-                      >منشی و مسئول دفتر / امور اداری</span
-                    >
-                  </q-btn>
-                </div>
-
-                <div class="full-width">
-                  <q-btn to="" flat>
-                    <span class="border-left"></span>
-                    <span class="text-bold q-pl-md">منابع انسانی</span>
-                  </q-btn>
-                </div>
-
-                <div class="full-width">
-                  <q-btn to="" flat>
-                    <span class="border-left"></span>
-                    <span class="text-bold q-pl-md"
-                      >فروش و بازاریابی - کارشناس و مدیر</span
-                    >
-                  </q-btn>
-                </div>
-
-                <div class="full-width">
-                  <q-btn to="" flat>
-                    <span class="border-left"></span>
-                    <span class="text-bold q-pl-md"
-                      >فروشنده / بازاریاب / صندوقدار</span
-                    >
-                  </q-btn>
-                </div>
-
-                <div class="full-width">
-                  <q-btn to="" flat>
-                    <span class="border-left"></span>
-                    <span class="text-bold q-pl-md"
-                      >نماینده عملی (Med Rep)</span
-                    >
-                  </q-btn>
-                </div>
-
-                <div class="full-width">
-                  <q-btn to="" flat>
-                    <span class="border-left"></span>
-                    <span class="text-bold q-pl-md"
-                      >پشتیبانی و ارتباط با مشتریان</span
-                    >
-                  </q-btn>
-                </div>
-
-                <div class="full-width">
-                  <q-btn to="" flat>
-                    <span class="border-left"></span>
-                    <span class="text-bold q-pl-md">روابط عمومی</span>
-                  </q-btn>
-                </div>
-
-                <div class="full-width">
-                  <q-btn to="" flat>
-                    <span class="border-left"></span>
-                    <span class="text-bold q-pl-md">دیجیتال مارکتینگ</span>
-                  </q-btn>
-                </div>
-
-                <div class="full-width">
-                  <q-btn to="" flat>
-                    <span class="border-left"></span>
-                    <span class="text-bold q-pl-md">سئو</span>
-                  </q-btn>
-                </div>
-
-                <div class="full-width">
-                  <q-btn to="" flat>
-                    <span class="border-left"></span>
-                    <span class="text-bold q-pl-md">تولید محتوا</span>
-                  </q-btn>
-                </div>
-
-                <div class="full-width">
-                  <q-btn to="" flat>
-                    <span class="border-left"></span>
-                    <span class="text-bold q-pl-md">ترجمه</span>
-                  </q-btn>
-                </div>
-
-                <div class="full-width">
-                  <q-btn to="" flat>
-                    <span class="border-left"></span>
-                    <span class="text-bold q-pl-md"
-                      >برنامه نویسی و توسعه نرم افزار</span
-                    >
-                  </q-btn>
-
-                  <div class="q-pl-md">
-                    <div>
-                      <q-btn label="برنامه نویس پایتون" to="" flat />
-                    </div>
-
-                    <div>
-                      <q-btn label="برنامه نویس جاوا" to="" flat />
-                    </div>
-
-                    <div>
-                      <q-btn label="برنامه نویس .Net" to="" flat />
-                    </div>
-
-                    <div>
-                      <q-btn label="برنامه نویس php" to="" flat />
-                    </div>
-
-                    <div>
-                      <q-btn label="برنامه نویس node.Js" to="" flat />
-                    </div>
-
-                    <div>
-                      <q-btn label="برنامه نویس C++" to="" flat />
-                    </div>
-
-                    <div>
-                      <q-btn label="برنامه نویس فرانت اند" to="" flat />
-                    </div>
-
-                    <div>
-                      <q-btn label="برنامه نویس React" to="" flat />
-                    </div>
-
-                    <div>
-                      <q-btn label="برنامه نویس انگولار" to="" flat />
-                    </div>
-
-                    <div>
-                      <q-btn label="برنامه نویس اندروید" to="" flat />
-                    </div>
-
-                    <div>
-                      <q-btn label="Database Admin" to="" flat />
-                    </div>
-                  </div>
-                </div>
-
-                <div class="full-width">
-                  <q-btn to="" flat>
-                    <span class="border-left"></span>
-                    <span class="text-bold q-pl-md">تست نرم افزار</span>
-                  </q-btn>
-                </div>
-
-                <div class="full-width">
-                  <q-btn to="" flat>
-                    <span class="border-left"></span>
-                    <span class="text-bold q-pl-md"
-                      >علوم داده / هوش مصنوعی</span
-                    >
-                  </q-btn>
-                </div>
-              </div>
+              <JobsList />
             </q-tab-panel>
 
             <!-- End OF Change To Component -->
@@ -1062,457 +647,31 @@
             <q-tab-panel class="full-width" name="cooperationType">
               <!-- Header -->
 
-              <div class="full-width row justify-between q-py-md">
-                <div class="col-6" @click="tab = 'jobs'">
-                  <q-icon name="arrow_forward_ios" size="16px" />
-
-                  <q-btn class="text-bold" flat label="فرصت های شغلی" />
-                </div>
-
-                <div class="col-6 flex justify-end">
-                  <q-btn
-                    flat
-                    @click="drawer = !drawer"
-                    class="btn--no-hover button-effect"
-                    icon="close"
-                  />
-                </div>
-              </div>
+              <PanelHeader
+                :tab="tab"
+                :drawer="drawer"
+                @update-tab="updateTab"
+                @toggle-drawer="toggleDrawer"
+              />
 
               <!-- Content -->
 
-              <!-- Change To Component -->
-
-              <div class="full-width row">
-                <div class="col-12 row justify-between">
-                  <div class="col-12">
-                    <q-btn flat class="btn--no-hover q-my-sm button-effect">
-                      <span class="text-bold text-primary"
-                        >همه فرصت های شغلی</span
-                      >
-                    </q-btn>
-                  </div>
-                </div>
-
-                <div class="full-width">
-                  <q-btn to="" flat>
-                    <span class="border-left"></span>
-                    <span class="text-bold q-pl-md">حسابدار/مالی و...</span>
-                  </q-btn>
-
-                  <div class="q-pl-md">
-                    <div>
-                      <q-btn label="مدیر مالی" to="" flat />
-                    </div>
-
-                    <div>
-                      <q-btn label="رییس حسابداری" to="" flat />
-                    </div>
-
-                    <div>
-                      <q-btn label="کمک حسابدار" to="" flat />
-                    </div>
-
-                    <div>
-                      <q-btn label="حسابرس" to="" flat />
-                    </div>
-                  </div>
-                </div>
-
-                <div class="full-width">
-                  <q-btn to="" flat>
-                    <span class="border-left"></span>
-                    <span class="text-bold q-pl-md"
-                      >معامله گر و تحلیل گر بازار های مالی</span
-                    >
-                  </q-btn>
-                </div>
-
-                <div class="full-width">
-                  <q-btn to="" flat>
-                    <span class="border-left"></span>
-                    <span class="text-bold q-pl-md"
-                      >منشی و مسئول دفتر / امور اداری</span
-                    >
-                  </q-btn>
-                </div>
-
-                <div class="full-width">
-                  <q-btn to="" flat>
-                    <span class="border-left"></span>
-                    <span class="text-bold q-pl-md">منابع انسانی</span>
-                  </q-btn>
-                </div>
-
-                <div class="full-width">
-                  <q-btn to="" flat>
-                    <span class="border-left"></span>
-                    <span class="text-bold q-pl-md"
-                      >فروش و بازاریابی - کارشناس و مدیر</span
-                    >
-                  </q-btn>
-                </div>
-
-                <div class="full-width">
-                  <q-btn to="" flat>
-                    <span class="border-left"></span>
-                    <span class="text-bold q-pl-md"
-                      >فروشنده / بازاریاب / صندوقدار</span
-                    >
-                  </q-btn>
-                </div>
-
-                <div class="full-width">
-                  <q-btn to="" flat>
-                    <span class="border-left"></span>
-                    <span class="text-bold q-pl-md"
-                      >نماینده عملی (Med Rep)</span
-                    >
-                  </q-btn>
-                </div>
-
-                <div class="full-width">
-                  <q-btn to="" flat>
-                    <span class="border-left"></span>
-                    <span class="text-bold q-pl-md"
-                      >پشتیبانی و ارتباط با مشتریان</span
-                    >
-                  </q-btn>
-                </div>
-
-                <div class="full-width">
-                  <q-btn to="" flat>
-                    <span class="border-left"></span>
-                    <span class="text-bold q-pl-md">روابط عمومی</span>
-                  </q-btn>
-                </div>
-
-                <div class="full-width">
-                  <q-btn to="" flat>
-                    <span class="border-left"></span>
-                    <span class="text-bold q-pl-md">دیجیتال مارکتینگ</span>
-                  </q-btn>
-                </div>
-
-                <div class="full-width">
-                  <q-btn to="" flat>
-                    <span class="border-left"></span>
-                    <span class="text-bold q-pl-md">سئو</span>
-                  </q-btn>
-                </div>
-
-                <div class="full-width">
-                  <q-btn to="" flat>
-                    <span class="border-left"></span>
-                    <span class="text-bold q-pl-md">تولید محتوا</span>
-                  </q-btn>
-                </div>
-
-                <div class="full-width">
-                  <q-btn to="" flat>
-                    <span class="border-left"></span>
-                    <span class="text-bold q-pl-md">ترجمه</span>
-                  </q-btn>
-                </div>
-
-                <div class="full-width">
-                  <q-btn to="" flat>
-                    <span class="border-left"></span>
-                    <span class="text-bold q-pl-md"
-                      >برنامه نویسی و توسعه نرم افزار</span
-                    >
-                  </q-btn>
-
-                  <div class="q-pl-md">
-                    <div>
-                      <q-btn label="برنامه نویس پایتون" to="" flat />
-                    </div>
-
-                    <div>
-                      <q-btn label="برنامه نویس جاوا" to="" flat />
-                    </div>
-
-                    <div>
-                      <q-btn label="برنامه نویس .Net" to="" flat />
-                    </div>
-
-                    <div>
-                      <q-btn label="برنامه نویس php" to="" flat />
-                    </div>
-
-                    <div>
-                      <q-btn label="برنامه نویس node.Js" to="" flat />
-                    </div>
-
-                    <div>
-                      <q-btn label="برنامه نویس C++" to="" flat />
-                    </div>
-
-                    <div>
-                      <q-btn label="برنامه نویس فرانت اند" to="" flat />
-                    </div>
-
-                    <div>
-                      <q-btn label="برنامه نویس React" to="" flat />
-                    </div>
-
-                    <div>
-                      <q-btn label="برنامه نویس انگولار" to="" flat />
-                    </div>
-
-                    <div>
-                      <q-btn label="برنامه نویس اندروید" to="" flat />
-                    </div>
-
-                    <div>
-                      <q-btn label="Database Admin" to="" flat />
-                    </div>
-                  </div>
-                </div>
-
-                <div class="full-width">
-                  <q-btn to="" flat>
-                    <span class="border-left"></span>
-                    <span class="text-bold q-pl-md">تست نرم افزار</span>
-                  </q-btn>
-                </div>
-
-                <div class="full-width">
-                  <q-btn to="" flat>
-                    <span class="border-left"></span>
-                    <span class="text-bold q-pl-md"
-                      >علوم داده / هوش مصنوعی</span
-                    >
-                  </q-btn>
-                </div>
-              </div>
+              <JobsList />
             </q-tab-panel>
 
             <q-tab-panel class="full-width" name="topCompanies">
               <!-- Header -->
 
-              <div class="full-width row justify-between q-py-md">
-                <div class="col-6" @click="tab = 'jobs'">
-                  <q-icon name="arrow_forward_ios" size="16px" />
-
-                  <q-btn class="text-bold" flat label="فرصت های شغلی" />
-                </div>
-
-                <div class="col-6 flex justify-end">
-                  <q-btn
-                    flat
-                    @click="drawer = !drawer"
-                    class="btn--no-hover button-effect"
-                    icon="close"
-                  />
-                </div>
-              </div>
+              <PanelHeader
+                :tab="tab"
+                :drawer="drawer"
+                @update-tab="updateTab"
+                @toggle-drawer="toggleDrawer"
+              />
 
               <!-- Content -->
 
-              <div class="full-width row">
-                <div class="col-12 row justify-between">
-                  <div class="col-12">
-                    <q-btn flat class="btn--no-hover q-my-sm button-effect">
-                      <span class="text-bold text-primary">سازمان ها</span>
-                    </q-btn>
-                  </div>
-                </div>
-
-                <div class="full-width">
-                  <q-btn to="" flat>
-                    <span class="border-left"></span>
-                    <span class="text-bold q-pl-md">حسابدار/مالی و...</span>
-                  </q-btn>
-
-                  <div class="q-pl-md">
-                    <div>
-                      <q-btn label="مدیر مالی" to="" flat />
-                    </div>
-
-                    <div>
-                      <q-btn label="رییس حسابداری" to="" flat />
-                    </div>
-
-                    <div>
-                      <q-btn label="کمک حسابدار" to="" flat />
-                    </div>
-
-                    <div>
-                      <q-btn label="حسابرس" to="" flat />
-                    </div>
-                  </div>
-                </div>
-
-                <div class="full-width">
-                  <q-btn to="" flat>
-                    <span class="border-left"></span>
-                    <span class="text-bold q-pl-md"
-                      >معامله گر و تحلیل گر بازار های مالی</span
-                    >
-                  </q-btn>
-                </div>
-
-                <div class="full-width">
-                  <q-btn to="" flat>
-                    <span class="border-left"></span>
-                    <span class="text-bold q-pl-md"
-                      >منشی و مسئول دفتر / امور اداری</span
-                    >
-                  </q-btn>
-                </div>
-
-                <div class="full-width">
-                  <q-btn to="" flat>
-                    <span class="border-left"></span>
-                    <span class="text-bold q-pl-md">منابع انسانی</span>
-                  </q-btn>
-                </div>
-
-                <div class="full-width">
-                  <q-btn to="" flat>
-                    <span class="border-left"></span>
-                    <span class="text-bold q-pl-md"
-                      >فروش و بازاریابی - کارشناس و مدیر</span
-                    >
-                  </q-btn>
-                </div>
-
-                <div class="full-width">
-                  <q-btn to="" flat>
-                    <span class="border-left"></span>
-                    <span class="text-bold q-pl-md"
-                      >فروشنده / بازاریاب / صندوقدار</span
-                    >
-                  </q-btn>
-                </div>
-
-                <div class="full-width">
-                  <q-btn to="" flat>
-                    <span class="border-left"></span>
-                    <span class="text-bold q-pl-md"
-                      >نماینده عملی (Med Rep)</span
-                    >
-                  </q-btn>
-                </div>
-
-                <div class="full-width">
-                  <q-btn to="" flat>
-                    <span class="border-left"></span>
-                    <span class="text-bold q-pl-md"
-                      >پشتیبانی و ارتباط با مشتریان</span
-                    >
-                  </q-btn>
-                </div>
-
-                <div class="full-width">
-                  <q-btn to="" flat>
-                    <span class="border-left"></span>
-                    <span class="text-bold q-pl-md">روابط عمومی</span>
-                  </q-btn>
-                </div>
-
-                <div class="full-width">
-                  <q-btn to="" flat>
-                    <span class="border-left"></span>
-                    <span class="text-bold q-pl-md">دیجیتال مارکتینگ</span>
-                  </q-btn>
-                </div>
-
-                <div class="full-width">
-                  <q-btn to="" flat>
-                    <span class="border-left"></span>
-                    <span class="text-bold q-pl-md">سئو</span>
-                  </q-btn>
-                </div>
-
-                <div class="full-width">
-                  <q-btn to="" flat>
-                    <span class="border-left"></span>
-                    <span class="text-bold q-pl-md">تولید محتوا</span>
-                  </q-btn>
-                </div>
-
-                <div class="full-width">
-                  <q-btn to="" flat>
-                    <span class="border-left"></span>
-                    <span class="text-bold q-pl-md">ترجمه</span>
-                  </q-btn>
-                </div>
-
-                <div class="full-width">
-                  <q-btn to="" flat>
-                    <span class="border-left"></span>
-                    <span class="text-bold q-pl-md"
-                      >برنامه نویسی و توسعه نرم افزار</span
-                    >
-                  </q-btn>
-
-                  <div class="q-pl-md">
-                    <div>
-                      <q-btn label="برنامه نویس پایتون" to="" flat />
-                    </div>
-
-                    <div>
-                      <q-btn label="برنامه نویس جاوا" to="" flat />
-                    </div>
-
-                    <div>
-                      <q-btn label="برنامه نویس .Net" to="" flat />
-                    </div>
-
-                    <div>
-                      <q-btn label="برنامه نویس php" to="" flat />
-                    </div>
-
-                    <div>
-                      <q-btn label="برنامه نویس node.Js" to="" flat />
-                    </div>
-
-                    <div>
-                      <q-btn label="برنامه نویس C++" to="" flat />
-                    </div>
-
-                    <div>
-                      <q-btn label="برنامه نویس فرانت اند" to="" flat />
-                    </div>
-
-                    <div>
-                      <q-btn label="برنامه نویس React" to="" flat />
-                    </div>
-
-                    <div>
-                      <q-btn label="برنامه نویس انگولار" to="" flat />
-                    </div>
-
-                    <div>
-                      <q-btn label="برنامه نویس اندروید" to="" flat />
-                    </div>
-
-                    <div>
-                      <q-btn label="Database Admin" to="" flat />
-                    </div>
-                  </div>
-                </div>
-
-                <div class="full-width">
-                  <q-btn to="" flat>
-                    <span class="border-left"></span>
-                    <span class="text-bold q-pl-md">تست نرم افزار</span>
-                  </q-btn>
-                </div>
-
-                <div class="full-width">
-                  <q-btn to="" flat>
-                    <span class="border-left"></span>
-                    <span class="text-bold q-pl-md"
-                      >علوم داده / هوش مصنوعی</span
-                    >
-                  </q-btn>
-                </div>
-              </div>
-
-              <!-- End OF Change To Component -->
+              <JobsList />
             </q-tab-panel>
           </q-tab-panels>
         </div>
@@ -2143,17 +1302,17 @@
 <script>
 import { defineComponent, ref } from "vue";
 
+import { getUser } from "../composables/getUser";
+
+import JobsList from "../components/Layout/DrawerJobsList.vue";
 import FooterDropdown from "../components/FooterDropdown.vue";
+import PanelHeader from "../components/Layout/LayoutPanlesHeader.vue";
 
 export default defineComponent({
   name: "MainLayout",
-
-  components: {
-    FooterDropdown,
-  },
-
+  components: { FooterDropdown, JobsList, PanelHeader },
   setup() {
-    const user = ref();
+    const user = getUser();
     const drawer = ref();
     const user_name = ref();
     const tab = ref("default");
@@ -2161,9 +1320,6 @@ export default defineComponent({
     const expanded = ref(false);
     const expandedTwo = ref(false);
     const expandedThree = ref(false);
-    const width = ref(window.innerWidth);
-
-    // Questions Box Data
 
     const questions = ref([
       {
@@ -2202,48 +1358,54 @@ export default defineComponent({
       },
     ]);
 
-    function fetchUserData() {
-      api.get("/api/user").then((r) => {
-        user.value = r.data;
-      });
+    function toggleDialog() {
+      addName.value = !addName.value;
     }
 
     function changeName() {
-      api
-        .patch("/api/user/" + user.value.id + "/update", {
-          name: user_name.value,
-        })
-        .then(() => {
-          fetchUserData();
-        });
-    }
-
-    function toggleDialog() {
-      if (addName.value == false) {
-        addName.value = true;
-      } else {
-        addName.value = false;
+      try {
+        const userData = localStorage.getItem("user");
+        if (userData) {
+          const userObj = JSON.parse(userData);
+          userObj.name = user_name.value;
+          localStorage.setItem("user", JSON.stringify(userObj));
+          user.value = userObj;
+        }
+      } catch (error) {
+        console.error("Error changing name in localStorage:", error);
       }
     }
 
     function logout() {
-      api.post("/api/logout").then(() => {
+      try {
+        localStorage.setItem("setUser", "false");
         location.reload();
-      });
+      } catch (error) {
+        console.error("Error setting setUser in localStorage:", error);
+      }
     }
+
+    const updateTab = () => {
+      tab.value = "jobs";
+    };
+
+    const toggleDrawer = () => {
+      drawer.value = !drawer.value;
+    };
 
     return {
       tab,
       user,
-      width,
       logout,
       drawer,
       addName,
       expanded,
       questions,
       user_name,
+      updateTab,
       changeName,
       expandedTwo,
+      toggleDrawer,
       toggleDialog,
       expandedThree,
     };

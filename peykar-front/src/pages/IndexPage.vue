@@ -130,7 +130,8 @@
                 <q-card-section class="col-5 flex flex-center">
                   <q-img
                     class="rounded-borders"
-                    src="https://cdn.quasar.dev/img/parallax2.jpg"
+                    :src="job.image"
+                    style="width: 48px; height: 48px"
                   />
                 </q-card-section>
 
@@ -138,20 +139,21 @@
                   <div class="q-mt-sm q-mb-xs">{{ job.title }}</div>
 
                   <div class="text-caption" v-if="job.company">
-                    {{ job.company.name }}
+                    {{ job.company }}
                   </div>
 
-                  <div class="text-caption text-grey">
-                    <p>{{ job.province }}، {{ job.street }}</p>
+                  <div class="text-caption text-grey row">
+                    <div>
+                      {{ job.location }}
+                    </div>
 
-                    <div v-if="rights_min">
-                      <span>|</span>
+                    <div class="row" v-if="job.rightsMin">
+                      <span class="q-px-sm">|</span>
 
-                      <p class="text-positive" v-if="rights_max">
-                        {{ job.rights_min }} - {{ job.rights_max }}
+                      <p class="text-positive" v-if="job.rightsMax">
+                        {{ job.rightsMin }} - {{ job.rightsMax }}
                       </p>
-
-                      <p class="text-positive">{{ job.rights_min }}+</p>
+                      <p class="text-positive" v-else>{{ job.rightsMin }}+</p>
                     </div>
                   </div>
                 </q-card-section>
@@ -160,7 +162,7 @@
               <q-separator inset />
 
               <q-card-actions class="q-px-sm">
-                <q-btn flat> 6 روز پیش </q-btn>
+                <q-btn flat> {{ timeSincePosted(job.postedDate) }}</q-btn>
 
                 <q-space />
 
@@ -345,7 +347,8 @@
                 <q-card-section class="col-5 flex flex-center">
                   <q-img
                     class="rounded-borders"
-                    src="https://cdn.quasar.dev/img/parallax2.jpg"
+                    style="width: 48px; height: 48px"
+                    :src="job.image"
                   />
                 </q-card-section>
 
@@ -353,20 +356,21 @@
                   <div class="q-mt-sm q-mb-xs">{{ job.title }}</div>
 
                   <div class="text-caption" v-if="job.company">
-                    {{ job.company.name }}
+                    {{ job.company }}
                   </div>
 
-                  <div class="text-caption text-grey">
-                    <p>{{ job.province }}، {{ job.street }}</p>
+                  <div class="text-caption text-grey row">
+                    <div>
+                      {{ job.location }}
+                    </div>
 
-                    <div v-if="rights_min">
-                      <span>|</span>
+                    <div class="row" v-if="job.rightsMin">
+                      <span class="q-px-sm">|</span>
 
-                      <p class="text-positive" v-if="rights_max">
-                        {{ job.rights_min }} - {{ job.rights_max }}
+                      <p class="text-positive" v-if="job.rightsMax">
+                        {{ job.rightsMin }} - {{ job.rightsMax }}
                       </p>
-
-                      <p class="text-positive">{{ job.rights_min }}+</p>
+                      <p class="text-positive" v-else>{{ job.rightsMin }}+</p>
                     </div>
                   </div>
                 </q-card-section>
@@ -375,8 +379,10 @@
               <q-separator inset />
 
               <q-card-actions class="q-px-sm">
-                <q-btn flat> 6 روز پیش </q-btn>
+                <q-btn flat> {{ timeSincePosted(job.postedDate) }}</q-btn>
+
                 <q-space />
+
                 <q-btn color="positive" label="ارسال رزومه" />
               </q-card-actions>
             </q-card>
@@ -436,25 +442,29 @@
 </template>
 
 <script>
-import { ref, onBeforeMount } from "vue";
-import { api } from "src/boot/axios";
+import { ref, onBeforeMount, computed } from "vue";
+
+import { getJobs } from "../composables/getJobs";
 
 export default {
   setup() {
     const isLoading = ref(true);
-    const jobs = ref([]);
+    const jobs = getJobs();
+    const timeSincePosted = (postedDate) => {
+      const now = new Date();
+      const posted = new Date(postedDate);
+      const diffInMilliseconds = now - posted;
+      const diffInHours = Math.floor(diffInMilliseconds / (1000 * 60 * 60));
+      const diffInDays = Math.floor(diffInHours / 24);
 
-    function getJobs() {
-      api.get("api/jobs").then((r) => {
-        jobs.value = r.data.data;
-        console.log(jobs.value[0].rights_min);
-        console.log(jobs.value[0].rights_max);
-      });
-    }
+      if (diffInDays > 0) {
+        return `${diffInDays} روز پیش`;
+      } else {
+        return `${diffInHours} ساعت پیش`;
+      }
+    };
 
     onBeforeMount(() => {
-      getJobs();
-
       setTimeout(() => {
         isLoading.value = false;
       }, 2000);
@@ -462,8 +472,8 @@ export default {
 
     return {
       jobs,
-      getJobs,
       isLoading,
+      timeSincePosted,
       model: ref(null),
       tab: ref("suggestions"),
       options: ["Google", "Facebook", "Twitter", "Apple", "Oracle"],
