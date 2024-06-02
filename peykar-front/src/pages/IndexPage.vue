@@ -123,11 +123,32 @@
           <div
             v-for="(job, index) in jobs"
             :key="'job-' + index + 1"
-            class="q-px-sm q-my-md col-4"
+            class="q-px-sm q-my-md col-6"
           >
             <q-card flat bordered>
+              <!-- Job`s Tags -->
+
+              <div class="row justify-between" v-if="job.tagList">
+                <div class="row col-12">
+                  <div class="col-10">
+                    <q-badge
+                      v-for="(tag, index) in job.tagList"
+                      :key="index"
+                      class="q-my-xs q-mx-xs q-py-sm"
+                      :color="tag.important ? 'red-2' : 'indigo-1'"
+                      :text-color="tag.important ? 'negative' : 'primary'"
+                      :label="tag.label"
+                    />
+                  </div>
+
+                  <div class="col-2 text-right">
+                    <q-btn flat icon="favorite_outline" />
+                  </div>
+                </div>
+              </div>
+
               <q-card-section horizontal>
-                <q-card-section class="col-5 flex flex-center">
+                <q-card-section class="col-xs-5 col-sm-3 flex flex-center">
                   <q-img
                     class="rounded-borders"
                     :src="job.image"
@@ -181,6 +202,7 @@
           color="black"
           icon-right="keyboard_backspace"
           label="مشاهده همه"
+          to="/jobs"
         />
       </div>
 
@@ -343,8 +365,29 @@
             :key="'job-' + index + 1"
           >
             <q-card flat bordered>
+              <!-- Job`s Tags -->
+
+              <div class="row justify-between" v-if="job.tagList">
+                <div class="row col-12">
+                  <div class="col-10">
+                    <q-badge
+                      v-for="(tag, index) in job.tagList"
+                      :key="index"
+                      class="q-my-xs q-mx-xs q-py-sm"
+                      :color="tag.important ? 'red-2' : 'indigo-1'"
+                      :text-color="tag.important ? 'negative' : 'primary'"
+                      :label="tag.label"
+                    />
+                  </div>
+
+                  <div class="col-2 text-right">
+                    <q-btn flat icon="favorite_outline" />
+                  </div>
+                </div>
+              </div>
+
               <q-card-section horizontal>
-                <q-card-section class="col-5 flex flex-center">
+                <q-card-section class="col-xs-5 col-sm-2 flex flex-center">
                   <q-img
                     class="rounded-borders"
                     style="width: 48px; height: 48px"
@@ -442,7 +485,7 @@
 </template>
 
 <script>
-import { ref, onBeforeMount, computed } from "vue";
+import { ref, onBeforeMount } from "vue";
 
 import { getJobs } from "../composables/getJobs";
 

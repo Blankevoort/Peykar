@@ -122,6 +122,20 @@ onMounted(() => {
         workDates: "تمام وقت",
         company: "شرکت",
         location: "تهران، طرشت",
+        tagList: [
+          {
+            label: "فوری",
+            important: true,
+          },
+          {
+            label: "کارفرمای پاسخگو",
+            important: false,
+          },
+          {
+            label: "درحال بررسی رزومه",
+            important: false,
+          },
+        ],
         technicalSkills: [
           "HTML, CSS, JavaScript مسلط به",
           "Vue, Nuxt مسلط به",
@@ -193,5 +207,9 @@ onMounted(() => {
 
 .q-btn.no-hover:hover {
   animation: none !important;
+}
+
+.q-card__section--vert {
+  padding: 0;
 }
 </style>

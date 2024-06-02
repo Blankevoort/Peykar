@@ -21,7 +21,7 @@
 
               <div class="col-xs-4 col-sm-6 flex justify-end">
                 <div>
-                  <q-btn flat icon="favorite" />
+                  <q-btn class="q-mr-md" flat icon="favorite" />
 
                   <q-btn flat icon="share" />
                 </div>
@@ -35,7 +35,7 @@
               color="primary"
               icon="east"
               label="لیست فرصت های شغلی "
-              to="#"
+              to="/jobs"
             />
           </div>
         </div>
@@ -446,82 +446,12 @@
                         فراهم است.
                       </span>
                     </div>
-
-                    <div class="q-pt-md">
-                      <span class="text-grey-6">-</span>
-
-                      <span class="q-px-md">
-                        فرصت همکاری برای دو نیروی Senior و Junior در تیم ما
-                        فراهم است.
-                      </span>
-                    </div>
-
-                    <div class="q-pt-md">
-                      <span class="text-grey-6">-</span>
-
-                      <span class="q-px-md">
-                        فرصت همکاری برای دو نیروی Senior و Junior در تیم ما
-                        فراهم است.
-                      </span>
-                    </div>
-
-                    <div class="q-pt-md">
-                      <span class="text-grey-6">-</span>
-
-                      <span class="q-px-md">
-                        فرصت همکاری برای دو نیروی Senior و Junior در تیم ما
-                        فراهم است.
-                      </span>
-                    </div>
-
-                    <div class="q-pt-md">
-                      <span class="text-grey-6">-</span>
-
-                      <span class="q-px-md">
-                        فرصت همکاری برای دو نیروی Senior و Junior در تیم ما
-                        فراهم است.
-                      </span>
-                    </div>
                   </div>
 
                   <!-- Required Skills -->
 
                   <div class="full-width q-py-md">
                     <div class="text-bold">مهارت و تجربه تخصصی مورد نیاز:</div>
-
-                    <div class="q-pt-md">
-                      <span class="text-grey-6">-</span>
-
-                      <span class="q-px-md">
-                        تسلط کامل به برنامه نویسی فرانت HTML ،CSS ،Javascript و
-                        عملکرد مرورگرهای مختلف
-                      </span>
-                    </div>
-
-                    <div class="q-pt-md">
-                      <span class="text-grey-6">-</span>
-
-                      <span class="q-px-md">
-                        تسلط کامل به React.js و Next.js
-                      </span>
-                    </div>
-
-                    <div class="q-pt-md">
-                      <span class="text-grey-6">-</span>
-
-                      <span class="q-px-md">
-                        تسلط کامل به برنامه نویسی فرانت HTML ،CSS ،Javascript و
-                        عملکرد مرورگرهای مختلف
-                      </span>
-                    </div>
-
-                    <div class="q-pt-md">
-                      <span class="text-grey-6">-</span>
-
-                      <span class="q-px-md">
-                        تسلط کامل به React.js و Next.js
-                      </span>
-                    </div>
 
                     <div class="q-pt-md">
                       <span class="text-grey-6">-</span>
@@ -817,93 +747,6 @@
 
                       <div class="full-width q-py-md">
                         <div class="text-bold">وظایف و مسؤلیت ها:</div>
-
-                        <div class="q-pt-md">
-                          <span class="text-grey-6">-</span>
-
-                          <span class="q-px-md">
-                            فرصت همکاری برای دو نیروی Senior و Junior در تیم ما
-                            فراهم است.
-                          </span>
-                        </div>
-
-                        <div class="q-pt-md">
-                          <span class="text-grey-6">-</span>
-
-                          <span class="q-px-md">
-                            فرصت همکاری برای دو نیروی Senior و Junior در تیم ما
-                            فراهم است.
-                          </span>
-                        </div>
-
-                        <div class="q-pt-md">
-                          <span class="text-grey-6">-</span>
-
-                          <span class="q-px-md">
-                            فرصت همکاری برای دو نیروی Senior و Junior در تیم ما
-                            فراهم است.
-                          </span>
-                        </div>
-
-                        <div class="q-pt-md">
-                          <span class="text-grey-6">-</span>
-
-                          <span class="q-px-md">
-                            فرصت همکاری برای دو نیروی Senior و Junior در تیم ما
-                            فراهم است.
-                          </span>
-                        </div>
-
-                        <div class="q-pt-md">
-                          <span class="text-grey-6">-</span>
-
-                          <span class="q-px-md">
-                            فرصت همکاری برای دو نیروی Senior و Junior در تیم ما
-                            فراهم است.
-                          </span>
-                        </div>
-                      </div>
-
-                      <!-- Required Skills -->
-
-                      <div class="full-width q-py-md">
-                        <div class="text-bold">
-                          مهارت و تجربه تخصصی مورد نیاز:
-                        </div>
-
-                        <div class="q-pt-md">
-                          <span class="text-grey-6">-</span>
-
-                          <span class="q-px-md">
-                            تسلط کامل به برنامه نویسی فرانت HTML ،CSS
-                            ،Javascript و عملکرد مرورگرهای مختلف
-                          </span>
-                        </div>
-
-                        <div class="q-pt-md">
-                          <span class="text-grey-6">-</span>
-
-                          <span class="q-px-md">
-                            تسلط کامل به React.js و Next.js
-                          </span>
-                        </div>
-
-                        <div class="q-pt-md">
-                          <span class="text-grey-6">-</span>
-
-                          <span class="q-px-md">
-                            تسلط کامل به برنامه نویسی فرانت HTML ،CSS
-                            ،Javascript و عملکرد مرورگرهای مختلف
-                          </span>
-                        </div>
-
-                        <div class="q-pt-md">
-                          <span class="text-grey-6">-</span>
-
-                          <span class="q-px-md">
-                            تسلط کامل به React.js و Next.js
-                          </span>
-                        </div>
 
                         <div class="q-pt-md">
                           <span class="text-grey-6">-</span>
