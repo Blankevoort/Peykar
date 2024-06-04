@@ -143,16 +143,9 @@ onMounted(() => {
         title: "توسعه‌دهنده Front-End",
         workDates: "تمام وقت",
         company: "شرکت",
-        description: [
-          {
-            title: "شرح شغل و وظایف",
-            body: "صرافی تبدیل، از شما برای همکاری در موقعیت شغلی Front-End Developer (Vue.js) دعوت به عمل می‌آورد.",
-          },
-          {
-            title: "مزایا و تسهیلات",
-            body: "محیط کار استارتاپی، جوان و پویا با امکان رشد و ارتقا شغلی - ناهار - بیمه تکمیلی - امکان رشد و توسعه در شرکتی پیشرو در صنعت - بسته‌ها و هدایای مناسبتی",
-          },
-        ],
+        description:
+          "<div><p class='q-pt-md'>صرافی تبدیل، از شما برای همکاری در موقعیت شغلی Front-End Developer (Vue.js) دعوت به عمل می‌آورد.</p><br><br><div class='text-h6 text-bold'>مهارت‌های فنی</div><p class='q-pt-md'>HTML, CSS, JavaScript مسلط به<br>Vue, Nuxt مسلط به<br>TailwindCSS مسلط به<br>Vuetify آشنا با<br>SASS/SCSS مسلط به<br>Git آشنا با</p><br><div class='text-h6 text-bold'>مزایا و تسهیلات</div><p class='q-pt-md'>محیط کار استارتاپی، جوان و پویا با امکان رشد و ارتقا شغلی - ناهار - بیمه تکمیلی - امکان رشد و توسعه در شرکتی پیشرو در صنعت - بسته‌ها و هدایای مناسبتی</p></div>",
+        workDates: "تمام وقت",
         tagList: [
           {
             label: "فوری",
@@ -191,6 +184,18 @@ onMounted(() => {
         location: "تهران، طرشت",
         postedDate: new Date().toISOString(),
         opportunityEndsIn: remainingTimeMessage,
+        employmentConditions: {
+          age: "25 سال",
+          gender: "مرد",
+          militaryService: "معاف",
+          degree: [{ field: "HTML & CSS", proficiency: "کارشناسی" }],
+          softwares: [
+            { name: "HTML & CSS", proficiency: "پیشرفته" },
+            { name: "JavaScript", proficiency: "پیشرفته" },
+            { name: "Vue.js", proficiency: "پیشرفته" },
+            { name: "Git", proficiency: "آشنا" },
+          ],
+        },
       },
     ];
 

@@ -437,76 +437,7 @@
                   <div class="full-width q-py-md">
                     <div class="text-h6 text-bold">شرح شغل و وظایف</div>
 
-                    <div class="q-pt-md">
-                      فرصت همکاری برای دو نیروی Senior و Junior در تیم ما فراهم
-                      است.
-                    </div>
-                  </div>
-
-                  <!-- Responsibilities -->
-
-                  <div class="full-width q-py-md">
-                    <div class="text-bold">وظایف و مسؤلیت ها:</div>
-
-                    <div class="q-pt-md">
-                      <span class="text-grey-6">-</span>
-
-                      <span class="q-px-md">
-                        فرصت همکاری برای دو نیروی Senior و Junior در تیم ما
-                        فراهم است.
-                      </span>
-                    </div>
-                  </div>
-
-                  <!-- Required Skills -->
-
-                  <div class="full-width q-py-md">
-                    <div class="text-bold">مهارت و تجربه تخصصی مورد نیاز:</div>
-
-                    <div class="q-pt-md">
-                      <span class="text-grey-6">-</span>
-
-                      <span class="q-px-md">
-                        تسلط کامل به برنامه نویسی فرانت HTML ،CSS ،Javascript و
-                        عملکرد مرورگرهای مختلف
-                      </span>
-                    </div>
-
-                    <div class="q-pt-md">
-                      <span class="text-grey-6">-</span>
-
-                      <span class="q-px-md">
-                        تسلط کامل به React.js و Next.js
-                      </span>
-                    </div>
-                  </div>
-
-                  <!-- Individual Skills -->
-
-                  <div class="full-width q-py-md">
-                    <div class="text-bold">مهارت های فردی:</div>
-
-                    <div class="q-pt-md">
-                      <span class="text-grey-6">-</span>
-
-                      <span class="q-px-md"> خلاقیت و مسئولیت پذیری </span>
-                    </div>
-
-                    <div class="q-pt-md">
-                      <span class="text-grey-6">-</span>
-
-                      <span class="q-px-md"> روحیه کار تیمی </span>
-                    </div>
-
-                    <div class="q-pt-md">
-                      <span class="text-grey-6">-</span>
-
-                      <span class="q-px-md"> اشتیاق یادگیری </span>
-                    </div>
-                  </div>
-
-                  <div class="full-width q-my-md text-bold">
-                    حقوق دریافتی با توجه به تجربه و توانایی شما قابل مذاکره است.
+                    <div v-html="job.description" />
                   </div>
 
                   <!-- Employment Conditions -->
@@ -515,6 +446,7 @@
                     <div class="text-bold text-h6">شرایط احراز شغل</div>
 
                     <div
+                      v-if="job.employmentConditions.age"
                       class="full-width row justify-between items-ceneter q-py-sm"
                     >
                       <div class="col-3 background-light">
@@ -522,11 +454,14 @@
                       </div>
 
                       <div class="col-8 background">
-                        <div class="q-pa-sm">از 21 سال</div>
+                        <div class="q-pa-sm">
+                          {{ job.employmentConditions.age }}
+                        </div>
                       </div>
                     </div>
 
                     <div
+                      v-if="job.employmentConditions.gender"
                       class="full-width row justify-between items-ceneter q-py-sm"
                     >
                       <div class="col-3 background-light">
@@ -534,11 +469,14 @@
                       </div>
 
                       <div class="col-8 background">
-                        <div class="q-pa-sm">تفاوتی ندارد</div>
+                        <div class="q-pa-sm">
+                          {{ job.employmentConditions.gender }}
+                        </div>
                       </div>
                     </div>
 
                     <div
+                      v-if="job.employmentConditions.softwares"
                       class="full-width row justify-between items-ceneter q-py-sm"
                     >
                       <div class="col-3 background-light">
@@ -550,9 +488,13 @@
                       <div class="background col-8 row">
                         <div class="q-py-sm">
                           <div class="q-mr-md row items-center q-mt-sm">
-                            <div>
+                            <div
+                              v-for="(software, index) in job
+                                .employmentConditions.softwares"
+                              :key="index"
+                            >
                               <div
-                                class="text-white row q-px-sm q-py-xs"
+                                class="text-white row q-px-sm q-py-xs q-ma-xs"
                                 style="
                                   background-color: #5c6573 !important;
                                   padding-top: 5px;
@@ -564,26 +506,41 @@
                                   class="text-bold q-ml-sm"
                                   style="font-size: 13px"
                                 >
-                                  Html & CSS
+                                  {{ software.name }}
                                 </div>
-
                                 <q-separator
                                   color="white"
                                   class="q-mx-sm q-my-xs"
                                   vertical
                                 />
-
-                                <div>پیشرفته</div>
+                                <div>
+                                  {{ software.proficiency }}
+                                </div>
                               </div>
                             </div>
                           </div>
                         </div>
+                      </div>
+                    </div>
 
+                    <div
+                      v-if="job.employmentConditions.degree"
+                      class="full-width row justify-between items-ceneter q-py-sm"
+                    >
+                      <div class="col-3 background-light">
+                        <div class="text-bold text-grey-7 q-pa-sm">تحصیلات</div>
+                      </div>
+
+                      <div class="background col-8 row">
                         <div class="q-py-sm">
                           <div class="q-mr-md row items-center q-mt-sm">
-                            <div>
+                            <div
+                              v-for="(degree, index) in job.employmentConditions
+                                .degree"
+                              :key="index"
+                            >
                               <div
-                                class="text-white row q-px-sm q-py-xs"
+                                class="text-white row q-px-sm q-py-xs q-ma-xs"
                                 style="
                                   background-color: #5c6573 !important;
                                   padding-top: 5px;
@@ -595,78 +552,16 @@
                                   class="text-bold q-ml-sm"
                                   style="font-size: 13px"
                                 >
-                                  Html & CSS
+                                  {{ degree.field }}
                                 </div>
-
                                 <q-separator
                                   color="white"
                                   class="q-mx-sm q-my-xs"
                                   vertical
                                 />
-
-                                <div>پیشرفته</div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div class="q-py-sm">
-                          <div class="q-mr-md row items-center q-mt-sm">
-                            <div>
-                              <div
-                                class="text-white row q-px-sm q-py-xs"
-                                style="
-                                  background-color: #5c6573 !important;
-                                  padding-top: 5px;
-                                  padding-bottom: 5px;
-                                  border-radius: 8px;
-                                "
-                              >
-                                <div
-                                  class="text-bold q-ml-sm"
-                                  style="font-size: 13px"
-                                >
-                                  Html & CSS
+                                <div>
+                                  {{ degree.proficiency }}
                                 </div>
-
-                                <q-separator
-                                  color="white"
-                                  class="q-mx-sm q-my-xs"
-                                  vertical
-                                />
-
-                                <div>پیشرفته</div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div class="q-py-sm">
-                          <div class="q-mr-md row items-center q-mt-sm">
-                            <div>
-                              <div
-                                class="text-white row q-px-sm q-py-xs"
-                                style="
-                                  background-color: #5c6573 !important;
-                                  padding-top: 5px;
-                                  padding-bottom: 5px;
-                                  border-radius: 8px;
-                                "
-                              >
-                                <div
-                                  class="text-bold q-ml-sm"
-                                  style="font-size: 13px"
-                                >
-                                  Html & CSS
-                                </div>
-
-                                <q-separator
-                                  color="white"
-                                  class="q-mx-sm q-my-xs"
-                                  vertical
-                                />
-
-                                <div>پیشرفته</div>
                               </div>
                             </div>
                           </div>
@@ -705,19 +600,6 @@
 
                   <q-tab-panels clss="q-py-lg" v-model="sTab" animated>
                     <q-tab-panel name="jobInfo">
-                      <div class="full-width q-pb-lg row items-center">
-                        <div class="text-bold" style="font-size: 19px">
-                          شاخص های کلیدی از نظر کارفرما
-                        </div>
-
-                        <q-icon
-                          class="q-px-sm"
-                          name="help"
-                          color="primary"
-                          size="24px"
-                        />
-                      </div>
-
                       <div class="full-width row items-center">
                         <q-icon
                           name="check_circle"
@@ -725,84 +607,34 @@
                           size="18px"
                         />
 
-                        <div class="q-px-md">
-                          2 سال سابقه کار در گروه شغلی مشابه
+                        <div
+                          v-for="exp in job.keyIndicators.similarExperience"
+                          :key="exp"
+                          class="q-px-md q-mx-xs q-my-xs"
+                        >
+                          {{ exp }}
                         </div>
                       </div>
 
                       <!-- Skills Section -->
 
                       <div class="full-width row items-center q-py-md">
-                        <q-icon
-                          name="check_circle"
-                          color="grey-6"
-                          size="18px"
-                        />
-
-                        <div class="skill-border q-px-md q-mx-md q-my-xs">
-                          Html & CSS - متوسط
+                        <div
+                          v-for="skill in job.keyIndicators.neededSkills.slice(
+                            0,
+                            3
+                          )"
+                          :key="skill"
+                          class="skill-border q-px-md q-mx-xs q-my-xs"
+                        >
+                          {{ skill.name }} | {{ skill.level }}
                         </div>
                       </div>
 
                       <div class="full-width q-py-md">
                         <div class="text-h6 text-bold">شرح شغل و وظایف</div>
 
-                        <div class="q-pt-md">
-                          فرصت همکاری برای دو نیروی Senior و Junior در تیم ما
-                          فراهم است.
-                        </div>
-                      </div>
-
-                      <!-- Responsibilities -->
-
-                      <div class="full-width q-py-md">
-                        <div class="text-bold">وظایف و مسؤلیت ها:</div>
-
-                        <div class="q-pt-md">
-                          <span class="text-grey-6">-</span>
-
-                          <span class="q-px-md">
-                            تسلط کامل به برنامه نویسی فرانت HTML ،CSS
-                            ،Javascript و عملکرد مرورگرهای مختلف
-                          </span>
-                        </div>
-
-                        <div class="q-pt-md">
-                          <span class="text-grey-6">-</span>
-
-                          <span class="q-px-md">
-                            تسلط کامل به React.js و Next.js
-                          </span>
-                        </div>
-                      </div>
-
-                      <!-- Individual Skills -->
-
-                      <div class="full-width q-py-md">
-                        <div class="text-bold">مهارت های فردی:</div>
-
-                        <div class="q-pt-md">
-                          <span class="text-grey-6">-</span>
-
-                          <span class="q-px-md"> خلاقیت و مسئولیت پذیری </span>
-                        </div>
-
-                        <div class="q-pt-md">
-                          <span class="text-grey-6">-</span>
-
-                          <span class="q-px-md"> روحیه کار تیمی </span>
-                        </div>
-
-                        <div class="q-pt-md">
-                          <span class="text-grey-6">-</span>
-
-                          <span class="q-px-md"> اشتیاق یادگیری </span>
-                        </div>
-                      </div>
-
-                      <div class="full-width q-my-md text-bold">
-                        حقوق دریافتی با توجه به تجربه و توانایی شما قابل مذاکره
-                        است.
+                        <div v-html="job.description" />
                       </div>
 
                       <!-- Employment Conditions -->
@@ -811,159 +643,127 @@
                         <div class="text-bold text-h6">شرایط احراز شغل</div>
 
                         <div
+                          v-if="job.employmentConditions.age"
                           class="full-width row justify-between items-ceneter q-py-sm"
                         >
-                          <div class="col-12">
-                            <div>
-                              <div class="text-bold text-grey-7 q-pa-sm">
-                                سن
-                              </div>
-                            </div>
-
-                            <div class="col-8 background q-my-md">
-                              <div class="q-pa-sm">از 21 سال</div>
-                            </div>
+                          <div class="col-3 background-light">
+                            <div class="text-bold text-grey-7 q-pa-sm">سن</div>
                           </div>
 
-                          <div class="col-12">
-                            <div>
-                              <div class="text-bold text-grey-7 q-pa-sm">
-                                جنسیت
-                              </div>
-                            </div>
-
-                            <div class="col-8 background q-my-md">
-                              <div class="q-pa-sm">تفاوتی ندارد</div>
+                          <div class="col-8 background">
+                            <div class="q-pa-sm">
+                              {{ job.employmentConditions.age }}
                             </div>
                           </div>
                         </div>
 
-                        <div class="col-12">
-                          <div class="text-bold text-grey-7 q-pa-sm">
-                            نرم افزارها
+                        <div
+                          v-if="job.employmentConditions.gender"
+                          class="full-width row justify-between items-ceneter q-py-sm"
+                        >
+                          <div class="col-3 background-light">
+                            <div class="text-bold text-grey-7 q-pa-sm">
+                              جنسیت
+                            </div>
+                          </div>
+
+                          <div class="col-8 background">
+                            <div class="q-pa-sm">
+                              {{ job.employmentConditions.gender }}
+                            </div>
                           </div>
                         </div>
 
-                        <div class="background col-8 row q-my-md">
-                          <div>
-                            <div class="q-mr-md row items-center q-mt-sm">
-                              <div>
+                        <div
+                          v-if="job.employmentConditions.softwares"
+                          class="full-width row justify-between q-py-sm"
+                        >
+                          <div class="col-3 background-light">
+                            <div class="text-bold text-grey-7 q-pa-sm">
+                              نرم افزارها
+                            </div>
+                          </div>
+
+                          <div class="background col-8 row">
+                            <div class="q-py-sm">
+                              <div class="q-mr-md row items-center q-mt-sm">
                                 <div
-                                  class="text-white row q-px-sm q-py-xs"
-                                  style="
-                                    background-color: #5c6573 !important;
-                                    padding-top: 5px;
-                                    padding-bottom: 5px;
-                                    border-radius: 8px;
-                                  "
+                                  v-for="(software, index) in job
+                                    .employmentConditions.softwares"
+                                  :key="index"
                                 >
                                   <div
-                                    class="text-bold q-ml-sm"
-                                    style="font-size: 13px"
+                                    class="text-white row q-px-sm q-py-xs q-ma-xs"
+                                    style="
+                                      background-color: #5c6573 !important;
+                                      padding-top: 5px;
+                                      padding-bottom: 5px;
+                                      border-radius: 8px;
+                                    "
                                   >
-                                    Html & CSS
+                                    <div
+                                      class="text-bold q-ml-sm"
+                                      style="font-size: 13px"
+                                    >
+                                      {{ software.name }}
+                                    </div>
+                                    <q-separator
+                                      color="white"
+                                      class="q-mx-sm q-my-xs"
+                                      vertical
+                                    />
+                                    <div>
+                                      {{ software.proficiency }}
+                                    </div>
                                   </div>
-
-                                  <q-separator
-                                    color="white"
-                                    class="q-mx-sm q-my-xs"
-                                    vertical
-                                  />
-
-                                  <div>پیشرفته</div>
                                 </div>
                               </div>
                             </div>
                           </div>
+                        </div>
 
-                          <div>
-                            <div class="q-mr-md row items-center q-mt-sm">
-                              <div>
-                                <div
-                                  class="text-white row q-px-sm q-py-xs"
-                                  style="
-                                    background-color: #5c6573 !important;
-                                    padding-top: 5px;
-                                    padding-bottom: 5px;
-                                    border-radius: 8px;
-                                  "
-                                >
-                                  <div
-                                    class="text-bold q-ml-sm"
-                                    style="font-size: 13px"
-                                  >
-                                    Html & CSS
-                                  </div>
-
-                                  <q-separator
-                                    color="white"
-                                    class="q-mx-sm q-my-xs"
-                                    vertical
-                                  />
-
-                                  <div>پیشرفته</div>
-                                </div>
-                              </div>
+                        <div
+                          v-if="job.employmentConditions.degree"
+                          class="full-width row justify-between q-py-sm"
+                        >
+                          <div class="col-3 background-light">
+                            <div class="text-bold text-grey-7 q-pa-sm">
+                              تحصیلات
                             </div>
                           </div>
 
-                          <div>
-                            <div class="q-mr-md row items-center q-mt-sm">
-                              <div>
+                          <div class="background col-8 row">
+                            <div class="q-py-sm">
+                              <div class="q-mr-md row items-center q-mt-sm">
                                 <div
-                                  class="text-white row q-px-sm q-py-xs"
-                                  style="
-                                    background-color: #5c6573 !important;
-                                    padding-top: 5px;
-                                    padding-bottom: 5px;
-                                    border-radius: 8px;
-                                  "
+                                  v-for="(degree, index) in job
+                                    .employmentConditions.degree"
+                                  :key="index"
                                 >
                                   <div
-                                    class="text-bold q-ml-sm"
-                                    style="font-size: 13px"
+                                    class="text-white row q-px-sm q-py-xs q-ma-xs"
+                                    style="
+                                      background-color: #5c6573 !important;
+                                      padding-top: 5px;
+                                      padding-bottom: 5px;
+                                      border-radius: 8px;
+                                    "
                                   >
-                                    Html & CSS
+                                    <div
+                                      class="text-bold q-ml-sm"
+                                      style="font-size: 13px"
+                                    >
+                                      {{ degree.field }}
+                                    </div>
+                                    <q-separator
+                                      color="white"
+                                      class="q-mx-sm q-my-xs"
+                                      vertical
+                                    />
+                                    <div>
+                                      {{ degree.proficiency }}
+                                    </div>
                                   </div>
-
-                                  <q-separator
-                                    color="white"
-                                    class="q-mx-sm q-my-xs"
-                                    vertical
-                                  />
-
-                                  <div>پیشرفته</div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-
-                          <div>
-                            <div class="q-mr-md row items-center q-mt-sm">
-                              <div>
-                                <div
-                                  class="text-white row q-px-sm q-py-xs"
-                                  style="
-                                    background-color: #5c6573 !important;
-                                    padding-top: 5px;
-                                    padding-bottom: 5px;
-                                    border-radius: 8px;
-                                  "
-                                >
-                                  <div
-                                    class="text-bold q-ml-sm"
-                                    style="font-size: 13px"
-                                  >
-                                    Html & CSS
-                                  </div>
-
-                                  <q-separator
-                                    color="white"
-                                    class="q-mx-sm q-my-xs"
-                                    vertical
-                                  />
-
-                                  <div>پیشرفته</div>
                                 </div>
                               </div>
                             </div>
