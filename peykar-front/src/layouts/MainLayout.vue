@@ -66,7 +66,7 @@
                       {{ user.name }}
 
                       <q-btn flat>
-                        <q-icon size="20px" name="edit" />
+                        <q-icon size="20px" name="edit" @click="toggleDialog" />
                       </q-btn>
                     </q-item-label>
 
@@ -1110,6 +1110,7 @@
             اجتماعی
           </div>
         </div>
+
         <div class="col-12 row justify-between">
           <div class="q-mt-lg q-mb-md col-5">
             <q-img
@@ -1360,6 +1361,7 @@ export default defineComponent({
 
     function toggleDialog() {
       addName.value = !addName.value;
+      console.log(addName.value);
     }
 
     function changeName() {
@@ -1370,6 +1372,7 @@ export default defineComponent({
           userObj.name = user_name.value;
           localStorage.setItem("user", JSON.stringify(userObj));
           user.value = userObj;
+          toggleDialog();
         }
       } catch (error) {
         console.error("Error changing name in localStorage:", error);

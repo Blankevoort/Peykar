@@ -10,6 +10,11 @@ const routes = [
     children: [{ path: "", component: () => import("src/pages/LayoutPages/Jobs/JobsListPage.vue") }],
   },
   {
+    path: "/job/:id",
+    component: () => import("src/layouts/MainLayout.vue"),
+    children: [{ path: "", component: () => import("src/pages/LayoutPages/Jobs/JobInfoPage.vue") }],
+  },
+  {
     path: "/recommended-jobs",
     component: () => import("src/layouts/MainLayout.vue"),
     children: [
@@ -30,11 +35,6 @@ const routes = [
     path: "/company",
     component: () => import("src/layouts/MainLayout.vue"),
     children: [{ path: "", component: () => import("src/pages/LayoutPages/Companies/CompanyPage.vue") }],
-  },
-  {
-    path: "/job",
-    component: () => import("src/layouts/MainLayout.vue"),
-    children: [{ path: "", component: () => import("src/pages/LayoutPages/Jobs/JobInfoPage.vue") }],
   },
   {
     path: "/account",

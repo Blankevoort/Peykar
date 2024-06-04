@@ -116,14 +116,14 @@
           name="suggestions"
           style="font-size: 16px"
         >
-          <div class="col-12 text-grey-6 q-my-md">
+          <!-- <div class="col-12 text-grey-6 q-my-md">
             پیشنهاد شده بر اساس رفتار و عملکرد شما
-          </div>
+          </div> -->
 
           <div
             v-for="(job, index) in jobs"
             :key="'job-' + index + 1"
-            class="q-px-sm q-my-md col-6"
+            class="q-px-sm q-my-md col-lg-6 col-xl-4"
           >
             <q-card flat bordered>
               <!-- Job`s Tags -->
@@ -230,6 +230,7 @@
                 outline
                 color="black"
                 label="مشاهده فرصت های شغلی"
+                to="jobs"
               />
             </q-card-section>
 
@@ -243,7 +244,7 @@
         </div>
       </q-card>
     </div>
-
+    
     <!-- Extrea Small Screen Content -->
 
     <div
@@ -355,9 +356,9 @@
           name="suggestions"
           style="font-size: 16px"
         >
-          <div class="col-12 text-grey-6 q-my-md">
+          <!-- <div class="col-12 text-grey-6 q-my-md">
             پیشنهاد شده بر اساس رفتار و عملکرد شما
-          </div>
+          </div> -->
 
           <div
             class="q-px-sm q-my-md col-12"
@@ -475,6 +476,7 @@
                 outline
                 color="black"
                 label="مشاهده فرصت های شغلی"
+                to="jobs"
               />
             </q-card-section>
           </q-card-section>

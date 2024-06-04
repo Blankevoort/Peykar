@@ -12,6 +12,30 @@ onMounted(() => {
   const savedUser = JSON.parse(localStorage.getItem("user"));
   const userLoggedOut = JSON.parse(localStorage.getItem("setUser"));
 
+  // Remaining Time Calculation
+
+  const today = new Date();
+  const endDate = new Date(today);
+  endDate.setDate(endDate.getDate() + 50);
+  const difference = endDate.getTime() - today.getTime();
+  const daysLeft = Math.floor(difference / (1000 * 60 * 60 * 24));
+  const hoursLeft = Math.floor(
+    (difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+  );
+  const minutesLeft = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+  let remainingTimeMessage = "";
+  if (daysLeft > 0) {
+    remainingTimeMessage = `${daysLeft} روز باقی مانده`;
+  } else if (hoursLeft > 0) {
+    remainingTimeMessage = `${hoursLeft} ساعت باقی مانده`;
+  } else if (minutesLeft > 0) {
+    remainingTimeMessage = `${minutesLeft} دقیقه باقی مانده`;
+  } else {
+    remainingTimeMessage = "زمان به پایان رسیده است";
+  }
+
+  // Saving Dummy Data
+
   if (savedJobDetails && savedUser) {
     jobDetails.value = savedJobDetails;
   } else {
@@ -117,11 +141,18 @@ onMounted(() => {
         image:
           "https://fileapi.jobvision.ir/api/v1.0/files/getimage?fileid=513699&width=80&height=80",
         title: "توسعه‌دهنده Front-End",
-        description:
-          "صرافی تبدیل، از شما برای همکاری در موقعیت شغلی Front-End Developer (Vue.js) دعوت به عمل می‌آورد.",
         workDates: "تمام وقت",
         company: "شرکت",
-        location: "تهران، طرشت",
+        description: [
+          {
+            title: "شرح شغل و وظایف",
+            body: "صرافی تبدیل، از شما برای همکاری در موقعیت شغلی Front-End Developer (Vue.js) دعوت به عمل می‌آورد.",
+          },
+          {
+            title: "مزایا و تسهیلات",
+            body: "محیط کار استارتاپی، جوان و پویا با امکان رشد و ارتقا شغلی - ناهار - بیمه تکمیلی - امکان رشد و توسعه در شرکتی پیشرو در صنعت - بسته‌ها و هدایای مناسبتی",
+          },
+        ],
         tagList: [
           {
             label: "فوری",
@@ -136,24 +167,6 @@ onMounted(() => {
             important: false,
           },
         ],
-        technicalSkills: [
-          "HTML, CSS, JavaScript مسلط به",
-          "Vue, Nuxt مسلط به",
-          "TailwindCSS مسلط به",
-          "Vuetify آشنا با",
-          "SASS/SCSS مسلط به",
-          "Git آشنا با",
-          "UI/UX آشنا با مفاهیم",
-          "SEO, Optimization آشنا با مفاهیم",
-          "RESTful آشنا با مفاهیم",
-          "Responsive Design آشنا با مفاهیم",
-          "Clean Code آشنا با مفاهیم",
-        ],
-        generalSkills: [
-          "روحیه کار تیمی",
-          "مسئولیت پذیر و متعهد",
-          "رفتار مناسب با دیگران",
-        ],
         benefits: [
           "محیط کار استارتاپی، جوان و پویا با امکان رشد و ارتقا شغلی",
           "ناهار",
@@ -161,10 +174,8 @@ onMounted(() => {
           "امکان رشد و توسعه در شرکتی پیشرو در صنعت",
           "بسته‌ها و هدایای مناسبتی",
         ],
-        workConditions: [
+        workConditions:
           "شنبه تا چهارشنبه از ساعت 8:30 الی 17:30 (شروع تایم کاری از 8:30 تا 10 شناور)",
-          "پنج شنبه ها یک هفته در میان از ساعت 9 الی 14 (شروع تایم کاری از 9 تا 10 شناور)",
-        ],
         keyIndicators: {
           similarExperience: ["2 سال سابقه کار در گروه شغلی مشابه"],
           neededSkills: [
@@ -177,7 +188,9 @@ onMounted(() => {
         },
         rightsMin: "15",
         rightsMax: "20",
+        location: "تهران، طرشت",
         postedDate: new Date().toISOString(),
+        opportunityEndsIn: remainingTimeMessage,
       },
     ];
 

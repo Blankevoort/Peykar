@@ -1,6 +1,6 @@
 <template>
   <q-page style="background-color: #f8f9fa">
-    <div class="row justify-center q-pa-md">
+    <div class="row justify-center q-pa-md" v-if="job">
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-8 col-xl-8 row">
         <div class="lt-md">
           <div
@@ -14,9 +14,9 @@
             <div class="row justify-between">
               <div class="col-xs-8 col-sm-6">
                 <div class="text-bold">
-                  توسعه دهنده Front-End (senior & junior)
+                  {{ job.title }}
                 </div>
-                <div class="q-pt-sm">مجموعه تست هلپر</div>
+                <div class="q-pt-sm">{{ job.company }}</div>
               </div>
 
               <div class="col-xs-4 col-sm-6 flex justify-end">
@@ -55,7 +55,7 @@
                   border-top-right-radius: 10px !important;
                   border-top-left-radius: 10px !important;
                 "
-                src="https://fileapi.jobvision.ir/StaticFiles/Employer/DefaultImages/default-companyHeader.jpeg?v=20231122"
+                :src="job.backgroundImage"
               />
 
               <!-- Main Card Content -->
@@ -66,9 +66,7 @@
                     <div class="full-width row">
                       <div class="col-md-1 col-lg-2 col-xl-1 full-height">
                         <q-avatar size="70px">
-                          <img
-                            src="https://fileapi.jobvision.ir/api/v1.0/files/getimage?fileid=4483058&width=80&height=80"
-                          />
+                          <img :src="job.image" />
                         </q-avatar>
                       </div>
 
@@ -78,11 +76,11 @@
                             <div class="col-10">
                               <div class="full-width">
                                 <span class="text-h5 text-bold">
-                                  توسعه دهنده Front-End (senior & junior)
+                                  {{ job.title }}
                                 </span>
 
                                 <span class="text-grey-6 text-bold">
-                                  (12 روز پیش)
+                                  ({{ timeSincePosted(job.postedDate) }})
                                 </span>
                               </div>
                             </div>
@@ -112,7 +110,7 @@
                                 class="text-h6 text-bold"
                                 style="color: #5660f2 !important"
                               >
-                                مجموعه تست هلپر
+                                {{ job.company }}
                               </span>
                             </div>
 
@@ -122,7 +120,7 @@
                             >
                               <div class="relative-position full-width">
                                 <div class="absolute-right">
-                                  35 - 25 ميليون تومان
+                                  {{ job.rightsMin }} - {{ job.rightsMax }}
                                 </div>
                               </div>
 
@@ -141,7 +139,7 @@
                                   class="text-grey-6"
                                   style="font-size: 12px"
                                 >
-                                  تهران، اکباتان
+                                  {{ job.location }}
                                 </span>
                               </div>
 
@@ -150,7 +148,7 @@
                                   class="text-grey-6"
                                   style="font-size: 12px"
                                 >
-                                  تمام وقت
+                                  {{ job.workDates }}
                                 </span>
                               </div>
                             </div>
@@ -167,7 +165,7 @@
                       <div class="col-6">
                         <div>روز و ساعت کاری</div>
                         <div class="text-grey-6 q-pt-sm">
-                          شنبه تا چهارشنبه 9 تا 17 -- پنج شنبه 9 تا 14
+                          {{ job.workConditions }}
                         </div>
                       </div>
 
@@ -178,11 +176,10 @@
                     </div>
 
                     <div class="col-4">
-                      <div>
-                        <div>مزایا و تسهیلات</div>
-                        <div class="text-grey-6 q-pt-sm">
-                          پاداش - ساعت کاری منعطف
-                        </div>
+                      <div>مزایا و تسهیلات</div>
+
+                      <div class="text-grey-6 q-pt-sm row flex">
+                        <p style="font-size: 13px">{{ benefits }}</p>
                       </div>
                     </div>
                   </div>
@@ -207,12 +204,12 @@
                         <div class="row justify-between">
                           <div class="col-12">
                             <span class="text-bold" style="font-size: 13px">
-                              توسعه دهنده Front-End (senior & junior)
+                              {{ job.title }}
                             </span>
                           </div>
 
                           <div class="col-12 q-py-sm">
-                            <div class="text-primary">مجموعه تست هلپر</div>
+                            <div class="text-primary">{{ job.company }}</div>
                           </div>
                         </div>
                       </div>
@@ -227,7 +224,10 @@
                         <div class="col-1 text-black">حقوق</div>
 
                         <div class="col-xs-11 col-sm-4 flex justify-end">
-                          <div>25 - 35 میلیون تومان</div>
+                          <div>
+                            {{ job.rightsMin }} - {{ job.rightsMax }} میلیون
+                            تومان
+                          </div>
 
                           <div
                             class="text-primary"
@@ -244,7 +244,7 @@
                         <div class="col-3 text-black">محل کار</div>
 
                         <div class="col-xs-9 col-sm-4 flex justify-end">
-                          <div>تهران ، اکباتان</div>
+                          <div>{{ job.location }}</div>
                         </div>
                       </div>
                     </div>
@@ -255,7 +255,7 @@
 
                         <div class="col-xs-12 col-sm-6 lt-sm">
                           <div>
-                            شنبه تا چهارشنبه 9 تا 17 -- پنج شنبه 9 تا 14
+                            {{ job.workConditions }}
                           </div>
                         </div>
 
@@ -263,7 +263,7 @@
                           class="col-xs-12 col-sm-6 flex justify-end gt-xs lt-md"
                         >
                           <div>
-                            شنبه تا چهارشنبه 9 تا 17 -- پنج شنبه 9 تا 14
+                            {{ job.workConditions }}
                           </div>
                         </div>
                       </div>
@@ -274,7 +274,7 @@
                         <div class="col-4 text-black">نوع همکاری</div>
 
                         <div class="col-xs-8 col-sm-4 flex justify-end">
-                          <div>تمام وقت</div>
+                          <div>{{ job.workDates }}</div>
                         </div>
                       </div>
                     </div>
@@ -283,11 +283,8 @@
                       <div class="full-width row justify-between">
                         <div class="col-5 text-black">مزایا و تسهیلات</div>
 
-                        <div class="col-xs-7 col-sm-6 flex justify-end">
-                          <div>
-                            <span>پاداش - </span>
-                            <span>ساعت کاری منعطف </span>
-                          </div>
+                        <div class="col-xs-7 col-sm-6 text-right">
+                          <p style="font-size: 13px">{{ benefits }}</p>
                         </div>
                       </div>
                     </div>
@@ -309,7 +306,9 @@
                     <div class="full-width row justify-between">
                       <div class="col-6 flex justify-center">
                         <div class="text-center text-grey-7">
-                          <div class="text-bold">16 روز پیش</div>
+                          <div class="text-bold">
+                            {{ timeSincePosted(job.postedDate) }}
+                          </div>
 
                           <div class="q-py-sm">منتشر شده</div>
                         </div>
@@ -325,7 +324,9 @@
 
                       <div class="col-6 flex justify-center">
                         <div class="text-center text-grey-7">
-                          <div class="text-bold">44 روز دیگر</div>
+                          <div class="text-bold">
+                            {{ job.opportunityEndsIn }}
+                          </div>
 
                           <div class="q-py-sm">فرصت تا ارسال رزومه</div>
                         </div>
@@ -409,18 +410,27 @@
                   <div class="full-width row items-center">
                     <q-icon name="check_circle" color="grey-6" size="18px" />
 
-                    <div class="q-px-md">
-                      2 سال سابقه کار در گروه شغلی مشابه
+                    <div
+                      v-for="exp in job.keyIndicators.similarExperience"
+                      :key="exp"
+                      class="q-px-md q-mx-xs q-my-xs"
+                    >
+                      {{ exp }}
                     </div>
                   </div>
 
                   <!-- Skills Section -->
 
                   <div class="full-width row items-center q-py-md">
-                    <q-icon name="check_circle" color="grey-6" size="18px" />
-
-                    <div class="skill-border q-px-md q-mx-md q-my-xs">
-                      Html & CSS - متوسط
+                    <div
+                      v-for="skill in job.keyIndicators.neededSkills.slice(
+                        0,
+                        3
+                      )"
+                      :key="skill"
+                      class="skill-border q-px-md q-mx-xs q-my-xs"
+                    >
+                      {{ skill.name }} | {{ skill.level }}
                     </div>
                   </div>
 
@@ -984,7 +994,7 @@
                       <div class="full-widtj row justify-between">
                         <div class="col-xs-12 col-sm-6">
                           <div class="text-bold" style="font-size: 19px">
-                            درباره مجموعه تست هلپر
+                            درباره مجموعه {{ job.company }}
                           </div>
                         </div>
 
@@ -1088,8 +1098,9 @@
                               caption
                             >
                               شهر محل کار <span class="text-grey-5"> | </span>
-                              <span class="text-positive"
-                                >20 - 25 میلیون تومان</span
+                              <span class="text-positive">
+                                {{ job.rightsMin }} - {{ job.rightsMax }} میلیون
+                                تومان</span
                               ></q-item-label
                             >
                           </q-item-section>
@@ -1144,11 +1155,11 @@
                           </q-item-section>
 
                           <q-item-section caption class="q-pa-md">
-                            <q-item-label class="text-weight-bold"
-                              >نام فرصت شغلی</q-item-label
+                            <q-item-label class="text-weight-bold">
+                              {{ job.title }}</q-item-label
                             >
                             <q-item-label class="text-weight-thin q-pt-xs">
-                              نام شرکت
+                              {{ job.company }}
                             </q-item-label>
 
                             <q-item-label
@@ -1157,8 +1168,9 @@
                               caption
                             >
                               شهر محل کار <span class="text-grey-5"> | </span>
-                              <span class="text-positive"
-                                >20 - 25 میلیون تومان</span
+                              <span class="text-positive">
+                                {{ job.rightsMin }} - {{ job.rightsMax }} میلیون
+                                تومان</span
                               ></q-item-label
                             >
                           </q-item-section>
@@ -1242,7 +1254,7 @@
             <div>
               <q-card class="q-px-md row q-mb-md q-px-md q-pa-md br-10">
                 <div class="q-my-md" style="font-size: 16px">
-                  ارسال رزومه برای مجموعه تست هلپر
+                  ارسال رزومه برای مجموعه {{ job.company }}
                 </div>
 
                 <div class="q-pa-md br-10" style="border: 2px solid #dde1e6">
@@ -1276,15 +1288,40 @@
 </template>
 
 <script>
-import { ref } from "vue";
+import { computed, onMounted, ref } from "vue";
+
+import { useRouter, useRoute } from "vue-router";
 
 export default {
   setup() {
-    const toggleDropdown = ref(false);
+    const job = ref();
+    const route = useRoute();
     const showCard = ref(false);
     const showMore = ref(false);
-    const tab = ref("companyInfo");
     const sTab = ref("jobInfo");
+    const tab = ref("companyInfo");
+    const toggleDropdown = ref(false);
+    const timeSincePosted = (postedDate) => {
+      const now = new Date();
+      const posted = new Date(postedDate);
+      const diffInMilliseconds = now - posted;
+
+      const diffInMinutes = Math.floor(diffInMilliseconds / (1000 * 60));
+      const diffInHours = Math.floor(diffInMinutes / 60);
+      const diffInDays = Math.floor(diffInHours / 24);
+
+      if (diffInDays > 0) {
+        return `${diffInDays} روز پیش`;
+      } else if (diffInHours > 0) {
+        return `${diffInHours} ساعت پیش`;
+      } else {
+        return `${diffInMinutes} دقیقه پیش`;
+      }
+    };
+    const benefits = computed(() => {
+      if (!job.value) return "";
+      return job.value.benefits.join(" - ");
+    });
 
     function OpenDropdown() {
       if (toggleDropdown.value == false) {
@@ -1296,13 +1333,26 @@ export default {
       }
     }
 
+    function getJob() {
+      const jobs = JSON.parse(localStorage.getItem("jobs")) || [];
+      const jobId = parseInt(route.params.id, 10);
+      job.value = jobs.find((job) => job.id === jobId) || null;
+    }
+
+    onMounted(() => {
+      getJob();
+    });
+
     return {
+      job,
       tab,
       sTab,
       showMore,
       showCard,
-      toggleDropdown,
+      benefits,
       OpenDropdown,
+      toggleDropdown,
+      timeSincePosted,
     };
   },
 };
