@@ -17,6 +17,13 @@
             <q-btn
               flat
               label="فرصت های شغلی"
+              to="/recommended-jobs"
+              class="btn--no-hover button-effect"
+            />
+
+            <q-btn
+              flat
+              label="فرصت های شغلی پیشنهادی"
               to="/jobs"
               class="btn--no-hover button-effect"
             />
