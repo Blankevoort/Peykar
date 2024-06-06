@@ -223,10 +223,6 @@ onMounted(() => {
   border-radius: 10px !important;
 }
 
-.q-btn.no-hover:hover {
-  animation: none !important;
-}
-
 .q-card__section--vert {
   padding: 0;
 }

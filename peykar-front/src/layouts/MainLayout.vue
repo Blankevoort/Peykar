@@ -6,7 +6,7 @@
       <q-toolbar class="col-md-12 col-lg-8 col-xl-8 gt-sm">
         <!-- Logo And Links -->
 
-        <div class="col-8 row">
+        <div class="col-md-8 col-lg-9 col-xl-8 row">
           <img
             class="q-mr-lg"
             src="https://jobvision.ir/assets/images/header/logo-bg-white.svg"
@@ -45,7 +45,10 @@
           </div>
         </div>
 
-        <q-toolbar-title v-if="user" class="col-3 row justify-end">
+        <q-toolbar-title
+          v-if="user"
+          class="col-md-4 col-lg-3 col-xl-4 row justify-end"
+        >
           <!-- Notification Button -->
 
           <q-btn round flat>
@@ -56,13 +59,13 @@
             />
           </q-btn>
 
-          <q-btn-dropdown flat color="grey-7" icon="person" padding="8px 20px">
+          <q-btn-dropdown flat icon="person">
             <div class="q-pa-md text-black row">
               <div class="col-12">
                 <q-item class="full-width">
                   <q-item-section top avatar>
                     <q-avatar size="50px" color="grey-4">
-                      <q-icon name="person" color="grey-7" size="69px" />
+                      <q-icon name="person" size="69px" />
                     </q-avatar>
                   </q-item-section>
 
@@ -192,7 +195,10 @@
           </q-btn-dropdown>
         </q-toolbar-title>
 
-        <q-toolbar-title v-else class="col-4 row justify-end">
+        <q-toolbar-title
+          v-else
+          class="col-md-4 col-lg-3 col-xl-4 row justify-end"
+        >
           <q-btn
             color="grey-4"
             icon="login"
@@ -238,13 +244,13 @@
             />
           </q-btn>
 
-          <q-btn-dropdown flat color="grey-7" icon="person">
+          <q-btn-dropdown flat icon="person">
             <div class="q-pa-md text-black row">
               <div class="col-12">
                 <q-item class="full-width">
                   <q-item-section top avatar>
                     <q-avatar size="50px" color="grey-4">
-                      <q-icon name="person" color="grey-7" size="69px" />
+                      <q-icon name="person" size="69px" />
                     </q-avatar>
                   </q-item-section>
 

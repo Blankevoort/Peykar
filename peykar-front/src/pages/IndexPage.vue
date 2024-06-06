@@ -70,12 +70,13 @@
           color="primary"
           label="جستجو در مشاغل"
           to="/jobs"
-          class="col-2 q-px-sm"
+          dense
+          class="col-2 q-px-sm text-bold"
         />
       </div>
 
       <div
-        class="text-weight-bold col-12 q-mb-md"
+        class="text-weight-bold col-12"
         style="font-size: 20px; height: 50px; margin-top: 55px"
       >
         تازه‌ترین آگهی‌های شغلی برای شما
@@ -84,7 +85,6 @@
       <div class="col-12 row">
         <q-tabs
           class="text-bold"
-          style="height: 50px"
           active-color="primary"
           content-class="text-bold"
           inline-label
@@ -95,10 +95,10 @@
             <span>مشاغل پیشنهادی</span>
           </q-tab>
 
-          <q-tab content-class="text-bold" name="history">
+          <!-- <q-tab content-class="text-bold" name="history">
             <q-icon class="q-pr-md" size="24px" name="history" />
             <span>آخرین جستجوی یوزر</span>
-          </q-tab>
+          </q-tab> -->
         </q-tabs>
       </div>
 
@@ -244,7 +244,7 @@
         </div>
       </q-card>
     </div>
-    
+
     <!-- Extrea Small Screen Content -->
 
     <div
