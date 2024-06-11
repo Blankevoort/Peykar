@@ -2,8 +2,11 @@
   <q-layout view="hHh lpR fFf">
     <!-- Header -->
 
-    <q-header class="row justify-center shadow q-px-md q-py-sm">
-      <q-toolbar class="col-md-12 col-lg-8 col-xl-8 gt-sm">
+    <q-header
+      class="row justify-center q-py-sm"
+      style="background-color: #f8f9fa; border-bottom: 2px solid #dde1e6"
+    >
+      <q-toolbar class="col-md-11 col-lg-8 col-xl-7 gt-sm">
         <!-- Logo And Links -->
 
         <div class="col-md-8 col-lg-9 col-xl-8 row">
@@ -1511,5 +1514,9 @@ export default defineComponent({
 .border-left {
   height: 12px;
   border-left: 2px solid #5660f2;
+}
+
+.q-toolbar {
+  padding: 0 0px;
 }
 </style>

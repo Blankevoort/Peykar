@@ -1,7 +1,7 @@
 <template>
   <q-page style="background-color: #f8f9fa">
     <div class="row justify-center q-pa-md" v-if="job">
-      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-8 col-xl-8 row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-8 col-xl-7 row">
         <div class="lt-md">
           <div
             class="bg-primary q-pa-md text-white full-width fixed-top"

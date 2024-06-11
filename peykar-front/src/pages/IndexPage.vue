@@ -1,9 +1,9 @@
 <template>
-  <q-page class="row justify-center">
+  <q-page class="row justify-center" style="background-color: #f8f9fa">
     <!-- Medium-4k Screen Content -->
 
     <div
-      class="col-md-12 col-lg-8 col-xl-8 row justify-between content-center items-center gt-sm q-px-xl"
+      class="col-md-12 col-lg-8 col-xl-7 row justify-between items-center gt-sm q-px-xl"
     >
       <div
         class="col-md-6 col-lg-6 col-xl-6 text-weight-bold"
@@ -125,7 +125,7 @@
             :key="'job-' + index + 1"
             class="q-px-sm q-my-md col-lg-6 col-xl-4"
           >
-            <q-card flat bordered>
+            <q-card style="background-color: transparent" flat bordered>
               <!-- Job`s Tags -->
 
               <div class="row justify-between" v-if="job.tagList">
@@ -365,7 +365,7 @@
             v-for="(job, index) in jobs"
             :key="'job-' + index + 1"
           >
-            <q-card flat bordered>
+            <q-card style="background-color: transparent" flat bordered>
               <!-- Job`s Tags -->
 
               <div class="row justify-between" v-if="job.tagList">
@@ -548,5 +548,9 @@ export default {
 
 [dir="rtl"] .q-item__section--side {
   padding-left: 0;
+}
+
+.q-tab-panels {
+  background: transparent;
 }
 </style>

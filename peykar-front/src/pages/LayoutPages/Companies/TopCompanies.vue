@@ -6,7 +6,7 @@
       <div class="bg-white br-10">
         <div class="q-py-lg">
           <div class="row justify-center">
-            <div class="col-8 row justify-between">
+            <div class="col-7 row justify-between">
               <div class="col-4 row q-pl-lg">
                 <div class="col-12 q-mt-lg">
                   <div class="full-width">

@@ -1,7 +1,7 @@
 <template>
   <q-page style="background-color: #f8f9fa">
     <div class="row justify-center">
-      <div class="col-8">
+      <div class="col-7">
         <div class="q-pr-lg">
           <div class="col-12 row q-mt-lg q-mb-md">
             <div class="full-width bg-white br-10">
