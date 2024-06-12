@@ -72,12 +72,12 @@
 
           <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 col-xl-8"></div>
 
-          <!-- Left Side -->
+          <!-- Left Side & Mobile Bottom Content -->
 
-          <div class="gt-md col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+          <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
             <!-- Resume Complition Rate Card -->
 
-            <div class="q-py-md q-px-lg br-10 bg-white">
+            <div class="q-py-md q-px-lg br-10 bg-white custom-shadow">
               <!-- Card Title -->
 
               <div class="row items-center q-gutter-xs">
@@ -124,15 +124,23 @@
 
               <!-- Card Links -->
 
-              <div >
+              <div>
                 <div class="text-bold">افزودن بخش های تکمیلی</div>
 
                 <div class="row q-py-sm">
-                  <q-btn flat color="primary" label="کتاب‌ها و مقالات" />
+                  <q-btn
+                    dense
+                    class="q-px-sm"
+                    flat
+                    color="primary"
+                    label="کتاب‌ها و مقالات"
+                  />
 
                   <q-separator vertical />
 
                   <q-btn
+                    dense
+                    class="q-px-sm"
                     flat
                     color="primary"
                     label="پروژه‌ها و تجربیات آکادمیک"
@@ -140,7 +148,176 @@
 
                   <q-separator vertical />
 
-                  <q-btn flat color="primary" label="+ 3 مورد دیگر" />
+                  <q-btn
+                    dense
+                    class="q-px-sm"
+                    flat
+                    color="primary"
+                    label="+ 3 مورد دیگر"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <!-- Contact Ways, Voice and Personal Resume -->
+
+            <div class="q-py-md br-10 bg-white q-my-lg custom-shadow">
+              <!-- Contact Ways -->
+
+              <div class="q-px-lg">
+                <div class="text-h6 text-bold">اطلاعات تماس</div>
+
+                <!-- Email -->
+
+                <div class="q-py-md">
+                  <div class="text-grey-7 row">
+                    <div>آدرس ایمیل</div>
+
+                    <q-space />
+
+                    <q-icon @click="editEmail" name="edit" size="18px" />
+                  </div>
+
+                  <div class="text-bold q-pt-sm">
+                    moeensedaghaty86@gmail.com
+                  </div>
+                </div>
+
+                <!-- Phone -->
+
+                <div class="q-py-md">
+                  <div class="text-grey-7 row">
+                    <div>شماره موبایل</div>
+
+                    <q-space />
+
+                    <q-icon @click="editPhone" name="edit" size="18px" />
+                  </div>
+
+                  <div class="text-bold q-pt-sm">09379608155</div>
+                </div>
+              </div>
+
+              <q-separator color="grey-3" />
+
+              <!-- Voice -->
+
+              <div class="q-px-lg">
+                <!-- Card Badge -->
+
+                <div class="relative-position">
+                  <q-badge
+                    :class="[
+                      badgeClass,
+                      'text-white',
+                      'text-bold',
+                      'br-0',
+                      'z-top',
+                      'q-py-xs',
+                    ]"
+                    :style="badgeStyle"
+                  >
+                    {{ progressValue }}%
+                  </q-badge>
+                </div>
+
+                <!-- Main Card -->
+
+                <div class="q-py-md">
+                  <!-- Voice Title -->
+
+                  <div class="row items-center">
+                    <div class="text-h6 text-bold">معرفی صوتی</div>
+
+                    <q-space />
+
+                    <div class="text-primary row items-center">
+                      <q-icon name="add_circle" size="18px" />
+
+                      <div class="q-pl-sm">افزودن</div>
+                    </div>
+                  </div>
+
+                  <!-- Voice Description and Benefits -->
+
+                  <div class="q-py-md">
+                    <div class="text-grey-7">
+                      در این بخش، خود را در قالب یک صوت حداکثر دو دقیقه ای به
+                      کارفرما معرفی کنید. در بسیاری از موارد شناختی که این معرفی
+                      دو دقیقه ای برای کارفرمایان ایجاد میکند
+                      <span class="text-bold text-grey-8"
+                        >از رزومه شما بیشتر است.
+                      </span>
+                    </div>
+                  </div>
+
+                  <!-- Add or Record Voice -->
+
+                  <div class="row justify-center items-center q-gutter-md">
+                    <q-btn round color="primary" size="12px" icon="mic" />
+
+                    <div class="text-primary text-h6">ضبط صدا</div>
+                  </div>
+                </div>
+              </div>
+
+              <q-separator color="grey-3" />
+
+              <!-- Personal Resume -->
+
+              <div class="q-px-lg">
+                <!-- Card Badge -->
+
+                <div class="relative-position">
+                  <q-badge
+                    :class="[
+                      badgeClass,
+                      'text-white',
+                      'text-bold',
+                      'br-0',
+                      'z-top',
+                      'q-py-xs',
+                    ]"
+                    :style="badgeStyle"
+                  >
+                    {{ progressValue }}%
+                  </q-badge>
+                </div>
+
+                <!-- Main Card -->
+
+                <div class="q-py-md">
+                  <!-- Voice Title -->
+
+                  <div class="row items-center">
+                    <div class="text-h6 text-bold">بارگذاری رزومه شخصی</div>
+
+                    <q-space />
+
+                    <div class="text-primary row items-center">
+                      <q-icon name="add_circle" size="18px" />
+
+                      <div class="q-pl-sm">افزودن</div>
+                    </div>
+                  </div>
+
+                  <!-- Voice Description and Benefits -->
+
+                  <div class="q-py-md">
+                    <div class="text-grey-7">
+                      در این بخش با بارگذاری فایل رزومه خود نیز می‌توانید به جذب
+                      بهتر خود کمک کنید.
+                    </div>
+                  </div>
+
+                  <!-- Image -->
+
+                  <div class="text-center">
+                    <q-img
+                      src="https://jobvision.ir/assets/images/my-cv/cv-sample.svg"
+                      style="width: 191px; height: 181px"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
@@ -188,14 +365,31 @@ export default {
         return "text-positive text-bold";
       }
     },
+    badgeClass() {
+      if (this.progressValue === 0) {
+        return "danger-status-badge";
+      } else if (this.progressValue === 100) {
+        return "status-badge";
+      }
+      return "danger-status-badge";
+    },
+    badgeStyle() {
+      if (this.progressValue === 0) {
+        return { backgroundColor: "#eb4969", width: "39px" };
+      } else if (this.progressValue === 100) {
+        return { backgroundColor: "#45c26f", width: "39px" };
+      }
+      return { backgroundColor: "#eb4969", width: "39px" };
+    },
   },
 
   setup() {
     const preferred = ref("خودم");
 
     return {
-      value: 100,
       preferred,
+      value: 100,
+      progressValue: 0,
       preferredOptions: ["خودم", "کارفرما"],
     };
   },
@@ -210,6 +404,42 @@ export default {
 
 .br-10 {
   border-radius: 10px;
+}
+
+.br-0 {
+  border-radius: 0;
+}
+
+.custom-shadow {
+  box-shadow: 0 1px 30px #00000008, 0 1px 2px #0000000d !important;
+}
+
+.status-badge:after {
+  content: "";
+  display: block;
+  width: 0;
+  height: 0;
+  border-bottom: 20px solid transparent;
+  border-top: 20px solid transparent;
+  border-right: 6px solid #45c26f;
+  position: absolute;
+  top: 4px;
+  transform: rotate(270deg);
+  left: 16px;
+}
+
+.danger-status-badge:after {
+  content: "";
+  display: block;
+  width: 0;
+  height: 0;
+  border-bottom: 20px solid transparent;
+  border-top: 20px solid transparent;
+  border-right: 6px solid #eb4969;
+  position: absolute;
+  top: 4px;
+  transform: rotate(270deg);
+  left: 16px;
 }
 
 .active-tabs {
