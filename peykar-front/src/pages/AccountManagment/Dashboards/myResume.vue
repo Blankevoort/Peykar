@@ -77,7 +77,7 @@
           <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
             <!-- Resume Complition Rate Card -->
 
-            <div class="q-py-md q-px-lg br-10 bg-white custom-shadow">
+            <div class="q-py-md q-px-lg br-10 bg-white custom-shadow gt-sm">
               <!-- Card Title -->
 
               <div class="row items-center q-gutter-xs">
@@ -317,6 +317,203 @@
                       src="https://jobvision.ir/assets/images/my-cv/cv-sample.svg"
                       style="width: 191px; height: 181px"
                     />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Portfolio -->
+
+            <div class="br-10 bg-white q-my-lg custom-shadow">
+              <div class="q-px-lg">
+                <!-- Card Badge -->
+
+                <div class="relative-position">
+                  <q-badge
+                    :class="[
+                      badgeClass,
+                      'text-white',
+                      'text-bold',
+                      'br-0',
+                      'z-top',
+                      'q-py-xs',
+                    ]"
+                    :style="badgeStyle"
+                  >
+                    {{ progressValue }}%
+                  </q-badge>
+                </div>
+
+                <div class="q-py-md">
+                  <!-- Portfolio Title -->
+
+                  <div class="row items-center">
+                    <div class="text-h6 text-bold">نمونه کارها</div>
+
+                    <q-space />
+
+                    <div class="text-primary row items-center">
+                      <q-icon name="add_circle" size="18px" />
+
+                      <div class="q-pl-sm">افزودن</div>
+                    </div>
+                  </div>
+
+                  <!-- Portfolio Content -->
+
+                  <div class="q-pt-md">
+                    <div class="row">
+                      <!-- Acion Buttons -->
+
+                      <div class="col-3 text-grey-8">
+                        <q-icon name="delete" size="24px" />
+                        <q-icon class="q-pl-sm" name="edit" size="24px" />
+                      </div>
+
+                      <!-- Urls -->
+
+                      <div class="col-9">
+                        <div
+                          class="row justify-end items-center q-gutter-x-md full-width"
+                        >
+                          <!-- Url -->
+
+                          <div
+                            class="text-primary"
+                            style="cursor: pointer; direction: ltr"
+                          >
+                            https://moeensedaqati.ir/#/
+                          </div>
+
+                          <!-- Icon -->
+
+                          <img
+                            src="https://jobvision.ir/assets/images/my-cv/link-icon-primary.svg"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Calculator -->
+
+            <div
+              class="br-10 q-my-lg custom-shadow"
+              style="background-color: #eeeffe !important"
+            >
+              <div class="q-px-xl q-py-lg text-center">
+                <img
+                  src="https://jobvision.ir/assets/images/my-cv/salary-table.svg"
+                />
+
+                <div class="q-pt-md text-bold" style="font-size: 12px">
+                  از حقوق دریافتی افراد در مشاغل مختلف باخبر شوید
+                </div>
+
+                <div class="q-pb-md q-pt-sm" style="font-size: 11px">
+                  حقوق و دستمزد مشاغل مختلف را بررسی کنید و تخمین دقیق‌تری از
+                  حقوق منصفانه خود داشته باشید.
+                </div>
+
+                <q-btn
+                  flat
+                  to="salary"
+                  color="primary"
+                  class="text-bold"
+                  style="font-size: 12px"
+                  icon-right="keyboard_backspace"
+                  label="ماشین حساب حقوق و دستمزد"
+                />
+              </div>
+            </div>
+
+            <!-- Test Results -->
+
+            <div class="br-10 bg-white q-my-lg custom-shadow">
+              <div class="q-px-lg q-py-md">
+                <!-- Test Results Title -->
+
+                <div class="text-h6 text-bold">نتایج تست‌ها</div>
+
+                <!-- Test Results Content -->
+
+                <div class="q-pt-md q-gutter-y-sm" style="">
+                  <!-- Bar-On -->
+
+                  <div class="row items-center">
+                    <div class="col-8 row items-center q-gutter-sm">
+                      <img
+                        src="https://jobvision.ir/assets/images/tick-secondary.svg"
+                      />
+                      <div class="text-grey-6">Bar-On هوش هیجانی</div>
+                    </div>
+
+                    <div class="col-4 text-right">
+                      <q-btn dense flat color="primary" label="شرکت در تست" />
+                    </div>
+                  </div>
+
+                  <!-- MBTI -->
+
+                  <div class="row items-center">
+                    <div class="col-8 row items-center q-gutter-sm">
+                      <img
+                        src="https://jobvision.ir/assets/images/tick-primary.svg"
+                      />
+                      <div class="text-bold">MBTI شخصیت شناسی</div>
+                    </div>
+
+                    <div class="col-4 text-right">
+                      <q-btn dense flat color="primary" label="مشاهده نتیجه" />
+                    </div>
+                  </div>
+
+                  <!-- NEO -->
+
+                  <div class="row items-center">
+                    <div class="col-8 row items-center q-gutter-sm">
+                      <img
+                        src="https://jobvision.ir/assets/images/tick-secondary.svg"
+                      />
+                      <div class="text-grey-6">NEO شخصیت شناسی</div>
+                    </div>
+
+                    <div class="col-4 text-right">
+                      <q-btn dense flat color="primary" label="شرکت در تست" />
+                    </div>
+                  </div>
+
+                  <!-- Multiple Intelligences -->
+
+                  <div class="row items-center">
+                    <div class="col-8 row items-center q-gutter-sm">
+                      <img
+                        src="https://jobvision.ir/assets/images/tick-secondary.svg"
+                      />
+                      <div class="text-grey-6">هوش های چندگانه</div>
+                    </div>
+
+                    <div class="col-4 text-right">
+                      <q-btn dense flat color="primary" label="شرکت در تست" />
+                    </div>
+                  </div>
+
+                  <!-- Holland -->
+
+                  <div class="row items-center">
+                    <div class="col-8 row items-center q-gutter-sm">
+                      <img
+                        src="https://jobvision.ir/assets/images/tick-secondary.svg"
+                      />
+                      <div class="text-grey-6">Holland تیپ سنجی شغلی</div>
+                    </div>
+
+                    <div class="col-4 text-right">
+                      <q-btn dense flat color="primary" label="شرکت در تست" />
+                    </div>
                   </div>
                 </div>
               </div>
