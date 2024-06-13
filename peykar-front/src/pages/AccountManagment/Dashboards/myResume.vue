@@ -378,12 +378,19 @@
                         >
                           <!-- Url -->
 
-                          <div
+                          <a
+                            target="_blank"
                             class="text-primary"
-                            style="cursor: pointer; direction: ltr"
+                            href="
+                            https://moeensedaqati.ir/#/"
+                            style="
+                              cursor: pointer;
+                              direction: ltr;
+                              text-decoration: none;
+                            "
                           >
                             https://moeensedaqati.ir/#/
-                          </div>
+                          </a>
 
                           <!-- Icon -->
 
