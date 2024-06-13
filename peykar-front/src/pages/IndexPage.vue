@@ -1,5 +1,5 @@
 <template>
-  <q-page class="row justify-center" style="background-color: #f8f9fa">
+  <q-page class="row justify-center" >
     <!-- Medium-4k Screen Content -->
 
     <div
@@ -539,7 +539,7 @@ export default {
 
 .global-emplyment {
   border-radius: 10px;
-  background-color: #f8f9fa;
+  background-color: #f6f7f9 !important;
 }
 
 .text-muted {

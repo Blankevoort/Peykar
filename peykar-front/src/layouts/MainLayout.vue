@@ -4,7 +4,7 @@
 
     <q-header
       class="row justify-center q-py-sm"
-      style="background-color: #f8f9fa; border-bottom: 2px solid #dde1e6"
+      style=" border-bottom: 2px solid #dde1e6"
     >
       <q-toolbar class="col-md-11 col-lg-8 col-xl-7 gt-sm">
         <!-- Logo And Links -->
