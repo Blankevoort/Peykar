@@ -4,7 +4,7 @@
 
     <q-header
       class="row justify-center q-py-sm"
-      style=" border-bottom: 2px solid #dde1e6"
+      style="border-bottom: 2px solid #dde1e6"
     >
       <q-toolbar class="col-md-11 col-lg-8 col-xl-7 gt-sm">
         <!-- Logo And Links -->
@@ -28,7 +28,7 @@
               flat
               label="فرصت های شغلی پیشنهادی"
               to="/jobs"
-              class="btn--no-hover button-effect"
+              class="btn--no-hover"
             />
 
             <q-btn
@@ -224,7 +224,7 @@
           <q-btn
             flat
             @click="drawer = !drawer"
-            class="btn--no-hover button-effect"
+            class="btn--no-hover"
             icon="menu"
           />
 
@@ -1322,7 +1322,7 @@ import { defineComponent, ref } from "vue";
 import { getUser } from "../composables/getUser";
 
 import JobsList from "../components/Layout/DrawerJobsList.vue";
-import FooterDropdown from "../components/FooterDropdown.vue";
+import FooterDropdown from "../components/Layout/FooterDropdown.vue";
 import PanelHeader from "../components/Layout/LayoutPanlesHeader.vue";
 
 export default defineComponent({

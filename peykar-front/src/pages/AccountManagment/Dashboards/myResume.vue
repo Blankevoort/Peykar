@@ -70,7 +70,111 @@
         <div class="row justify-between">
           <!-- Right Side -->
 
-          <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 col-xl-8"></div>
+          <div
+            class="col-xs-12 col-sm-12 col-md-8 col-lg-8 col-xl-8 q-gutter-lg"
+          >
+            <!-- About -->
+
+            <div class="q-px-lg bg-white br-10">
+              <BadgeAndTitle :progressValue="progressValue" title="درباره من">
+                <!-- About Content -->
+
+                <div class="q-py-md">
+                  <div :class="aboutFirstSection">
+                    <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 col-xl-8">
+                      <div class="row items-center q-gutter-x-md">
+                        <!-- Profile Picutre -->
+
+                        <div class="relative-position q-py-xs">
+                          <img
+                            src="https://fileapi.jobvision.ir/StaticFiles/Candidate/DefaultImages/default-user-Male.png?v=20231122"
+                            style="
+                              border-radius: 50%;
+                              width: 64px;
+                              height: 64px;
+                            "
+                          />
+
+                          <div class="absolute-bottom text-center">
+                            <q-icon
+                              name="border_color"
+                              class="q-pa-xs"
+                              style="
+                                border-radius: 4px;
+                                background-color: #dde1e6 !important;
+                              "
+                            />
+                          </div>
+                        </div>
+
+                        <!-- Name and Job Title -->
+
+                        <div class="q-gutter-y-sm">
+                          <div class="text-bold" :style="aboutNameFontSize">
+                            معین صداقتی
+                          </div>
+
+                          <div
+                            class="text-grey-7 q-gutter-x-sm row items-center"
+                          >
+                            <div>دولوپر فول استک در شرکت آیترونیک</div>
+
+                            <q-icon name="edit" size="18px" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Add About Content? -->
+
+                    <div :class="addAboutContent">
+                      <div class="row q-gutter-x-sm">
+                        <div
+                          class="text-primary q-px-md q-py-sm"
+                          style="border: 2px dashed #5660f2"
+                        >
+                          + افزودن
+                        </div>
+
+                        <img
+                          src="https://jobvision.ir/assets/images/linkedin.svg"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- User Description - Persian -->
+
+                  <div class="text-grey-7 q-py-sm">
+                    معین صداقتی متولد سال 1386/9/9. از 13 سالگی شروع به یاد گیری
+                    برنامه نویسی کردم و از 15 سالگی به صورت جدی برنامه نویسی
+                    میکنم. درحال تحصیل در رشته کامپیوتر.
+                  </div>
+                </div>
+              </BadgeAndTitle>
+            </div>
+
+            <!-- Basic Information -->
+
+            <div class="q-px-lg bg-white br-10">
+              <BadgeAndTitle
+                :progressValue="progressValue"
+                title="اطلاعات اولیه"
+              >
+                <!-- Information Content -->
+
+                <div class="q-py-xs">
+                  <div
+                    v-for="item in basicInformation"
+                    :key="item"
+                    class="q-py-sm"
+                  >
+                    <infoDisplay :title="item.title" :info="item.info" />
+                  </div>
+                </div>
+              </BadgeAndTitle>
+            </div>
+          </div>
 
           <!-- Left Side & Mobile Bottom Content -->
 
@@ -165,36 +269,38 @@
               <!-- Contact Ways -->
 
               <div class="q-px-lg">
-                <div class="text-h6 text-bold">اطلاعات تماس</div>
+                <div :class="titleClass">اطلاعات تماس</div>
 
-                <!-- Email -->
+                <div class="q-gutter-y-sm q-pt-md q-pb-lg">
+                  <!-- Email -->
 
-                <div class="q-py-md">
-                  <div class="text-grey-7 row">
-                    <div>آدرس ایمیل</div>
+                  <div>
+                    <div class="text-grey-7 row">
+                      <div>آدرس ایمیل</div>
 
-                    <q-space />
+                      <q-space />
 
-                    <q-icon @click="editEmail" name="edit" size="18px" />
+                      <q-icon @click="editEmail" name="edit" size="18px" />
+                    </div>
+
+                    <div class="text-bold q-pt-sm">
+                      moeensedaghaty86@gmail.com
+                    </div>
                   </div>
 
-                  <div class="text-bold q-pt-sm">
-                    moeensedaghaty86@gmail.com
+                  <!-- Phone -->
+
+                  <div>
+                    <div class="text-grey-7 row">
+                      <div>شماره موبایل</div>
+
+                      <q-space />
+
+                      <q-icon @click="editPhone" name="edit" size="18px" />
+                    </div>
+
+                    <div class="text-bold q-pt-sm">09379608155</div>
                   </div>
-                </div>
-
-                <!-- Phone -->
-
-                <div class="q-py-md">
-                  <div class="text-grey-7 row">
-                    <div>شماره موبایل</div>
-
-                    <q-space />
-
-                    <q-icon @click="editPhone" name="edit" size="18px" />
-                  </div>
-
-                  <div class="text-bold q-pt-sm">09379608155</div>
                 </div>
               </div>
 
@@ -203,41 +309,10 @@
               <!-- Voice -->
 
               <div class="q-px-lg">
-                <!-- Card Badge -->
-
-                <div class="relative-position">
-                  <q-badge
-                    :class="[
-                      badgeClass,
-                      'text-white',
-                      'text-bold',
-                      'br-0',
-                      'z-top',
-                      'q-py-xs',
-                    ]"
-                    :style="badgeStyle"
-                  >
-                    {{ progressValue }}%
-                  </q-badge>
-                </div>
-
-                <!-- Main Card -->
-
-                <div class="q-py-md">
-                  <!-- Voice Title -->
-
-                  <div class="row items-center">
-                    <div class="text-h6 text-bold">معرفی صوتی</div>
-
-                    <q-space />
-
-                    <div class="text-primary row items-center">
-                      <q-icon name="add_circle" size="18px" />
-
-                      <div class="q-pl-sm">افزودن</div>
-                    </div>
-                  </div>
-
+                <BadgeAndTitle
+                  :progressValue="progressValue"
+                  title="معرفی صوتی"
+                >
                   <!-- Voice Description and Benefits -->
 
                   <div class="q-py-md">
@@ -258,7 +333,7 @@
 
                     <div class="text-primary text-h6">ضبط صدا</div>
                   </div>
-                </div>
+                </BadgeAndTitle>
               </div>
 
               <q-separator color="grey-3" />
@@ -266,41 +341,10 @@
               <!-- Personal Resume -->
 
               <div class="q-px-lg">
-                <!-- Card Badge -->
-
-                <div class="relative-position">
-                  <q-badge
-                    :class="[
-                      badgeClass,
-                      'text-white',
-                      'text-bold',
-                      'br-0',
-                      'z-top',
-                      'q-py-xs',
-                    ]"
-                    :style="badgeStyle"
-                  >
-                    {{ progressValue }}%
-                  </q-badge>
-                </div>
-
-                <!-- Main Card -->
-
-                <div class="q-py-md">
-                  <!-- Voice Title -->
-
-                  <div class="row items-center">
-                    <div class="text-h6 text-bold">بارگذاری رزومه شخصی</div>
-
-                    <q-space />
-
-                    <div class="text-primary row items-center">
-                      <q-icon name="add_circle" size="18px" />
-
-                      <div class="q-pl-sm">افزودن</div>
-                    </div>
-                  </div>
-
+                <BadgeAndTitle
+                  :progressValue="progressValue"
+                  title="بارگذاری رزومه شخصی"
+                >
                   <!-- Voice Description and Benefits -->
 
                   <div class="q-py-md">
@@ -318,7 +362,7 @@
                       style="width: 191px; height: 181px"
                     />
                   </div>
-                </div>
+                </BadgeAndTitle>
               </div>
             </div>
 
@@ -326,39 +370,10 @@
 
             <div class="br-10 bg-white q-my-lg custom-shadow">
               <div class="q-px-lg">
-                <!-- Card Badge -->
-
-                <div class="relative-position">
-                  <q-badge
-                    :class="[
-                      badgeClass,
-                      'text-white',
-                      'text-bold',
-                      'br-0',
-                      'z-top',
-                      'q-py-xs',
-                    ]"
-                    :style="badgeStyle"
-                  >
-                    {{ progressValue }}%
-                  </q-badge>
-                </div>
-
-                <div class="q-py-md">
-                  <!-- Portfolio Title -->
-
-                  <div class="row items-center">
-                    <div class="text-h6 text-bold">نمونه کارها</div>
-
-                    <q-space />
-
-                    <div class="text-primary row items-center">
-                      <q-icon name="add_circle" size="18px" />
-
-                      <div class="q-pl-sm">افزودن</div>
-                    </div>
-                  </div>
-
+                <BadgeAndTitle
+                  :progressValue="progressValue"
+                  title="نمونه کارها"
+                >
                   <!-- Portfolio Content -->
 
                   <div class="q-pt-md">
@@ -401,7 +416,7 @@
                       </div>
                     </div>
                   </div>
-                </div>
+                </BadgeAndTitle>
               </div>
             </div>
 
@@ -443,7 +458,7 @@
               <div class="q-px-lg q-py-md">
                 <!-- Test Results Title -->
 
-                <div class="text-h6 text-bold">نتایج تست‌ها</div>
+                <div :class="titleClass">نتایج تست‌ها</div>
 
                 <!-- Test Results Content -->
 
@@ -533,9 +548,14 @@
 </template>
 
 <script>
-import { ref } from "vue";
+import { ref, defineComponent } from "vue";
 
-export default {
+import infoDisplay from "../../../components/BasicInformationContent.vue";
+import BadgeAndTitle from "../../../components/ResumeBadgeAndTitle.vue";
+
+export default defineComponent({
+  components: { infoDisplay, BadgeAndTitle },
+
   computed: {
     preferredResumeClasses() {
       return {
@@ -585,19 +605,59 @@ export default {
       }
       return { backgroundColor: "#eb4969", width: "39px" };
     },
+    addAboutContent() {
+      if (this.$q.screen.lt.md) {
+        return "col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 flex justify-center";
+      } else {
+        return "col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 flex justify-end";
+      }
+    },
+    aboutFirstSection() {
+      return this.$q.screen.lt.md
+        ? "row items-between items-center q-pb-md"
+        : "row items-between items-center";
+    },
+    aboutNameFontSize() {
+      return {
+        fontSize: this.$q.screen.lt.md ? "12px" : "16px",
+      };
+    },
+    titleClass() {
+      return this.$q.screen.gt.sm ? "text-h6 text-bold" : "text-bold";
+    },
   },
 
   setup() {
+    const editEmail = ref(false);
+    const editPhone = ref(false);
     const preferred = ref("خودم");
+    const basicInformation = [
+      { title: "نام و نام خانوادگی", info: "معین صداقتی" },
+      { title: "جنسیت", info: "مرد" },
+      { title: "وضعیت تاهل", info: "مجرد" },
+      { title: "وضعیت نظام وظیفه", info: "معافیت تحصیلی" },
+      { title: "شهر محل سکونت", info: "گنبد کاووس" },
+      {
+        title: "محل سکونت",
+        info: "خیابان بخت غربی نرسیده به چهارراه فردوسی جنب یخچال سازی صوفی زاده و باطری سازی",
+      },
+      { title: "تاریخ تولد", info: "۱۳۸۸/۰۹/۰۹" },
+      { title: "شماره ثابت", info: "۳۳۳۳۱۴۸۴" },
+      { title: "حقوق درخواستی", info: "۸ - ۱۰ میلیون تومان" },
+      { title: "نوع شغل مورد علاقه", info: "توسعه نرم افزار و برنامه نویسی" },
+    ];
 
     return {
+      editEmail,
+      editPhone,
       preferred,
       value: 100,
+      basicInformation,
       progressValue: 0,
       preferredOptions: ["خودم", "کارفرما"],
     };
   },
-};
+});
 </script>
 
 <style scoped>
