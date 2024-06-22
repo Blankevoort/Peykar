@@ -1,5 +1,5 @@
 <template>
-  <div class="q-py-md">
+  <div>
     <!-- Badge -->
     <div class="relative-position">
       <q-badge
@@ -21,12 +21,23 @@
       <!-- Title  -->
       <div class="row items-center">
         <div :class="titleClass">{{ title }}</div>
+
         <q-space />
-        <div class="text-grey-7 row items-center">
-          <q-icon name="edit" size="18px" />
-          <div class="q-pl-sm">ویرایش</div>
+
+        <div v-if="!showButton" class="text-primary row items-center">
+          <q-icon name="add_circle" size="18px" />
+          <div class="q-pl-sm">افزودن</div>
+        </div>
+
+        <div v-if="!disableEditButton && showButton">
+          <div class="text-grey-7 row items-center">
+            <q-icon name="edit" size="18px" />
+            <div class="q-pl-sm">ویرایش</div>
+          </div>
         </div>
       </div>
+
+      <!-- Design -->
 
       <slot></slot>
     </div>
@@ -35,7 +46,6 @@
 
 <script>
 import { computed, defineComponent } from "vue";
-
 import { useQuasar } from "quasar";
 
 export default defineComponent({
@@ -47,6 +57,14 @@ export default defineComponent({
     title: {
       type: String,
       required: true,
+    },
+    showButton: {
+      type: Boolean,
+      default: true,
+    },
+    disableEditButton: {
+      type: Boolean,
+      default: false,
     },
   },
 
@@ -85,6 +103,10 @@ export default defineComponent({
 </script>
 
 <style scoped>
+.q-badge {
+  border-radius: 0;
+}
+
 .status-badge:after {
   content: "";
   display: block;

@@ -76,7 +76,11 @@
             <!-- About -->
 
             <div class="q-px-lg bg-white br-10">
-              <BadgeAndTitle :progressValue="progressValue" title="درباره من">
+              <BadgeAndTitle
+                :progressValue="progressValue"
+                title="درباره من"
+                :showButton="true"
+              >
                 <!-- About Content -->
 
                 <div class="q-py-md">
@@ -160,6 +164,7 @@
               <BadgeAndTitle
                 :progressValue="progressValue"
                 title="اطلاعات اولیه"
+                :showButton="true"
               >
                 <!-- Information Content -->
 
@@ -171,6 +176,59 @@
                   >
                     <infoDisplay :title="item.title" :info="item.info" />
                   </div>
+                </div>
+              </BadgeAndTitle>
+            </div>
+
+            <!-- Educational Records -->
+
+            <div class="q-px-lg bg-white br-10">
+              <BadgeAndTitle
+                :progressValue="progressValue"
+                title="سوابق تحصیلی"
+                :showButton="universityEducation"
+                disableEditButton="true"
+              >
+                <!-- Educational Records Content -->
+
+                <div class="q-pt-sm text-grey-7">
+                  <!-- User does or doesn't have University Education -->
+                  <div class="row items-center q-gutter-sm">
+                    <q-checkbox size="sm" v-model="universityEducation" />
+                    <div>تحصیلات دانشگاهی ندارم</div>
+                  </div>
+
+                  <!-- User Has Diploma Or There under Diploma -->
+                  <div class="q-gutter-y-sm q-pl-md q-pt-sm">
+                    <RadioGroupWithConditionalSlot
+                      :model="!universityEducation"
+                      modelProp="diploma"
+                      :options="diplomaOptions"
+                    />
+                  </div>
+
+                  <!-- <div
+                    class="q-gutter-y-sm q-pl-md q-pt-sm"
+                    v-if="universityEducation"
+                  >
+                    <div>
+                      <q-radio
+                        size="sm"
+                        v-model="diploma"
+                        val="دیپلم"
+                        label="مدرک تحصیلی دیپلم دارم."
+                      />
+                    </div>
+
+                    <div>
+                      <q-radio
+                        size="sm"
+                        v-model="diploma"
+                        val="زیر دیپلم"
+                        label="مدرک تحصیلی زیر دیپلم دارم."
+                      />
+                    </div>
+                  </div> -->
                 </div>
               </BadgeAndTitle>
             </div>
@@ -312,6 +370,7 @@
                 <BadgeAndTitle
                   :progressValue="progressValue"
                   title="معرفی صوتی"
+                  :showButton="false"
                 >
                   <!-- Voice Description and Benefits -->
 
@@ -344,6 +403,7 @@
                 <BadgeAndTitle
                   :progressValue="progressValue"
                   title="بارگذاری رزومه شخصی"
+                  :showButton="false"
                 >
                   <!-- Voice Description and Benefits -->
 
@@ -373,10 +433,11 @@
                 <BadgeAndTitle
                   :progressValue="progressValue"
                   title="نمونه کارها"
+                  :showButton="false"
                 >
                   <!-- Portfolio Content -->
 
-                  <div class="q-pt-md">
+                  <div class="q-pt-md q-pb-sm">
                     <div class="row">
                       <!-- Acion Buttons -->
 
@@ -552,9 +613,10 @@ import { ref, defineComponent } from "vue";
 
 import infoDisplay from "../../../components/BasicInformationContent.vue";
 import BadgeAndTitle from "../../../components/ResumeBadgeAndTitle.vue";
+import RadioGroupWithConditionalSlot from "../../../components/RadioGroupWithConditionalSlot.vue";
 
 export default defineComponent({
-  components: { infoDisplay, BadgeAndTitle },
+  components: { infoDisplay, BadgeAndTitle, RadioGroupWithConditionalSlot },
 
   computed: {
     preferredResumeClasses() {
@@ -588,22 +650,6 @@ export default defineComponent({
       } else {
         return "text-positive text-bold";
       }
-    },
-    badgeClass() {
-      if (this.progressValue === 0) {
-        return "danger-status-badge";
-      } else if (this.progressValue === 100) {
-        return "status-badge";
-      }
-      return "danger-status-badge";
-    },
-    badgeStyle() {
-      if (this.progressValue === 0) {
-        return { backgroundColor: "#eb4969", width: "39px" };
-      } else if (this.progressValue === 100) {
-        return { backgroundColor: "#45c26f", width: "39px" };
-      }
-      return { backgroundColor: "#eb4969", width: "39px" };
     },
     addAboutContent() {
       if (this.$q.screen.lt.md) {
@@ -647,13 +693,25 @@ export default defineComponent({
       { title: "نوع شغل مورد علاقه", info: "توسعه نرم افزار و برنامه نویسی" },
     ];
 
+    // Educational Records
+
+    const diploma = ref(false);
+    const universityEducation = ref(false);
+    const diplomaOptions = [
+      { value: "دیپلم", label: "مدرک تحصیلی دیپلم دارم." },
+      { value: "زیر دیپلم", label: "مدرک تحصیلی زیر دیپلم دارم." },
+    ];
+
     return {
+      diploma,
       editEmail,
       editPhone,
       preferred,
       value: 100,
+      diplomaOptions,
       basicInformation,
       progressValue: 0,
+      universityEducation,
       preferredOptions: ["خودم", "کارفرما"],
     };
   },
@@ -678,32 +736,8 @@ export default defineComponent({
   box-shadow: 0 1px 30px #00000008, 0 1px 2px #0000000d !important;
 }
 
-.status-badge:after {
-  content: "";
-  display: block;
-  width: 0;
-  height: 0;
-  border-bottom: 20px solid transparent;
-  border-top: 20px solid transparent;
-  border-right: 6px solid #45c26f;
-  position: absolute;
-  top: 4px;
-  transform: rotate(270deg);
-  left: 16px;
-}
-
-.danger-status-badge:after {
-  content: "";
-  display: block;
-  width: 0;
-  height: 0;
-  border-bottom: 20px solid transparent;
-  border-top: 20px solid transparent;
-  border-right: 6px solid #eb4969;
-  position: absolute;
-  top: 4px;
-  transform: rotate(270deg);
-  left: 16px;
+.q-checkbox__inner .q-checkbox__bg {
+  background: transparent !important; /* Makes the background transparent */
 }
 
 .active-tabs {
