@@ -24,14 +24,19 @@
 
         <q-space />
 
-        <div v-if="!showButton" class="text-primary row items-center">
-          <q-icon name="add_circle" size="18px" />
+        <div v-if="!showButton" class="text-primary row">
+          <img
+            src="https://jobvision.ir/assets/images/add-circle-primary.svg"
+            style="width: 16px; height: 18px"
+          />
           <div class="q-pl-sm">افزودن</div>
         </div>
 
         <div v-if="!disableEditButton && showButton">
           <div class="text-grey-7 row items-center">
-            <q-icon name="edit" size="18px" />
+            <img
+              src="https://jobvision.ir/assets/images/cv-maker/edit-secondary.svg"
+            />
             <div class="q-pl-sm">ویرایش</div>
           </div>
         </div>

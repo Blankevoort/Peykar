@@ -183,54 +183,23 @@
             <!-- Educational Records -->
 
             <div class="q-px-lg bg-white br-10">
-              <BadgeAndTitle
+              <useCard
                 :progressValue="progressValue"
                 title="سوابق تحصیلی"
-                :showButton="universityEducation"
-                disableEditButton="true"
+                :showButton="false"
+                :disableEditButton="true"
+                :hasModel="hasEducation"
+                noModel="تحصیلات دانشگاهی ندارم"
+                :educationSection="true"
+                :checkboxModel="noUniversityEducation"
               >
-                <!-- Educational Records Content -->
-
-                <div class="q-pt-sm text-grey-7">
-                  <!-- User does or doesn't have University Education -->
-                  <div class="row items-center q-gutter-sm">
-                    <q-checkbox size="sm" v-model="universityEducation" />
-                    <div>تحصیلات دانشگاهی ندارم</div>
-                  </div>
-
-                  <!-- User Has Diploma Or There under Diploma -->
-                  <div class="q-gutter-y-sm q-pl-md q-pt-sm">
-                    <RadioGroupWithConditionalSlot
-                      :model="!universityEducation"
-                      modelProp="diploma"
-                      :options="diplomaOptions"
-                    />
-                  </div>
-
-                  <!-- <div
-                    class="q-gutter-y-sm q-pl-md q-pt-sm"
-                    v-if="universityEducation"
-                  >
-                    <div>
-                      <q-radio
-                        size="sm"
-                        v-model="diploma"
-                        val="دیپلم"
-                        label="مدرک تحصیلی دیپلم دارم."
-                      />
-                    </div>
-
-                    <div>
-                      <q-radio
-                        size="sm"
-                        v-model="diploma"
-                        val="زیر دیپلم"
-                        label="مدرک تحصیلی زیر دیپلم دارم."
-                      />
-                    </div>
-                  </div> -->
+                <div class="q-gutter-y-sm">
+                  <div class="text-bold">سطح: رشته</div>
+                  <div class="text-grey-7">نام دانشگاه</div>
+                  <div class="text-grey-7">سال تحصیل - سال پایان</div>
+                  <div class="text-grey-7">معدل: معدل</div>
                 </div>
-              </BadgeAndTitle>
+              </useCard>
             </div>
           </div>
 
@@ -338,7 +307,10 @@
 
                       <q-space />
 
-                      <q-icon @click="editEmail" name="edit" size="18px" />
+                      <img
+                        src="https://jobvision.ir/assets/images/cv-maker/edit-secondary.svg"
+                        style="width: 16px"
+                      />
                     </div>
 
                     <div class="text-bold q-pt-sm">
@@ -354,7 +326,10 @@
 
                       <q-space />
 
-                      <q-icon @click="editPhone" name="edit" size="18px" />
+                      <img
+                        src="https://jobvision.ir/assets/images/cv-maker/edit-secondary.svg"
+                        style="width: 16px"
+                      />
                     </div>
 
                     <div class="text-bold q-pt-sm">09379608155</div>
@@ -388,7 +363,12 @@
                   <!-- Add or Record Voice -->
 
                   <div class="row justify-center items-center q-gutter-md">
-                    <q-btn round color="primary" size="12px" icon="mic" />
+                    <div class="bg-primary q-pa-sm text-center record-button">
+                      <img
+                        src="https://jobvision.ir/assets/images/my-cv/microphone.svg"
+                        style="width: 13px"
+                      />
+                    </div>
 
                     <div class="text-primary text-h6">ضبط صدا</div>
                   </div>
@@ -611,12 +591,16 @@
 <script>
 import { ref, defineComponent } from "vue";
 
-import infoDisplay from "../../../components/BasicInformationContent.vue";
+import UseCard from "../../../components/ResumeCard.vue";
 import BadgeAndTitle from "../../../components/ResumeBadgeAndTitle.vue";
-import RadioGroupWithConditionalSlot from "../../../components/RadioGroupWithConditionalSlot.vue";
+import infoDisplay from "../../../components/BasicInformationContent.vue";
 
 export default defineComponent({
-  components: { infoDisplay, BadgeAndTitle, RadioGroupWithConditionalSlot },
+  components: {
+    UseCard,
+    infoDisplay,
+    BadgeAndTitle,
+  },
 
   computed: {
     preferredResumeClasses() {
@@ -695,23 +679,18 @@ export default defineComponent({
 
     // Educational Records
 
-    const diploma = ref(false);
-    const universityEducation = ref(false);
-    const diplomaOptions = [
-      { value: "دیپلم", label: "مدرک تحصیلی دیپلم دارم." },
-      { value: "زیر دیپلم", label: "مدرک تحصیلی زیر دیپلم دارم." },
-    ];
+    const hasEducation = ref(true);
+    const noUniversityEducation = ref(false);
 
     return {
-      diploma,
       editEmail,
       editPhone,
       preferred,
       value: 100,
-      diplomaOptions,
+      hasEducation,
       basicInformation,
       progressValue: 0,
-      universityEducation,
+      noUniversityEducation,
       preferredOptions: ["خودم", "کارفرما"],
     };
   },
@@ -736,10 +715,11 @@ export default defineComponent({
   box-shadow: 0 1px 30px #00000008, 0 1px 2px #0000000d !important;
 }
 
-.q-checkbox__inner .q-checkbox__bg {
-  background: transparent !important; /* Makes the background transparent */
+.record-button {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
 }
-
 .active-tabs {
   background-color: #5660f2 !important;
   color: white !important;

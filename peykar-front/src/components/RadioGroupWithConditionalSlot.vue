@@ -1,14 +1,14 @@
 <template>
   <div>
-    <div v-if="!model">
-      <div v-for="option in options" :key="option.value">
-        <q-radio
-          size="sm"
-          v-model="$parent[modelProp]"
-          :val="option.value"
-          :label="option.label"
-        />
-      </div>
+    <div class="q-gutter-y-sm q-column" v-if="!model">
+      <q-radio
+        v-for="option in options"
+        :key="option.value"
+        v-model="localModel"
+        :val="option.value"
+        :label="option.label"
+        size="sm"
+      />
     </div>
 
     <div v-else>
@@ -18,9 +18,9 @@
 </template>
 
 <script>
-import { defineComponent } from "vue";
+import { ref, watch } from "vue";
 
-export default defineComponent({
+export default {
   props: {
     model: {
       type: Boolean,
@@ -35,5 +35,26 @@ export default defineComponent({
       required: true,
     },
   },
-});
+  setup(props, { emit }) {
+    const localModel = ref("");
+
+    watch(
+      () => localModel.value,
+      (newValue) => {
+        emit("update:modelValue", { [props.modelProp]: newValue });
+      }
+    );
+
+    return {
+      localModel,
+    };
+  },
+};
 </script>
+
+<style scoped>
+.q-column {
+  display: flex;
+  flex-direction: column;
+}
+</style>
