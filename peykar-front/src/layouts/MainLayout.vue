@@ -217,7 +217,7 @@
         </q-toolbar-title>
       </q-toolbar>
 
-      <q-toolbar class="col-12 lt-md" style="max-height: 70px">
+      <q-toolbar class="col-12 lt-md" style="max-height: 56px">
         <!-- Logo And Links -->
 
         <div class="row">

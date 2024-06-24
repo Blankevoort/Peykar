@@ -7,18 +7,20 @@
       :disableEditButton="disableEditButton"
     >
       <!-- Content -->
-      
-      <SidebarWithIcons v-if="hasModel">
-        <q-item-section class="q-gutter-y-sm">
-          <slot></slot>
-        </q-item-section>
+
+      <SidebarWithIcons :small="isSmall" v-if="hasModel">
+        <slot> </slot>
       </SidebarWithIcons>
 
       <div class="q-pt-sm text-grey-7" v-if="!hasModel">
         <!-- User doesn't have Model -->
 
         <div class="row items-center q-gutter-sm">
-          <q-checkbox size="sm" :model-value="checkboxModel" @update:model-value="updateCheckboxModel" />
+          <q-checkbox
+            size="sm"
+            :model-value="checkboxModel"
+            @update:model-value="updateCheckboxModel"
+          />
 
           <div>{{ noModel }}</div>
         </div>
@@ -40,9 +42,9 @@
 
 <script>
 import { ref } from "vue";
-import BadgeAndTitle from "./ResumeBadgeAndTitle.vue";
-import SidebarWithIcons from "./SidebarWithIcons.vue";
-import RadioGroupWithConditionalSlot from "./RadioGroupWithConditionalSlot.vue";
+import BadgeAndTitle from "./ResumeCards/ResumeBadgeAndTitle.vue";
+import SidebarWithIcons from "./ResumeCards/SidebarWithIcons.vue";
+import RadioGroupWithConditionalSlot from "./ResumeCards/RadioGroupWithConditionalSlot.vue";
 
 export default {
   components: {
@@ -54,6 +56,7 @@ export default {
   props: {
     title: String,
     noModel: String,
+    isSmall: Boolean,
     hasModel: Boolean,
     showButton: Boolean,
     progressValue: Number,

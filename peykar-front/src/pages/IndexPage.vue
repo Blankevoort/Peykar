@@ -1,5 +1,5 @@
 <template>
-  <q-page class="row justify-center" >
+  <q-page class="row justify-center">
     <!-- Medium-4k Screen Content -->
 
     <div
@@ -453,16 +453,16 @@
         class="q-mt-md col-12 row justify-center content-center items-center q-py-xl"
       >
         <div class="col-12 global-emplyment">
-          <q-card-section class="row text-center">
-            <div class="col-12">
+          <q-card-section class="row text-center q-gutter-y-lg">
+            <div class="col-12 q-py-md" style="padding-top: 3rem !important">
               <q-img
-                style="width: 70%; height: 100%"
+                style="width: 40%; height: 100%"
                 src="https://jobvision.ir/assets/images/home-page/global-employment.svg"
               />
             </div>
 
             <q-card-section class="col-12">
-              <div class="text-bold text-h5 q-pb-md">
+              <div class="text-bold text-h5 q-pb-xs">
                 استخدام‌های سراسری و دولتی
               </div>
               <div class="q-py-md text-grey-7">

@@ -75,7 +75,7 @@
           >
             <!-- About -->
 
-            <div class="q-px-lg bg-white br-10">
+            <div class="q-px-lg bg-white br-10 custom-shadow">
               <BadgeAndTitle
                 :progressValue="progressValue"
                 title="درباره من"
@@ -160,7 +160,7 @@
 
             <!-- Basic Information -->
 
-            <div class="q-px-lg bg-white br-10">
+            <div class="q-px-lg bg-white br-10 custom-shadow">
               <BadgeAndTitle
                 :progressValue="progressValue"
                 title="اطلاعات اولیه"
@@ -182,7 +182,7 @@
 
             <!-- Educational Records -->
 
-            <div class="q-px-lg bg-white br-10">
+            <div class="q-px-lg bg-white br-10 custom-shadow">
               <useCard
                 :progressValue="progressValue"
                 title="سوابق تحصیلی"
@@ -193,13 +193,183 @@
                 :educationSection="true"
                 :checkboxModel="noUniversityEducation"
               >
-                <div class="q-gutter-y-sm">
+                <div class="q-gutter-y-xs">
                   <div class="text-bold">سطح: رشته</div>
+
                   <div class="text-grey-7">نام دانشگاه</div>
+
                   <div class="text-grey-7">سال تحصیل - سال پایان</div>
+
                   <div class="text-grey-7">معدل: معدل</div>
                 </div>
               </useCard>
+            </div>
+
+            <!-- Work Experience -->
+
+            <div class="bg-white br-10 custom-shadow">
+              <!-- Main Card -->
+
+              <useCard
+                :progressValue="progressValue"
+                title="سوابق شغلی"
+                :showButton="false"
+                :disableEditButton="true"
+                :hasModel="hasWorkExperience"
+                noModel="سوابق شغلی ندارم"
+                :educationSection="true"
+                :checkboxModel="noWorkExperience"
+                :isSmall="true"
+                class="q-px-lg"
+              >
+                <div class="q-gutter-y-sm">
+                  <div class="text-bold">عنوان شغلی</div>
+
+                  <div class="text-bold">نام سازمان</div>
+
+                  <div class="text-grey-7">از ماه و سال شروع - پایان</div>
+                </div>
+              </useCard>
+
+              <!-- Rate The Company -->
+
+              <div class="q-pa-lg" style="background-color: #defbe6">
+                <div class="col-12 flex justify-center lt-sm">
+                  <img
+                    src="https://jobvision.ir/assets/images/my-cv/rate-to-company.svg"
+                  />
+                </div>
+
+                <div
+                  :class="[
+                    'row',
+                    isXsOrLarger ? 'justify-between' : 'justify-center',
+                  ]"
+                >
+                  <div
+                    :class="[
+                      'col-12',
+                      'col-sm-8',
+                      'flex',
+                      'items-center',
+                      'q-gutter-y-sm',
+                      isXsOrLarger
+                        ? 'justify-right'
+                        : 'justify-center text-center',
+                    ]"
+                  >
+                    <div class="text-bold font-16">
+                      به شرکت‌هایی که در آن تجربه کار داشته‌اید، امتیاز دهید.
+                    </div>
+
+                    <div class="text-grey-7">
+                      به دیگران کمک کنید تا محیط کار مناسب خود را پیدا کنند.
+                    </div>
+
+                    <div class="q-pt-sm">
+                      <q-btn
+                        flat
+                        icon-right="keyboard_backspace"
+                        label="امتیاز به شرکت"
+                        style="border: 2px solid black"
+                        class="text-bold"
+                      />
+                    </div>
+                  </div>
+
+                  <div class="col-4 flex justify-end gt-xs">
+                    <img
+                      src="https://jobvision.ir/assets/images/my-cv/rate-to-company.svg"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Languages -->
+
+            <div class="q-px-lg bg-white br-10 custom-shadow">
+              <BadgeAndTitle
+                :progressValue="progressValue"
+                title="زبان‌ها"
+                :showButton="false"
+              >
+                <!-- Langs List -->
+
+                <div
+                  class="row items-center q-gutter-x-md q-pt-sm"
+                  v-for="lang in langs"
+                  :key="lang.name"
+                >
+                  <div class="col-1 flex items-center">
+                    <img
+                      style="width: 16px"
+                      src="https://jobvision.ir/assets/images/delete-secondary.svg"
+                    />
+                  </div>
+
+                  <div class="col-">
+                    <div>
+                      <div
+                        class="br-4 q-pa-xs text-white row items-center q-gutter-x-sm"
+                        style="background-color: #5c6573 !important"
+                      >
+                        <div class="text-bold">{{ lang.name }}</div>
+
+                        <q-separator class="q-py-xs" color="white" vertical />
+
+                        <div>{{ lang.level }}</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </BadgeAndTitle>
+            </div>
+
+            <!-- Software Skills -->
+
+            <div class="q-px-lg bg-white br-10 custom-shadow">
+              <BadgeAndTitle
+                :progressValue="progressValue"
+                title="مهارت های نرم افزاری"
+                :showButton="false"
+              >
+                <!-- Software Skills List -->
+
+                <div class="row items-center">
+                  <div
+                    class="col- row items-center q-pt-sm q-px-sm"
+                    v-for="software in softwareSkills"
+                    :key="software.name"
+                  >
+                    <div class="col-">
+                      <div class="row">
+                        <div
+                          class="br-4 q-pa-xs text-white row items-center q-gutter-x-sm"
+                          style="background-color: #5c6573 !important"
+                        >
+                          <img
+                            style="width: 16px"
+                            src="https://jobvision.ir/assets/images/cv-maker/trash-white.svg"
+                          />
+
+                          <div class="row q-gutter-x-sm">
+                            <div class="text-bold">{{ software.name }}</div>
+
+                            <q-separator
+                              class="q-py-xs"
+                              color="white"
+                              vertical
+                            />
+
+                            <div>{{ software.level }}</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </BadgeAndTitle>
             </div>
           </div>
 
@@ -592,7 +762,7 @@
 import { ref, defineComponent } from "vue";
 
 import UseCard from "../../../components/ResumeCard.vue";
-import BadgeAndTitle from "../../../components/ResumeBadgeAndTitle.vue";
+import BadgeAndTitle from "../../../components/ResumeCards/ResumeBadgeAndTitle.vue";
 import infoDisplay from "../../../components/BasicInformationContent.vue";
 
 export default defineComponent({
@@ -655,6 +825,9 @@ export default defineComponent({
     titleClass() {
       return this.$q.screen.gt.sm ? "text-h6 text-bold" : "text-bold";
     },
+    isXsOrLarger() {
+      return this.$q.screen.gt.xs;
+    },
   },
 
   setup() {
@@ -682,14 +855,65 @@ export default defineComponent({
     const hasEducation = ref(true);
     const noUniversityEducation = ref(false);
 
+    // Work Experience
+
+    const noWorkExperience = ref(false);
+    const hasWorkExperience = ref(true);
+
+    // Languages
+
+    const langs = ref([
+      {
+        name: "انگلیسی",
+        level: "بالاتر از متوسط",
+      },
+      {
+        name: "فارسی",
+        level: "در حد زبان مادری",
+      },
+    ]);
+
+    // Software Skills
+
+    const softwareSkills = ref([
+      {
+        name: "Rest API",
+        level: "پیشرفته",
+      },
+      {
+        name: "VueJS",
+        level: "پیشرفته",
+      },
+      {
+        name: "Figma",
+        level: "پیشرفته",
+      },
+      {
+        name: "Html & CSS",
+        level: "متوسط",
+      },
+      {
+        name: "GIT",
+        level: "متوسط",
+      },
+      {
+        name: "Laravel",
+        level: "متوسط",
+      },
+    ]);
+
     return {
+      langs,
       editEmail,
       editPhone,
       preferred,
       value: 100,
       hasEducation,
+      softwareSkills,
+      noWorkExperience,
       basicInformation,
       progressValue: 0,
+      hasWorkExperience,
       noUniversityEducation,
       preferredOptions: ["خودم", "کارفرما"],
     };

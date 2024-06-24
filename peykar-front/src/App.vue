@@ -223,6 +223,10 @@ onMounted(() => {
   border-radius: 10px !important;
 }
 
+.font-16 {
+  font-size: 16px;
+}
+
 .q-card__section--vert {
   padding: 0;
 }
