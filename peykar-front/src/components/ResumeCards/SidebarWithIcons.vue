@@ -1,7 +1,29 @@
 <template>
-  <div class="row items-center q-pb-md" style="margin-top: 2rem">
+  <div class="row items-center q-pb-md" :style="marginTopStyle">
     <q-item style="background-color: white; border-radius: 8px" class="q-my-xs">
-      <q-item-section v-if="!small" avatar>
+      <q-item-section v-if="large" avatar>
+        <div
+          class="br-10 q-px-sm"
+          style="
+            background-color: #f6f7f9 !important;
+            padding-top: 30px;
+            padding-bottom: 30px;
+          "
+        >
+          <div>
+            <img
+              src="https://jobvision.ir/assets/images/cv-maker/edit-secondary.svg"
+            />
+          </div>
+
+          <img
+            class="q-pt-md"
+            src="https://jobvision.ir/assets/images/delete-secondary.svg"
+          />
+        </div>
+      </q-item-section>
+
+      <q-item-section v-if="small" avatar>
         <div
           class="br-10 q-py-lg q-px-sm"
           style="background-color: #f6f7f9 !important"
@@ -19,7 +41,7 @@
         </div>
       </q-item-section>
 
-      <q-item-section v-else avatar>
+      <q-item-section v-if="!small && !large" avatar>
         <div
           class="br-10 q-py-md q-px-sm"
           style="background-color: #f6f7f9 !important"
@@ -37,7 +59,7 @@
         </div>
       </q-item-section>
 
-      <slot> </slot>
+      <slot></slot>
     </q-item>
   </div>
 </template>
@@ -48,6 +70,21 @@ export default {
     small: {
       type: Boolean,
       default: false,
+    },
+    large: {
+      type: Boolean,
+      default: false,
+    },
+    additional: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  computed: {
+    marginTopStyle() {
+      return {
+        marginTop: this.additional ? "1.5rem" : "2rem",
+      };
     },
   },
 };

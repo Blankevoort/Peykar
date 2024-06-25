@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- Badge -->
-    <div class="relative-position">
+    <div v-if="badge" class="relative-position">
       <q-badge
         :class="[
           badgeClass,
@@ -19,6 +19,7 @@
 
     <div class="q-py-md">
       <!-- Title  -->
+
       <div class="row items-center">
         <div :class="titleClass">{{ title }}</div>
 
@@ -70,6 +71,10 @@ export default defineComponent({
     disableEditButton: {
       type: Boolean,
       default: false,
+    },
+    badge: {
+      type: Boolean,
+      default: true,
     },
   },
 

@@ -5,14 +5,17 @@
       :title="title"
       :showButton="showButton"
       :disableEditButton="disableEditButton"
+      :badge="showBadge"
     >
       <!-- Content -->
 
-      <SidebarWithIcons :small="isSmall" v-if="hasModel">
-        <slot> </slot>
+      <SidebarWithIcons :additional="isAdditional" :small="isSmall" :large="isLarge" v-if="hasModel">
+        <div class="flex items-center">
+          <slot> </slot>
+        </div>
       </SidebarWithIcons>
 
-      <div class="q-pt-sm text-grey-7" v-if="!hasModel">
+      <div class="q-pt-sm text-grey-7" v-if="!hasModel && !noCheckbox">
         <!-- User doesn't have Model -->
 
         <div class="row items-center q-gutter-sm">
@@ -57,8 +60,15 @@ export default {
     title: String,
     noModel: String,
     isSmall: Boolean,
+    isLarge: Boolean,
     hasModel: Boolean,
+    badge: {
+      type: Boolean,
+      default: true,
+    },
+    noCheckbox: Boolean,
     showButton: Boolean,
+    isAdditional: Boolean,
     progressValue: Number,
     checkboxModel: Boolean,
     educationSection: Boolean,

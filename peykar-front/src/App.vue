@@ -223,6 +223,10 @@ onMounted(() => {
   border-radius: 10px !important;
 }
 
+.font-12 {
+  font-size: 12px;
+}
+
 .font-16 {
   font-size: 16px;
 }

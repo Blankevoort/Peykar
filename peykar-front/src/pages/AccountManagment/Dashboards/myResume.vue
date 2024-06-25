@@ -1,5 +1,5 @@
 <template>
-  <q-page class="row justify-center" style="background-color: #f8f9fa">
+  <q-page class="row justify-center q-pb-md" style="background-color: #f8f9fa">
     <div class="col-xs-12 col-sm-11 col-md-11 col-lg-8 col-xl-7">
       <!-- Preferred Resume & Resume Complition Rate -->
 
@@ -27,7 +27,10 @@
           <div
             class="col-xs-4 col-sm-4 col-md-4 col-lg-6 col-xl-6 row items-center text-grey-7"
           >
-            <q-icon class="q-pr-xs" name="visibility" size="20px" />
+            <img
+              class="q-pr-xs"
+              src="https://jobvision.ir/assets/images/eye.svg"
+            />
 
             <div class="q-px-xs gt-sm">نحوه نمایش رزومه به:</div>
 
@@ -41,26 +44,43 @@
 
           <!-- Share And Download Resume -->
 
-          <div class="col-xs-8 col-sm-8 col-md-8 col-lg-6 col-xl-6 text-right">
-            <q-btn
-              flat
-              dense
-              icon="cloud_download"
-              color="grey-7"
-              label="دانلود رزومه"
-              :class="dynamicBtnPadding"
-            />
+          <div
+            class="col-xs-8 col-sm-8 col-md-8 col-lg-6 col-xl-6 justify-end row items-center"
+          >
+            <div class="row">
+              <img
+                src="https://jobvision.ir/assets/images/download-muted.svg"
+              />
 
-            <q-btn
-              flat
-              dense
-              icon="share"
-              color="grey-7"
-              label="اشتراک گذاری رزومه "
-              class="gt-sm"
-            />
+              <q-btn
+                flat
+                dense
+                size="md"
+                color="grey-7"
+                label="دانلود رزومه"
+                :class="dynamicBtnPadding"
+              />
+            </div>
 
-            <q-btn flat dense icon="share" color="grey-7" class="lt-md" />
+            <div class="row q-gutter-x-sm">
+              <img
+                src="https://jobvision.ir/assets/images/share-muted.svg"
+                class="gt-sm"
+              />
+
+              <q-btn
+                flat
+                dense
+                color="grey-7"
+                label="اشتراک گذاری رزومه "
+                class="gt-sm"
+              />
+            </div>
+
+            <img
+              src="https://jobvision.ir/assets/images/share-muted.svg"
+              class="lt-md"
+            />
           </div>
         </div>
       </div>
@@ -71,7 +91,8 @@
           <!-- Right Side -->
 
           <div
-            class="col-xs-12 col-sm-12 col-md-8 col-lg-8 col-xl-8 q-gutter-lg"
+            :class="{ 'q-px-md': $q.screen.xs }"
+            class="col-xs- col-sm- col-md-8 col-lg-8 col-xl-8 q-gutter-lg"
           >
             <!-- About -->
 
@@ -371,11 +392,148 @@
                 </div>
               </BadgeAndTitle>
             </div>
+
+            <!-- Additional Skills -->
+
+            <div class="q-px-lg bg-white br-10 custom-shadow">
+              <BadgeAndTitle
+                :progressValue="progressValue"
+                title="مهارت‌های تکمیلی"
+                :showButton="false"
+                :badge="false"
+              >
+                <!-- Additional Skills Count -->
+
+                <div class="text-grey-6 q-mt-md q-pb-sm font-12">
+                  مهارت‌ها در رزومه فارسی ({{ additionalSkillsCount }} مهارت)
+                </div>
+
+                <!-- Additional Skills List -->
+
+                <div
+                  class="row items-center q-gutter-x-md q-pt-sm"
+                  v-for="aSkills in additionalSkills"
+                  :key="aSkills.name"
+                >
+                  <div
+                    class="br-4 q-pa-xs text-white row items-center q-gutter-x-sm"
+                    style="background-color: #5c6573 !important"
+                  >
+                    <img
+                      style="width: 16px"
+                      src="https://jobvision.ir/assets/images/cv-maker/trash-white.svg"
+                    />
+
+                    <div class="row q-pr-sm">
+                      <div class="text-bold">{{ aSkills.name }}</div>
+                    </div>
+                  </div>
+                </div>
+              </BadgeAndTitle>
+            </div>
+
+            <!-- Additional Information Start -->
+
+            <div class="q-mt-xl q-mb-lg text-bold text-center">
+              افزایش شانس استخدام شما تنها با تکمیل کردن اطلاعات تکمیلی زیر
+            </div>
+
+            <!-- Additional Information Cards -->
+
+            <div class="bg-white br-10 custom-shadow">
+              <useCard
+                :progressValue="progressValue"
+                title="مدیران و همکاران سابق"
+                :hasModel="true"
+                class="q-px-lg"
+                :isLarge="true"
+                :noCheckbox="true"
+                :isAdditional="true"
+              >
+                <div>
+                  <div class="q-gutter-y-sm">
+                    <div class="text-bold">عاشر قلیچ سید محمدی</div>
+
+                    <div class="text-grey-7">
+                      <div>مدیر در aytronic</div>
+                      <div>09112746075</div>
+                    </div>
+
+                    <div>
+                      <span class="text-grey-7"> از سال 1402 تا اکنون </span>
+                      <span>مدیر مستقیم</span>
+                    </div>
+                  </div>
+
+                  <q-btn
+                    dense
+                    flat
+                    color="primary"
+                    label="درخواست توصیه نامه"
+                  />
+                </div>
+              </useCard>
+
+              <q-separator />
+
+              <useCard
+                :progressValue="progressValue"
+                title="دوره‌های آموزشی"
+                :hasModel="true"
+                class="q-px-lg"
+                :isLarge="true"
+                :noCheckbox="true"
+                :isAdditional="true"
+              >
+                <div class="q-gutter-y-sm">
+                  <div class="text-bold">دوره نهم سفر به ماه</div>
+
+                  <div class="text-grey-7">عاشر قلیچ سید محمدی</div>
+
+                  <div class="text-grey-7">طول دوره: 1 سال</div>
+
+                  <div class="text-grey-7">1401</div>
+                </div>
+              </useCard>
+
+              <q-separator />
+
+              <useCard
+                :progressValue="progressValue"
+                title="جوایز و افتخارات"
+                :hasModel="true"
+                class="q-px-lg"
+                :noCheckbox="true"
+                :isAdditional="true"
+              >
+                <div class="q-gutter-y-sm">
+                  <div class="text-bold">
+                    نفر اول کشوری جشنواره نوجوان خوارزمی
+                  </div>
+
+                  <div class="text-grey-7">1402</div>
+                </div>
+              </useCard>
+
+              <q-separator />
+
+              <useCard
+                :progressValue="progressValue"
+                title="پروژه‌ها و تجربیات آکادمیک"
+                :hasModel="false"
+                class="q-px-lg"
+                :noCheckbox="true"
+                :isAdditional="true"
+              />
+            </div>
           </div>
 
           <!-- Left Side & Mobile Bottom Content -->
 
-          <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+          <div
+            :class="{ 'q-px-md': $q.screen.xs }"
+            class="col-xs- col-sm- col-md-4 col-lg-4 col-xl-4 q-gutter-lg"
+          >
             <!-- Resume Complition Rate Card -->
 
             <div class="q-py-md q-px-lg br-10 bg-white custom-shadow gt-sm">
@@ -414,11 +572,8 @@
                 </div>
 
                 <div class="flex items-center text-right">
-                  <q-icon
-                    class="col"
-                    name="cloud_download"
-                    color="primary"
-                    size="26px"
+                  <img
+                    src="https://jobvision.ir/assets/images/download-primary.svg"
                   />
                 </div>
               </div>
@@ -759,7 +914,7 @@
 </template>
 
 <script>
-import { ref, defineComponent } from "vue";
+import { ref, defineComponent, computed } from "vue";
 
 import UseCard from "../../../components/ResumeCard.vue";
 import BadgeAndTitle from "../../../components/ResumeCards/ResumeBadgeAndTitle.vue";
@@ -902,6 +1057,30 @@ export default defineComponent({
       },
     ]);
 
+    // Software Skills
+
+    const additionalSkills = ref([
+      {
+        name: "برنامه نویسی فرانت اند",
+      },
+      {
+        name: "اچ تی ام ال",
+      },
+      {
+        name: "سی اس اس",
+      },
+      {
+        name: "فیگما",
+      },
+      {
+        name: "کویزار",
+      },
+      {
+        name: "لاراول",
+      },
+    ]);
+    const additionalSkillsCount = computed(() => additionalSkills.value.length);
+
     return {
       langs,
       editEmail,
@@ -913,8 +1092,10 @@ export default defineComponent({
       noWorkExperience,
       basicInformation,
       progressValue: 0,
+      additionalSkills,
       hasWorkExperience,
       noUniversityEducation,
+      additionalSkillsCount,
       preferredOptions: ["خودم", "کارفرما"],
     };
   },
