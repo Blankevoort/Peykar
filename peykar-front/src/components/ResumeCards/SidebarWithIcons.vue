@@ -1,51 +1,11 @@
 <template>
   <div class="row items-center q-pb-md" :style="marginTopStyle">
-    <q-item style="background-color: white; border-radius: 8px" class="q-my-xs">
-      <q-item-section v-if="large" avatar>
-        <div
-          class="br-10 q-px-sm"
-          style="
-            background-color: #f6f7f9 !important;
-            padding-top: 30px;
-            padding-bottom: 30px;
-          "
-        >
-          <div>
-            <img
-              src="https://jobvision.ir/assets/images/cv-maker/edit-secondary.svg"
-            />
-          </div>
-
-          <img
-            class="q-pt-md"
-            src="https://jobvision.ir/assets/images/delete-secondary.svg"
-          />
-        </div>
-      </q-item-section>
-
-      <q-item-section v-if="small" avatar>
-        <div
-          class="br-10 q-py-lg q-px-sm"
-          style="background-color: #f6f7f9 !important"
-        >
-          <div>
-            <img
-              src="https://jobvision.ir/assets/images/cv-maker/edit-secondary.svg"
-            />
-          </div>
-
-          <img
-            class="q-pt-sm"
-            src="https://jobvision.ir/assets/images/delete-secondary.svg"
-          />
-        </div>
-      </q-item-section>
-
-      <q-item-section v-if="!small && !large" avatar>
-        <div
-          class="br-10 q-py-md q-px-sm"
-          style="background-color: #f6f7f9 !important"
-        >
+    <q-item
+      style="background-color: white; border-radius: 8px"
+      class="q-my-xs gt-xs"
+    >
+      <q-item-section avatar>
+        <div :class="sectionClass" :style="sectionStyle">
           <div>
             <img
               src="https://jobvision.ir/assets/images/cv-maker/edit-secondary.svg"
@@ -54,6 +14,7 @@
 
           <img
             class="q-pt-xs"
+            :class="ptClass"
             src="https://jobvision.ir/assets/images/delete-secondary.svg"
           />
         </div>
@@ -61,6 +22,62 @@
 
       <slot></slot>
     </q-item>
+
+    <slot></slot>
+
+    <div v-if="small" class="lt-sm">
+      <div
+        class="row items-center q-gutter-x-md q-py-sm br-10"
+        style="background-color: #f6f7f9 !important"
+      >
+        <img
+          style="width: 16px; height: 16px"
+          src="https://jobvision.ir/assets/images/cv-maker/edit-secondary.svg"
+        />
+
+        <img
+          style="height: 16px"
+          class="q-pr-lg"
+          src="https://jobvision.ir/assets/images/delete-secondary.svg"
+        />
+      </div>
+    </div>
+
+    <div v-if="large" class="lt-sm">
+      <div
+        class="row items-center justify-center q-gutter-x-md q-py-sm br-10"
+        style="background-color: #f6f7f9 !important; width: 145px"
+      >
+        <img
+          style="width: 16px; height: 16px"
+          src="https://jobvision.ir/assets/images/cv-maker/edit-secondary.svg"
+        />
+
+        <img
+          style="height: 16px"
+          class="q-pr-lg"
+          src="https://jobvision.ir/assets/images/delete-secondary.svg"
+        />
+      </div>
+    </div>
+
+    <div v-if="!small && !large" class="lt-sm">
+      <div
+        class="row items-center q-gutter-x-md q-py-sm br-10"
+        style="background-color: #f6f7f9 !important"
+      >
+        <img
+          style="width: 16px; height: 16px"
+          src="https://jobvision.ir/assets/images/cv-maker/edit-secondary.svg"
+        />
+
+        <img
+          style="height: 16px"
+          class="q-pr-lg"
+          src="https://jobvision.ir/assets/images/delete-secondary.svg"
+        />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -80,10 +97,32 @@ export default {
       default: false,
     },
   },
+
   computed: {
     marginTopStyle() {
       return {
         marginTop: this.additional ? "1.5rem" : "2rem",
+      };
+    },
+    sectionClass() {
+      return {
+        "br-10 q-px-sm": true,
+        "q-py-lg": this.small,
+        "q-py-md": !this.small && !this.large,
+      };
+    },
+    sectionStyle() {
+      return {
+        backgroundColor: "#f6f7f9 !important",
+        paddingTop: this.large ? "30px" : "",
+        paddingBottom: this.large ? "30px" : "",
+      };
+    },
+    ptClass() {
+      return {
+        "q-pt-sm": this.small,
+        "q-pt-md": this.large,
+        "q-pt-xs": !this.small && !this.large,
       };
     },
   },

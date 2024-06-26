@@ -4,11 +4,32 @@
       <!-- Preferred Resume & Resume Complition Rate -->
 
       <div>
+        <!-- Mobile Quick Access Section -->
+
+        <div class="bg-white text-bold lt-md fixed-on-top">
+          <div class="nav-container q-px-md">
+            <div class="tabs-wrapper">
+              <div
+                v-for="tab in tabs"
+                :key="tab.name"
+                :class="['nav-tab', { active: activeTab === tab.name }]"
+                @click="setActiveTab(tab.name)"
+              >
+                {{ tab.label }}
+                <div class="underline" v-if="activeTab === tab.name"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <!-- Resume Complition Rate -->
 
         <div
-          class="lt-md bg-white q-pa-md"
-          style="box-shadow: 0 0.125rem 0.25rem #00000013 !important"
+          class="lt-md bg-white q-px-md q-pt-md q-pb-sm"
+          style="
+            box-shadow: 0 0.125rem 0.25rem #00000013 !important;
+            margin-top: 54px;
+          "
         >
           <div class="text-positive text-center text-bold">100% تکمیل شده</div>
 
@@ -86,17 +107,18 @@
       </div>
 
       <!-- Resume Details -->
+
       <div class="q-mt-lg">
         <div class="row justify-between">
           <!-- Right Side -->
 
           <div
             :class="{ 'q-px-md': $q.screen.xs }"
-            class="col-xs- col-sm- col-md-8 col-lg-8 col-xl-8 q-gutter-lg"
+            class="col-xs- col-sm- col-md-8 col-lg-8 col-xl-8 q-gutter-y-lg"
           >
             <!-- About -->
 
-            <div class="q-px-lg bg-white br-10 custom-shadow">
+            <div id="about" :class="paddingClass">
               <BadgeAndTitle
                 :progressValue="progressValue"
                 title="درباره من"
@@ -144,7 +166,9 @@
                           >
                             <div>دولوپر فول استک در شرکت آیترونیک</div>
 
-                            <q-icon name="edit" size="18px" />
+                            <img
+                              src="https://jobvision.ir/assets/images/cv-maker/edit-secondary.svg"
+                            />
                           </div>
                         </div>
                       </div>
@@ -181,7 +205,7 @@
 
             <!-- Basic Information -->
 
-            <div class="q-px-lg bg-white br-10 custom-shadow">
+            <div id="info" :class="paddingClass">
               <BadgeAndTitle
                 :progressValue="progressValue"
                 title="اطلاعات اولیه"
@@ -203,7 +227,7 @@
 
             <!-- Educational Records -->
 
-            <div class="q-px-lg bg-white br-10 custom-shadow">
+            <div id="education" :class="paddingClass">
               <useCard
                 :progressValue="progressValue"
                 title="سوابق تحصیلی"
@@ -213,6 +237,7 @@
                 noModel="تحصیلات دانشگاهی ندارم"
                 :educationSection="true"
                 :checkboxModel="noUniversityEducation"
+                :isSmall="true"
               >
                 <div class="q-gutter-y-xs">
                   <div class="text-bold">سطح: رشته</div>
@@ -228,7 +253,7 @@
 
             <!-- Work Experience -->
 
-            <div class="bg-white br-10 custom-shadow">
+            <div id="workExperience" class="bg-white br-10 custom-shadow">
               <!-- Main Card -->
 
               <useCard
@@ -240,7 +265,6 @@
                 noModel="سوابق شغلی ندارم"
                 :educationSection="true"
                 :checkboxModel="noWorkExperience"
-                :isSmall="true"
                 class="q-px-lg"
               >
                 <div class="q-gutter-y-sm">
@@ -309,7 +333,7 @@
 
             <!-- Languages -->
 
-            <div class="q-px-lg bg-white br-10 custom-shadow">
+            <div id="languages" :class="paddingClass">
               <BadgeAndTitle
                 :progressValue="progressValue"
                 title="زبان‌ها"
@@ -318,7 +342,7 @@
                 <!-- Langs List -->
 
                 <div
-                  class="row items-center q-gutter-x-md q-pt-sm"
+                  class="row items-center q-pt-sm"
                   v-for="lang in langs"
                   :key="lang.name"
                 >
@@ -349,7 +373,7 @@
 
             <!-- Software Skills -->
 
-            <div class="q-px-lg bg-white br-10 custom-shadow">
+            <div id="softwareSkills" :class="paddingClass">
               <BadgeAndTitle
                 :progressValue="progressValue"
                 title="مهارت های نرم افزاری"
@@ -357,7 +381,7 @@
               >
                 <!-- Software Skills List -->
 
-                <div class="row items-center">
+                <div class="row items-center q-pt-lg">
                   <div
                     class="col- row items-center q-pt-sm q-px-sm"
                     v-for="software in softwareSkills"
@@ -395,7 +419,7 @@
 
             <!-- Additional Skills -->
 
-            <div class="q-px-lg bg-white br-10 custom-shadow">
+            <div id="additionalSkills" :class="paddingClass">
               <BadgeAndTitle
                 :progressValue="progressValue"
                 title="مهارت‌های تکمیلی"
@@ -449,6 +473,7 @@
                 :isLarge="true"
                 :noCheckbox="true"
                 :isAdditional="true"
+                id="formerColleagues"
               >
                 <div>
                   <div class="q-gutter-y-sm">
@@ -484,6 +509,7 @@
                 :isLarge="true"
                 :noCheckbox="true"
                 :isAdditional="true"
+                id="educationCourses"
               >
                 <div class="q-gutter-y-sm">
                   <div class="text-bold">دوره نهم سفر به ماه</div>
@@ -505,6 +531,7 @@
                 class="q-px-lg"
                 :noCheckbox="true"
                 :isAdditional="true"
+                id="awards"
               >
                 <div class="q-gutter-y-sm">
                   <div class="text-bold">
@@ -524,6 +551,7 @@
                 class="q-px-lg"
                 :noCheckbox="true"
                 :isAdditional="true"
+                id="academicExperiences"
               />
             </div>
           </div>
@@ -536,7 +564,7 @@
           >
             <!-- Resume Complition Rate Card -->
 
-            <div class="q-py-md q-px-lg br-10 bg-white custom-shadow gt-sm">
+            <div :class="[paddingClass, 'q-py-md', 'gt-sm']">
               <!-- Card Title -->
 
               <div class="row items-center q-gutter-xs">
@@ -620,7 +648,7 @@
             <div class="q-py-md br-10 bg-white q-my-lg custom-shadow">
               <!-- Contact Ways -->
 
-              <div class="q-px-lg">
+              <div id="contactWays" class="q-px-lg">
                 <div :class="titleClass">اطلاعات تماس</div>
 
                 <div class="q-gutter-y-sm q-pt-md q-pb-lg">
@@ -666,7 +694,7 @@
 
               <!-- Voice -->
 
-              <div class="q-px-lg">
+              <div id="voice" class="q-px-lg">
                 <BadgeAndTitle
                   :progressValue="progressValue"
                   title="معرفی صوتی"
@@ -704,7 +732,7 @@
 
               <!-- Personal Resume -->
 
-              <div class="q-px-lg">
+              <div id="personalResume" class="q-px-lg">
                 <BadgeAndTitle
                   :progressValue="progressValue"
                   title="بارگذاری رزومه شخصی"
@@ -733,7 +761,7 @@
 
             <!-- Portfolio -->
 
-            <div class="br-10 bg-white q-my-lg custom-shadow">
+            <div id="portfolio" class="br-10 bg-white q-my-lg custom-shadow">
               <div class="q-px-lg">
                 <BadgeAndTitle
                   :progressValue="progressValue"
@@ -789,6 +817,7 @@
             <!-- Calculator -->
 
             <div
+              id="calculator"
               class="br-10 q-my-lg custom-shadow"
               style="background-color: #eeeffe !important"
             >
@@ -820,7 +849,7 @@
 
             <!-- Test Results -->
 
-            <div class="br-10 bg-white q-my-lg custom-shadow">
+            <div id="testResults" class="br-10 bg-white q-my-lg custom-shadow">
               <div class="q-px-lg q-py-md">
                 <!-- Test Results Title -->
 
@@ -928,10 +957,20 @@ export default defineComponent({
   },
 
   computed: {
+    paddingClass() {
+      return {
+        "q-px-xs": this.$q.screen.xs,
+        "q-px-lg": !this.$q.screen.xs,
+        "br-10": true,
+        "bg-white": true,
+        "custom-shadow": true,
+      };
+    },
     preferredResumeClasses() {
       return {
         "bg-white": this.$q.screen.gt.sm,
-        "q-pa-md": true,
+        "q-px-md": true,
+        "q-pt-md": true,
         "full-width": true,
         row: true,
         "justify-between": true,
@@ -986,6 +1025,27 @@ export default defineComponent({
   },
 
   setup() {
+    const tabs = ref([
+      { name: "about", label: "درباره من" },
+      { name: "info", label: "اطلاعات اولیه" },
+      { name: "education", label: "سوابق تحصیلی" },
+      { name: "workExperience", label: "سوابق شغلی" },
+      { name: "languages", label: "زبان‌ها" },
+      { name: "softwareSkills", label: "مهارت های نرم افزاری" },
+      { name: "additionalSkills", label: "مهارت‌های تکمیلی" },
+      { name: "formerColleagues", label: "مدیران و همکاران سابق" },
+      { name: "educationCourses", label: "دوره‌های آموزشی" },
+      { name: "awards", label: "جوایز و افتخارات" },
+      { name: "academicExperiences", label: "پروژه‌ها و تجربیات آکادمیک" },
+      { name: "contactWays", label: "اطلاعات تماس" },
+      { name: "voice", label: "معرفی صوتی" },
+      { name: "personalResume", label: "بارگذاری رزومه شخصی" },
+      { name: "portfolio", label: "نمونه کارها" },
+      { name: "calculator", label: "ماشین حساب حقوق و دستمزد" },
+      { name: "testResults", label: "سنتایج تست‌های" },
+    ]);
+    const activeTab = ref("about");
+
     const editEmail = ref(false);
     const editPhone = ref(false);
     const preferred = ref("خودم");
@@ -1081,14 +1141,30 @@ export default defineComponent({
     ]);
     const additionalSkillsCount = computed(() => additionalSkills.value.length);
 
+    function setActiveTab(tabName) {
+      activeTab.value = tabName;
+      scrollToSection(tabName);
+    }
+
+    function scrollToSection(newTab) {
+      const section = document.getElementById(newTab);
+      if (section) {
+        section.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+
     return {
+      tabs,
       langs,
+      activeTab,
       editEmail,
       editPhone,
       preferred,
       value: 100,
+      setActiveTab,
       hasEducation,
       softwareSkills,
+      scrollToSection,
       noWorkExperience,
       basicInformation,
       progressValue: 0,
@@ -1125,6 +1201,52 @@ export default defineComponent({
   width: 40px;
   height: 40px;
 }
+
+.fixed-on-top {
+  position: fixed;
+  box-shadow: 0 0.125rem 0.25rem #00000013 !important;
+  z-index: 1000;
+  top: 68px;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.tabs-wrapper {
+  display: flex;
+  overflow-x: auto;
+  scrollbar-width: none;
+  width: 100%;
+}
+
+.nav-tab {
+  position: relative;
+  cursor: pointer;
+  color: black;
+  font-weight: normal;
+  padding: 1rem 1rem;
+  flex-shrink: 0;
+  font-weight: bold;
+}
+
+.nav-tab.active {
+  font-weight: bold;
+  color: #5660f2 !important;
+}
+
+.nav-tab .underline {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 6px;
+  background: #5660f2;
+  bottom: 0;
+  right: 0;
+  border-radius: 6px 6px 0 0;
+}
+
 .active-tabs {
   background-color: #5660f2 !important;
   color: white !important;

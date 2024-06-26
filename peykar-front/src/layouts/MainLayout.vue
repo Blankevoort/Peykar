@@ -3,8 +3,15 @@
     <!-- Header -->
 
     <q-header
-      class="row justify-center q-py-sm"
-      style="border-bottom: 2px solid #dde1e6"
+      class="row justify-center q-py-sm fixed-top"
+      style="
+        border-bottom: 2px solid #dde1e6;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1000;
+        background-color: white;
+      "
     >
       <q-toolbar class="col-md-11 col-lg-8 col-xl-7 gt-sm">
         <!-- Logo And Links -->
