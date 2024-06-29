@@ -137,6 +137,7 @@ onMounted(() => {
             { title: "فعالیت‌های داوطلبانه در جمعیت هلال احمر", year: 2020 },
           ],
         },
+        updated: new Date().toISOString(),
       },
     };
 

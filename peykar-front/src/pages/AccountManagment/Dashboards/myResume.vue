@@ -265,7 +265,7 @@
                 noModel="سوابق شغلی ندارم"
                 :educationSection="true"
                 :checkboxModel="noWorkExperience"
-                class="q-px-lg"
+                class="q-px-md"
               >
                 <div class="q-gutter-y-sm">
                   <div class="text-bold">عنوان شغلی</div>
@@ -341,29 +341,32 @@
               >
                 <!-- Langs List -->
 
-                <div
-                  class="row items-center q-pt-sm"
-                  v-for="lang in langs"
-                  :key="lang.name"
-                >
-                  <div class="col-1 flex items-center">
-                    <img
-                      style="width: 16px"
-                      src="https://jobvision.ir/assets/images/delete-secondary.svg"
-                    />
-                  </div>
+                <div class="q-gutter-y-sm q-pt-md">
+                  <div
+                    :class="{ 'q-px-md ': $q.screen.xs }"
+                    class="row items-center"
+                    v-for="lang in langs"
+                    :key="lang.name"
+                  >
+                    <div class="col-1 flex items-center">
+                      <img
+                        style="width: 16px"
+                        src="https://jobvision.ir/assets/images/delete-secondary.svg"
+                      />
+                    </div>
 
-                  <div class="col-">
-                    <div>
-                      <div
-                        class="br-4 q-pa-xs text-white row items-center q-gutter-x-sm"
-                        style="background-color: #5c6573 !important"
-                      >
-                        <div class="text-bold">{{ lang.name }}</div>
+                    <div class="col-">
+                      <div>
+                        <div
+                          class="br-4 q-pa-xs text-white row items-center q-gutter-x-sm"
+                          style="background-color: #5c6573 !important"
+                        >
+                          <div class="text-bold">{{ lang.name }}</div>
 
-                        <q-separator class="q-py-xs" color="white" vertical />
+                          <q-separator class="q-py-xs" color="white" vertical />
 
-                        <div>{{ lang.level }}</div>
+                          <div>{{ lang.level }}</div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -995,7 +998,7 @@ export default defineComponent({
   computed: {
     paddingClass() {
       return {
-        "q-px-xs": this.$q.screen.xs,
+        "q-px-sm": this.$q.screen.xs,
         "q-px-lg": !this.$q.screen.xs,
         "br-10": true,
         "bg-white": true,

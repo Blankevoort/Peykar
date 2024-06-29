@@ -9,7 +9,12 @@
     >
       <!-- Content -->
 
-      <SidebarWithIcons :additional="isAdditional" :small="isSmall" :large="isLarge" v-if="hasModel">
+      <SidebarWithIcons
+        :additional="isAdditional"
+        :small="isSmall"
+        :large="isLarge"
+        v-if="hasModel"
+      >
         <div class="flex items-center">
           <slot> </slot>
         </div>
@@ -55,7 +60,6 @@ export default {
     SidebarWithIcons,
     RadioGroupWithConditionalSlot,
   },
-
   props: {
     title: String,
     noModel: String,
@@ -74,7 +78,6 @@ export default {
     educationSection: Boolean,
     disableEditButton: Boolean,
   },
-
   setup() {
     const diploma = ref(false);
 
@@ -104,5 +107,8 @@ export default {
 <style scoped>
 .br-10 {
   border-radius: 10px;
+}
+.q-item {
+  padding: 0;
 }
 </style>

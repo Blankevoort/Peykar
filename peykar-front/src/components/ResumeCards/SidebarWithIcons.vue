@@ -22,61 +22,26 @@
 
       <slot></slot>
     </q-item>
+  </div>
 
-    <div class="lt-sm">
-      <slot> </slot>
+  <div class="lt-sm">
+    <slot></slot>
 
+    <div class="flex items-center justify-center q-mt-md">
       <div
-        class="row items-center q-gutter-x-md q-py-sm br-10"
+        class="row justify-center items-center q-gutter-x-md q-py-sm br-10"
         style="background-color: #f6f7f9 !important"
-        v-if="small"
+        :class="{ 'w-36': large }"
       >
         <img
           style="width: 16px; height: 16px"
           src="https://jobvision.ir/assets/images/cv-maker/edit-secondary.svg"
         />
-
         <img
           style="height: 16px"
           class="q-pr-lg"
           src="https://jobvision.ir/assets/images/delete-secondary.svg"
         />
-      </div>
-
-      <div v-if="large" class="lt-sm">
-        <div
-          class="row items-center justify-center q-gutter-x-md q-py-sm br-10"
-          style="background-color: #f6f7f9 !important; width: 145px"
-        >
-          <img
-            style="width: 16px; height: 16px"
-            src="https://jobvision.ir/assets/images/cv-maker/edit-secondary.svg"
-          />
-
-          <img
-            style="height: 16px"
-            class="q-pr-lg"
-            src="https://jobvision.ir/assets/images/delete-secondary.svg"
-          />
-        </div>
-      </div>
-
-      <div v-if="!small && !large" class="lt-sm">
-        <div
-          class="row items-center q-gutter-x-md q-py-sm br-10"
-          style="background-color: #f6f7f9 !important"
-        >
-          <img
-            style="width: 16px; height: 16px"
-            src="https://jobvision.ir/assets/images/cv-maker/edit-secondary.svg"
-          />
-
-          <img
-            style="height: 16px"
-            class="q-pr-lg"
-            src="https://jobvision.ir/assets/images/delete-secondary.svg"
-          />
-        </div>
       </div>
     </div>
   </div>
