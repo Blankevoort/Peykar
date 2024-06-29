@@ -84,10 +84,6 @@
                   <q-item-section>
                     <q-item-label v-if="user.name">
                       {{ user.name }}
-
-                      <q-btn flat>
-                        <q-icon size="20px" name="edit" @click="toggleDialog" />
-                      </q-btn>
                     </q-item-label>
 
                     <q-item-label v-else>
@@ -95,14 +91,32 @@
                         color="secondary"
                         flat
                         label="افزودن نام"
-                        @click="toggleDialog"
+                        @click="toggleNameDialog"
                       />
                     </q-item-label>
 
-                    <q-item-label lines="2">
+                    <q-item-label v-if="user.jobTitle" lines="2">
                       <div class="text-black q-mb-sm" style="font-size: 12px">
-                        دولوپر فول استک در شرکت آیترونیک.
+                        {{ user.jobTitle }}
+
+                        <q-btn flat>
+                          <q-icon
+                            size="20px"
+                            name="edit"
+                            @click="toggleJobTitleDialog"
+                          />
+                        </q-btn>
                       </div>
+                    </q-item-label>
+
+                    <q-item-label lines="2" v-else>
+                      <q-btn
+                        color="secondary"
+                        flat
+                        dense
+                        label="افزودن عنوان شغلی"
+                        @click="toggleJobTitleDialog"
+                      />
                     </q-item-label>
                   </q-item-section>
                 </q-item>
@@ -429,6 +443,38 @@
                 color="primary"
                 label="تغییر"
                 @click="changeName"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </q-dialog>
+
+    <q-dialog v-model="addJobTitle">
+      <div class="relative-position bg-white q-pa-md" style="width: 600px">
+        <div class="absolute-right q-pt-xs">
+          <q-btn flat color="grey-6" icon="cancel" @click="share = false" />
+        </div>
+
+        <div class="full-width q-my-md">
+          <span class="text-grey-7">عنوان شغلی</span>
+
+          <div class="row justify-between q-my-sm q-px-xs">
+            <div
+              class="col-xs-12 col-sm-9 col-md-9 col-lg-9 col-xl-9 q-px-sm q-mt-sm"
+            >
+              <q-input outlined color="grey-5" v-model="jobTitle" />
+            </div>
+
+            <div
+              class="col-xs-12 col-sm-3 col-md-3 col-lg-3 col-xl-3 q-px-sm q-mt-sm text-center row"
+            >
+              <q-btn
+                class="col-xs-12 col-sm-12"
+                outline
+                color="primary"
+                label="تغییر"
+                @click="changeJobTitle"
               />
             </div>
           </div>
@@ -1339,9 +1385,11 @@ export default defineComponent({
     const user = getUser();
     const drawer = ref();
     const user_name = ref();
+    const jobTitle = ref();
     const tab = ref("default");
     const addName = ref(false);
     const expanded = ref(false);
+    const addJobTitle = ref(false);
     const expandedTwo = ref(false);
     const expandedThree = ref(false);
 
@@ -1382,9 +1430,12 @@ export default defineComponent({
       },
     ]);
 
-    function toggleDialog() {
+    function toggleNameDialog() {
       addName.value = !addName.value;
-      console.log(addName.value);
+    }
+
+    function toggleJobTitleDialog() {
+      addJobTitle.value = !addJobTitle.value;
     }
 
     function changeName() {
@@ -1395,7 +1446,22 @@ export default defineComponent({
           userObj.name = user_name.value;
           localStorage.setItem("user", JSON.stringify(userObj));
           user.value = userObj;
-          toggleDialog();
+          toggleNameDialog();
+        }
+      } catch (error) {
+        console.error("Error changing name in localStorage:", error);
+      }
+    }
+
+    function changeJobTitle() {
+      try {
+        const userData = localStorage.getItem("user");
+        if (userData) {
+          const userObj = JSON.parse(userData);
+          userObj.jobTitle = jobTitle.value;
+          localStorage.setItem("user", JSON.stringify(userObj));
+          user.value = userObj;
+          toggleJobTitleDialog();
         }
       } catch (error) {
         console.error("Error changing name in localStorage:", error);
@@ -1425,15 +1491,19 @@ export default defineComponent({
       logout,
       drawer,
       addName,
+      jobTitle,
       expanded,
       questions,
       user_name,
       updateTab,
       changeName,
+      addJobTitle,
       expandedTwo,
       toggleDrawer,
-      toggleDialog,
       expandedThree,
+      changeJobTitle,
+      toggleNameDialog,
+      toggleJobTitleDialog,
     };
   },
 });

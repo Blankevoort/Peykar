@@ -42,6 +42,7 @@ onMounted(() => {
     const user = {
       id: 1,
       name: "نام و نام خانوادگی",
+      jobTitle: "دولوپر فول استک در شرکت آیترونیک",
       email: "email@example.com",
       phone: "09123456789",
       role: "job_seeker",
@@ -69,7 +70,7 @@ onMounted(() => {
               grade: 17.5,
               startYear: 2010,
               endYear: 2014,
-              isStudying: false,
+              isStudying: false, // هنوز در این مقطع مشغول به تحصیل هستم
             },
           ],
         },
@@ -92,44 +93,50 @@ onMounted(() => {
           { language: "انگلیسی", proficiency: "پیشرفته" },
           { language: "فرانسه", proficiency: "متوسط" },
         ],
-        additionalSkills: [
-          { id: 1, name: "برنامه‌نویسی جاوا" },
-          { id: 2, name: "توسعه وب با Vue.js" },
+        softwareSkills: [
+          { name: "برنامه‌نویسی جاوا", skill: "پیشرفته" },
+          { name: "توسعه وب با Vue.js", skill: "متوسط" },
         ],
-        references: [
-          {
-            fullName: "محمد محمدی",
-            companyName: "شرکت XYZ",
-            jobTitle: "مدیر پروژه",
-            relationship: "همکار سابق",
-            startYear: 2018,
-            isCurrentlyWorking: true,
-            contactNumber: "09121234567",
-          },
-        ],
-        courses: [
-          {
-            institution: "آموزشگاه ABC",
-            organizer: "آموزشگاه ABC",
-            courseName: "دوره برنامه‌نویسی وب",
-            courseYear: 2020,
-            courseDuration: "3 ماه",
-            country: "ایران",
-            hasCertificate: true,
-          },
-        ],
-        awards: [{ title: "برترین برنامه‌نویس", year: 2019 }],
-        projects: [{ title: "پروژه توسعه نرم‌افزار مدیریت", year: 2021 }],
-        publications: [
-          {
-            title: "کتاب برنامه‌نویسی پیشرفته",
-            publisher: "ناشر XYZ",
-            year: 2022,
-          },
-        ],
-        volunteerActivities: [
-          { title: "فعالیت‌های داوطلبانه در جمعیت هلال احمر", year: 2020 },
-        ],
+        additionalSkills: [{ name: "مدیریت پروژه" }, { name: "تحلیل داده" }],
+        additionalInformation: {
+          formerColleagues: [
+            {
+              fullName: "محمد محمدی",
+              organizationName: "شرکت XYZ",
+              jobTitle: "مدیر پروژه",
+              organizationalRelationship: "همکار سابق",
+              startYear: 2018,
+              endYear: 2023,
+              weStillWorkTogether: false,
+              contactNumber: "09121234567",
+            },
+          ],
+          educationCourses: [
+            {
+              educationalInstitute: "آموزشگاه ABC",
+              organizer: "آموزشگاه ABC",
+              courseName: "دوره برنامه‌نویسی وب",
+              courseYear: 2020,
+              courseDuration: "3 ماه",
+              country: "ایران",
+              hasCertificate: true,
+            },
+          ],
+          awards: [{ title: "برترین برنامه‌نویس", year: 2019 }],
+          academicExperiences: [
+            { title: "پروژه توسعه نرم‌افزار مدیریت", year: 2021 },
+          ],
+          publications: [
+            {
+              title: "کتاب برنامه‌نویسی پیشرفته",
+              publisher: "ناشر XYZ",
+              year: 2022,
+            },
+          ],
+          volunteerActivities: [
+            { title: "فعالیت‌های داوطلبانه در جمعیت هلال احمر", year: 2020 },
+          ],
+        },
       },
     };
 

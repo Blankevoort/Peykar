@@ -465,6 +465,8 @@
             <!-- Additional Information Cards -->
 
             <div class="bg-white br-10 custom-shadow">
+              <!-- Former Colleagues -->
+
               <useCard
                 :progressValue="progressValue"
                 title="مدیران و همکاران سابق"
@@ -501,6 +503,8 @@
 
               <q-separator />
 
+              <!-- Education Courses -->
+
               <useCard
                 :progressValue="progressValue"
                 title="دوره‌های آموزشی"
@@ -524,6 +528,8 @@
 
               <q-separator />
 
+              <!-- Awards -->
+
               <useCard
                 :progressValue="progressValue"
                 title="جوایز و افتخارات"
@@ -544,6 +550,8 @@
 
               <q-separator />
 
+              <!-- Academic Experiences -->
+
               <useCard
                 :progressValue="progressValue"
                 title="پروژه‌ها و تجربیات آکادمیک"
@@ -553,13 +561,41 @@
                 :isAdditional="true"
                 id="academicExperiences"
               />
+
+              <q-separator />
+
+              <!-- Books and Articles -->
+
+              <useCard
+                :progressValue="progressValue"
+                title="کتاب‌ها و مقالات"
+                :hasModel="false"
+                class="q-px-lg"
+                :noCheckbox="true"
+                :isAdditional="true"
+                id="booksAndArticles"
+              />
+
+              <q-separator />
+
+              <!-- Voluntary Activities -->
+
+              <useCard
+                :progressValue="progressValue"
+                title="فعالیت‌های داوطلبانه"
+                :hasModel="false"
+                class="q-px-lg"
+                :noCheckbox="true"
+                :isAdditional="true"
+                id="voluntaryActivities"
+              />
             </div>
           </div>
 
           <!-- Left Side & Mobile Bottom Content -->
 
           <div
-            :class="{ 'q-px-md': $q.screen.xs }"
+            :class="{ 'q-pa-md': $q.screen.xs }"
             class="col-xs- col-sm- col-md-4 col-lg-4 col-xl-4 q-gutter-lg"
           >
             <!-- Resume Complition Rate Card -->
@@ -969,8 +1005,7 @@ export default defineComponent({
     preferredResumeClasses() {
       return {
         "bg-white": this.$q.screen.gt.sm,
-        "q-px-md": true,
-        "q-pt-md": true,
+        "q-pa-md": true,
         "full-width": true,
         row: true,
         "justify-between": true,
