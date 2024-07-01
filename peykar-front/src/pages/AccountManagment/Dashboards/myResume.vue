@@ -239,14 +239,22 @@
                 :checkboxModel="noUniversityEducation"
                 :isSmall="true"
               >
-                <div class="q-gutter-y-xs">
-                  <div class="text-bold">سطح: رشته</div>
+                <div
+                  v-for="edu in educationData"
+                  :key="edu"
+                  class="q-gutter-y-xs"
+                >
+                  <div class="text-bold">
+                    سطح: {{ edu.degree }} رشته: {{ edu.field }}
+                  </div>
 
-                  <div class="text-grey-7">نام دانشگاه</div>
+                  <div class="text-grey-7">{{ edu.university }}</div>
 
-                  <div class="text-grey-7">سال تحصیل - سال پایان</div>
+                  <div class="text-grey-7">
+                    {{ edu.startYear }} - {{ edu.endYear }}
+                  </div>
 
-                  <div class="text-grey-7">معدل: معدل</div>
+                  <div class="text-grey-7">معدل: {{ edu.grade }}</div>
                 </div>
               </useCard>
             </div>
@@ -266,12 +274,27 @@
                 :educationSection="true"
                 :checkboxModel="noWorkExperience"
               >
-                <div class="q-gutter-y-sm">
-                  <div class="text-bold">عنوان شغلی</div>
+                <div
+                  v-for="experience in workExperienceData"
+                  :key="experience"
+                  class="q-gutter-y-xs"
+                >
+                  <div class="text-bold">
+                    عنوان شغلی: {{ experience.jobTitle }}
+                  </div>
 
-                  <div class="text-bold">نام سازمان</div>
+                  <div class="text-bold">
+                    نام سازمان: {{ experience.companyName }}
+                  </div>
 
-                  <div class="text-grey-7">از ماه و سال شروع - پایان</div>
+                  <div class="text-grey-7">
+                    از {{ experience.startYear }} تا
+                    {{
+                      experience.isCurrentlyWorking
+                        ? "تاکنون"
+                        : experience.endDate
+                    }}
+                  </div>
                 </div>
               </useCard>
 
@@ -310,7 +333,7 @@
                       به دیگران کمک کنید تا محیط کار مناسب خود را پیدا کنند.
                     </div>
 
-                    <div class="q-pt-sm">
+                    <div class="q-pt-sm full-width">
                       <q-btn
                         flat
                         icon-right="keyboard_backspace"
@@ -360,11 +383,11 @@
                           class="br-4 q-pa-xs text-white row items-center q-gutter-x-sm"
                           style="background-color: #5c6573 !important"
                         >
-                          <div class="text-bold">{{ lang.name }}</div>
+                          <div class="text-bold">{{ lang.language }}</div>
 
                           <q-separator class="q-py-xs" color="white" vertical />
 
-                          <div>{{ lang.level }}</div>
+                          <div class="q-pr-sm">{{ lang.proficiency }}</div>
                         </div>
                       </div>
                     </div>
@@ -409,7 +432,7 @@
                               vertical
                             />
 
-                            <div>{{ software.level }}</div>
+                            <div class="q-pr-sm">{{ software.skill }}</div>
                           </div>
                         </div>
                       </div>
@@ -479,28 +502,32 @@
                 :isAdditional="true"
                 id="formerColleagues"
               >
-                <div>
-                  <div class="q-gutter-y-sm">
-                    <div class="text-bold">عاشر قلیچ سید محمدی</div>
+                <div
+                  class="q-gutter-y-sm"
+                  v-for="colleague in formerColleagues"
+                  :key="colleague.name"
+                >
+                  <div class="text-bold">{{ colleague.fullName }}</div>
 
-                    <div class="text-grey-7">
-                      <div>مدیر در aytronic</div>
-                      <div>09112746075</div>
-                    </div>
-
-                    <div>
-                      <span class="text-grey-7"> از سال 1402 تا اکنون </span>
-                      <span>مدیر مستقیم</span>
-                    </div>
+                  <div class="text-grey-7">
+                    <div>مدیر در {{ colleague.organizationName }}</div>
+                    <div>{{ colleague.contactNumber }}</div>
                   </div>
 
-                  <q-btn
-                    dense
-                    flat
-                    color="primary"
-                    label="درخواست توصیه نامه"
-                  />
+                  <div>
+                    <span class="text-grey-7">
+                      از {{ colleague.startYear }} تا
+                      {{
+                        colleague.weStillWorkTogether
+                          ? "اکنون"
+                          : colleague.endYear
+                      }}
+                    </span>
+                    <span>{{ colleague.organizationalRelationship }}</span>
+                  </div>
                 </div>
+
+                <q-btn dense flat color="primary" label="درخواست توصیه نامه" />
               </useCard>
 
               <q-separator />
@@ -517,14 +544,18 @@
                 :isAdditional="true"
                 id="educationCourses"
               >
-                <div class="q-gutter-y-sm">
-                  <div class="text-bold">دوره نهم سفر به ماه</div>
+                <div
+                  class="q-gutter-y-sm"
+                  v-for="eduCourses in educationCoursesData"
+                  :key="eduCourses"
+                >
+                  <div class="text-bold">{{ eduCourses.courseName }}</div>
 
-                  <div class="text-grey-7">عاشر قلیچ سید محمدی</div>
+                  <div class="text-grey-7">{{ eduCourses.organizer }}</div>
 
-                  <div class="text-grey-7">طول دوره: 1 سال</div>
+                  <div class="text-grey-7">{{ eduCourses.courseDuration }}</div>
 
-                  <div class="text-grey-7">1401</div>
+                  <div class="text-grey-7">{{ eduCourses.courseYear }}</div>
                 </div>
               </useCard>
 
@@ -541,12 +572,18 @@
                 :isAdditional="true"
                 id="awards"
               >
-                <div class="q-gutter-y-sm">
+                <div
+                  class="q-gutter-y-sm"
+                  v-for="award in awardsData"
+                  :key="award"
+                >
                   <div class="text-bold">
-                    نفر اول کشوری جشنواره نوجوان خوارزمی
+                    {{ award.title }}
                   </div>
 
-                  <div class="text-grey-7">1402</div>
+                  <div class="text-grey-7">
+                    {{ award.year }}
+                  </div>
                 </div>
               </useCard>
 
@@ -557,12 +594,26 @@
               <useCard
                 :progressValue="progressValue"
                 title="پروژه‌ها و تجربیات آکادمیک"
-                :hasModel="false"
+                :hasModel="true"
                 class="q-px-lg"
                 :noCheckbox="true"
                 :isAdditional="true"
                 id="academicExperiences"
-              />
+              >
+                <div
+                  class="q-gutter-y-sm"
+                  v-for="academicExperiences in academicExperiencesData"
+                  :key="academicExperiences"
+                >
+                  <div class="text-bold">
+                    {{ academicExperiences.title }}
+                  </div>
+
+                  <div class="text-grey-7">
+                    {{ academicExperiences.year }}
+                  </div>
+                </div>
+              </useCard>
 
               <q-separator />
 
@@ -571,12 +622,30 @@
               <useCard
                 :progressValue="progressValue"
                 title="کتاب‌ها و مقالات"
-                :hasModel="false"
+                :hasModel="true"
                 class="q-px-lg"
                 :noCheckbox="true"
                 :isAdditional="true"
                 id="booksAndArticles"
-              />
+              >
+                <div
+                  class="q-gutter-y-sm"
+                  v-for="booksAndArticles in booksAndArticlesData"
+                  :key="booksAndArticles"
+                >
+                  <div class="text-bold">
+                    {{ booksAndArticles.title }}
+                  </div>
+
+                  <div class="text-grey-7">
+                    {{ booksAndArticles.publisher }}
+                  </div>
+
+                  <div class="text-grey-7">
+                    {{ booksAndArticles.year }}
+                  </div>
+                </div>
+              </useCard>
 
               <q-separator />
 
@@ -585,12 +654,26 @@
               <useCard
                 :progressValue="progressValue"
                 title="فعالیت‌های داوطلبانه"
-                :hasModel="false"
+                :hasModel="true"
                 class="q-px-lg"
                 :noCheckbox="true"
                 :isAdditional="true"
                 id="voluntaryActivities"
-              />
+              >
+                <div
+                  class="q-gutter-y-sm"
+                  v-for="voluntaryActivity in voluntaryActivitiesData"
+                  :key="voluntaryActivity"
+                >
+                  <div class="text-bold">
+                    {{ voluntaryActivity.title }}
+                  </div>
+
+                  <div class="text-grey-7">
+                    {{ voluntaryActivity.year }}
+                  </div>
+                </div>
+              </useCard>
             </div>
           </div>
 
@@ -705,7 +788,7 @@
                     </div>
 
                     <div class="text-bold q-pt-sm">
-                      moeensedaghaty86@gmail.com
+                      {{ user.email }}
                     </div>
                   </div>
 
@@ -723,7 +806,9 @@
                       />
                     </div>
 
-                    <div class="text-bold q-pt-sm">09379608155</div>
+                    <div class="text-bold q-pt-sm">
+                      {{ user.phone }}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -812,14 +897,14 @@
                     <div class="row">
                       <!-- Acion Buttons -->
 
-                      <div class="col-3 text-grey-8">
+                      <div class="col- text-grey-8">
                         <q-icon name="delete" size="24px" />
                         <q-icon class="q-pl-sm" name="edit" size="24px" />
                       </div>
 
                       <!-- Urls -->
 
-                      <div class="col-9">
+                      <div class="col-">
                         <div
                           class="row justify-end items-center q-gutter-x-md full-width"
                         >
@@ -981,7 +1066,7 @@
 </template>
 
 <script>
-import { ref, defineComponent, computed } from "vue";
+import { ref, defineComponent, computed, onMounted } from "vue";
 
 import { getUser } from "../../../composables/getUser";
 
@@ -1110,79 +1195,167 @@ export default defineComponent({
 
     // Educational Records
 
-    const hasEducation = ref(true);
+    const hasEducation = ref(false);
+    const educationData = ref();
     const noUniversityEducation = ref(false);
+
+    function fillEducationData() {
+      const userData = JSON.parse(localStorage.getItem("user"));
+      if (userData && userData.profile && userData.profile.education) {
+        educationData.value = userData.profile.education.higherEducation;
+        hasEducation.value = true;
+      } else {
+        hasEducation.value = false;
+      }
+    }
 
     // Work Experience
 
     const noWorkExperience = ref(false);
+    const workExperienceData = ref([]);
     const hasWorkExperience = ref(true);
+
+    function fillWorkExperienceData() {
+      const userData = JSON.parse(localStorage.getItem("user"));
+      if (userData && userData.profile && userData.profile.workExperience) {
+        workExperienceData.value = userData.profile.workExperience;
+        noWorkExperience.value = true;
+      } else {
+        noWorkExperience.value = false;
+      }
+    }
 
     // Languages
 
-    const langs = ref([
-      {
-        name: "انگلیسی",
-        level: "بالاتر از متوسط",
-      },
-      {
-        name: "فارسی",
-        level: "در حد زبان مادری",
-      },
-    ]);
+    const langs = ref();
+
+    function fillLangData() {
+      const userData = JSON.parse(localStorage.getItem("user"));
+      if (userData && userData.profile && userData.profile.languages) {
+        langs.value = userData.profile.languages;
+      }
+    }
 
     // Software Skills
 
-    const softwareSkills = ref([
-      {
-        name: "Rest API",
-        level: "پیشرفته",
-      },
-      {
-        name: "VueJS",
-        level: "پیشرفته",
-      },
-      {
-        name: "Figma",
-        level: "پیشرفته",
-      },
-      {
-        name: "Html & CSS",
-        level: "متوسط",
-      },
-      {
-        name: "GIT",
-        level: "متوسط",
-      },
-      {
-        name: "Laravel",
-        level: "متوسط",
-      },
-    ]);
+    const softwareSkills = ref();
+
+    function fillSoftwareSkillsData() {
+      const userData = JSON.parse(localStorage.getItem("user"));
+      if (userData && userData.profile && userData.profile.softwareSkills) {
+        softwareSkills.value = userData.profile.softwareSkills;
+      }
+    }
 
     // Software Skills
 
-    const additionalSkills = ref([
-      {
-        name: "برنامه نویسی فرانت اند",
-      },
-      {
-        name: "اچ تی ام ال",
-      },
-      {
-        name: "سی اس اس",
-      },
-      {
-        name: "فیگما",
-      },
-      {
-        name: "کویزار",
-      },
-      {
-        name: "لاراول",
-      },
-    ]);
-    const additionalSkillsCount = computed(() => additionalSkills.value.length);
+    const additionalSkills = ref();
+    const additionalSkillsCount = ref();
+
+    function fillAdditionalSkillsData() {
+      const userData = JSON.parse(localStorage.getItem("user"));
+      if (userData && userData.profile && userData.profile.additionalSkills) {
+        additionalSkills.value = userData.profile.additionalSkills;
+        additionalSkillsCount.value = additionalSkills.value.length;
+      }
+    }
+
+    // Additional Skills
+
+    // former Colleagues
+
+    const formerColleagues = ref();
+
+    function fillFormerColleaguesData() {
+      const userData = JSON.parse(localStorage.getItem("user"));
+      if (
+        userData &&
+        userData.profile &&
+        userData.profile.additionalInformation.formerColleagues
+      ) {
+        formerColleagues.value =
+          userData.profile.additionalInformation.formerColleagues;
+      }
+    }
+
+    // Education CoursesData
+
+    const educationCoursesData = ref();
+
+    function fillEducationCoursesData() {
+      const userData = JSON.parse(localStorage.getItem("user"));
+      if (
+        userData &&
+        userData.profile &&
+        userData.profile.additionalInformation.educationCourses
+      ) {
+        educationCoursesData.value =
+          userData.profile.additionalInformation.educationCourses;
+      }
+    }
+
+    // Awards
+
+    const awardsData = ref();
+
+    function fillAwardsData() {
+      const userData = JSON.parse(localStorage.getItem("user"));
+      if (
+        userData &&
+        userData.profile &&
+        userData.profile.additionalInformation.awards
+      ) {
+        awardsData.value = userData.profile.additionalInformation.awards;
+      }
+    }
+
+    // Academic Experiences
+
+    const academicExperiencesData = ref();
+
+    function fillAcademicExperiencesData() {
+      const userData = JSON.parse(localStorage.getItem("user"));
+      if (
+        userData &&
+        userData.profile &&
+        userData.profile.additionalInformation.academicExperiences
+      ) {
+        academicExperiencesData.value =
+          userData.profile.additionalInformation.academicExperiences;
+      }
+    }
+
+    // Books And Articles
+
+    const booksAndArticlesData = ref();
+
+    function fillBooksAndArticlesData() {
+      const userData = JSON.parse(localStorage.getItem("user"));
+      if (
+        userData &&
+        userData.profile &&
+        userData.profile.additionalInformation.publications
+      ) {
+        booksAndArticlesData.value =
+          userData.profile.additionalInformation.publications;
+      }
+    }
+
+    // Voluntary Activities
+
+    const voluntaryActivitiesData = ref();
+
+    function fillVoluntaryActivitiesData() {
+      const userData = JSON.parse(localStorage.getItem("user"));
+      if (
+        userData &&
+        userData.profile &&
+        userData.profile.additionalInformation.volunteerActivities
+      ) {
+        voluntaryActivitiesData.value =
+          userData.profile.additionalInformation.volunteerActivities;
+      }
+    }
 
     function setActiveTab(tabName) {
       activeTab.value = tabName;
@@ -1196,6 +1369,20 @@ export default defineComponent({
       }
     }
 
+    onMounted(() => {
+      fillEducationData();
+      fillWorkExperienceData();
+      fillLangData();
+      fillSoftwareSkillsData();
+      fillAdditionalSkillsData();
+      fillFormerColleaguesData();
+      fillEducationCoursesData();
+      fillAwardsData();
+      fillAcademicExperiencesData();
+      fillBooksAndArticlesData();
+      fillVoluntaryActivitiesData();
+    });
+
     return {
       user,
       tabs,
@@ -1205,17 +1392,25 @@ export default defineComponent({
       editPhone,
       preferred,
       value: 100,
+      awardsData,
       setActiveTab,
       hasEducation,
+      educationData,
       softwareSkills,
       scrollToSection,
+      formerColleagues,
       noWorkExperience,
       basicInformation,
       progressValue: 0,
       additionalSkills,
       hasWorkExperience,
+      workExperienceData,
+      educationCoursesData,
+      booksAndArticlesData,
       noUniversityEducation,
       additionalSkillsCount,
+      academicExperiencesData,
+      voluntaryActivitiesData,
       preferredOptions: ["خودم", "کارفرما"],
     };
   },

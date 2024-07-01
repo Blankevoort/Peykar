@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-white br-10 q-px-sm">
+  <div :class="computedClass">
     <BadgeAndTitle
       :progressValue="progressValue"
       :title="title"
@@ -78,6 +78,15 @@ export default {
     educationSection: Boolean,
     disableEditButton: Boolean,
   },
+
+  computed: {
+    computedClass() {
+      return this.$q.screen.lt.sm
+        ? "bg-white br-10 q-px-sm"
+        : "bg-white br-10 q-px-lg";
+    },
+  },
+
   setup() {
     const diploma = ref(false);
 

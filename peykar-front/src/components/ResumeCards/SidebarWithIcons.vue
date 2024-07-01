@@ -20,7 +20,9 @@
         </div>
       </q-item-section>
 
-      <slot></slot>
+      <q-item-section>
+        <slot></slot>
+      </q-item-section>
     </q-item>
   </div>
 
