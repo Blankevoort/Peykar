@@ -53,7 +53,7 @@ onMounted(() => {
         militaryServiceStatus: "پایان خدمت",
         city: "شهر محل سکونت",
         address: "محل سکونت",
-        birthDate: "1990-01-01",
+        birthDate: "1380/01/01",
         phoneNumber: "02112345678",
         requestedSalary: "8 - 6 میلیون تومان",
         interestedJobGroups: ["توسعه‌دهنده وب", "برنامه‌نویس"],

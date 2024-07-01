@@ -158,13 +158,15 @@
 
                         <div class="q-gutter-y-sm">
                           <div class="text-bold" :style="aboutNameFontSize">
-                            معین صداقتی
+                            {{ user.name }}
                           </div>
 
                           <div
                             class="text-grey-7 q-gutter-x-sm row items-center"
                           >
-                            <div>دولوپر فول استک در شرکت آیترونیک</div>
+                            <div>
+                              {{ user.jobTitle }}
+                            </div>
 
                             <img
                               src="https://jobvision.ir/assets/images/cv-maker/edit-secondary.svg"
@@ -195,9 +197,7 @@
                   <!-- User Description - Persian -->
 
                   <div class="text-grey-7 q-py-sm">
-                    معین صداقتی متولد سال 1386/9/9. از 13 سالگی شروع به یاد گیری
-                    برنامه نویسی کردم و از 15 سالگی به صورت جدی برنامه نویسی
-                    میکنم. درحال تحصیل در رشته کامپیوتر.
+                    {{ user.profile.description }}
                   </div>
                 </div>
               </BadgeAndTitle>
@@ -227,7 +227,7 @@
 
             <!-- Educational Records -->
 
-            <div id="education" :class="paddingClass">
+            <div id="education" class="bg-white br-10 custom-shadow">
               <useCard
                 :progressValue="progressValue"
                 title="سوابق تحصیلی"
@@ -265,7 +265,6 @@
                 noModel="سوابق شغلی ندارم"
                 :educationSection="true"
                 :checkboxModel="noWorkExperience"
-                class="q-px-md"
               >
                 <div class="q-gutter-y-sm">
                   <div class="text-bold">عنوان شغلی</div>
@@ -984,6 +983,8 @@
 <script>
 import { ref, defineComponent, computed } from "vue";
 
+import { getUser } from "../../../composables/getUser";
+
 import UseCard from "../../../components/ResumeCard.vue";
 import BadgeAndTitle from "../../../components/ResumeCards/ResumeBadgeAndTitle.vue";
 import infoDisplay from "../../../components/BasicInformationContent.vue";
@@ -1063,6 +1064,7 @@ export default defineComponent({
   },
 
   setup() {
+    const user = getUser();
     const tabs = ref([
       { name: "about", label: "درباره من" },
       { name: "info", label: "اطلاعات اولیه" },
@@ -1088,19 +1090,22 @@ export default defineComponent({
     const editPhone = ref(false);
     const preferred = ref("خودم");
     const basicInformation = [
-      { title: "نام و نام خانوادگی", info: "معین صداقتی" },
-      { title: "جنسیت", info: "مرد" },
-      { title: "وضعیت تاهل", info: "مجرد" },
-      { title: "وضعیت نظام وظیفه", info: "معافیت تحصیلی" },
-      { title: "شهر محل سکونت", info: "گنبد کاووس" },
+      { title: "نام و نام خانوادگی", info: user.value.name },
+      { title: "جنسیت", info: user.value.profile.gender },
+      { title: "وضعیت تاهل", info: user.value.profile.maritalStatus },
       {
-        title: "محل سکونت",
-        info: "خیابان بخت غربی نرسیده به چهارراه فردوسی جنب یخچال سازی صوفی زاده و باطری سازی",
+        title: "وضعیت نظام وظیفه",
+        info: user.value.profile.militaryServiceStatus,
       },
-      { title: "تاریخ تولد", info: "۱۳۸۸/۰۹/۰۹" },
-      { title: "شماره ثابت", info: "۳۳۳۳۱۴۸۴" },
-      { title: "حقوق درخواستی", info: "۸ - ۱۰ میلیون تومان" },
-      { title: "نوع شغل مورد علاقه", info: "توسعه نرم افزار و برنامه نویسی" },
+      { title: "شهر محل سکونت", info: user.value.profile.city },
+      { title: "محل سکونت", info: user.value.profile.address },
+      { title: "تاریخ تولد", info: user.value.profile.birthDate },
+      { title: "شماره ثابت", info: user.value.phone },
+      { title: "حقوق درخواستی", info: user.value.profile.requestedSalary },
+      {
+        title: "نوع شغل مورد علاقه",
+        info: user.value.profile.interestedJobGroups.join(", "),
+      },
     ];
 
     // Educational Records
@@ -1192,6 +1197,7 @@ export default defineComponent({
     }
 
     return {
+      user,
       tabs,
       langs,
       activeTab,
@@ -1283,42 +1289,5 @@ export default defineComponent({
   bottom: 0;
   right: 0;
   border-radius: 6px 6px 0 0;
-}
-
-.active-tabs {
-  background-color: #5660f2 !important;
-  color: white !important;
-}
-
-.active-tab {
-  border-left: 3px solid;
-  border-color: #5660f2 !important;
-  border-top-left-radius: 0px !important;
-  border-bottom-left-radius: 0px !important;
-  font-weight: bold !important;
-}
-
-.active-sort-type {
-  background-color: #5660f2 !important;
-  color: white !important;
-}
-
-.custom-border {
-  border-radius: 10px !important;
-  border: 2px solid #dde1e6;
-}
-
-.active-category {
-  background: #4a4e57 !important;
-  color: white !important;
-}
-
-.not-active-category {
-  cursor: pointer;
-  border-radius: 40px;
-  background-color: #fff;
-  border: 1px solid #e0e0e0;
-  margin: 0 4px;
-  padding: 8px 16px;
 }
 </style>

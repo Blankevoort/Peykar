@@ -27,7 +27,7 @@
   <div class="lt-sm">
     <slot></slot>
 
-    <div class="flex items-center justify-center q-mt-md">
+    <div class="flex items-center justify-center q-mt-sm">
       <div
         class="row justify-center items-center q-gutter-x-md q-py-sm br-10"
         style="background-color: #f6f7f9 !important"
@@ -67,7 +67,7 @@ export default {
   computed: {
     marginTopStyle() {
       return {
-        marginTop: this.additional ? "1.5rem" : "2rem",
+        marginTop: this.additional ? "1rem" : "2rem",
       };
     },
     sectionClass() {

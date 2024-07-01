@@ -1436,6 +1436,7 @@ export default defineComponent({
 
     function toggleJobTitleDialog() {
       addJobTitle.value = !addJobTitle.value;
+      jobTitle.value = user.value.jobTitle;
     }
 
     function changeName() {

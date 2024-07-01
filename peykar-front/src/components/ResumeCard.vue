@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-white br-10">
+  <div class="bg-white br-10 q-px-sm">
     <BadgeAndTitle
       :progressValue="progressValue"
       :title="title"
@@ -15,7 +15,7 @@
         :large="isLarge"
         v-if="hasModel"
       >
-        <div class="flex items-center">
+        <div class="q-pl-xs">
           <slot> </slot>
         </div>
       </SidebarWithIcons>
