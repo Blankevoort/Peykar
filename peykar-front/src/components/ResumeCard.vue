@@ -6,6 +6,7 @@
       :showButton="showButton"
       :disableEditButton="disableEditButton"
       :badge="showBadge"
+      :isTrue="!localCheckboxModel"
     >
       <!-- Content -->
 
@@ -16,7 +17,7 @@
         v-if="hasModel"
       >
         <div class="q-pl-xs">
-          <slot> </slot>
+          <slot></slot>
         </div>
       </SidebarWithIcons>
 
@@ -24,11 +25,7 @@
         <!-- User doesn't have Model -->
 
         <div class="row items-center q-gutter-sm">
-          <q-checkbox
-            size="sm"
-            :model-value="checkboxModel"
-            @update:model-value="updateCheckboxModel"
-          />
+          <q-checkbox size="sm" v-model="localCheckboxModel" />
 
           <div>{{ noModel }}</div>
         </div>
@@ -37,7 +34,7 @@
 
         <div class="q-gutter-y-sm q-pl-md q-pt-sm" v-if="educationSection">
           <RadioGroupWithConditionalSlot
-            :model="!checkboxModel"
+            :model="!localCheckboxModel"
             modelProp="diploma"
             :options="diplomaOptions"
             @update:modelValue="updateModel"
@@ -49,7 +46,7 @@
 </template>
 
 <script>
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import BadgeAndTitle from "./ResumeCards/ResumeBadgeAndTitle.vue";
 import SidebarWithIcons from "./ResumeCards/SidebarWithIcons.vue";
 import RadioGroupWithConditionalSlot from "./ResumeCards/RadioGroupWithConditionalSlot.vue";
@@ -78,16 +75,10 @@ export default {
     educationSection: Boolean,
     disableEditButton: Boolean,
   },
+  emits: ["update:checkboxModel"],
 
-  computed: {
-    computedClass() {
-      return this.$q.screen.lt.sm
-        ? "bg-white br-10 q-px-sm"
-        : "bg-white br-10 q-px-lg";
-    },
-  },
-
-  setup() {
+  setup(props, { emit }) {
+    const localCheckboxModel = ref(props.checkboxModel);
     const diploma = ref(false);
 
     const diplomaOptions = [
@@ -100,15 +91,31 @@ export default {
     };
 
     const updateCheckboxModel = (newValue) => {
-      checkboxModel.value = newValue;
+      localCheckboxModel.value = newValue;
+      emit("update:checkboxModel", newValue);
     };
+
+    watch(
+      () => props.checkboxModel,
+      (newVal) => {
+        localCheckboxModel.value = newVal;
+      }
+    );
 
     return {
       diploma,
       updateModel,
       diplomaOptions,
+      localCheckboxModel,
       updateCheckboxModel,
     };
+  },
+  computed: {
+    computedClass() {
+      return this.$q.screen.lt.sm
+        ? "bg-white br-10 q-px-sm"
+        : "bg-white br-10 q-px-lg";
+    },
   },
 };
 </script>

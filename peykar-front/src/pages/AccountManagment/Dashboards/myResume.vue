@@ -271,7 +271,6 @@
                 :disableEditButton="true"
                 :hasModel="hasWorkExperience"
                 noModel="سوابق شغلی ندارم"
-                :educationSection="true"
                 :checkboxModel="noWorkExperience"
               >
                 <div
@@ -495,7 +494,7 @@
               <useCard
                 :progressValue="progressValue"
                 title="مدیران و همکاران سابق"
-                :hasModel="true"
+                :hasModel="hadFormerColleagues"
                 class="q-px-lg"
                 :isLarge="true"
                 :noCheckbox="true"
@@ -537,7 +536,7 @@
               <useCard
                 :progressValue="progressValue"
                 title="دوره‌های آموزشی"
-                :hasModel="true"
+                :hasModel="hadEducationCourses"
                 class="q-px-lg"
                 :isLarge="true"
                 :noCheckbox="true"
@@ -566,7 +565,7 @@
               <useCard
                 :progressValue="progressValue"
                 title="جوایز و افتخارات"
-                :hasModel="true"
+                :hasModel="hadAwards"
                 class="q-px-lg"
                 :noCheckbox="true"
                 :isAdditional="true"
@@ -594,7 +593,7 @@
               <useCard
                 :progressValue="progressValue"
                 title="پروژه‌ها و تجربیات آکادمیک"
-                :hasModel="true"
+                :hasModel="hadAcademicExperiences"
                 class="q-px-lg"
                 :noCheckbox="true"
                 :isAdditional="true"
@@ -622,7 +621,7 @@
               <useCard
                 :progressValue="progressValue"
                 title="کتاب‌ها و مقالات"
-                :hasModel="true"
+                :hasModel="hadBooksAndArticles"
                 class="q-px-lg"
                 :noCheckbox="true"
                 :isAdditional="true"
@@ -654,7 +653,7 @@
               <useCard
                 :progressValue="progressValue"
                 title="فعالیت‌های داوطلبانه"
-                :hasModel="true"
+                :hasModel="hadVoluntaryActivities"
                 class="q-px-lg"
                 :noCheckbox="true"
                 :isAdditional="true"
@@ -1264,6 +1263,7 @@ export default defineComponent({
 
     // former Colleagues
 
+    const hadFormerColleagues = ref(false);
     const formerColleagues = ref();
 
     function fillFormerColleaguesData() {
@@ -1275,11 +1275,13 @@ export default defineComponent({
       ) {
         formerColleagues.value =
           userData.profile.additionalInformation.formerColleagues;
+        hadFormerColleagues.value = true;
       }
     }
 
     // Education CoursesData
 
+    const hadEducationCourses = ref(false);
     const educationCoursesData = ref();
 
     function fillEducationCoursesData() {
@@ -1291,11 +1293,13 @@ export default defineComponent({
       ) {
         educationCoursesData.value =
           userData.profile.additionalInformation.educationCourses;
+        hadEducationCourses.value = true;
       }
     }
 
     // Awards
 
+    const hadAwards = ref(false);
     const awardsData = ref();
 
     function fillAwardsData() {
@@ -1306,11 +1310,13 @@ export default defineComponent({
         userData.profile.additionalInformation.awards
       ) {
         awardsData.value = userData.profile.additionalInformation.awards;
+        hadAwards.value = true;
       }
     }
 
     // Academic Experiences
 
+    const hadAcademicExperiences = ref(false);
     const academicExperiencesData = ref();
 
     function fillAcademicExperiencesData() {
@@ -1322,11 +1328,13 @@ export default defineComponent({
       ) {
         academicExperiencesData.value =
           userData.profile.additionalInformation.academicExperiences;
+        hadAcademicExperiences.value = true;
       }
     }
 
     // Books And Articles
 
+    const hadBooksAndArticles = ref(false);
     const booksAndArticlesData = ref();
 
     function fillBooksAndArticlesData() {
@@ -1338,11 +1346,13 @@ export default defineComponent({
       ) {
         booksAndArticlesData.value =
           userData.profile.additionalInformation.publications;
+        hadBooksAndArticles.value = true;
       }
     }
 
     // Voluntary Activities
 
+    const hadVoluntaryActivities = ref(false);
     const voluntaryActivitiesData = ref();
 
     function fillVoluntaryActivitiesData() {
@@ -1354,8 +1364,11 @@ export default defineComponent({
       ) {
         voluntaryActivitiesData.value =
           userData.profile.additionalInformation.volunteerActivities;
+        hadVoluntaryActivities.value = true;
       }
     }
+
+    // General Functions
 
     function setActiveTab(tabName) {
       activeTab.value = tabName;
@@ -1369,7 +1382,9 @@ export default defineComponent({
       }
     }
 
-    onMounted(() => {
+    function generalData() {
+      // Fetch ALL Dummy Data from LocalStorage
+
       fillEducationData();
       fillWorkExperienceData();
       fillLangData();
@@ -1381,12 +1396,17 @@ export default defineComponent({
       fillAcademicExperiencesData();
       fillBooksAndArticlesData();
       fillVoluntaryActivitiesData();
+    }
+
+    onMounted(() => {
+      generalData();
     });
 
     return {
       user,
       tabs,
       langs,
+      hadAwards,
       activeTab,
       editEmail,
       editPhone,
@@ -1405,10 +1425,15 @@ export default defineComponent({
       additionalSkills,
       hasWorkExperience,
       workExperienceData,
+      hadBooksAndArticles,
+      hadEducationCourses,
+      hadFormerColleagues,
       educationCoursesData,
       booksAndArticlesData,
       noUniversityEducation,
       additionalSkillsCount,
+      hadVoluntaryActivities,
+      hadAcademicExperiences,
       academicExperiencesData,
       voluntaryActivitiesData,
       preferredOptions: ["خودم", "کارفرما"],

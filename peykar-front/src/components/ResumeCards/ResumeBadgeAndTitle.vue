@@ -25,7 +25,7 @@
 
         <q-space />
 
-        <div v-if="!showButton" class="text-primary row">
+        <div v-if="!showButton && isTrue" class="text-primary row">
           <img
             src="https://jobvision.ir/assets/images/add-circle-primary.svg"
             style="width: 16px; height: 18px"
@@ -75,6 +75,10 @@ export default defineComponent({
     badge: {
       type: Boolean,
       default: true,
+    },
+    isTrue: {
+      type: Boolean,
+      default: false,
     },
   },
 
