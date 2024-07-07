@@ -1,6 +1,5 @@
 <template>
   <div>
-    <!-- Badge -->
     <div v-if="badge" class="relative-position">
       <q-badge
         :class="[
@@ -18,44 +17,63 @@
     </div>
 
     <div class="q-py-md">
-      <!-- Title  -->
-
       <div class="row items-center">
         <div :class="titleClass">{{ title }}</div>
 
         <q-space />
 
-        <div v-if="!showButton && isTrue" class="text-primary row">
+        <div
+          v-if="!showButton && isTrue"
+          class="text-primary row"
+          @click="emitAdd"
+        >
           <img
             src="https://jobvision.ir/assets/images/add-circle-primary.svg"
             style="width: 16px; height: 18px"
           />
+
           <div class="q-pl-sm">افزودن</div>
         </div>
 
-        <div v-if="!disableEditButton && showButton">
+        <div v-if="!disableEditButton && showButton" @click="emitEdit">
           <div class="text-grey-7 row items-center">
             <img
               src="https://jobvision.ir/assets/images/cv-maker/edit-secondary.svg"
             />
+
             <div class="q-pl-sm">ویرایش</div>
           </div>
         </div>
       </div>
 
-      <!-- Design -->
-
       <slot></slot>
     </div>
+
+    <!-- Dialog Component -->
+
+    <FormDialog
+      v-if="showFormDialog"
+      :id="formDialogId"
+      :action="formDialogAction"
+      @close-dialog="closeFormDialog"
+      @dialog-closed="resetDialog"
+      @hide="resetDialog"
+    />
   </div>
 </template>
 
 <script>
-import { computed, defineComponent } from "vue";
 import { useQuasar } from "quasar";
+import { computed, defineComponent, ref } from "vue";
+
+import FormDialog from "../Forms/DynamicForm.vue";
 
 export default defineComponent({
   props: {
+    id: {
+      type: String,
+      required: true,
+    },
     progressValue: {
       type: Number,
       required: true,
@@ -82,8 +100,15 @@ export default defineComponent({
     },
   },
 
+  components: {
+    FormDialog,
+  },
+
   setup(props) {
     const $q = useQuasar();
+    const formDialogId = ref("");
+    const formDialogAction = ref("");
+    const showFormDialog = ref(false);
 
     const badgeClass = computed(() => {
       if (props.progressValue === 0) {
@@ -107,10 +132,41 @@ export default defineComponent({
       return $q.screen.gt.sm ? "text-h6 text-bold" : "text-bold";
     });
 
+    function emitAdd() {
+      openDialog("add");
+    }
+
+    function emitEdit() {
+      openDialog("edit");
+    }
+
+    function openDialog(action) {
+      formDialogId.value = props.id;
+      formDialogAction.value = action;
+      showFormDialog.value = true;
+    }
+
+    function closeFormDialog() {
+      showFormDialog.value = false;
+    }
+
+    function resetDialog() {
+      showFormDialog.value = false;
+      formDialogId.value = "";
+      formDialogAction.value = "";
+    }
+
     return {
+      emitAdd,
+      emitEdit,
       badgeClass,
       badgeStyle,
       titleClass,
+      resetDialog,
+      formDialogId,
+      showFormDialog,
+      closeFormDialog,
+      formDialogAction,
     };
   },
 });

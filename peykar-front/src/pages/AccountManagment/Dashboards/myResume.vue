@@ -123,6 +123,7 @@
                 :progressValue="progressValue"
                 title="درباره من"
                 :showButton="true"
+                id="about"
               >
                 <!-- About Content -->
 
@@ -210,6 +211,7 @@
                 :progressValue="progressValue"
                 title="اطلاعات اولیه"
                 :showButton="true"
+                id="info"
               >
                 <!-- Information Content -->
 
@@ -238,6 +240,7 @@
                 :educationSection="true"
                 :checkboxModel="noUniversityEducation"
                 :isSmall="true"
+                id="education"
               >
                 <div
                   v-for="edu in educationData"
@@ -272,6 +275,7 @@
                 :hasModel="hasWorkExperience"
                 noModel="سوابق شغلی ندارم"
                 :checkboxModel="noWorkExperience"
+                id="workExperience"
               >
                 <div
                   v-for="experience in workExperienceData"
@@ -359,6 +363,7 @@
                 :progressValue="progressValue"
                 title="زبان‌ها"
                 :showButton="false"
+                id="languages"
               >
                 <!-- Langs List -->
 
@@ -402,6 +407,7 @@
                 :progressValue="progressValue"
                 title="مهارت های نرم افزاری"
                 :showButton="false"
+                id="softwareSkills"
               >
                 <!-- Software Skills List -->
 
@@ -449,6 +455,7 @@
                 title="مهارت‌های تکمیلی"
                 :showButton="false"
                 :badge="false"
+                id="additionalSkills"
               >
                 <!-- Additional Skills Count -->
 
@@ -821,6 +828,7 @@
                   :progressValue="progressValue"
                   title="معرفی صوتی"
                   :showButton="false"
+                  id="voice"
                 >
                   <!-- Voice Description and Benefits -->
 
@@ -859,6 +867,7 @@
                   :progressValue="progressValue"
                   title="بارگذاری رزومه شخصی"
                   :showButton="false"
+                  id="personalResume"
                 >
                   <!-- Voice Description and Benefits -->
 
@@ -889,6 +898,7 @@
                   :progressValue="progressValue"
                   title="نمونه کارها"
                   :showButton="false"
+                  id="portfolio"
                 >
                   <!-- Portfolio Content -->
 

@@ -7,6 +7,7 @@
       :disableEditButton="disableEditButton"
       :badge="showBadge"
       :isTrue="!localCheckboxModel"
+      :id="id"
     >
       <!-- Content -->
 
@@ -58,6 +59,7 @@ export default {
     RadioGroupWithConditionalSlot,
   },
   props: {
+    id: String,
     title: String,
     noModel: String,
     isSmall: Boolean,
@@ -67,6 +69,7 @@ export default {
       type: Boolean,
       default: true,
     },
+    showBadge: Boolean,
     noCheckbox: Boolean,
     showButton: Boolean,
     isAdditional: Boolean,
