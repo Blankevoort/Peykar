@@ -17,21 +17,47 @@
       </q-card-section>
 
       <div class="q-gutter-y-md">
+        <div v-if="customContent">
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          </p>
+        </div>
+
         <div
           v-for="(field, index) in formFields"
           :key="index"
           class="field-wrapper"
         >
-          <div class="q-pb-xs">{{ field.label }}</div>
+          <div class="q-pb-sm text-grey-8">
+            {{ field.label }}
+
+            <q-btn v-if="field.tip" flat dense size="sm" class="q-ml-sm">
+              <img
+                src="https://jobvision.ir/assets/images/my-cv/tooltip-info.svg"
+              />
+              <q-tooltip
+                style="background-color: #333663"
+                anchor="center left"
+                self="center right"
+              >
+                <div
+                  class="q-pa-sm text-center"
+                  style="font-size: 0.765625rem; max-width: 220px"
+                >
+                  {{ field.tip }}
+                </div>
+              </q-tooltip>
+            </q-btn>
+          </div>
 
           <component
             :is="getComponent(field)"
             v-model="formData[field.name]"
             :options="field.options"
-            :class="field.class"
             :type="field.type === 'textarea' ? 'textarea' : undefined"
-            outlined
             :counter="field.type === 'textarea'"
+            outlined
           />
         </div>
       </div>
@@ -39,7 +65,6 @@
       <q-card-section class="q-pa-none">
         <div class="q-gutter-md flex justify-end">
           <q-btn flat color="grey-7" label="انصراف" @click="handleCancel" />
-
           <q-btn color="primary" label="ذخیره تغییرات" @click="handleSubmit" />
         </div>
       </q-card-section>
@@ -58,6 +83,8 @@ import {
   QCheckbox,
   QSelect,
   QBtn,
+  QIcon,
+  QTooltip,
 } from "quasar";
 
 export default defineComponent({
@@ -69,6 +96,8 @@ export default defineComponent({
     QCheckbox,
     QSelect,
     QBtn,
+    QIcon,
+    QTooltip,
   },
   props: {
     id: {
@@ -85,6 +114,7 @@ export default defineComponent({
     const formData = ref({});
     const formFields = ref([]);
     const formTitle = ref("");
+    const customContent = ref(false);
 
     watch(
       () => props.id,
@@ -93,12 +123,11 @@ export default defineComponent({
           const config = formConfigs[newId];
           formTitle.value = config.title;
           formFields.value = config.fields;
+          customContent.value = config.customContent || false;
           formData.value = config.fields.reduce((acc, field) => {
             acc[field.name] = "";
             return acc;
           }, {});
-          console.log("Form fields initialized: ", formFields.value);
-          console.log("Form data initialized: ", formData.value);
         }
       },
       { immediate: true }
@@ -119,7 +148,6 @@ export default defineComponent({
     };
 
     const handleSubmit = () => {
-      console.log(formData.value);
       emit("close-dialog");
     };
 
@@ -133,6 +161,7 @@ export default defineComponent({
       formData,
       formFields,
       formTitle,
+      customContent,
       getComponent,
       handleSubmit,
       handleCancel,
@@ -142,14 +171,6 @@ export default defineComponent({
 </script>
 
 <style>
-.custom-input {
-  margin-bottom: 10px;
-}
-
-.custom-textarea {
-  margin-bottom: 20px;
-}
-
 .q-btn.absolute-top-right {
   position: absolute;
   top: 10px;
@@ -162,5 +183,9 @@ export default defineComponent({
 
 .field-wrapper {
   margin-bottom: 20px;
+}
+
+.q-field--outlined .q-field__control {
+  border-radius: 10px;
 }
 </style>

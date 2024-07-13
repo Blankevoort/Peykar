@@ -24,7 +24,7 @@
 
         <div
           v-if="!showButton && isTrue"
-          class="text-primary row"
+          class="text-primary row hover-effect"
           @click="emitAdd"
         >
           <img
@@ -36,7 +36,7 @@
         </div>
 
         <div v-if="!disableEditButton && showButton" @click="emitEdit">
-          <div class="text-grey-7 row items-center">
+          <div class="text-grey-7 row items-center hover-effect">
             <img
               src="https://jobvision.ir/assets/images/cv-maker/edit-secondary.svg"
             />
@@ -203,5 +203,9 @@ export default defineComponent({
   top: 4px;
   transform: rotate(270deg);
   left: 16px;
+}
+
+.hover-effect {
+  cursor: pointer;
 }
 </style>
