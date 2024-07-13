@@ -1,24 +1,47 @@
 <template>
   <q-dialog v-model="isDialogOpen">
-    <q-card>
-      <q-card-section>
-        <div class="text-h6">{{ formTitle }}</div>
+    <q-card
+      class="q-pa-md q-gutter-y-md"
+      style="width: 800px; border-radius: 18.5px"
+    >
+      <q-card-section class="flex justify-center">
+        <q-btn
+          flat
+          round
+          dense
+          icon="close"
+          @click="isDialogOpen = false"
+          class="absolute-top-right"
+        />
+        <div class="text-h6 text-bold">{{ formTitle }}</div>
       </q-card-section>
 
-      <q-card-section>
-        <q-form @submit="handleSubmit" class="q-gutter-md">
+      <div class="q-gutter-y-md">
+        <div
+          v-for="(field, index) in formFields"
+          :key="index"
+          class="field-wrapper"
+        >
+          <div class="q-pb-xs">{{ field.label }}</div>
+
           <component
-            v-for="(field, index) in formFields"
-            :key="index"
             :is="getComponent(field)"
             v-model="formData[field.name]"
-            :label="field.label"
             :options="field.options"
             :class="field.class"
-          ></component>
+            :type="field.type === 'textarea' ? 'textarea' : undefined"
+            outlined
+            :counter="field.type === 'textarea'"
+          />
+        </div>
+      </div>
 
-          <q-btn label="Submit" type="submit" color="primary" />
-        </q-form>
+      <q-card-section class="q-pa-none">
+        <div class="q-gutter-md flex justify-end">
+          <q-btn flat color="grey-7" label="انصراف" @click="handleCancel" />
+
+          <q-btn color="primary" label="ذخیره تغییرات" @click="handleSubmit" />
+        </div>
       </q-card-section>
     </q-card>
   </q-dialog>
@@ -31,11 +54,10 @@ import {
   QDialog,
   QCard,
   QCardSection,
-  QForm,
   QInput,
-  QBtn,
   QCheckbox,
   QSelect,
+  QBtn,
 } from "quasar";
 
 export default defineComponent({
@@ -43,7 +65,6 @@ export default defineComponent({
     QDialog,
     QCard,
     QCardSection,
-    QForm,
     QInput,
     QCheckbox,
     QSelect,
@@ -86,9 +107,8 @@ export default defineComponent({
     const getComponent = (field) => {
       switch (field.type) {
         case "input":
-          return "q-input";
         case "textarea":
-          return "q-textarea";
+          return "q-input";
         case "checkbox":
           return "q-checkbox";
         case "select":
@@ -103,6 +123,11 @@ export default defineComponent({
       emit("close-dialog");
     };
 
+    const handleCancel = () => {
+      isDialogOpen.value = false;
+      emit("close-dialog");
+    };
+
     return {
       isDialogOpen,
       formData,
@@ -110,6 +135,7 @@ export default defineComponent({
       formTitle,
       getComponent,
       handleSubmit,
+      handleCancel,
     };
   },
 });
@@ -121,6 +147,20 @@ export default defineComponent({
 }
 
 .custom-textarea {
+  margin-bottom: 20px;
+}
+
+.q-btn.absolute-top-right {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.q-card-section.flex.justify-center {
+  position: relative;
+}
+
+.field-wrapper {
   margin-bottom: 20px;
 }
 </style>

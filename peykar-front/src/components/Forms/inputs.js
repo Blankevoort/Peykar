@@ -1,10 +1,10 @@
 export const formConfigs = {
   about: {
-    title: "About Me",
+    title: "ویرایش درباره من",
     fields: [
-      { type: "input", name: "name", label: "Name", class: "custom-input" },
-      { type: "input", name: "email", label: "Email", class: "custom-input" },
-      { type: "textarea", name: "description", label: "Description", class: "custom-textarea" }
-    ]
+      { type: "input", name: "name", label: "عنوان شغلی نمایشی" },
+      { type: "input", name: "email", label: "آدرس پروفایل لینکدین شما" },
+      { type: "textarea", name: "description", label: "چند جمله درباره خود بنویسید" },
+    ],
   },
 };
