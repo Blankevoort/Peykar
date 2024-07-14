@@ -14,6 +14,7 @@ export const formConfigs = {
         type: "textarea",
         name: "description",
         label: "چند جمله درباره خود بنویسید",
+        maxWords: 1500,
       },
     ],
   },
