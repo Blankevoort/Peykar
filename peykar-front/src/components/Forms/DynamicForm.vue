@@ -14,36 +14,8 @@
         </q-card-section>
 
         <div class="q-gutter-y-md q-px-sm">
-          <div v-if="customContent">
-            <div class="q-pt-md">
-              <div class="row justify-between items-center">
-                <div class="col-xs-12 col-sm-8 row">
-                  <q-avatar size="60px">
-                    <q-img
-                      src="https://fileapi.jobvision.ir/StaticFiles/Candidate/DefaultImages/default-user-Male.png?v=20231122"
-                    />
-                  </q-avatar>
-
-                  <div class="col-8 q-pl-md">
-                    <div class="gt-sm text-grey-9">تصویر پروفایل</div>
-
-                    <div class="text-grey-7 q-pb-sm">
-                      ‌فرمت‌های JPG, PNG, SVG, JPEG(حداکثر ۵١۲ کیلوبایت)
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col-xs-12 col-sm-4">
-                  <q-btn
-                    class="text-bold"
-                    flat
-                    color="primary"
-                    label="بارگذاری تصویر پروفایل"
-                    icon="upload"
-                  />
-                </div>
-              </div>
-            </div>
+          <div v-if="formComponent">
+            <component :is="formComponent" :formData="formData" />
           </div>
 
           <div
@@ -128,7 +100,6 @@ export default defineComponent({
     QIcon,
     QTooltip,
   },
-
   props: {
     id: {
       type: String,
@@ -139,26 +110,29 @@ export default defineComponent({
       required: true,
     },
   },
-
   setup(props, { emit }) {
     const isDialogOpen = ref(true);
     const formData = ref({});
     const formFields = ref([]);
     const formTitle = ref("");
-    const customContent = ref(false);
+    const formComponent = ref(null);
 
     watch(
       () => props.id,
-      (newId) => {
+      async (newId) => {
         if (newId && formConfigs[newId]) {
           const config = formConfigs[newId];
           formTitle.value = config.title;
           formFields.value = config.fields;
-          customContent.value = config.customContent || false;
           formData.value = config.fields.reduce((acc, field) => {
             acc[field.name] = "";
             return acc;
           }, {});
+          if (config.customContent) {
+            formComponent.value = (await config.component()).default;
+          } else {
+            formComponent.value = null;
+          }
         }
       },
       { immediate: true }
@@ -195,7 +169,7 @@ export default defineComponent({
       handleSubmit,
       handleCancel,
       isDialogOpen,
-      customContent,
+      formComponent,
     };
   },
 });

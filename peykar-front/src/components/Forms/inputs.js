@@ -2,6 +2,7 @@ export const formConfigs = {
   about: {
     title: "ویرایش درباره من",
     customContent: true,
+    component: () => import("./CustomContents/AboutCustomContent.vue"),
     fields: [
       {
         type: "input",
