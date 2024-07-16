@@ -5,9 +5,9 @@
         <q-card-section class="flex justify-center">
           <img
             src="https://jobvision.ir/assets/images/close-gray.svg"
-            @click="isDialogOpen = false"
+            @click="handleCancel"
             class="absolute-top-right"
-            style="width: 25px; height: 25px"
+            style="width: 25px; height: 25px; cursor: pointer"
           />
 
           <div class="text-h6 text-bold">{{ formTitle }}</div>
