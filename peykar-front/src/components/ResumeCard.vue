@@ -65,11 +65,10 @@ export default {
     isSmall: Boolean,
     isLarge: Boolean,
     hasModel: Boolean,
-    badge: {
+    showBadge: {
       type: Boolean,
       default: true,
     },
-    showBadge: Boolean,
     noCheckbox: Boolean,
     showButton: Boolean,
     isAdditional: Boolean,
