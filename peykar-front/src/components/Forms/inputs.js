@@ -24,78 +24,95 @@ export const formConfigs = {
   //   fields: [
   //     {
   //       type: "input",
-  //       name: "name",
+  //       name: "firstName",
   //       label: "نام",
   //     },
   //     {
   //       type: "input",
-  //       name: "name",
+  //       name: "lastName",
   //       label: "نام خانوادگی",
   //     },
   //     {
   //       type: "select-tab",
-  //       name: "name",
+  //       name: "gender",
   //       label: "جنسیت",
+  //       options: ["مرد", "زن", "دیگر"],
   //     },
   //     {
   //       type: "select-tab",
-  //       name: "name",
+  //       name: "maritalStatus",
   //       label: "وضعیت تاهل",
+  //       options: ["مجرد", "متاهل"],
   //     },
   //     {
   //       type: "select",
-  //       name: "name",
+  //       name: "militaryStatus",
   //       label: "وضعیت نظام وظیفه",
+  //       options: ["معاف", "در حال خدمت", "پایان خدمت"],
   //     },
   //     {
   //       type: "select-custom",
-  //       name: "name",
+  //       name: "residenceCity",
   //       label: "شهر محل سکونت",
+  //       options: ["تهران", "مشهد", "اصفهان"],
   //     },
   //     {
   //       type: "select",
-  //       name: "name",
+  //       name: "neighborhood",
   //       label: "محله",
   //       primaryTip:
   //         "وارد کردن محل سکونت دقیق به ما کمک می کند که پیشنهادهای شغلی نزدیک تر به محل زندگی شما را با اولویت بالاتری به شما پیشنهاد دهیم",
+  //       options: ["منطقه 1", "منطقه 2", "منطقه 3"],
   //     },
   //     {
   //       type: "select-age",
-  //       name: "name",
+  //       name: "birthDate",
   //       label: "تاریخ تولد",
   //     },
   //     {
   //       type: "input",
-  //       name: "name",
+  //       name: "phoneNumber",
   //       label: "شماره تلفن ثابت (اختیاری)",
   //       primaryTip:
   //         "در صورتی که کارفرما بخواهد با شما تماس بگیرد و موبایل شما در دسترس نباشد این شماره تلفن ثابت به شما کمک می کند که تماس کارفرما را از دست ندهید",
   //     },
   //     {
   //       type: "select",
-  //       name: "name",
+  //       name: "expectedSalary",
   //       label: "حقوق درخواستی",
   //       primaryTip:
   //         "منظور از حقوق درخواستی مجموع کل دریافتی های شما در هر ماه است",
+  //       options: ["کمتر از 3 میلیون", "3 تا 5 میلیون", "بیشتر از 5 میلیون"],
   //     },
   //     {
   //       type: "select-custom",
-  //       name: "name",
+  //       name: "jobInterest",
   //       label: "علاقمند به استخدام در کدام حوزه شغلی هستید؟ (حداکثر ۳ مورد)",
   //       primaryTip:
   //         "شما با وارد کردن گروه های شغلی مورد علاقه خود می توانید آگهی های شغلی مرتبط با این گروه ها را در قالب ایمیل دریافت کنید.",
+  //       options: ["نرم افزار", "سخت افزار", "مدیریت"],
   //     },
   //     {
   //       type: "checkbox",
-  //       name: "name",
+  //       name: "isForeigner",
   //       label: "اتباع خارجی هستم",
-  //       questionOnTrue: [(title = "ملیت"), (options = [])],
+  //       questionOnTrue: [
+  //         {
+  //           title: "ملیت",
+  //           options: ["آمریکایی", "آلمانی", "ایرانی"],
+  //         },
+  //       ],
   //     },
   //     {
   //       type: "checkbox",
-  //       name: "name",
+  //       name: "isDisabled",
   //       label: "دارای معلولیت هستم",
-  //       questionOnTrue: [(title = "نوع معلولیت"), (options = [])],
+  //       questionOnTrue: [
+  //         {
+  //           title: "نوع معلولیت",
+  //           options: ["جسمی", "ذهنی", "شنوایی"],
+  //         },
+  //       ],
   //     },
   //   ],
   // },
@@ -105,38 +122,42 @@ export const formConfigs = {
   //   fields: [
   //     {
   //       type: "select-tab",
-  //       name: "name",
+  //       name: "educationLevel",
   //       label: "مقطع تحصیلی",
+  //       options: ["کارشناسی", "کارشناسی ارشد", "دکتری"],
   //     },
   //     {
   //       type: "select",
-  //       name: "name",
+  //       name: "fieldOfStudy",
   //       label: "رشته تحصیلی",
+  //       options: ["مهندسی کامپیوتر", "مهندسی برق", "مدیریت"],
   //     },
   //     {
   //       type: "input",
-  //       name: "name",
+  //       name: "university",
   //       label: "دانشگاه",
   //     },
   //     {
   //       type: "input",
-  //       name: "name",
+  //       name: "gpa",
   //       label: "معدل (اختیاری)",
   //     },
   //     {
   //       type: "select",
-  //       name: "name",
+  //       name: "startYear",
   //       label: "سال شروع",
+  //       options: ["2015", "2016", "2017"],
   //     },
   //     {
   //       type: "select",
-  //       name: "name",
+  //       name: "endYear",
   //       label: "سال پایان",
+  //       options: ["2019", "2020", "2021"],
   //     },
   //     {
   //       type: "checkbox",
-  //       name: "name",
-  //       label: "هنوز در این مقطع مشغول به تحصیل هستم. ",
+  //       name: "currentlyStudying",
+  //       label: "هنوز در این مقطع مشغول به تحصیل هستم.",
   //     },
   //   ],
   // },
@@ -146,80 +167,90 @@ export const formConfigs = {
   //   fields: [
   //     {
   //       type: "input",
-  //       name: "name",
+  //       name: "jobTitle",
   //       label: "عنوان شغل",
   //     },
   //     {
   //       type: "select",
-  //       name: "name",
+  //       name: "companyField",
   //       label: "زمینه فعالیت شما در این شرکت",
   //       primaryTip: "مثلا زمینه فعالیت شغل حسابدار، مالی و حسابداری می‌باشد",
+  //       options: ["مالی", "تکنولوژی", "مدیریت"],
   //     },
   //     {
   //       type: "select",
-  //       name: "name",
+  //       name: "organizationalLevel",
   //       label: "رده سازمانی",
+  //       options: ["کارشناس", "مدیر", "کارآموز"],
   //     },
   //     {
   //       type: "input",
-  //       name: "name",
+  //       name: "companyName",
   //       label: "نام سازمان",
   //     },
   //     {
   //       type: "select",
-  //       name: "name",
+  //       name: "companyActivity",
   //       label: "زمینه فعالیت شرکت (اختیاری)",
   //       primaryTip:
   //         "زمینه فعالیت شرکتی که در آن مشغول بودید (مثال: مدیر مالی شرکت کاله - زمینه فعالیت شرکت: کالاهای مصرفی و تند گردش)",
+  //       options: ["کالاهای مصرفی", "تولید", "خدمات"],
   //     },
-  //     (multiple = [
-  //       {
-  //         0: [
+  //     {
+  //       type: "multiple",
+  //       multiple: [
+  //         [
   //           {
   //             type: "select-custom",
-  //             name: "name",
+  //             name: "country",
   //             label: "کشور",
+  //             options: ["Iran", "USA", "Germany"],
   //           },
   //           {
   //             type: "select-custom",
-  //             name: "name",
+  //             name: "city",
   //             label: "شهر",
+  //             options: ["Tehran", "New York", "Berlin"],
   //           },
   //         ],
-  //         1: [
+  //         [
   //           {
   //             type: "select",
-  //             name: "name",
+  //             name: "startMonth",
   //             label: "ماه شروع",
+  //             options: ["January", "February", "March"],
   //           },
   //           {
   //             type: "select",
-  //             name: "name",
+  //             name: "startYear",
   //             label: "سال شروع",
+  //             options: ["2020", "2021", "2022"],
   //           },
   //         ],
-  //         2: [
+  //         [
   //           {
   //             type: "select",
-  //             name: "name",
+  //             name: "endMonth",
   //             label: "ماه پایان",
+  //             options: ["January", "February", "March"],
   //           },
   //           {
   //             type: "select",
-  //             name: "name",
+  //             name: "endYear",
   //             label: "سال پایان",
+  //             options: ["2020", "2021", "2022"],
   //           },
   //         ],
-  //       },
-  //     ]),
+  //       ],
+  //     },
   //     {
   //       type: "checkbox",
-  //       name: "name",
+  //       name: "currentlyWorking",
   //       label: "هنوز در این شرکت مشغول به کار هستم",
   //     },
   //     {
   //       type: "textarea",
-  //       name: "name",
+  //       name: "responsibilities",
   //       label: "دستاورد‌ها و وظایف کلیدی (اختیاری)",
   //       primaryTip:
   //         "در این قسمت می توانید مهمترین وظایفی که در این شرکت به عهده داشتید و همچنین نتایج مطلوبی که در کار خود به آن رسیدید را ذکر کنید تا کارفرما نگاه دقیق تری به تجربه شغلی مورد نظر شما داشته باشد.",
@@ -227,18 +258,20 @@ export const formConfigs = {
   //   ],
   // },
   // languages: {
-  //   title: "درباره من",
+  //   title: "زبان‌ها",
   //   customContent: false,
   //   fields: [
   //     {
   //       type: "select",
-  //       name: "name",
+  //       name: "language",
   //       label: "زبان",
+  //       options: ["انگلیسی", "آلمانی", "فرانسه"],
   //     },
   //     {
   //       type: "select",
-  //       name: "name",
+  //       name: "skillLevel",
   //       label: "سطح مهارت",
+  //       options: ["مبتدی", "متوسط", "پیشرفته"],
   //     },
   //   ],
   // },
