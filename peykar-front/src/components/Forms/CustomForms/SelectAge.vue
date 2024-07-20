@@ -1,12 +1,14 @@
 <template>
   <div>
     <span>{{ label }}</span>
+
     <q-btn-dropdown
       content-class="text-center"
       no-caps
       unelevated
       class="full-width q-py-sm q-mt-sm"
       color="primary"
+      style="max-width: 150px"
     >
       <template v-slot:label>
         <div class="full-width text-left">

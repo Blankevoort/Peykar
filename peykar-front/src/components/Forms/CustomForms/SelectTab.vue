@@ -10,8 +10,12 @@
         no-caps
         active-class="active-tab"
       >
-        <q-tab name="male" label="مرد" />
-        <q-tab name="female" label="زن" />
+        <q-tab
+          v-for="(option, index) in options"
+          :key="index"
+          :name="option.name"
+          :label="option.label"
+        />
       </q-tabs>
     </div>
   </div>
@@ -22,6 +26,10 @@ export default {
   props: {
     label: String,
     modelValue: String,
+    options: {
+      type: Array,
+      default: () => [],
+    },
   },
   emits: ["update:modelValue"],
   computed: {

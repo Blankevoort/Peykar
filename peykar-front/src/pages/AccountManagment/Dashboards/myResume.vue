@@ -270,8 +270,8 @@
               <useCard
                 :progressValue="progressValue"
                 title="سوابق شغلی"
-                :showButton="false"
-                :disableEditButton="true"
+                :showButton="true"
+                :disableEditButton="false"
                 :hasModel="hasWorkExperience"
                 noModel="سوابق شغلی ندارم"
                 :checkboxModel="noWorkExperience"
@@ -362,7 +362,7 @@
               <BadgeAndTitle
                 :progressValue="progressValue"
                 title="زبان‌ها"
-                :showButton="false"
+                :showButton="true"
                 id="languages"
               >
                 <!-- Langs List -->
@@ -406,7 +406,7 @@
               <BadgeAndTitle
                 :progressValue="progressValue"
                 title="مهارت های نرم افزاری"
-                :showButton="false"
+                :showButton="true"
                 id="softwareSkills"
               >
                 <!-- Software Skills List -->
@@ -453,7 +453,7 @@
               <BadgeAndTitle
                 :progressValue="progressValue"
                 title="مهارت‌های تکمیلی"
-                :showButton="false"
+                :showButton="true"
                 :badge="false"
                 id="additionalSkills"
               >
@@ -989,7 +989,7 @@
 
                 <!-- Test Results Content -->
 
-                <div class="q-pt-md q-gutter-y-sm" style="">
+                <div class="q-pt-md q-gutter-y-sm">
                   <!-- Bar-On -->
 
                   <div class="row items-center">
@@ -1075,7 +1075,7 @@
 </template>
 
 <script>
-import { ref, defineComponent, computed, onMounted } from "vue";
+import { ref, defineComponent, onMounted } from "vue";
 
 import { getUser } from "../../../composables/getUser";
 

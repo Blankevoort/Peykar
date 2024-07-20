@@ -141,6 +141,7 @@ export default defineComponent({
     }
 
     function openDialog(action) {
+      console.log(props.id);
       formDialogId.value = props.id;
       formDialogAction.value = action;
       showFormDialog.value = true;
