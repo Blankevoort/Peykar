@@ -208,49 +208,56 @@ export const formConfigs = {
       },
       {
         type: "multiple",
+        label: "محل",
         multiple: [
-          [
-            {
-              type: "select-custom",
-              name: "country",
-              label: "کشور",
-              options: ["Iran", "USA", "Germany"],
-            },
-            {
-              type: "select-custom",
-              name: "city",
-              label: "شهر",
-              options: ["Tehran", "New York", "Berlin"],
-            },
-          ],
-          [
-            {
-              type: "select",
-              name: "startMonth",
-              label: "ماه شروع",
-              options: ["January", "February", "March"],
-            },
-            {
-              type: "select",
-              name: "startYear",
-              label: "سال شروع",
-              options: ["2020", "2021", "2022"],
-            },
-          ],
-          [
-            {
-              type: "select",
-              name: "endMonth",
-              label: "ماه پایان",
-              options: ["January", "February", "March"],
-            },
-            {
-              type: "select",
-              name: "endYear",
-              label: "سال پایان",
-              options: ["2020", "2021", "2022"],
-            },
-          ],
+          {
+            type: "select-custom",
+            name: "country",
+            label: "کشور",
+            options: ["Iran", "USA", "Germany"],
+          },
+          {
+            type: "select-custom",
+            name: "city",
+            label: "شهر",
+            options: ["Tehran", "New York", "Berlin"],
+          },
+        ],
+      },
+      {
+        type: "multiple",
+        label: "شروع",
+        multiple: [
+          {
+            type: "select",
+            name: "startMonth",
+            label: "ماه شروع",
+            options: ["January", "February", "March"],
+          },
+          {
+            type: "select",
+            name: "startYear",
+            label: "سال شروع",
+            options: ["2020", "2021", "2022"],
+          },
+        ],
+      },
+      {
+        type: "multiple",
+        label: "پایان",
+        multiple: [
+          {
+            type: "select",
+            name: "endMonth",
+            label: "ماه پایان",
+            options: ["January", "February", "March"],
+          },
+          {
+            type: "select",
+            name: "endYear",
+            label: "سال پایان",
+            options: ["2020", "2021", "2022"],
+          },
         ],
       },
       {

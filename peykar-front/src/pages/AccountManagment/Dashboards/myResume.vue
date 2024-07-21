@@ -83,7 +83,7 @@
               />
             </div>
 
-            <div class="row q-gutter-x-sm">
+            <div class="row q-gutter-x-sm" style="cursor: pointer">
               <img
                 src="https://jobvision.ir/assets/images/share-muted.svg"
                 class="gt-sm"
@@ -123,6 +123,7 @@
                 :progressValue="progressValue"
                 title="درباره من"
                 :showButton="true"
+                :disableEditButton="false"
                 id="about"
               >
                 <!-- About Content -->
@@ -211,6 +212,7 @@
                 :progressValue="progressValue"
                 title="اطلاعات اولیه"
                 :showButton="true"
+                :disableEditButton="false"
                 id="info"
               >
                 <!-- Information Content -->
@@ -271,7 +273,7 @@
                 :progressValue="progressValue"
                 title="سوابق شغلی"
                 :showButton="true"
-                :disableEditButton="false"
+                :disableEditButton="true"
                 :hasModel="hasWorkExperience"
                 noModel="سوابق شغلی ندارم"
                 :checkboxModel="noWorkExperience"
@@ -897,18 +899,26 @@
                 <BadgeAndTitle
                   :progressValue="progressValue"
                   title="نمونه کارها"
-                  :showButton="false"
+                  :showButton="true"
                   id="portfolio"
                 >
                   <!-- Portfolio Content -->
 
                   <div class="q-pt-md q-pb-sm">
-                    <div class="row">
+                    <div class="row items-center">
                       <!-- Acion Buttons -->
 
-                      <div class="col- text-grey-8">
-                        <q-icon name="delete" size="24px" />
-                        <q-icon class="q-pl-sm" name="edit" size="24px" />
+                      <div class="col- flex items-center text-grey-8">
+                        <img
+                          src="https://jobvision.ir/assets/images/delete-secondary.svg"
+                          style="width: 20px; height: 20px"
+                        />
+
+                        <img
+                          class="q-pl-sm"
+                          src="https://jobvision.ir/assets/images/cv-maker/edit-secondary.svg"
+                          style="width: 30px; height: 30px"
+                        />
                       </div>
 
                       <!-- Urls -->

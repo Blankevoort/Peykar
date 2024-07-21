@@ -23,7 +23,7 @@
         <q-space />
 
         <div
-          v-if="!showButton && isTrue"
+          v-if="!showButton && isTrue || disableEditButton"
           class="text-primary row hover-effect"
           @click="emitAdd"
         >
@@ -88,7 +88,7 @@ export default defineComponent({
     },
     disableEditButton: {
       type: Boolean,
-      default: false,
+      default: true,
     },
     badge: {
       type: Boolean,

@@ -69,6 +69,54 @@
             </div>
           </div>
 
+          <div v-else-if="field.type === 'multiple'" class="multiple-field">
+            <div class="row">
+              <div
+                v-for="(subField, subIndex) in field.multiple"
+                :key="subIndex"
+                class="sub-field"
+              >
+                <div class="q-pb-sm text-grey-8">
+                  {{ subField.label }}
+
+                  <q-btn
+                    v-if="subField.tip"
+                    flat
+                    dense
+                    size="sm"
+                    class="q-ml-sm"
+                  >
+                    <img
+                      src="https://jobvision.ir/assets/images/my-cv/tooltip-info.svg"
+                    />
+
+                    <q-tooltip
+                      style="background-color: #333663"
+                      anchor="center left"
+                      self="center right"
+                    >
+                      <div
+                        class="q-pa-sm text-center"
+                        style="font-size: 0.765625rem; max-width: 220px"
+                      >
+                        {{ subField.tip }}
+                      </div>
+                    </q-tooltip>
+                  </q-btn>
+                </div>
+
+                <component
+                  :is="getComponent(subField)"
+                  v-model="formData[subField.name]"
+                  :options="subField.options"
+                  :type="subField.type === 'textarea' ? 'textarea' : undefined"
+                  :counter="subField.type === 'textarea'"
+                  outlined
+                />
+              </div>
+            </div>
+          </div>
+
           <div v-else class="field">
             <div class="q-pb-sm text-grey-8">
               {{ field.label }}
@@ -325,5 +373,16 @@ export default defineComponent({
 
 .checkbox-tip {
   margin-left: 16px;
+}
+
+.multiple-field .row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.multiple-field .sub-field {
+  flex: 1;
+  min-width: 200px;
+  margin-right: 10px;
 }
 </style>
