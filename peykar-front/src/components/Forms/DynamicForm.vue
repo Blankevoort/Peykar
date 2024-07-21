@@ -104,7 +104,7 @@
         </div>
       </div>
 
-      <div class="dialog-footer q-pa-md">
+      <div class="dialog-footer q-mt-md q-pa-md">
         <q-card-section class="footer-content justify-end">
           <q-btn flat color="grey-7" label="انصراف" @click="handleCancel" />
 
@@ -287,6 +287,18 @@ export default defineComponent({
   flex: 1;
   overflow-y: auto;
   padding: 0 10px;
+}
+
+.dialog-body::-webkit-scrollbar {
+  width: 5px;
+}
+
+.dialog-body::-webkit-scrollbar-thumb {
+  background: #979797;
+}
+
+.dialog-body::-webkit-scrollbar-track {
+  background: #f1f1f1;
 }
 
 .field-wrapper {
