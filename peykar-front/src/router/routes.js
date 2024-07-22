@@ -46,11 +46,6 @@ const routes = [
     component: () => import("src/layouts/BlankLayout.vue"),
     children: [{ path: "", component: () => import("src/pages/AccountManagment/UserLogin/EmployerLoginPage.vue") }],
   },
-  {
-    path: "/test",
-    component: () => import("src/layouts/BlankLayout.vue"),
-    children: [{ path: "", component: () => import("pages/TestPage.vue") }],
-  },
 
   {
     path: "/:catchAll(.*)*",
