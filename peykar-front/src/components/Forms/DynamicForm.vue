@@ -10,7 +10,7 @@
             style="width: 25px; height: 25px; cursor: pointer"
           />
 
-          <div class="text-h6 text-bold">{{ formTitle }}</div>
+          <div :class="mainTitle">{{ formTitle }}</div>
         </q-card-section>
       </div>
 
@@ -215,6 +215,12 @@ export default defineComponent({
         minWidth: this.$q.screen.gt.xs ? "650px" : "",
       };
     },
+    mainTitle() {
+      return {
+        "font-13": this.$q.screen.lt.sm,
+        "text-bold": true,
+      };
+    },
   },
 
   setup(props, { emit }) {
@@ -291,30 +297,13 @@ export default defineComponent({
 </script>
 
 <style>
-.custom-dialog {
-  width: 100%;
-  max-width: 500px;
-}
-
 .dialog-container {
   display: flex;
   flex-direction: column;
-  height: 100%;
   height: auto;
   background-color: white;
   border-radius: 18.5px !important;
-  max-height: 600px !important;
-}
-
-.dialog-header,
-.dialog-footer {
-  position: sticky;
-  background-color: white;
-  z-index: 1;
-}
-
-.dialog-header {
-  top: 0;
+  max-height: 600px;
 }
 
 .dialog-footer {
@@ -355,31 +344,14 @@ export default defineComponent({
   margin-bottom: 20px;
 }
 
-.q-field--outlined .q-field__control {
-  border-radius: 10px;
-}
-
-.button-shadow {
-  box-shadow: 0 1rem 3rem #0000002d !important;
-}
-
 .checkbox-container {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
 
-.checkbox {
-  margin-bottom: 8px;
-}
-
 .checkbox-tip {
   margin-left: 16px;
-}
-
-.multiple-field .row {
-  display: flex;
-  flex-wrap: wrap;
 }
 
 .multiple-field .sub-field {

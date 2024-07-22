@@ -235,6 +235,10 @@ onMounted(() => {
   font-size: 12px;
 }
 
+.font-13 {
+  font-size: 13px;
+}
+
 .font-16 {
   font-size: 16px;
 }

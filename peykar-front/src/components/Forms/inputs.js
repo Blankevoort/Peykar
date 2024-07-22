@@ -3,6 +3,7 @@ export const formConfigs = {
     title: "درباره من",
     customContent: true,
     component: () => import("./CustomContents/AboutCustomContent.vue"),
+    width: "lg",
     fields: [
       {
         type: "input",
@@ -125,6 +126,8 @@ export const formConfigs = {
   education: {
     title: "سابقه تحصیلی",
     customContent: false,
+    width: "lg",
+    height: "xl",
     fields: [
       {
         type: "select-tab",
@@ -174,6 +177,7 @@ export const formConfigs = {
   workExperience: {
     title: "افزودن سابقه شغلی جدید",
     customContent: false,
+    width: "lg",
     fields: [
       {
         type: "input",
@@ -296,10 +300,15 @@ export const formConfigs = {
     title: "نرم افزار",
     customContent: true,
     component: () => import("./CustomContents/SoftWareSkillsFullForm.vue"),
+    customDoneButton: "ذخیره و بستن",
+    CustomCancelButton: false,
+    width: "lg",
   },
   additionalSkills: {
     title: "مهارت‌های تکمیلی",
     customContent: true,
     component: () => import("./CustomContents/AdditionalSkillsFullForm.vue"),
+    actionButtons: false,
+    width: "lg",
   },
 };
