@@ -292,4 +292,14 @@ export const formConfigs = {
       },
     ],
   },
+  softwareSkills: {
+    title: "نرم افزار",
+    customContent: true,
+    component: () => import("./CustomContents/SoftWareSkillsFullForm.vue"),
+  },
+  additionalSkills: {
+    title: "مهارت‌های تکمیلی",
+    customContent: true,
+    component: () => import("./CustomContents/AdditionalSkillsFullForm.vue"),
+  },
 };

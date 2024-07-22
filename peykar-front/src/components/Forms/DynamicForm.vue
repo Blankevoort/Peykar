@@ -231,10 +231,12 @@ export default defineComponent({
           const config = formConfigs[newId];
           formTitle.value = config.title;
           formFields.value = config.fields;
-          formData.value = config.fields.reduce((acc, field) => {
-            acc[field.name] = "";
-            return acc;
-          }, {});
+          formData.value = config.fields
+            ? config.fields.reduce((acc, field) => {
+                acc[field.name] = "";
+                return acc;
+              }, {})
+            : {};
           if (config.customContent) {
             formComponent.value = (await config.component()).default;
           } else {
