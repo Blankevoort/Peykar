@@ -152,11 +152,24 @@
         </div>
       </div>
 
-      <div class="dialog-footer q-mt-md q-pa-md">
+      <div
+        v-if="!formConfig.actionButtons"
+        class="dialog-footer q-mt-md q-pa-md"
+      >
         <q-card-section class="footer-content justify-end">
-          <q-btn flat color="grey-7" label="انصراف" @click="handleCancel" />
+          <q-btn
+            v-if="formConfig.CustomCancelButton !== false"
+            flat
+            color="grey-7"
+            label="انصراف"
+            @click="handleCancel"
+          />
 
-          <q-btn color="primary" label="ذخیره تغییرات" @click="handleSubmit" />
+          <q-btn
+            color="primary"
+            :label="formConfig.customDoneButton || 'ذخیره تغییرات'"
+            @click="handleSubmit"
+          />
         </q-card-section>
       </div>
     </div>
@@ -211,8 +224,15 @@ export default defineComponent({
 
   computed: {
     dialogContainerStyles() {
+      const config = formConfigs[this.id];
+      let minWidth = "650px";
+
+      if (config && config.width === "lg") {
+        minWidth = "800px";
+      }
+
       return {
-        minWidth: this.$q.screen.gt.xs ? "650px" : "",
+        minWidth: this.$q.screen.gt.xs ? minWidth : "",
       };
     },
     mainTitle() {
@@ -229,12 +249,14 @@ export default defineComponent({
     const formFields = ref([]);
     const isDialogOpen = ref(true);
     const formComponent = ref(null);
+    const formConfig = ref({});
 
     watch(
       () => props.id,
       async (newId) => {
         if (newId && formConfigs[newId]) {
           const config = formConfigs[newId];
+          formConfig.value = config;
           formTitle.value = config.title;
           formFields.value = config.fields;
           formData.value = config.fields
@@ -291,6 +313,7 @@ export default defineComponent({
       handleCancel,
       isDialogOpen,
       formComponent,
+      formConfig,
     };
   },
 });

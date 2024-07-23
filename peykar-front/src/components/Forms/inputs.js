@@ -308,7 +308,7 @@ export const formConfigs = {
     title: "مهارت‌های تکمیلی",
     customContent: true,
     component: () => import("./CustomContents/AdditionalSkillsFullForm.vue"),
-    actionButtons: false,
+    actionButtons: true,
     width: "lg",
   },
 };

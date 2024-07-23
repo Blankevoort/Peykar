@@ -7,7 +7,6 @@
       <q-tabs
         indicator-color="transparent"
         v-model="internalValue"
-        no-caps
         active-class="active-tab"
       >
         <q-tab
@@ -15,6 +14,7 @@
           :key="index"
           :name="option.name"
           :label="option.label"
+          class="col"
         />
       </q-tabs>
     </div>
