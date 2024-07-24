@@ -23,7 +23,7 @@
         <q-space />
 
         <div
-          v-if="!showButton && isTrue || disableEditButton"
+          v-if="(!showButton && isTrue) || disableEditButton"
           class="text-primary row hover-effect"
           @click="emitAdd"
         >
@@ -65,7 +65,6 @@
 <script>
 import { useQuasar } from "quasar";
 import { computed, defineComponent, ref } from "vue";
-
 import FormDialog from "../Forms/DynamicForm.vue";
 
 export default defineComponent({
@@ -110,6 +109,10 @@ export default defineComponent({
     const formDialogAction = ref("");
     const showFormDialog = ref(false);
 
+    const isAddMode = computed(() => {
+      return props.progressValue === 0;
+    });
+
     const badgeClass = computed(() => {
       if (props.progressValue === 0) {
         return "danger-status-badge";
@@ -141,7 +144,6 @@ export default defineComponent({
     }
 
     function openDialog(action) {
-      console.log(props.id);
       formDialogId.value = props.id;
       formDialogAction.value = action;
       showFormDialog.value = true;
@@ -168,6 +170,7 @@ export default defineComponent({
       showFormDialog,
       closeFormDialog,
       formDialogAction,
+      isAddMode,
     };
   },
 });

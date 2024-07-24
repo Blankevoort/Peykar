@@ -10,7 +10,7 @@
             style="width: 25px; height: 25px; cursor: pointer"
           />
 
-          <div :class="mainTitle">{{ formTitle }}</div>
+          <div :class="mainTitle">{{ actionLabel }} {{ formTitle }}</div>
         </q-card-section>
       </div>
 
@@ -177,7 +177,7 @@
 </template>
 
 <script>
-import { defineComponent, ref, watch } from "vue";
+import { defineComponent, ref, watch, computed } from "vue";
 import { formConfigs } from "./inputs";
 import {
   QDialog,
@@ -239,7 +239,11 @@ export default defineComponent({
       return {
         "font-13": this.$q.screen.lt.sm,
         "text-bold": true,
+        "text-h6": true,
       };
+    },
+    actionLabel() {
+      return this.action === "add" ? "افزودن" : "ویرایش";
     },
   },
 

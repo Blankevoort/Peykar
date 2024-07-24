@@ -175,7 +175,7 @@ export const formConfigs = {
     ],
   },
   workExperience: {
-    title: "افزودن سابقه شغلی جدید",
+    title: "سابقه شغلی جدید",
     customContent: false,
     width: "lg",
     fields: [
