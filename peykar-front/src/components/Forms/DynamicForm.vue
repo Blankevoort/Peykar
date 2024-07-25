@@ -167,7 +167,7 @@
 
           <q-btn
             color="primary"
-            :label="formConfig.customDoneButton || 'ذخیره تغییرات'"
+            :label="submitButtonLabel"
             @click="handleSubmit"
           />
         </q-card-section>
@@ -244,6 +244,11 @@ export default defineComponent({
     },
     actionLabel() {
       return this.action === "add" ? "افزودن" : "ویرایش";
+    },
+    submitButtonLabel() {
+      return this.action === "add"
+        ? "افزودن"
+        : this.formConfig.customDoneButton || "ذخیره تغییرات";
     },
   },
 
