@@ -5,7 +5,21 @@
 <script setup>
 import { ref, onMounted } from "vue";
 
-const jobDetails = ref({});
+const jobDetails = ref([]);
+const user = ref({});
+
+// Function to merge user data
+
+const mergeUserData = (existingUser, newUser) => {
+  for (const key in newUser) {
+    if (typeof newUser[key] === "object" && !Array.isArray(newUser[key])) {
+      existingUser[key] = mergeUserData(existingUser[key] || {}, newUser[key]);
+    } else {
+      existingUser[key] = newUser[key];
+    }
+  }
+  return existingUser;
+};
 
 onMounted(() => {
   const savedJobDetails = JSON.parse(localStorage.getItem("jobDetails"));
@@ -34,114 +48,12 @@ onMounted(() => {
     remainingTimeMessage = "زمان به پایان رسیده است";
   }
 
-  // Saving Dummy Data
+  // Dummy Data
 
-  if (savedJobDetails && savedUser) {
+  if (savedJobDetails) {
     jobDetails.value = savedJobDetails;
   } else {
-    const user = {
-      id: 1,
-      name: "نام و نام خانوادگی",
-      jobTitle: "دولوپر فول استک در شرکت آیترونیک",
-      email: "email@example.com",
-      phone: "09123456789",
-      role: "job_seeker",
-      profile: {
-        description: "توضیح کوتاه درباره کاربر",
-        gender: "مرد",
-        maritalStatus: "مجرد",
-        militaryServiceStatus: "پایان خدمت",
-        city: "شهر محل سکونت",
-        address: "محل سکونت",
-        birthDate: "1380/01/01",
-        phoneNumber: "02112345678",
-        requestedSalary: "8 - 6 میلیون تومان",
-        interestedJobGroups: ["توسعه‌دهنده وب", "برنامه‌نویس"],
-        foreigners: false,
-        disability: false,
-        education: {
-          hasDiploma: true,
-          diplomaField: "ریاضی فیزیک",
-          higherEducation: [
-            {
-              degree: "لیسانس",
-              field: "مهندسی نرم‌افزار",
-              university: "دانشگاه تهران",
-              grade: 17.5,
-              startYear: 2010,
-              endYear: 2014,
-              isStudying: false, // هنوز در این مقطع مشغول به تحصیل هستم
-            },
-          ],
-        },
-        workExperience: [
-          {
-            jobTitle: "توسعه‌دهنده وب",
-            field: "IT",
-            organizationalLevel: "متوسط",
-            companyName: "شرکت ABC",
-            companyField: "تکنولوژی اطلاعات",
-            country: "ایران",
-            city: "تهران",
-            startMonth: "فروردین",
-            startYear: 2015,
-            isCurrentlyWorking: true,
-            achievements: "طراحی و توسعه وبسایت شرکت",
-          },
-        ],
-        languages: [
-          { language: "انگلیسی", proficiency: "پیشرفته" },
-          { language: "فرانسه", proficiency: "متوسط" },
-        ],
-        softwareSkills: [
-          { name: "برنامه‌نویسی جاوا", skill: "پیشرفته" },
-          { name: "توسعه وب با Vue.js", skill: "متوسط" },
-        ],
-        additionalSkills: [{ name: "مدیریت پروژه" }, { name: "تحلیل داده" }],
-        additionalInformation: {
-          formerColleagues: [
-            {
-              fullName: "محمد محمدی",
-              organizationName: "شرکت XYZ",
-              jobTitle: "مدیر پروژه",
-              organizationalRelationship: "همکار سابق",
-              startYear: 2018,
-              endYear: 2023,
-              weStillWorkTogether: false,
-              contactNumber: "09121234567",
-            },
-          ],
-          educationCourses: [
-            {
-              educationalInstitute: "آموزشگاه ABC",
-              organizer: "آموزشگاه ABC",
-              courseName: "دوره برنامه‌نویسی وب",
-              courseYear: 2020,
-              courseDuration: "3 ماه",
-              country: "ایران",
-              hasCertificate: true,
-            },
-          ],
-          awards: [{ title: "برترین برنامه‌نویس", year: 2019 }],
-          academicExperiences: [
-            { title: "پروژه توسعه نرم‌افزار مدیریت", year: 2021 },
-          ],
-          publications: [
-            {
-              title: "کتاب برنامه‌نویسی پیشرفته",
-              publisher: "ناشر XYZ",
-              year: 2022,
-            },
-          ],
-          volunteerActivities: [
-            { title: "فعالیت‌های داوطلبانه در جمعیت هلال احمر", year: 2020 },
-          ],
-        },
-        updated: new Date().toISOString(),
-      },
-    };
-
-    const jobDetails = [
+    jobDetails.value = [
       {
         id: 1,
         backgroundImage:
@@ -153,20 +65,10 @@ onMounted(() => {
         company: "شرکت",
         description:
           "<div><p class='q-pt-md'>صرافی تبدیل، از شما برای همکاری در موقعیت شغلی Front-End Developer (Vue.js) دعوت به عمل می‌آورد.</p><br><br><div class='text-h6 text-bold'>مهارت‌های فنی</div><p class='q-pt-md'>HTML, CSS, JavaScript مسلط به<br>Vue, Nuxt مسلط به<br>TailwindCSS مسلط به<br>Vuetify آشنا با<br>SASS/SCSS مسلط به<br>Git آشنا با</p><br><div class='text-h6 text-bold'>مزایا و تسهیلات</div><p class='q-pt-md'>محیط کار استارتاپی، جوان و پویا با امکان رشد و ارتقا شغلی - ناهار - بیمه تکمیلی - امکان رشد و توسعه در شرکتی پیشرو در صنعت - بسته‌ها و هدایای مناسبتی</p></div>",
-        workDates: "تمام وقت",
         tagList: [
-          {
-            label: "فوری",
-            important: true,
-          },
-          {
-            label: "کارفرمای پاسخگو",
-            important: false,
-          },
-          {
-            label: "درحال بررسی رزومه",
-            important: false,
-          },
+          { label: "فوری", important: true },
+          { label: "کارفرمای پاسخگو", important: false },
+          { label: "درحال بررسی رزومه", important: false },
         ],
         benefits: [
           "محیط کار استارتاپی، جوان و پویا با امکان رشد و ارتقا شغلی",
@@ -206,16 +108,146 @@ onMounted(() => {
         },
       },
     ];
-
-    localStorage.setItem("jobs", JSON.stringify(jobDetails));
-    localStorage.setItem("setUser", JSON.stringify(userLoggedOut));
-    if (userLoggedOut == null) {
-      localStorage.setItem("user", JSON.stringify(user));
-    } else {
-      localStorage.removeItem("user");
-    }
-    jobDetails.value = jobDetails;
+    localStorage.setItem("jobDetails", JSON.stringify(jobDetails.value));
   }
+
+  if (!userLoggedOut) {
+    if (!savedUser || !savedUser.updated) {
+      user.value = {
+        id: 1,
+        name: "نام و نام خانوادگی",
+        jobTitle: "دولوپر فول استک در شرکت آیترونیک",
+        email: "email@example.com",
+        phone: "09123456789",
+        role: "job_seeker",
+        updated: false,
+        profile: {
+          description: "توضیح کوتاه درباره کاربر",
+          gender: "مرد",
+          maritalStatus: "مجرد",
+          militaryServiceStatus: "پایان خدمت",
+          city: "شهر محل سکونت",
+          address: "محل سکونت",
+          birthDate: "1380/01/01",
+          phoneNumber: "02112345678",
+          expectedSalary: "8 - 6 میلیون تومان",
+          interestedJobGroups: ["توسعه‌دهنده وب", "برنامه‌نویس"],
+          foreigners: false,
+          disability: false,
+          nationality: "",
+          disabilityType: "",
+          education: {
+            hasDiploma: true,
+            diplomaField: "ریاضی فیزیک",
+            higherEducation: [
+              {
+                degree: "لیسانس",
+                field: "مهندسی نرم‌افزار",
+                university: "دانشگاه تهران",
+                gpa: 17.5,
+                startYear: 2010,
+                endYear: 2014,
+                isStudying: false,
+              },
+            ],
+          },
+          workExperience: [
+            {
+              jobTitle: "توسعه‌دهنده وب",
+              field: "IT",
+              organizationalLevel: "متوسط",
+              companyName: "شرکت ABC",
+              companyField: "تکنولوژی اطلاعات",
+              country: "ایران",
+              city: "تهران",
+              startMonth: "فروردین",
+              startYear: 2015,
+              endMonth: "فروردین",
+              endYear: 2015,
+              currentlyWorking: true,
+              achievements: "طراحی و توسعه وبسایت شرکت",
+            },
+          ],
+          languages: [
+            { language: "انگلیسی", proficiency: "پیشرفته" },
+            { language: "فرانسه", proficiency: "متوسط" },
+          ],
+          softwareSkills: [
+            { name: "برنامه‌نویسی جاوا", skill: "پیشرفته" },
+            { name: "توسعه وب با Vue.js", skill: "متوسط" },
+          ],
+          additionalSkills: [{ name: "مدیریت پروژه" }, { name: "تحلیل داده" }],
+          additionalInformation: {
+            formerColleagues: [
+              {
+                fullName: "محمد محمدی",
+                organizationName: "شرکت XYZ",
+                jobTitle: "مدیر پروژه",
+                organizationalRelationship: "همکار سابق",
+                startYear: 2018,
+                endYear: 2023,
+                weStillWorkTogether: false,
+                contactNumber: "09121234567",
+              },
+            ],
+            educationCourses: [
+              {
+                educationalInstitute: "آموزشگاه ABC",
+                organizer: "آموزشگاه ABC",
+                courseName: "دوره برنامه‌نویسی وب",
+                courseYear: 2020,
+                courseDuration: "3 ماه",
+                country: "ایران",
+                hasCertificate: true,
+              },
+            ],
+            awards: [{ title: "برترین برنامه‌نویس", year: 2019 }],
+            academicExperiences: [
+              { title: "پروژه توسعه نرم‌افزار مدیریت", year: 2021 },
+            ],
+            publications: [
+              {
+                title: "کتاب برنامه‌نویسی پیشرفته",
+                date: "1400/03/01",
+                summary: "این کتاب درباره برنامه‌نویسی پیشرفته است",
+                authors: ["نویسنده الف", "نویسنده ب"],
+              },
+            ],
+            patents: [
+              {
+                title: "ثبت اختراع نرم‌افزار مدیریت پروژه",
+                date: "1399/01/01",
+                summary: "این اختراع درباره نرم‌افزار مدیریت پروژه است",
+              },
+            ],
+            memberships: [
+              {
+                organizationName: "انجمن برنامه‌نویسان ایران",
+                startYear: 2019,
+              },
+            ],
+            projects: [
+              {
+                title: "پروژه توسعه وبسایت فروشگاهی",
+                role: "توسعه‌دهنده اصلی",
+                startYear: 2020,
+                endYear: 2021,
+                summary: "طراحی و توسعه وبسایت فروشگاهی با Vue.js",
+              },
+            ],
+          },
+        },
+      };
+      localStorage.setItem("user", JSON.stringify(user.value));
+    } else {
+      user.value = mergeUserData(savedUser, user.value);
+      localStorage.setItem("user", JSON.stringify(user.value));
+    }
+  } else {
+    localStorage.removeItem("user");
+  }
+
+  localStorage.setItem("setUser", JSON.stringify(userLoggedOut));
 });
 </script>
 

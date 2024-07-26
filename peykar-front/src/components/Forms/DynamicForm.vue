@@ -60,7 +60,7 @@
                 <div class="q-pb-sm text-grey-8">{{ question.title }}</div>
 
                 <q-select
-                  v-model="formData[question.title]"
+                  v-model="formData[question.name]"
                   :options="question.options"
                   style="min-width: 250px"
                   outlined
@@ -177,7 +177,7 @@
 </template>
 
 <script>
-import { defineComponent, ref, watch, computed } from "vue";
+import { defineComponent, ref, watch } from "vue";
 import { formConfigs } from "./inputs";
 import {
   QDialog,
@@ -260,6 +260,22 @@ export default defineComponent({
     const formComponent = ref(null);
     const formConfig = ref({});
 
+    const getNestedProperty = (obj, path) => {
+      return path.split(".").reduce((o, p) => o && o[p], obj);
+    };
+
+    const setNestedProperty = (obj, path, value) => {
+      const keys = path.split(".");
+      const lastKey = keys.pop();
+      const nestedObj = keys.reduce((o, key) => {
+        if (!o[key]) o[key] = {};
+        return o[key];
+      }, obj);
+      nestedObj[lastKey] = value;
+    };
+
+    const user = JSON.parse(localStorage.getItem("user")) || {};
+
     watch(
       () => props.id,
       async (newId) => {
@@ -268,12 +284,13 @@ export default defineComponent({
           formConfig.value = config;
           formTitle.value = config.title;
           formFields.value = config.fields;
-          formData.value = config.fields
-            ? config.fields.reduce((acc, field) => {
-                acc[field.name] = "";
-                return acc;
-              }, {})
-            : {};
+
+          formData.value = config.fields.reduce((acc, field) => {
+            const existingValue = getNestedProperty(user, field.name);
+            acc[field.name] = existingValue !== undefined ? existingValue : "";
+            return acc;
+          }, {});
+
           if (config.customContent) {
             formComponent.value = (await config.component()).default;
           } else {
@@ -299,17 +316,42 @@ export default defineComponent({
           return "SelectCustom";
         case "select-tab":
           return "SelectTab";
+        case "multiple":
+          return "div";
         default:
           return "q-input";
       }
     };
 
     const handleSubmit = () => {
+      formFields.value.forEach((field) => {
+        const dialogPath = `${props.id}.${field.name}`;
+        const globalPath = field.name;
+
+        if (getNestedProperty(user, props.id) !== undefined) {
+          setNestedProperty(user, dialogPath, formData.value[field.name]);
+        } else if (getNestedProperty(user, globalPath) !== undefined) {
+          setNestedProperty(user, globalPath, formData.value[field.name]);
+        }
+        else {
+          setNestedProperty(
+            user.profile,
+            globalPath,
+            formData.value[field.name]
+          );
+        }
+      });
+
+      user.updated = true;
+
+      localStorage.setItem("user", JSON.stringify(user));
+
       emit("close-dialog");
     };
 
     const handleCancel = () => {
       isDialogOpen.value = false;
+
       emit("close-dialog");
     };
 

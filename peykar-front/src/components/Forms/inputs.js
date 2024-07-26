@@ -25,21 +25,16 @@ export const formConfigs = {
     fields: [
       {
         type: "input",
-        name: "firstName",
-        label: "نام",
-      },
-      {
-        type: "input",
-        name: "lastName",
-        label: "نام خانوادگی",
+        name: "name",
+        label: "نام و نام خانوادگی",
       },
       {
         type: "select-tab",
         name: "gender",
         label: "جنسیت",
         options: [
-          { name: "male", label: "مرد" },
-          { name: "female", label: "زن" },
+          { name: "مرد", label: "مرد" },
+          { name: "زن", label: "زن" },
         ],
       },
       {
@@ -47,25 +42,25 @@ export const formConfigs = {
         name: "maritalStatus",
         label: "وضعیت تاهل",
         options: [
-          { name: "single", label: "مجرد" },
-          { name: "married", label: "متاهل" },
+          { name: "مجرد", label: "مجرد" },
+          { name: "متاهل", label: "متاهل" },
         ],
       },
       {
         type: "select",
-        name: "militaryStatus",
+        name: "militaryServiceStatus",
         label: "وضعیت نظام وظیفه",
         options: ["معاف", "در حال خدمت", "پایان خدمت"],
       },
       {
         type: "select-custom",
-        name: "residenceCity",
+        name: "city",
         label: "شهر محل سکونت",
         options: ["تهران", "مشهد", "اصفهان"],
       },
       {
         type: "select",
-        name: "neighborhood",
+        name: "address",
         label: "محله",
         primaryTip:
           "وارد کردن محل سکونت دقیق به ما کمک می کند که پیشنهادهای شغلی نزدیک تر به محل زندگی شما را با اولویت بالاتری به شما پیشنهاد دهیم",
@@ -93,7 +88,7 @@ export const formConfigs = {
       },
       {
         type: "select-custom",
-        name: "jobInterest",
+        name: "interestedJobGroups",
         label: "علاقمند به استخدام در کدام حوزه شغلی هستید؟ (حداکثر ۳ مورد)",
         primaryTip:
           "شما با وارد کردن گروه های شغلی مورد علاقه خود می توانید آگهی های شغلی مرتبط با این گروه ها را در قالب ایمیل دریافت کنید.",
@@ -101,22 +96,24 @@ export const formConfigs = {
       },
       {
         type: "checkbox",
-        name: "isForeigner",
+        name: "foreigners",
         label: "اتباع خارجی هستم",
         questionOnTrue: [
           {
             title: "ملیت",
+            name: "nationality",
             options: ["آمریکایی", "آلمانی", "ایرانی"],
           },
         ],
       },
       {
         type: "checkbox",
-        name: "isDisabled",
+        name: "disability",
         label: "دارای معلولیت هستم",
         questionOnTrue: [
           {
             title: "نوع معلولیت",
+            name: "disabilityType",
             options: ["جسمی", "ذهنی", "شنوایی"],
           },
         ],
@@ -131,17 +128,17 @@ export const formConfigs = {
     fields: [
       {
         type: "select-tab",
-        name: "educationLevel",
+        name: "degree",
         label: "مقطع تحصیلی",
         options: [
-          { name: "bachelor", label: "کارشناسی" },
-          { name: "master", label: "کارشناسی ارشد" },
-          { name: "phd", label: "دکتری" },
+          { name: "کارشناسی", label: "کارشناسی" },
+          { name: "کارشناسی ارشد", label: "کارشناسی ارشد" },
+          { name: "دکتری", label: "دکتری" },
         ],
       },
       {
         type: "select",
-        name: "fieldOfStudy",
+        name: "field",
         label: "رشته تحصیلی",
         options: ["مهندسی کامپیوتر", "مهندسی برق", "مدیریت"],
       },
@@ -159,17 +156,17 @@ export const formConfigs = {
         type: "select",
         name: "startYear",
         label: "سال شروع",
-        options: ["2015", "2016", "2017"],
+        options: ["1400", "1401", "1402"],
       },
       {
         type: "select",
         name: "endYear",
         label: "سال پایان",
-        options: ["2019", "2020", "2021"],
+        options: ["1401", "1402", "1403"],
       },
       {
         type: "checkbox",
-        name: "currentlyStudying",
+        name: "isStudying",
         label: "هنوز در این مقطع مشغول به تحصیل هستم.",
       },
     ],
@@ -186,7 +183,7 @@ export const formConfigs = {
       },
       {
         type: "select",
-        name: "companyField",
+        name: "field",
         label: "زمینه فعالیت شما در این شرکت",
         primaryTip: "مثلا زمینه فعالیت شغل حسابدار، مالی و حسابداری می‌باشد",
         options: ["مالی", "تکنولوژی", "مدیریت"],
@@ -204,7 +201,7 @@ export const formConfigs = {
       },
       {
         type: "select",
-        name: "companyActivity",
+        name: "companyField",
         label: "زمینه فعالیت شرکت (اختیاری)",
         primaryTip:
           "زمینه فعالیت شرکتی که در آن مشغول بودید (مثال: مدیر مالی شرکت کاله - زمینه فعالیت شرکت: کالاهای مصرفی و تند گردش)",
@@ -218,13 +215,13 @@ export const formConfigs = {
             type: "select-custom",
             name: "country",
             label: "کشور",
-            options: ["Iran", "USA", "Germany"],
+            options: ["ایران", "آمریکا", "آلمان"],
           },
           {
             type: "select-custom",
             name: "city",
             label: "شهر",
-            options: ["Tehran", "New York", "Berlin"],
+            options: ["تهران", "نیویورک", "برلین"],
           },
         ],
       },
@@ -236,13 +233,13 @@ export const formConfigs = {
             type: "select",
             name: "startMonth",
             label: "ماه شروع",
-            options: ["January", "February", "March"],
+            options: ["فروردین", "اردیبهشت", "خرداد"],
           },
           {
             type: "select",
             name: "startYear",
             label: "سال شروع",
-            options: ["2020", "2021", "2022"],
+            options: ["1400", "1401", "1402"],
           },
         ],
       },
@@ -254,13 +251,13 @@ export const formConfigs = {
             type: "select",
             name: "endMonth",
             label: "ماه پایان",
-            options: ["January", "February", "March"],
+            options: ["تیر", "مرداد", "شهریور"],
           },
           {
             type: "select",
             name: "endYear",
             label: "سال پایان",
-            options: ["2020", "2021", "2022"],
+            options: ["1401", "1402", "1403"],
           },
         ],
       },
@@ -271,7 +268,7 @@ export const formConfigs = {
       },
       {
         type: "textarea",
-        name: "responsibilities",
+        name: "achievements",
         label: "دستاورد‌ها و وظایف کلیدی (اختیاری)",
         primaryTip:
           "در این قسمت می توانید مهمترین وظایفی که در این شرکت به عهده داشتید و همچنین نتایج مطلوبی که در کار خود به آن رسیدید را ذکر کنید تا کارفرما نگاه دقیق تری به تجربه شغلی مورد نظر شما داشته باشد.",
@@ -290,7 +287,7 @@ export const formConfigs = {
       },
       {
         type: "select",
-        name: "skillLevel",
+        name: "proficiency",
         label: "سطح مهارت",
         options: ["مبتدی", "متوسط", "پیشرفته"],
       },

@@ -1085,7 +1085,7 @@
 </template>
 
 <script>
-import { ref, defineComponent, onMounted } from "vue";
+import { ref, defineComponent, onMounted, computed } from "vue";
 
 import { getUser } from "../../../composables/getUser";
 
@@ -1193,24 +1193,36 @@ export default defineComponent({
     const editEmail = ref(false);
     const editPhone = ref(false);
     const preferred = ref("خودم");
-    const basicInformation = [
-      { title: "نام و نام خانوادگی", info: user.value.name },
-      { title: "جنسیت", info: user.value.profile.gender },
-      { title: "وضعیت تاهل", info: user.value.profile.maritalStatus },
-      {
-        title: "وضعیت نظام وظیفه",
-        info: user.value.profile.militaryServiceStatus,
-      },
-      { title: "شهر محل سکونت", info: user.value.profile.city },
-      { title: "محل سکونت", info: user.value.profile.address },
-      { title: "تاریخ تولد", info: user.value.profile.birthDate },
-      { title: "شماره ثابت", info: user.value.phone },
-      { title: "حقوق درخواستی", info: user.value.profile.requestedSalary },
-      {
-        title: "نوع شغل مورد علاقه",
-        info: user.value.profile.interestedJobGroups.join(", "),
-      },
-    ];
+    const basicInformation = computed(() => {
+      const interestedJobGroups = Array.isArray(
+        user.value.profile.interestedJobGroups
+      )
+        ? user.value.profile.interestedJobGroups
+        : [];
+
+      return [
+        { title: "نام و نام خانوادگی", info: user.value.name },
+        { title: "جنسیت", info: user.value.profile.gender },
+        { title: "وضعیت تاهل", info: user.value.profile.maritalStatus },
+        {
+          title: "وضعیت نظام وظیفه",
+          info: user.value.profile.militaryServiceStatus,
+        },
+        { title: "شهر محل سکونت", info: user.value.profile.city },
+        { title: "محل سکونت", info: user.value.profile.address },
+        { title: "تاریخ تولد", info: user.value.profile.birthDate },
+        { title: "شماره ثابت", info: user.value.phone },
+        { title: "حقوق درخواستی", info: user.value.profile.requestedSalary },
+        ...(interestedJobGroups.length > 0
+          ? [
+              {
+                title: "نوع شغل مورد علاقه",
+                info: interestedJobGroups.join(", "),
+              },
+            ]
+          : []),
+      ];
+    });
 
     // Educational Records
 
