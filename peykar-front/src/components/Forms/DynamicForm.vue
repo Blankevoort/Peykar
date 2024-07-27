@@ -109,6 +109,7 @@
                   :is="getComponent(subField)"
                   v-model="formData[subField.name]"
                   :options="subField.options"
+                  :multiple="subField.multiple"
                   :type="subField.type === 'textarea' ? 'textarea' : undefined"
                   :counter="subField.type === 'textarea'"
                   outlined
@@ -145,6 +146,7 @@
               v-model="formData[field.name]"
               :options="field.options"
               :type="field.type === 'textarea' ? 'textarea' : undefined"
+              :multiple="field.multiple === true"
               :counter="field.type === 'textarea'"
               outlined
             />
@@ -177,8 +179,8 @@
 </template>
 
 <script>
-import { defineComponent, ref, watch } from "vue";
 import { formConfigs } from "./inputs";
+import { defineComponent, ref, watch } from "vue";
 import {
   QDialog,
   QCard,
@@ -190,6 +192,8 @@ import {
   QIcon,
   QTooltip,
 } from "quasar";
+
+import { getNestedValue, setNestedValue } from "../../composables/storageUtils";
 
 import SelectAge from "../Forms/CustomForms/SelectAge.vue";
 import SelectCustom from "../Forms/CustomForms/SelectCustom.vue";
@@ -260,21 +264,16 @@ export default defineComponent({
     const formComponent = ref(null);
     const formConfig = ref({});
 
-    const getNestedProperty = (obj, path) => {
-      return path.split(".").reduce((o, p) => o && o[p], obj);
+    const getFormFieldValue = (path) => {
+      const data = JSON.parse(localStorage.getItem("user") || "{}");
+      return getNestedValue(data, path);
     };
 
-    const setNestedProperty = (obj, path, value) => {
-      const keys = path.split(".");
-      const lastKey = keys.pop();
-      const nestedObj = keys.reduce((o, key) => {
-        if (!o[key]) o[key] = {};
-        return o[key];
-      }, obj);
-      nestedObj[lastKey] = value;
+    const setFormFieldValue = (path, value) => {
+      const data = JSON.parse(localStorage.getItem("user") || "{}");
+      setNestedValue(data, path, value);
+      localStorage.setItem("user", JSON.stringify(data));
     };
-
-    const user = JSON.parse(localStorage.getItem("user")) || {};
 
     watch(
       () => props.id,
@@ -284,13 +283,13 @@ export default defineComponent({
           formConfig.value = config;
           formTitle.value = config.title;
           formFields.value = config.fields;
-
-          formData.value = config.fields.reduce((acc, field) => {
-            const existingValue = getNestedProperty(user, field.name);
-            acc[field.name] = existingValue !== undefined ? existingValue : "";
-            return acc;
-          }, {});
-
+          formData.value = config.fields
+            ? config.fields.reduce((acc, field) => {
+                const value = getFormFieldValue(field.path);
+                acc[field.name] = value !== null ? value : "";
+                return acc;
+              }, {})
+            : {};
           if (config.customContent) {
             formComponent.value = (await config.component()).default;
           } else {
@@ -316,42 +315,39 @@ export default defineComponent({
           return "SelectCustom";
         case "select-tab":
           return "SelectTab";
-        case "multiple":
-          return "div";
         default:
           return "q-input";
       }
     };
 
     const handleSubmit = () => {
-      formFields.value.forEach((field) => {
-        const dialogPath = `${props.id}.${field.name}`;
-        const globalPath = field.name;
+      if (props.action === "add" && formConfig.value.mainPath) {
+        const newData = {};
+        formFields.value.forEach((field) => {
+          if (field.name) {
+            newData[field.name] = formData.value[field.name];
+          }
+        });
 
-        if (getNestedProperty(user, props.id) !== undefined) {
-          setNestedProperty(user, dialogPath, formData.value[field.name]);
-        } else if (getNestedProperty(user, globalPath) !== undefined) {
-          setNestedProperty(user, globalPath, formData.value[field.name]);
-        }
-        else {
-          setNestedProperty(
-            user.profile,
-            globalPath,
-            formData.value[field.name]
-          );
-        }
-      });
-
-      user.updated = true;
-
-      localStorage.setItem("user", JSON.stringify(user));
+        const data = JSON.parse(localStorage.getItem("user") || "{}");
+        const arrayData = getNestedValue(data, formConfig.value.mainPath) || [];
+        arrayData.push(newData);
+        setNestedValue(data, formConfig.value.mainPath, arrayData);
+        localStorage.setItem("user", JSON.stringify(data));
+      } else {
+        formFields.value.forEach((field) => {
+          if (field.path) {
+            setFormFieldValue(field.path, formData.value[field.name]);
+          }
+        });
+      }
 
       emit("close-dialog");
+      location.reload();
     };
 
     const handleCancel = () => {
       isDialogOpen.value = false;
-
       emit("close-dialog");
     };
 
@@ -377,7 +373,7 @@ export default defineComponent({
   height: auto;
   background-color: white;
   border-radius: 18.5px !important;
-  max-height: 600px;
+  max-height: 600px !important;
 }
 
 .dialog-footer {

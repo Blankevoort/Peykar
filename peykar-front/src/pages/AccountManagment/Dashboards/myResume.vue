@@ -1212,7 +1212,7 @@ export default defineComponent({
         { title: "محل سکونت", info: user.value.profile.address },
         { title: "تاریخ تولد", info: user.value.profile.birthDate },
         { title: "شماره ثابت", info: user.value.phone },
-        { title: "حقوق درخواستی", info: user.value.profile.requestedSalary },
+        { title: "حقوق درخواستی", info: user.value.profile.expectedSalary },
         ...(interestedJobGroups.length > 0
           ? [
               {

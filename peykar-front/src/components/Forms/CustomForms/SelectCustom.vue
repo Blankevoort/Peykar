@@ -3,6 +3,7 @@
     <div class="text-grey-7">
       <span>{{ label }}</span>
     </div>
+
     <div class="q-pt-sm full-width">
       <q-select
         v-model="internalValue"
@@ -12,6 +13,7 @@
         clearable
         use-input
         @filter="filterOptions"
+        :multiple="multiple"
       >
         <template v-slot:selected>
           <div
@@ -31,8 +33,12 @@
 export default {
   props: {
     label: String,
-    modelValue: String,
+    modelValue: [String, Array],
     options: Array,
+    multiple: {
+      type: Boolean,
+      default: false,
+    },
   },
   emits: ["update:modelValue"],
   data() {

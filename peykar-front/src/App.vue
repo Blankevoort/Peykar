@@ -9,7 +9,6 @@ const jobDetails = ref([]);
 const user = ref({});
 
 // Function to merge user data
-
 const mergeUserData = (existingUser, newUser) => {
   for (const key in newUser) {
     if (typeof newUser[key] === "object" && !Array.isArray(newUser[key])) {
@@ -27,7 +26,6 @@ onMounted(() => {
   const userLoggedOut = JSON.parse(localStorage.getItem("setUser"));
 
   // Remaining Time Calculation
-
   const today = new Date();
   const endDate = new Date(today);
   endDate.setDate(endDate.getDate() + 50);
@@ -49,7 +47,6 @@ onMounted(() => {
   }
 
   // Dummy Data
-
   if (savedJobDetails) {
     jobDetails.value = savedJobDetails;
   } else {
@@ -111,12 +108,15 @@ onMounted(() => {
     localStorage.setItem("jobDetails", JSON.stringify(jobDetails.value));
   }
 
-  if (!userLoggedOut) {
-    if (!savedUser || !savedUser.updated) {
+  if (userLoggedOut === false) {
+    localStorage.removeItem("user");
+  } else {
+    if (!savedUser) {
       user.value = {
         id: 1,
         name: "نام و نام خانوادگی",
         jobTitle: "دولوپر فول استک در شرکت آیترونیک",
+        linkedIn: "",
         email: "email@example.com",
         phone: "09123456789",
         role: "job_seeker",
@@ -240,11 +240,13 @@ onMounted(() => {
       };
       localStorage.setItem("user", JSON.stringify(user.value));
     } else {
-      user.value = mergeUserData(savedUser, user.value);
-      localStorage.setItem("user", JSON.stringify(user.value));
+      if (!savedUser.updated) {
+        user.value = mergeUserData(savedUser, user.value);
+        localStorage.setItem("user", JSON.stringify(user.value));
+      } else {
+        user.value = savedUser;
+      }
     }
-  } else {
-    localStorage.removeItem("user");
   }
 
   localStorage.setItem("setUser", JSON.stringify(userLoggedOut));
