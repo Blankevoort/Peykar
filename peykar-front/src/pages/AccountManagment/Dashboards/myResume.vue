@@ -231,77 +231,77 @@
 
             <!-- Educational Records -->
 
-            <div id="education" class="bg-white br-10 custom-shadow">
-              <useCard
+            <div id="education" :class="paddingClass">
+              <BadgeAndTitle
                 :progressValue="progressValue"
                 title="سوابق تحصیلی"
                 :showButton="false"
                 :disableEditButton="true"
-                :hasModel="hasEducation"
-                noModel="تحصیلات دانشگاهی ندارم"
-                :educationSection="true"
-                :checkboxModel="noUniversityEducation"
-                :isSmall="true"
+                :isTrue="noUniversityEducation"
                 id="education"
               >
-                <div
+                <useCard
                   v-for="edu in educationData"
                   :key="edu"
-                  class="q-gutter-y-xs"
+                  :hasModel="hasEducation"
+                  noModel="تحصیلات دانشگاهی ندارم"
+                  :educationSection="true"
+                  :isSmall="true"
                 >
-                  <div class="text-bold">
-                    سطح: {{ edu.degree }} رشته: {{ edu.field }}
+                  <div class="q-gutter-y-xs">
+                    <div class="text-bold">
+                      سطح: {{ edu.degree }} رشته: {{ edu.field }}
+                    </div>
+                    <div class="text-grey-7">{{ edu.university }}</div>
+                    <div class="text-grey-7">
+                      {{ edu.startYear }} - {{ edu.endYear }}
+                    </div>
+                    <div class="text-grey-7">معدل: {{ edu.grade }}</div>
                   </div>
-
-                  <div class="text-grey-7">{{ edu.university }}</div>
-
-                  <div class="text-grey-7">
-                    {{ edu.startYear }} - {{ edu.endYear }}
-                  </div>
-
-                  <div class="text-grey-7">معدل: {{ edu.grade }}</div>
-                </div>
-              </useCard>
+                </useCard>
+              </BadgeAndTitle>
             </div>
 
             <!-- Work Experience -->
 
-            <div id="workExperience" class="bg-white br-10 custom-shadow">
+            <div id="workExperience" :class="paddingClass">
               <!-- Main Card -->
 
-              <useCard
+              <BadgeAndTitle
                 :progressValue="progressValue"
                 title="سوابق شغلی"
                 :showButton="true"
                 :disableEditButton="true"
-                :hasModel="hasWorkExperience"
-                noModel="سوابق شغلی ندارم"
-                :checkboxModel="noWorkExperience"
+                :isTrue="noWorkExperience"
                 id="workExperience"
               >
-                <div
+                <useCard
+                  :hasModel="hasWorkExperience"
+                  noModel="سوابق شغلی ندارم"
+                  :checkboxModel="noWorkExperience"
                   v-for="experience in workExperienceData"
                   :key="experience"
-                  class="q-gutter-y-xs"
                 >
-                  <div class="text-bold">
-                    عنوان شغلی: {{ experience.jobTitle }}
-                  </div>
+                  <div class="q-gutter-y-xs">
+                    <div class="text-bold">
+                      عنوان شغلی: {{ experience.jobTitle }}
+                    </div>
 
-                  <div class="text-bold">
-                    نام سازمان: {{ experience.companyName }}
-                  </div>
+                    <div class="text-bold">
+                      نام سازمان: {{ experience.companyName }}
+                    </div>
 
-                  <div class="text-grey-7">
-                    از {{ experience.startYear }} تا
-                    {{
-                      experience.isCurrentlyWorking
-                        ? "تاکنون"
-                        : experience.endDate
-                    }}
+                    <div class="text-grey-7">
+                      از {{ experience.startYear }} تا
+                      {{
+                        experience.isCurrentlyWorking
+                          ? "تاکنون"
+                          : experience.endDate
+                      }}
+                    </div>
                   </div>
-                </div>
-              </useCard>
+                </useCard>
+              </BadgeAndTitle>
 
               <!-- Rate The Company -->
 
@@ -500,188 +500,201 @@
             <div class="bg-white br-10 custom-shadow">
               <!-- Former Colleagues -->
 
-              <useCard
+              <BadgeAndTitle
                 :progressValue="progressValue"
                 title="مدیران و همکاران سابق"
-                :hasModel="hadFormerColleagues"
-                class="q-px-lg"
-                :isLarge="true"
-                :noCheckbox="true"
-                :isAdditional="true"
+                :class="additionalDynamicPadding"
                 id="formerColleagues"
               >
-                <div
-                  class="q-gutter-y-sm"
+                <useCard
+                  :hasModel="hadFormerColleagues"
+                  :isAdditional="true"
+                  :noCheckbox="true"
+                  :isLarge="true"
                   v-for="colleague in formerColleagues"
                   :key="colleague.name"
                 >
-                  <div class="text-bold">{{ colleague.fullName }}</div>
+                  <div class="q-gutter-y-sm">
+                    <div class="text-bold">{{ colleague.fullName }}</div>
 
-                  <div class="text-grey-7">
-                    <div>مدیر در {{ colleague.organizationName }}</div>
-                    <div>{{ colleague.contactNumber }}</div>
+                    <div class="text-grey-7">
+                      <div>مدیر در {{ colleague.organizationName }}</div>
+                      <div>{{ colleague.contactNumber }}</div>
+                    </div>
+
+                    <div>
+                      <span class="text-grey-7">
+                        از {{ colleague.startYear }} تا
+                        {{
+                          colleague.weStillWorkTogether
+                            ? "اکنون"
+                            : colleague.endYear
+                        }}
+                      </span>
+                      <span>{{ colleague.organizationalRelationship }}</span>
+                    </div>
                   </div>
 
-                  <div>
-                    <span class="text-grey-7">
-                      از {{ colleague.startYear }} تا
-                      {{
-                        colleague.weStillWorkTogether
-                          ? "اکنون"
-                          : colleague.endYear
-                      }}
-                    </span>
-                    <span>{{ colleague.organizationalRelationship }}</span>
-                  </div>
-                </div>
-
-                <q-btn dense flat color="primary" label="درخواست توصیه نامه" />
-              </useCard>
+                  <q-btn
+                    dense
+                    flat
+                    color="primary"
+                    label="درخواست توصیه نامه"
+                  />
+                </useCard>
+              </BadgeAndTitle>
 
               <q-separator />
 
               <!-- Education Courses -->
 
-              <useCard
+              <BadgeAndTitle
                 :progressValue="progressValue"
                 title="دوره‌های آموزشی"
-                :hasModel="hadEducationCourses"
-                class="q-px-lg"
-                :isLarge="true"
-                :noCheckbox="true"
-                :isAdditional="true"
+                :class="additionalDynamicPadding"
                 id="educationCourses"
               >
-                <div
-                  class="q-gutter-y-sm"
+                <useCard
+                  :hasModel="hadEducationCourses"
+                  :noCheckbox="true"
+                  :isAdditional="true"
+                  :isLarge="true"
                   v-for="eduCourses in educationCoursesData"
                   :key="eduCourses"
                 >
-                  <div class="text-bold">{{ eduCourses.courseName }}</div>
+                  <div class="q-gutter-y-sm">
+                    <div class="text-bold">{{ eduCourses.courseName }}</div>
 
-                  <div class="text-grey-7">{{ eduCourses.organizer }}</div>
+                    <div class="text-grey-7">{{ eduCourses.organizer }}</div>
 
-                  <div class="text-grey-7">{{ eduCourses.courseDuration }}</div>
+                    <div class="text-grey-7">
+                      {{ eduCourses.courseDuration }}
+                    </div>
 
-                  <div class="text-grey-7">{{ eduCourses.courseYear }}</div>
-                </div>
-              </useCard>
+                    <div class="text-grey-7">{{ eduCourses.courseYear }}</div>
+                  </div>
+                </useCard>
+              </BadgeAndTitle>
 
               <q-separator />
 
               <!-- Awards -->
 
-              <useCard
+              <BadgeAndTitle
                 :progressValue="progressValue"
                 title="جوایز و افتخارات"
-                :hasModel="hadAwards"
-                class="q-px-lg"
-                :noCheckbox="true"
-                :isAdditional="true"
+                :class="additionalDynamicPadding"
                 id="awards"
               >
-                <div
-                  class="q-gutter-y-sm"
+                <useCard
+                  :hasModel="hadAwards"
+                  :noCheckbox="true"
+                  :isAdditional="true"
                   v-for="award in awardsData"
                   :key="award"
                 >
-                  <div class="text-bold">
-                    {{ award.title }}
-                  </div>
+                  <div class="q-gutter-y-sm">
+                    <div class="text-bold">
+                      {{ award.title }}
+                    </div>
 
-                  <div class="text-grey-7">
-                    {{ award.year }}
+                    <div class="text-grey-7">
+                      {{ award.year }}
+                    </div>
                   </div>
-                </div>
-              </useCard>
+                </useCard>
+              </BadgeAndTitle>
 
               <q-separator />
 
               <!-- Academic Experiences -->
 
-              <useCard
+              <BadgeAndTitle
                 :progressValue="progressValue"
                 title="پروژه‌ها و تجربیات آکادمیک"
-                :hasModel="hadAcademicExperiences"
-                class="q-px-lg"
-                :noCheckbox="true"
-                :isAdditional="true"
+                :class="additionalDynamicPadding"
                 id="academicExperiences"
               >
-                <div
-                  class="q-gutter-y-sm"
+                <useCard
+                  :hasModel="hadAcademicExperiences"
+                  :noCheckbox="true"
+                  :isAdditional="true"
                   v-for="academicExperiences in academicExperiencesData"
                   :key="academicExperiences"
                 >
-                  <div class="text-bold">
-                    {{ academicExperiences.title }}
-                  </div>
+                  <div class="q-gutter-y-sm">
+                    <div class="text-bold">
+                      {{ academicExperiences.title }}
+                    </div>
 
-                  <div class="text-grey-7">
-                    {{ academicExperiences.year }}
+                    <div class="text-grey-7">
+                      {{ academicExperiences.year }}
+                    </div>
                   </div>
-                </div>
-              </useCard>
+                </useCard>
+              </BadgeAndTitle>
 
               <q-separator />
 
               <!-- Books and Articles -->
 
-              <useCard
+              <BadgeAndTitle
                 :progressValue="progressValue"
                 title="کتاب‌ها و مقالات"
-                :hasModel="hadBooksAndArticles"
-                class="q-px-lg"
-                :noCheckbox="true"
-                :isAdditional="true"
+                :class="additionalDynamicPadding"
                 id="booksAndArticles"
               >
-                <div
-                  class="q-gutter-y-sm"
+                <useCard
+                  :hasModel="hadBooksAndArticles"
+                  :noCheckbox="true"
+                  :isAdditional="true"
                   v-for="booksAndArticles in booksAndArticlesData"
                   :key="booksAndArticles"
                 >
-                  <div class="text-bold">
-                    {{ booksAndArticles.title }}
-                  </div>
+                  <div class="q-gutter-y-sm">
+                    <div class="text-bold">
+                      {{ booksAndArticles.title }}
+                    </div>
 
-                  <div class="text-grey-7">
-                    {{ booksAndArticles.publisher }}
-                  </div>
+                    <div class="text-grey-7">
+                      {{ booksAndArticles.publisher }}
+                    </div>
 
-                  <div class="text-grey-7">
-                    {{ booksAndArticles.year }}
+                    <div class="text-grey-7">
+                      {{ booksAndArticles.year }}
+                    </div>
                   </div>
-                </div>
-              </useCard>
+                </useCard>
+              </BadgeAndTitle>
 
               <q-separator />
 
               <!-- Voluntary Activities -->
 
-              <useCard
+              <BadgeAndTitle
                 :progressValue="progressValue"
                 title="فعالیت‌های داوطلبانه"
-                :hasModel="hadVoluntaryActivities"
-                class="q-px-lg"
-                :noCheckbox="true"
-                :isAdditional="true"
+                :class="additionalDynamicPadding"
                 id="voluntaryActivities"
               >
-                <div
-                  class="q-gutter-y-sm"
+                <useCard
+                  :hasModel="hadVoluntaryActivities"
+                  :noCheckbox="true"
+                  :isAdditional="true"
                   v-for="voluntaryActivity in voluntaryActivitiesData"
                   :key="voluntaryActivity"
                 >
-                  <div class="text-bold">
-                    {{ voluntaryActivity.title }}
-                  </div>
+                  <div class="q-gutter-y-sm">
+                    <div class="text-bold">
+                      {{ voluntaryActivity.title }}
+                    </div>
 
-                  <div class="text-grey-7">
-                    {{ voluntaryActivity.year }}
+                    <div class="text-grey-7">
+                      {{ voluntaryActivity.year }}
+                    </div>
                   </div>
-                </div>
-              </useCard>
+                </useCard>
+              </BadgeAndTitle>
             </div>
           </div>
 
@@ -1164,6 +1177,9 @@ export default defineComponent({
     },
     isXsOrLarger() {
       return this.$q.screen.gt.xs;
+    },
+    additionalDynamicPadding() {
+      return this.$q.screen.xs ? "q-px-xs" : "q-px-lg";
     },
   },
 

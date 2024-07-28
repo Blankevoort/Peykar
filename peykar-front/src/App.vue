@@ -26,6 +26,7 @@ onMounted(() => {
   const userLoggedOut = JSON.parse(localStorage.getItem("setUser"));
 
   // Remaining Time Calculation
+
   const today = new Date();
   const endDate = new Date(today);
   endDate.setDate(endDate.getDate() + 50);
@@ -47,6 +48,7 @@ onMounted(() => {
   }
 
   // Dummy Data
+
   if (savedJobDetails) {
     jobDetails.value = savedJobDetails;
   } else {
@@ -233,6 +235,12 @@ onMounted(() => {
                 startYear: 2020,
                 endYear: 2021,
                 summary: "طراحی و توسعه وبسایت فروشگاهی با Vue.js",
+              },
+            ],
+            volunteerActivities: [
+              {
+                title: "پروژه توسعه وبسایت فروشگاهی",
+                year: 2020,
               },
             ],
           },

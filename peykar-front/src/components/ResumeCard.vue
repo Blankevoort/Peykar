@@ -1,60 +1,47 @@
 <template>
   <div :class="computedClass">
-    <BadgeAndTitle
-      :progressValue="progressValue"
-      :title="title"
-      :showButton="showButton"
-      :disableEditButton="disableEditButton"
-      :badge="showBadge"
-      :isTrue="!localCheckboxModel"
-      :id="id"
+    <!-- Content -->
+
+    <SidebarWithIcons
+      :additional="isAdditional"
+      :small="isSmall"
+      :large="isLarge"
+      v-if="hasModel"
     >
-      <!-- Content -->
-
-      <SidebarWithIcons
-        :additional="isAdditional"
-        :small="isSmall"
-        :large="isLarge"
-        v-if="hasModel"
-      >
-        <div class="q-pl-xs">
-          <slot></slot>
-        </div>
-      </SidebarWithIcons>
-
-      <div class="q-pt-sm text-grey-7" v-if="!hasModel && !noCheckbox">
-        <!-- User doesn't have Model -->
-
-        <div class="row items-center q-gutter-sm">
-          <q-checkbox size="sm" v-model="localCheckboxModel" />
-
-          <div>{{ noModel }}</div>
-        </div>
-
-        <!-- Only University Education -->
-
-        <div class="q-gutter-y-sm q-pl-md q-pt-sm" v-if="educationSection">
-          <RadioGroupWithConditionalSlot
-            :model="!localCheckboxModel"
-            modelProp="diploma"
-            :options="diplomaOptions"
-            @update:modelValue="updateModel"
-          />
-        </div>
+      <div class="q-pl-xs">
+        <slot></slot>
       </div>
-    </BadgeAndTitle>
+    </SidebarWithIcons>
+
+    <div class="q-pt-sm text-grey-7" v-if="!hasModel && !noCheckbox">
+      <!-- User doesn't have Model -->
+
+      <div class="row items-center q-gutter-sm">
+        <q-checkbox size="sm" v-model="localCheckboxModel" />
+        <div>{{ noModel }}</div>
+      </div>
+
+      <!-- Only University Education -->
+
+      <div class="q-gutter-y-sm q-pl-md q-pt-sm" v-if="educationSection">
+        <RadioGroupWithConditionalSlot
+          :model="!localCheckboxModel"
+          modelProp="diploma"
+          :options="diplomaOptions"
+          @update:modelValue="updateModel"
+        />
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import { ref, watch } from "vue";
-import BadgeAndTitle from "./ResumeCards/ResumeBadgeAndTitle.vue";
 import SidebarWithIcons from "./ResumeCards/SidebarWithIcons.vue";
 import RadioGroupWithConditionalSlot from "./ResumeCards/RadioGroupWithConditionalSlot.vue";
 
 export default {
   components: {
-    BadgeAndTitle,
     SidebarWithIcons,
     RadioGroupWithConditionalSlot,
   },
