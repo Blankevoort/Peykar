@@ -1,5 +1,5 @@
 <template>
-  <div :class="computedClass">
+  <div class="bg-white br-10">
     <!-- Content -->
 
     <SidebarWithIcons
@@ -8,7 +8,7 @@
       :large="isLarge"
       v-if="hasModel"
     >
-      <div class="q-pl-xs">
+      <div>
         <slot></slot>
       </div>
     </SidebarWithIcons>
@@ -98,13 +98,6 @@ export default {
       localCheckboxModel,
       updateCheckboxModel,
     };
-  },
-  computed: {
-    computedClass() {
-      return this.$q.screen.lt.sm
-        ? "bg-white br-10 q-px-sm"
-        : "bg-white br-10 q-px-lg";
-    },
   },
 };
 </script>

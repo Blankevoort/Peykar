@@ -497,13 +497,12 @@
 
             <!-- Additional Information Cards -->
 
-            <div class="bg-white br-10 custom-shadow">
+            <div :class="paddingClass">
               <!-- Former Colleagues -->
 
               <BadgeAndTitle
                 :progressValue="progressValue"
                 title="مدیران و همکاران سابق"
-                :class="additionalDynamicPadding"
                 id="formerColleagues"
               >
                 <useCard
@@ -551,7 +550,6 @@
               <BadgeAndTitle
                 :progressValue="progressValue"
                 title="دوره‌های آموزشی"
-                :class="additionalDynamicPadding"
                 id="educationCourses"
               >
                 <useCard
@@ -583,7 +581,6 @@
               <BadgeAndTitle
                 :progressValue="progressValue"
                 title="جوایز و افتخارات"
-                :class="additionalDynamicPadding"
                 id="awards"
               >
                 <useCard
@@ -612,7 +609,6 @@
               <BadgeAndTitle
                 :progressValue="progressValue"
                 title="پروژه‌ها و تجربیات آکادمیک"
-                :class="additionalDynamicPadding"
                 id="academicExperiences"
               >
                 <useCard
@@ -641,7 +637,6 @@
               <BadgeAndTitle
                 :progressValue="progressValue"
                 title="کتاب‌ها و مقالات"
-                :class="additionalDynamicPadding"
                 id="booksAndArticles"
               >
                 <useCard
@@ -674,7 +669,6 @@
               <BadgeAndTitle
                 :progressValue="progressValue"
                 title="فعالیت‌های داوطلبانه"
-                :class="additionalDynamicPadding"
                 id="voluntaryActivities"
               >
                 <useCard
@@ -1177,9 +1171,6 @@ export default defineComponent({
     },
     isXsOrLarger() {
       return this.$q.screen.gt.xs;
-    },
-    additionalDynamicPadding() {
-      return this.$q.screen.xs ? "q-px-xs" : "q-px-lg";
     },
   },
 

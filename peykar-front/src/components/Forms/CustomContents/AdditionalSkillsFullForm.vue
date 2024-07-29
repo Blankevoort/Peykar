@@ -18,7 +18,7 @@
       <div class="font-12 text-grey-6">مهارت‌ها در رزومه فارسی</div>
     </div>
 
-    <div :class="['q-gutter-y-sm', isXs ? 'q-mt-md' : 'q-mt-xl']">
+    <div :class="['q-gutter-y-sm', isXs ? 'q-my-md' : 'q-my-xl']">
       <div
         class="row items-center"
         v-for="aSkills in additionSkills"
@@ -43,7 +43,7 @@
 </template>
 
 <script>
-import { ref, computed } from "vue";
+import { ref, computed, onMounted } from "vue";
 import { useQuasar } from "quasar";
 
 export default {
@@ -52,15 +52,31 @@ export default {
     const $q = useQuasar();
     const skills = ref("");
     const additionSkills = ref([]);
-
     const isXs = computed(() => $q.screen.lt.sm);
+
+    const loadSkills = () => {
+      const user = JSON.parse(localStorage.getItem("user"));
+      if (user && user.profile && user.profile.additionalSkills) {
+        additionSkills.value = user.profile.additionalSkills;
+      }
+    };
 
     const addSkill = () => {
       if (skills.value.trim() !== "") {
-        additionSkills.value.push({ name: skills.value.trim() });
+        const newSkill = { name: skills.value.trim() };
+        additionSkills.value.push(newSkill);
+
+        const user = JSON.parse(localStorage.getItem("user")) || {};
+        user.profile = user.profile || {};
+        user.profile.additionalSkills = additionSkills.value;
+
+        localStorage.setItem("user", JSON.stringify(user));
+
         skills.value = "";
       }
     };
+
+    onMounted(loadSkills);
 
     return {
       isXs,
