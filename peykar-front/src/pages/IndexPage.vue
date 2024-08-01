@@ -196,6 +196,8 @@
         <q-tab-panel name="history"> </q-tab-panel>
       </q-tab-panels>
 
+      <!-- Some Explanations About App -->
+
       <div class="col-12 q-mt-lg q-mb-sm row justify-center">
         <q-btn
           outline
@@ -208,7 +210,7 @@
 
       <q-card
         flat
-        class="global-emplyment q-mt-md col-12 row justify-center content-center items-center q-py-lg"
+        class="global-emplyment q-mt-md col-12 row justify-center content-center items-center q-py-lg q-mb-md"
       >
         <div class="col-10">
           <q-card-section

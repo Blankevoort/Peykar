@@ -193,7 +193,7 @@
       <div class="col-12 row justify-center q-my-md q-px-xl">
         <div class="col-md-12 col-lg-8 col-xl-8">
           <div class="row justify-between items-start content-center q-my-md">
-            <div class="col-6 q-px-sm row justify-center">
+            <div class="col-5 q-px-sm row justify-center">
               <q-btn
                 color="primary"
                 class="col-12 q-mb-sm"
@@ -204,24 +204,42 @@
 
               <div
                 class="col-12 q-my-xs row justify-between items-center text-grey-7"
-                style="background-color: white"
               >
-                <div class="col-6 q-px-md">40396 فرصت شغلی فعال</div>
+                <div class="col-6 q-px-md">40,396 فرصت شغلی فعال</div>
 
                 <div class="col-6 q-px-md text-right">
-                  مرتب سازی:
-
                   <q-btn-dropdown
-                    class="q-my-sm"
-                    outline
-                    label="حقوق"
-                    dropdown-icon="expand_more"
+                    class="q-my-sm text-black"
+                    label="منطبق ترین"
+                    flat
                   >
-                    <q-option-group
-                      v-model="group"
-                      :options="optionss"
-                      color="primary"
-                    />
+                    <q-tabs
+                      vertical
+                      active-class="active-sort-type"
+                      indicator-color="transparent"
+                      v-model="tab"
+                    >
+                      <q-tab
+                        class="q-mx-xs q-my-xs text-black"
+                        style="border-radius: 8px"
+                        name="recent"
+                        label="جدیدترین"
+                      />
+
+                      <q-tab
+                        class="q-mx-xs q-my-xs text-black"
+                        style="border-radius: 8px"
+                        name="suitable"
+                        label="منطبق ترین"
+                      />
+
+                      <q-tab
+                        class="q-mx-xs q-my-xs text-black"
+                        style="border-radius: 8px"
+                        name="mostSalary"
+                        label="بیشترین حقوق"
+                      />
+                    </q-tabs>
                   </q-btn-dropdown>
                 </div>
               </div>
@@ -349,7 +367,7 @@
             <!-- Sidebar -->
 
             <div
-              class="col-6 q-px-sm row justify-center"
+              class="col-7 q-px-sm row justify-center"
               style="
                 background-color: white;
                 position: sticky;
@@ -557,7 +575,7 @@
 
             <div
               class="col-12 row q-mt-md"
-              style="height: 40px; overflow: scroll"
+              style="height: 60px; overflow-x: scroll"
             >
               <q-btn
                 outline
@@ -614,6 +632,7 @@
                   color="primary"
                 />
               </q-btn-dropdown>
+
               <q-btn-dropdown
                 class="q-my-sm q-mx-xs"
                 rounded
@@ -627,6 +646,7 @@
                   color="primary"
                 />
               </q-btn-dropdown>
+
               <q-btn-dropdown
                 class="q-my-sm q-mx-xs"
                 rounded
@@ -640,6 +660,7 @@
                   color="primary"
                 />
               </q-btn-dropdown>
+
               <q-btn-dropdown
                 class="q-my-sm q-mx-xs"
                 rounded
@@ -653,6 +674,7 @@
                   color="primary"
                 />
               </q-btn-dropdown>
+
               <q-btn-dropdown
                 class="q-my-sm q-mx-xs"
                 rounded
@@ -687,7 +709,7 @@
 
       <!-- Page Content -->
 
-      <div class="col-12 row justify-center q-my-md">
+      <div class="col-12 row justify-center q-mb-md">
         <div class="col-12 q-px-md">
           <div class="row justify-between items-start content-center q-my-md">
             <div class="col-12 q-px-sm row justify-center">
@@ -701,28 +723,50 @@
                 style="height: 50px; z-index: 9999999"
               />
 
+              <!-- Sorting options And Job offers Count -->
+
               <div
                 class="col-12 q-my-xs row justify-between items-center text-grey-7"
               >
                 <div class="col-6 q-px-md">
-                  <div>40396</div>
-                  فرصت شغلی فعال
+                  <span class="text-grey-7 text-bold font-11">40,396</span>
+
+                  <span class="text-grey-7 font-11"> فرصت شغلی فعال </span>
                 </div>
 
                 <div class="col-6 flex justify-end">
-                  <div class="q-px-md">مرتب سازی:</div>
-
                   <q-btn-dropdown
-                    class="q-mb-sm"
-                    outline
-                    label="حقوق"
-                    dropdown-icon="expand_more"
+                    class="q-my-sm text-black font-11"
+                    label="منطبق ترین"
+                    flat
                   >
-                    <q-option-group
-                      v-model="group"
-                      :options="optionss"
-                      color="primary"
-                    />
+                    <q-tabs
+                      vertical
+                      active-class="active-sort-type"
+                      indicator-color="transparent"
+                      v-model="tab"
+                    >
+                      <q-tab
+                        class="q-mx-xs q-my-xs text-black"
+                        style="border-radius: 8px"
+                        name="recent"
+                        label="جدیدترین"
+                      />
+
+                      <q-tab
+                        class="q-mx-xs q-my-xs text-black"
+                        style="border-radius: 8px"
+                        name="suitable"
+                        label="منطبق ترین"
+                      />
+
+                      <q-tab
+                        class="q-mx-xs q-my-xs text-black"
+                        style="border-radius: 8px"
+                        name="mostSalary"
+                        label="بیشترین حقوق"
+                      />
+                    </q-tabs>
                   </q-btn-dropdown>
                 </div>
               </div>

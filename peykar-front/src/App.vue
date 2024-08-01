@@ -211,8 +211,7 @@ onMounted(() => {
               {
                 title: "کتاب برنامه‌نویسی پیشرفته",
                 date: "1400/03/01",
-                summary: "این کتاب درباره برنامه‌نویسی پیشرفته است",
-                authors: ["نویسنده الف", "نویسنده ب"],
+                publisher: ["نویسنده الف", "نویسنده ب"],
               },
             ],
             patents: [
@@ -271,6 +270,10 @@ onMounted(() => {
 
 .br-10 {
   border-radius: 10px !important;
+}
+
+.font-11 {
+  font-size: 11px;
 }
 
 .font-12 {

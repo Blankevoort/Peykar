@@ -83,7 +83,7 @@
       <!-- tabs -->
 
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-8 col-xl-8 row q-my-md">
-        <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-2 q-pl-lg">
+        <div :class="paddingClass">
           <q-card class="gt-sm" bordered>
             <q-tabs
               inline-label
@@ -91,6 +91,7 @@
               indicator-color="transparent"
               active-class="active-tab"
               v-model="tab"
+              outside-arrows
             >
               <q-tab
                 icon="upload_file"
@@ -126,13 +127,14 @@
             </q-tabs>
           </q-card>
 
-          <q-card class="lt-md q-mb-md q-mr-lg">
+          <q-card :class="marginClass">
             <q-tabs
               class="full-width"
               inline-label
               indicator-color="transparent"
               active-class="active-tab-small"
               v-model="tab"
+              outside-arrows
             >
               <q-tab
                 icon="upload_file"
@@ -191,51 +193,52 @@
                   active-class="active-category"
                   indicator-color="transparent"
                   v-model="categories"
+                  outside-arrows
                 >
                   <q-tab
-                    class="q-mx-xs q-my-xs text-black not-active-category"
+                    class="text-black not-active-category"
                     style="border-radius: 40px"
                     name="all"
                     label="همه(1)"
                   />
 
                   <q-tab
-                    class="q-mx-xs q-my-xs text-black not-active-category"
+                    class="text-black not-active-category"
                     style="border-radius: 40px"
                     name="sent"
                     label="دریافت شده توسط کارفرما(1)"
                   />
 
                   <q-tab
-                    class="q-mx-xs q-my-xs text-black not-active-category"
+                    class="text-black not-active-category"
                     style="border-radius: 40px"
                     name="priority"
                     label="در اولویت بررسی(0)"
                   />
 
                   <q-tab
-                    class="q-mx-xs q-my-xs text-black not-active-category"
+                    class="text-black not-active-category"
                     style="border-radius: 40px"
                     name="confirms"
                     label="تایید شده(0)"
                   />
 
                   <q-tab
-                    class="q-mx-xs q-my-xs text-black not-active-category"
+                    class="text-black not-active-category"
                     style="border-radius: 40px"
                     name="rejects"
                     label="رد شده(0)"
                   />
 
                   <q-tab
-                    class="q-mx-xs q-my-xs text-black not-active-category"
+                    class="text-black not-active-category"
                     style="border-radius: 40px"
                     name="canceled"
                     label="انصراف داده شده(0)"
                   />
 
                   <q-tab
-                    class="q-mx-xs q-my-xs text-black not-active-category"
+                    class="text-black not-active-category"
                     style="border-radius: 40px"
                     name="closed"
                     label="آگهی های بسته شده(0)"
@@ -333,85 +336,40 @@
                 </q-tab-panel>
 
                 <q-tab-panel name="sent">
-                  <div
-                    v-for="(job, index) in jobs"
-                    :key="'job-' + index + 1"
-                    class="q-px-sm q-my-md col-lg-6 col-xl-4"
-                  >
-                    <q-card flat bordered>
-                      <!-- Job`s Tags -->
+                  <q-list class="col-12 q-my-sm">
+                    <q-expansion-item
+                      expand-icon-class="q-pb-lg"
+                      class="bg-white br-10 q-pa-sm"
+                      expand-icon-toggle
+                      expand-separator
+                    >
+                      <template v-slot:header>
+                        <q-item-section class="q-pb-sm text-bold">
+                          <span style="font-size: 14px">برنامه نویس</span>
 
-                      <div class="row justify-between" v-if="job.tagList">
-                        <div class="row col-12">
-                          <div class="col-10">
-                            <q-badge
-                              v-for="(tag, index) in job.tagList"
-                              :key="index"
-                              class="q-my-xs q-mx-xs q-py-sm"
-                              :color="tag.important ? 'red-2' : 'indigo-1'"
-                              :text-color="
-                                tag.important ? 'negative' : 'primary'
-                              "
-                              :label="tag.label"
-                            />
+                          <div class="text-caption text-grey-7 q-mt-xs">
+                            ارسال شده برای
+                            <span class="text-bold">داده نگار</span> امروز
                           </div>
 
-                          <div class="col-2 text-right">
-                            <q-btn flat icon="favorite_outline" />
+                          <div class="text-bold text-grey-8">
+                            تعیین وضعیت نشده
                           </div>
-                        </div>
+                        </q-item-section>
+                      </template>
+
+                      <q-separator style="height: 2px" />
+
+                      <div style="padding: 8px 0 16px 0">
+                        <q-btn
+                          flat
+                          class="text-red"
+                          label="انصراف از درخواست"
+                          icon="delete"
+                        />
                       </div>
-
-                      <q-card-section horizontal>
-                        <q-card-section
-                          class="col-xs-5 col-sm-3 flex flex-center"
-                        >
-                          <q-img
-                            class="rounded-borders"
-                            :src="job.image"
-                            style="width: 48px; height: 48px"
-                          />
-                        </q-card-section>
-
-                        <q-card-section>
-                          <div class="q-mt-sm q-mb-xs">{{ job.title }}</div>
-
-                          <div class="text-caption" v-if="job.company">
-                            {{ job.company }}
-                          </div>
-
-                          <div class="text-caption text-grey row">
-                            <div>
-                              {{ job.location }}
-                            </div>
-
-                            <div class="row" v-if="job.rightsMin">
-                              <span class="q-px-sm">|</span>
-
-                              <p class="text-positive" v-if="job.rightsMax">
-                                {{ job.rightsMin }} - {{ job.rightsMax }}
-                              </p>
-                              <p class="text-positive" v-else>
-                                {{ job.rightsMin }}+
-                              </p>
-                            </div>
-                          </div>
-                        </q-card-section>
-                      </q-card-section>
-
-                      <q-separator inset />
-
-                      <q-card-actions class="q-px-sm">
-                        <q-btn flat>
-                          {{ timeSincePosted(job.postedDate) }}</q-btn
-                        >
-
-                        <q-space />
-
-                        <q-btn color="positive" label="ارسال رزومه" />
-                      </q-card-actions>
-                    </q-card>
-                  </div>
+                    </q-expansion-item>
+                  </q-list>
 
                   <div class="q-my-md row justify-end">
                     <q-tabs active-class="active-tabs" v-model="CVPage">
@@ -436,11 +394,11 @@
                   >
                     <div class="col-12 q-my-xs row justify-center">
                       <q-img
-                        class="col-6 content-center"
+                        class="content-center"
                         src="https://jobvision.ir/assets/images/my-applications/applications-empty-state.svg"
                       />
 
-                      <div class="text-grey-6 q-mt-xl">
+                      <div class="text-grey-6 text-center q-mt-xl">
                         درخواست‌هایی که توسط کارفرما به مرحله «در اولویت بررسی»
                         منتقل شوند، در این بخش نمایش داده می‌شوند.
                       </div>
@@ -455,11 +413,11 @@
                   >
                     <div class="col-12 q-my-xs row justify-center">
                       <q-img
-                        class="col-6 content-center"
+                        class="content-center"
                         src="https://jobvision.ir/assets/images/my-applications/applications-empty-state.svg"
                       />
 
-                      <div class="text-grey-6 q-mt-xl">
+                      <div class="text-grey-6 q-mt-xl text-center">
                         درخواست‌هایی که توسط کارفرما به مرحله «تایید شده» منتقل
                         شوند، در این بخش نمایش داده می‌شوند.
                       </div>
@@ -474,11 +432,11 @@
                   >
                     <div class="col-12 q-my-xs row justify-center">
                       <q-img
-                        class="col-6 content-center"
+                        class="content-center"
                         src="https://jobvision.ir/assets/images/my-applications/applications-empty-state.svg"
                       />
 
-                      <div class="text-grey-6 q-mt-xl">
+                      <div class="text-grey-6 q-mt-xl text-center">
                         درخواست‌هایی که توسط کارفرما رد شوند، در این بخش نمایش
                         داده می‌شوند.
                       </div>
@@ -493,11 +451,11 @@
                   >
                     <div class="col-12 q-my-xs row justify-center">
                       <q-img
-                        class="col-6 content-center"
+                        class="content-center"
                         src="https://jobvision.ir/assets/images/my-applications/applications-empty-state.svg"
                       />
 
-                      <div class="text-grey-6 q-mt-xl">
+                      <div class="text-grey-6 q-mt-xl text-center">
                         درخواست هایی که از ادامه فرایند استخدام انصراف داده اید
                         در این قسمت نمایش داده می شوند.
                       </div>
@@ -512,11 +470,11 @@
                   >
                     <div class="col-12 q-my-xs row justify-center">
                       <q-img
-                        class="col-6 content-center"
+                        class="content-center"
                         src="https://jobvision.ir/assets/images/my-applications/applications-empty-state.svg"
                       />
 
-                      <div class="text-grey-6 q-mt-xl">
+                      <div class="text-grey-6 q-mt-xl text-center">
                         درخواست‌هایی که آگهی مربوط به آن‌ها بسته شده باشد، در
                         این بخش نمایش داده می‌شوند.
                       </div>
@@ -541,7 +499,7 @@
             <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 col-xl-8 q-px-lg">
               <div class="full-width bg-white">
                 <div class="row justify-between">
-                  <div class="col-6 q-px-md q-my-md text-grey-7">
+                  <div class="col-6 q-px-md q-my-md text-grey-7 font-12">
                     40 فرصت شغلی
                   </div>
 
@@ -677,45 +635,48 @@
 
                 <q-separator />
 
-                <div class="row">
-                  <div class="q-mb-md q-mt-sm col-12">
-                    <div class="text-caption text-grey-6 q-mx-sm">
-                      استان های مورد علاقه
+                <div>
+                  <div class="q-gutter-y-md flex q-my-xs q-px-sm">
+                    <div>
+                      <div class="text-caption text-grey-5 q-mx-sm">
+                        استان های مورد علاقه
+                      </div>
+
+                      <div class="q-mt-sm q-mx-sm">همه استان‌ها</div>
                     </div>
-                    <div class="q-mt-sm q-mx-sm">همه استان‌ها</div>
+
+                    <div>
+                      <div class="text-caption text-grey-5 q-mx-sm">
+                        حوزه‌های شغلی مورد علاقه
+                      </div>
+
+                      <div class="q-mt-sm q-mx-sm">
+                        توسعه نرم افزار و برنامه نویسی
+                      </div>
+                    </div>
+
+                    <div>
+                      <div class="text-caption text-grey-5 q-mx-sm">
+                        نوع همکاری مورد نظر
+                      </div>
+
+                      <div class="q-mt-sm q-mx-sm">
+                        تمام وقت، پاره وقت، قراردادی / پروژه ای
+                      </div>
+                    </div>
+
+                    <div>
+                      <div class="text-caption text-grey-5 q-mx-sm">
+                        تمایل به دورکاری
+                      </div>
+
+                      <div class="q-mt-sm q-mx-sm">دورکاری، حضوری</div>
+                    </div>
                   </div>
 
-                  <div class="q-mb-md q-mt-sm col-12">
-                    <div class="text-caption text-grey-6 q-mx-sm">
-                      حوزه‌های شغلی مورد علاقه
-                    </div>
-                    <div class="q-mt-sm q-mx-sm">
-                      توسعه نرم افزار و برنامه نویسی
-                    </div>
-                  </div>
+                  <q-separator class="q-mt-lg full-width" />
 
-                  <div class="q-mb-md q-mt-sm col-12">
-                    <div class="text-caption text-grey-6 q-mx-sm">
-                      نوع همکاری مورد نظر
-                    </div>
-                    <div class="q-mt-sm q-mx-sm">
-                      تمام وقت، پاره وقت، قراردادی / پروژه ای
-                    </div>
-                  </div>
-
-                  <div class="q-my-sm col-12">
-                    <q-separator class="q-mb-sm" />
-
-                    <div class="text-caption text-grey-6 q-mx-sm">
-                      تمایل به دورکاری
-                    </div>
-
-                    <div class="q-mt-sm q-mx-sm">دورکاری، حضوری</div>
-                  </div>
-
-                  <div class="q-mb-md q-mt-xs col-12 text-center">
-                    <q-separator class="q-mb-md" />
-
+                  <div class="q-my-sm text-center">
                     <q-btn
                       style="font-size: 17px"
                       flat
@@ -866,12 +827,32 @@ import { getJobs } from "../../../composables/getJobs";
 
 export default {
   components: { questions },
+
+  computed: {
+    paddingClass() {
+      return {
+        "col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-2": true,
+        "q-pl-lg": !this.$q.screen.xs,
+      };
+    },
+    marginClass() {
+      return {
+        "lt-md q-mb-md": true,
+        "q-mr-lg": !this.$q.screen.xs,
+      };
+    },
+  },
+
   setup() {
     const jobs = getJobs();
     const getMessage = ref(true);
+
+    // Tabs
+
     const tab = ref("suggestion");
     const CVPage = ref("pageOne");
     const categories = ref("all");
+
     const timeSincePosted = (postedDate) => {
       const now = new Date();
       const posted = new Date(postedDate);

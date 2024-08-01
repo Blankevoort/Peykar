@@ -236,7 +236,7 @@ export default defineComponent({
       }
 
       return {
-        minWidth: this.$q.screen.gt.xs ? minWidth : "",
+        minWidth: this.$q.screen.gt.xs ? minWidth : "311px",
       };
     },
     mainTitle() {

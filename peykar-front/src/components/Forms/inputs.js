@@ -356,4 +356,121 @@ export const formConfigs = {
     actionButtons: true,
     width: "lg",
   },
+  educationCourses: {
+    title: "دوره آموزشی",
+    customContent: false,
+    mainPath: "profile.additionalInformation.educationCourses",
+    fields: [
+      {
+        type: "input",
+        name: "language",
+        label: "نام دوره",
+        path: "profile.additionalInformation.educationCourses.courseName",
+      },
+      {
+        type: "input",
+        name: "proficiency",
+        label: "آموزگار",
+        path: "profile.additionalInformation.educationCourses.organizer",
+      },
+      {
+        type: "input",
+        name: "courseDuration",
+        label: "طول دوره",
+        path: "profile.additionalInformation.educationCourses.courseDuration",
+      },
+      {
+        type: "input",
+        name: "proficiency",
+        label: "سال دوره",
+        path: "profile.additionalInformation.educationCourses.courseYear",
+      },
+    ],
+  },
+  awards: {
+    title: "جایزه و افتخار",
+    customContent: false,
+    mainPath: "profile.additionalInformation.awards",
+    fields: [
+      {
+        type: "input",
+        name: "title",
+        label: "عنوان",
+        path: "profile.additionalInformation.awards.title",
+      },
+      {
+        type: "select",
+        name: "year",
+        label: "سال",
+        options: ["1400", "14001", "1402"],
+        path: "profile.additionalInformation.awards.year",
+      },
+    ],
+  },
+  academicExperiences: {
+    title: "پروژه یا تجربه آکادمیک",
+    customContent: false,
+    mainPath: "profile.additionalInformation.academicExperiences",
+    fields: [
+      {
+        type: "input",
+        name: "title",
+        label: "عنوان",
+        path: "profile.additionalInformation.academicExperiences.title",
+      },
+      {
+        type: "select",
+        name: "year",
+        label: "سال",
+        options: ["1400", "14001", "1402"],
+        path: "profile.additionalInformation.academicExperiences.year",
+      },
+    ],
+  },
+  booksAndArticles: {
+    title: "کتاب یا مقاله",
+    customContent: false,
+    mainPath: "profile.additionalInformation.publications",
+    fields: [
+      {
+        type: "input",
+        name: "title",
+        label: "عنوان",
+        path: "profile.additionalInformation.publications.title",
+      },
+      {
+        type: "input",
+        name: "publisher",
+        label: "ناشر",
+        path: "profile.additionalInformation.publications.publisher",
+      },
+      {
+        type: "select",
+        name: "year",
+        label: "سال",
+        options: ["1400", "14001", "1402"],
+        path: "profile.additionalInformation.publications.year",
+      },
+    ],
+  },
+  voluntaryActivities: {
+    title: "فعالیت داوطلبانه",
+    customContent: false,
+    mainPath: "profile.additionalInformation.volunteerActivities",
+    fields: [
+      {
+        type: "input",
+        name: "title",
+        label: "عنوان",
+        path: "profile.additionalInformation.volunteerActivities.title",
+      },
+      {
+        type: "select",
+        name: "year",
+        label: "سال",
+        options: ["1400", "14001", "1402"],
+        path: "profile.additionalInformation.volunteerActivities.year",
+      },
+    ],
+  },
 };

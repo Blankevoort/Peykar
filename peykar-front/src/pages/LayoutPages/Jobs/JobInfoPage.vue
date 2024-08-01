@@ -1134,7 +1134,7 @@ export default {
     }
 
     function getJob() {
-      const jobs = JSON.parse(localStorage.getItem("jobs")) || [];
+      const jobs = JSON.parse(localStorage.getItem("jobDetails")) || [];
       const jobId = parseInt(route.params.id, 10);
       job.value = jobs.find((job) => job.id === jobId) || null;
     }
