@@ -3,87 +3,108 @@
     <!-- Top Companies - Hero Section -->
 
     <div class="full-width">
-      <div class="bg-white br-10">
-        <div class="q-py-lg">
+      <div :style="dynamicBackground">
+        <div class="q-py-xl">
           <div class="row justify-center">
-            <div class="col-7 row justify-between">
-              <div class="col-4 row q-pl-lg">
+            <div
+              class="col-xs-12 col-sm-12 col-md-11 col-lg-8 col-xl-7 row justify-between"
+            >
+              <div class="col-xs-12 col-sm-12 lt-md row justify-center">
+                <div
+                  class="row br-10 col-xs-11 col-sm-11"
+                  style="background-color: #5660f20d"
+                >
+                  <div
+                    class="row justify-between items-center q-px-lg q-py-xl col-12"
+                  >
+                    <!-- Context -->
+
+                    <div class="col-5">
+                      <div class="text-bold text-h4">رده بندی</div>
+
+                      <div class="text-weight-thin q-pt-xs">
+                        شرکت‌های ایرانی
+                      </div>
+                    </div>
+
+                    <!-- Star -->
+
+                    <div class="col-4 row justify-end">
+                      <q-img
+                        style="width: 120px; height: 120px"
+                        src="https://jobvision.ir/assets/images/top-companies/rating-star.svg"
+                      />
+                    </div>
+                  </div>
+
+                  <div class="full-width">
+                    <q-separator inset />
+
+                    <div :class="dynamicFont">
+                      شرکت‌های معتبر ایرانی را بهتر بشناسید!
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div :class="dynamicContainerPadding">
                 <div class="col-12 q-mt-lg">
                   <div class="full-width">
                     <div>
-                      <div class="text-h5 text-bold">
+                      <div class="text-bold" :style="dynamicHeaderFont">
                         برترین شرکت‌های ایرانی
                       </div>
-                      <div class="text-h5 text-weight-thin">براساس</div>
+
+                      <div class="text-weight-thin" :style="dynamicHeaderFont">
+                        اساس
+                      </div>
                     </div>
                   </div>
                 </div>
 
-                <div class="full-width q-mt-md" style="font-size: 16px">
-                  <div class="row">
-                    <div class="col-1 q-pl-md">
-                      <q-separator
-                        class="full-height"
-                        vertical
-                        inset
-                        style="width: 2px"
-                      />
-                    </div>
+                <div class="col-12">
+                  <div
+                    class="full-width q-gutter-y-sm q-px-md"
+                    style="font-size: 16px; border-right: 2px solid #8e9cb2"
+                  >
+                    <div class="row">
+                      <div class="col-11 q-pt-xs">
+                        <div class="row q-gutter-x-sm">
+                          <img
+                            src="https://jobvision.ir/assets/images/tick-success.svg"
+                          />
 
-                    <div class="col-11 q-pt-xs">
-                      <div class="row">
-                        <q-btn rounded dense color="positive" class="q-mr-sm">
-                          <q-icon size="20px" name="done" />
-                        </q-btn>
-
-                        <div class="text-grey-8">
-                          محبوبیت (براساس بازدید کارجویان)
+                          <div :class="bestCompaniestListTexts">
+                            محبوبیت (براساس بازدید کارجویان)
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
 
-                  <div class="row">
-                    <div class="col-1 q-pl-md">
-                      <q-separator
-                        class="full-height"
-                        vertical
-                        inset
-                        style="width: 2px"
-                      />
-                    </div>
+                    <div class="row">
+                      <div class="col-11">
+                        <div class="row q-gutter-x-sm">
+                          <img
+                            src="https://jobvision.ir/assets/images/tick-success.svg"
+                          />
 
-                    <div class="col-11 q-pt-xs">
-                      <div class="row">
-                        <q-btn rounded dense color="positive" class="q-mr-sm">
-                          <q-icon size="20px" name="done" />
-                        </q-btn>
-
-                        <div class="text-grey-8">
-                          پاسخگویی به رزومه‌های دریافتی
+                          <div :class="bestCompaniestListTexts">
+                            پاسخگویی به رزومه‌های دریافتی
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
 
-                  <div class="row">
-                    <div class="col-1 q-pl-md">
-                      <q-separator
-                        class="full-height"
-                        vertical
-                        inset
-                        style="width: 2px"
-                      />
-                    </div>
+                    <div class="row">
+                      <div class="col-11">
+                        <div class="row q-gutter-x-sm">
+                          <img
+                            src="https://jobvision.ir/assets/images/tick-success.svg"
+                          />
 
-                    <div class="col-11 q-pt-xs">
-                      <div class="row">
-                        <q-btn rounded dense color="positive" class="q-mr-sm">
-                          <q-icon size="20px" name="done" />
-                        </q-btn>
-
-                        <div class="text-grey-8">
-                          تجربه کارجویان از جلسه مصاحبه
+                          <div :class="bestCompaniestListTexts">
+                            تجربه کارجویان از جلسه مصاحبه
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -91,29 +112,34 @@
                 </div>
               </div>
 
-              <div class="col-5 row justify-end">
+              <!-- Rating At Lagre -->
+
+              <div class="gt-sm col-md-6 col-lg-6 col-xl-5 row justify-end">
                 <div class="full-width">
                   <div class="br-10" style="background-color: #5660f20d">
-                    <div class="q-px-lg q-py-xl">
-                      <div class="row justify-between items-center">
-                        <div class="col-4">
-                          <div class="text-bold text-h4">رده بندی</div>
-                          <div class="text-weight-thin">شرکت‌های ایرانی</div>
-                        </div>
+                    <div
+                      class="row justify-between items-center q-px-lg q-py-xl"
+                    >
+                      <div class="col-5">
+                        <div class="text-bold text-h4">رده بندی</div>
 
-                        <div class="col-4 row justify-end items-center">
-                          <q-img
-                            style="width: 120px; height: 120px"
-                            src="https://jobvision.ir/assets/images/top-companies/rating-star.svg"
-                          />
+                        <div class="text-weight-thin q-pt-xs">
+                          شرکت‌های ایرانی
                         </div>
+                      </div>
+
+                      <div class="col-4 row justify-end">
+                        <q-img
+                          style="width: 120px; height: 120px"
+                          src="https://jobvision.ir/assets/images/top-companies/rating-star.svg"
+                        />
                       </div>
                     </div>
 
                     <div class="col-12">
                       <q-separator inset />
 
-                      <div class="text-grey-9 text-weight-thin q-py-md q-px-lg">
+                      <div :class="dynamicFont">
                         شرکت‌های معتبر ایرانی را بهتر بشناسید!
                       </div>
                     </div>
@@ -575,6 +601,43 @@ export default {
     Swiper,
     SwiperSlide,
   },
+
+  computed: {
+    dynamicFont() {
+      return {
+        "font-11": this.$q.screen.xs,
+        "text-grey-9 text-weight-thin q-py-md q-px-md": true,
+      };
+    },
+    dynamicHeaderFont() {
+      return {
+        fontSize: this.$q.screen.xs ? "19px" : "25px",
+      };
+    },
+    bestCompaniestListTexts() {
+      return {
+        "text-grey-8": true,
+        "font-12": this.$q.screen.xs,
+      };
+    },
+    dynamicContainerPadding() {
+      return {
+        "col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-7 row q-gutter-y-md": true,
+        "q-pl-lg": this.$q.screen.xs,
+        "q-pl-xl": this.$q.screen.sm,
+      };
+    },
+    dynamicBackground() {
+      return {
+        borderRadius: "0 0 10px 10px",
+        backgroundColor: this.$q.screen.gt.xs ? "#fff" : "transparent",
+        boxShadow: this.$q.screen.gt.xs
+          ? "0 1px 2px #0000000d, 0 1px 30px #00000008"
+          : "none",
+      };
+    },
+  },
+
   setup() {
     return {
       slide: ref(1),
