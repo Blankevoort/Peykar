@@ -48,21 +48,26 @@
               </div>
 
               <div :class="dynamicContainerPadding">
-                <div class="col-12 q-mt-lg">
-                  <div class="full-width">
-                    <div>
-                      <div class="text-bold" :style="dynamicHeaderFont">
-                        برترین شرکت‌های ایرانی
-                      </div>
+                <div class="full-width">
+                  <div class="q-mt-lg">
+                    <div class="full-width">
+                      <div>
+                        <div class="text-bold" :style="dynamicHeaderFont">
+                          برترین شرکت‌های ایرانی
+                        </div>
 
-                      <div class="text-weight-thin" :style="dynamicHeaderFont">
-                        اساس
+                        <div
+                          class="text-weight-thin"
+                          :style="dynamicHeaderFont"
+                        >
+                          براساس
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
 
-                <div class="col-12">
+                <div class="full-width">
                   <div
                     class="full-width q-gutter-y-sm q-px-md"
                     style="font-size: 16px; border-right: 2px solid #8e9cb2"
@@ -156,238 +161,150 @@
 
     <div class="full-width q-pb-md">
       <div class="row justify-center">
-        <div class="col-8">
-          <div class="row justify-center">
-            <div class="text-bold text-h6 text-grey-7 q-my-xl">
-              برترین شرکت‌ها در هر صنعت
-            </div>
+        <div
+          class="col-xs-11 col-sm-11 col-md-11 col-lg-8 col-xl-7 row justify-center"
+        >
+          <div :class="dynamicSpaceing" :style="dynamicMediumFont">
+            برترین شرکت‌ها در هر صنعت
+          </div>
 
-            <div class="col-12">
-              <div class="row justify-center">
-                <div class="col-4 q-pr-md">
-                  <div class="bg-white br-10">
-                    <div class="row">
-                      <div class="full-width q-pt-md">
-                        <div class="text-bold q-pl-sm" style="font-size: 16px">
-                          کالاهای مصرفی و تند گردش / خرده فروشی
-                        </div>
-
-                        <q-separator class="q-mt-md" />
-                      </div>
-
-                      <div class="full-width q-px-md q-mt-md">
-                        <q-item>
-                          <q-item-section top avatar>
-                            <q-avatar
-                              color="primary"
-                              text-color="white"
-                              icon="bluetooth"
-                            />
-                          </q-item-section>
-
-                          <q-item-section>
-                            <q-item-label>شرکت صنایع غذایی شیبا</q-item-label>
-                          </q-item-section>
-
-                          <q-item-section top side>
-                            <q-icon name="star" color="yellow" />
-                            <span>4.99</span>
-                          </q-item-section>
-                        </q-item>
-                      </div>
-
-                      <div class="full-width q-px-md q-mt-md">
-                        <q-item>
-                          <q-item-section top avatar>
-                            <q-avatar
-                              color="primary"
-                              text-color="white"
-                              icon="bluetooth"
-                            />
-                          </q-item-section>
-
-                          <q-item-section>
-                            <q-item-label
-                              >شرکت تولیدی و بازرگانی رکسان و دارا (سن
-                              ایچ)</q-item-label
-                            >
-                          </q-item-section>
-
-                          <q-item-section top side>
-                            <q-icon name="star" color="yellow" />
-                            <span>4.99</span>
-                          </q-item-section>
-                        </q-item>
-                      </div>
-
-                      <div class="full-width">
-                        <q-separator class="q-my-md" style="height: 1px" />
-
-                        <div class="q-mb-md text-center">
-                          <q-btn
-                            flat
-                            dense
-                            color="primary"
-                            label="مشاهده بیشتر"
-                          />
-                        </div>
-                      </div>
+          <div class="full-width">
+            <div class="row justify-between q-gutter-y-lg">
+              <div
+                v-for="(item, index) in items"
+                :key="index"
+                class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 q-px-lg"
+              >
+                <div class="row bg-white br-10">
+                  <div class="full-width q-pt-md">
+                    <div class="text-bold q-pl-sm" :style="dynamicSmallFont">
+                      کالاهای مصرفی و تند گردش / خرده فروشی
                     </div>
+                    <q-separator class="q-mt-md" />
                   </div>
-                </div>
 
-                <div class="col-4 q-px-md">
-                  <div class="bg-white br-10">
-                    <div class="row">
-                      <div class="full-width q-pt-md">
-                        <div class="text-bold q-pl-sm" style="font-size: 16px">
-                          کالاهای مصرفی و تند گردش / خرده فروشی
-                        </div>
-
-                        <q-separator class="q-mt-md" />
-                      </div>
-
-                      <div class="full-width q-px-md q-mt-md">
-                        <q-item>
-                          <q-item-section top avatar>
-                            <q-avatar
-                              color="primary"
-                              text-color="white"
-                              icon="bluetooth"
-                            />
-                          </q-item-section>
-
-                          <q-item-section>
-                            <q-item-label>شرکت صنایع غذایی شیبا</q-item-label>
-                          </q-item-section>
-
-                          <q-item-section top side>
-                            <q-icon name="star" color="yellow" />
-                            <span>4.99</span>
-                          </q-item-section>
-                        </q-item>
-                      </div>
-
-                      <div class="full-width q-px-md q-mt-md">
-                        <q-item>
-                          <q-item-section top avatar>
-                            <q-avatar
-                              color="primary"
-                              text-color="white"
-                              icon="bluetooth"
-                            />
-                          </q-item-section>
-
-                          <q-item-section>
-                            <q-item-label
-                              >شرکت تولیدی و بازرگانی رکسان و دارا (سن
-                              ایچ)</q-item-label
-                            >
-                          </q-item-section>
-
-                          <q-item-section top side>
-                            <q-icon name="star" color="yellow" />
-                            <span>4.99</span>
-                          </q-item-section>
-                        </q-item>
-                      </div>
-
-                      <div class="full-width">
-                        <q-separator class="q-my-md" style="height: 1px" />
-
-                        <div class="q-mb-md text-center">
-                          <q-btn
-                            flat
-                            dense
-                            color="primary"
-                            label="مشاهده بیشتر"
-                          />
-                        </div>
-                      </div>
-                    </div>
+                  <div class="full-width q-px-md q-mt-md">
+                    <q-item>
+                      <q-item-section top avatar>
+                        <q-avatar
+                          color="primary"
+                          text-color="white"
+                          icon="bluetooth"
+                        />
+                      </q-item-section>
+                      <q-item-section>
+                        <q-item-label :style="dynamicXSFont">
+                          شرکت صنایع غذایی شیبا
+                        </q-item-label>
+                      </q-item-section>
+                      <q-item-section top side>
+                        <q-icon name="star" color="yellow" />
+                        <span>4.99</span>
+                      </q-item-section>
+                    </q-item>
                   </div>
-                </div>
 
-                <div class="col-4 q-pl-md">
-                  <div class="bg-white br-10">
-                    <div class="row">
-                      <div class="full-width q-pt-md">
-                        <div class="text-bold q-pl-sm" style="font-size: 16px">
-                          کالاهای مصرفی و تند گردش / خرده فروشی
-                        </div>
+                  <div class="full-width q-px-md q-mt-md">
+                    <q-item>
+                      <q-item-section top avatar>
+                        <q-avatar
+                          color="primary"
+                          text-color="white"
+                          icon="bluetooth"
+                        />
+                      </q-item-section>
+                      <q-item-section>
+                        <q-item-label :style="dynamicXSFont">
+                          شرکت صنایع غذایی شیبا
+                        </q-item-label>
+                      </q-item-section>
+                      <q-item-section top side>
+                        <q-icon name="star" color="yellow" />
+                        <span>4.99</span>
+                      </q-item-section>
+                    </q-item>
+                  </div>
 
-                        <q-separator class="q-mt-md" />
-                      </div>
+                  <div class="full-width q-px-md q-mt-md">
+                    <q-item>
+                      <q-item-section top avatar>
+                        <q-avatar
+                          color="primary"
+                          text-color="white"
+                          icon="bluetooth"
+                        />
+                      </q-item-section>
+                      <q-item-section>
+                        <q-item-label :style="dynamicXSFont">
+                          شرکت صنایع غذایی شیبا
+                        </q-item-label>
+                      </q-item-section>
+                      <q-item-section top side>
+                        <q-icon name="star" color="yellow" />
+                        <span>4.99</span>
+                      </q-item-section>
+                    </q-item>
+                  </div>
 
-                      <div class="full-width q-px-md q-mt-md">
-                        <q-item>
-                          <q-item-section top avatar>
-                            <q-avatar
-                              color="primary"
-                              text-color="white"
-                              icon="bluetooth"
-                            />
-                          </q-item-section>
+                  <div class="full-width q-px-md q-mt-md">
+                    <q-item>
+                      <q-item-section top avatar>
+                        <q-avatar
+                          color="primary"
+                          text-color="white"
+                          icon="bluetooth"
+                        />
+                      </q-item-section>
+                      <q-item-section>
+                        <q-item-label :style="dynamicXSFont">
+                          شرکت صنایع غذایی شیبا
+                        </q-item-label>
+                      </q-item-section>
+                      <q-item-section top side>
+                        <q-icon name="star" color="yellow" />
+                        <span>4.99</span>
+                      </q-item-section>
+                    </q-item>
+                  </div>
 
-                          <q-item-section>
-                            <q-item-label>شرکت صنایع غذایی شیبا</q-item-label>
-                          </q-item-section>
+                  <div class="full-width q-px-md q-mt-md">
+                    <q-item>
+                      <q-item-section top avatar>
+                        <q-avatar
+                          color="primary"
+                          text-color="white"
+                          icon="bluetooth"
+                        />
+                      </q-item-section>
+                      <q-item-section>
+                        <q-item-label :style="dynamicXSFont">
+                          شرکت صنایع غذایی شیبا
+                        </q-item-label>
+                      </q-item-section>
+                      <q-item-section top side>
+                        <q-icon name="star" color="yellow" />
+                        <span>4.99</span>
+                      </q-item-section>
+                    </q-item>
+                  </div>
 
-                          <q-item-section top side>
-                            <q-icon name="star" color="yellow" />
-                            <span>4.99</span>
-                          </q-item-section>
-                        </q-item>
-                      </div>
-
-                      <div class="full-width q-px-md q-mt-md">
-                        <q-item>
-                          <q-item-section top avatar>
-                            <q-avatar
-                              color="primary"
-                              text-color="white"
-                              icon="bluetooth"
-                            />
-                          </q-item-section>
-
-                          <q-item-section>
-                            <q-item-label
-                              >شرکت تولیدی و بازرگانی رکسان و دارا (سن
-                              ایچ)</q-item-label
-                            >
-                          </q-item-section>
-
-                          <q-item-section top side>
-                            <q-icon name="star" color="yellow" />
-                            <span>4.99</span>
-                          </q-item-section>
-                        </q-item>
-                      </div>
-
-                      <div class="full-width">
-                        <q-separator class="q-my-md" style="height: 1px" />
-
-                        <div class="q-mb-md text-center">
-                          <q-btn
-                            flat
-                            dense
-                            color="primary"
-                            label="مشاهده بیشتر"
-                          />
-                        </div>
-                      </div>
+                  <div class="full-width">
+                    <q-separator class="q-my-md" style="height: 1px" />
+                    <div class="q-mb-md text-center">
+                      <q-btn flat dense color="primary" label="مشاهده بیشتر" />
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-
-            <q-btn
-              class="q-mt-lg"
-              color="primary"
-              label="مشاهده تمام شرکت ها"
-            />
           </div>
+
+          <q-btn
+            class="q-mt-lg col-xs-10 col-sm-10 col-md-4 col-lg-3 col-xl-3"
+            color="primary"
+            label="مشاهده تمام شرکت ها"
+            to="companies"
+          />
         </div>
       </div>
     </div>
@@ -397,7 +314,10 @@
     <div class="q-pb-md q-mt-xl full-width">
       <div class="row justify-center">
         <div class="col-8">
-          <div class="text-center text-bold text-h6 text-grey-8">
+          <div
+            class="text-center text-bold text-grey-8"
+            :style="dynamicMediumFont"
+          >
             با برخی از همراهان جاب ویژن، بیشتر آشنا شوید.
           </div>
 
@@ -614,6 +534,21 @@ export default {
         fontSize: this.$q.screen.xs ? "19px" : "25px",
       };
     },
+    dynamicMediumFont() {
+      return {
+        fontSize: this.$q.screen.xs ? "14px" : "21px",
+      };
+    },
+    dynamicSmallFont() {
+      return {
+        fontSize: this.$q.screen.xs ? "12px" : "16px",
+      };
+    },
+    dynamicXSFont() {
+      return {
+        fontSize: this.$q.screen.xs ? "11px" : "14px",
+      };
+    },
     bestCompaniestListTexts() {
       return {
         "text-grey-8": true,
@@ -622,9 +557,10 @@ export default {
     },
     dynamicContainerPadding() {
       return {
-        "col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-7 row q-gutter-y-md": true,
+        "col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-7 flex ": true,
         "q-pl-lg": this.$q.screen.xs,
         "q-pl-xl": this.$q.screen.sm,
+        "q-gutter-y-md": this.$q.screen.xs,
       };
     },
     dynamicBackground() {
@@ -636,10 +572,20 @@ export default {
           : "none",
       };
     },
+    dynamicSpaceing() {
+      return {
+        "text-bold text-h6 text-grey-8 ": true,
+        "q-pb-lg": this.$q.screen.xs,
+        "q-my-xl": this.$q.screen.gt.xs,
+      };
+    },
   },
 
   setup() {
+    const items = ref(new Array(6).fill(null));
+
     return {
+      items,
       slide: ref(1),
       modules: [Autoplay],
     };
