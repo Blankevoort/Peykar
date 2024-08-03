@@ -407,128 +407,6 @@
           </div>
         </div>
       </div>
-
-      <!-- Swipers -->
-
-      <div class="col-12 q-mb-xl q-mt-sm q-px-xl">
-        <swiper
-          class="col-12 row gt-sm lt-lg"
-          :slidesPerView="3"
-          :centeredSlides="false"
-          :spaceBetween="5"
-          :modules="modules"
-          :autoplay="{
-            delay: 2500,
-            disableOnInteraction: false,
-          }"
-        >
-          <swiper-slide class="col-12 row q-px-xs">
-            <div class="col-12">
-              <q-card class="row justify-center q-pa-sm companies-card">
-                <div class="col-12 row q-ma-sm q-px-sm">
-                  <q-img
-                    class="col-12"
-                    src="/assets/logo.svg"
-                    style="width: 75px; height: 100px"
-                  />
-
-                  <div class="col-12 row">
-                    <div class="col-12">نام شرکت</div>
-
-                    <div class="col-12">
-                      <q-badge class="q-my-xs">
-                        5.0
-                        <q-icon name="star" color="yellow" class="q-ml-xs" />
-                      </q-badge>
-                    </div>
-
-                    <div class="col-12 q-mt-md">
-                      <div class="text-primary">
-                        4 اگهی شغلی فعال
-                        <q-icon
-                          name="keyboard_backspace"
-                          size="16px"
-                          class="q-ml-sm q-mt-xs"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col-12 row q-mt-md q-px-sm q-py-xs">
-                  <q-btn
-                    unelevated
-                    class="col"
-                    color="blue-grey-11"
-                    text-color="black"
-                    icon="add"
-                    label="دنبال کنید"
-                  />
-                </div>
-              </q-card>
-            </div>
-          </swiper-slide>
-        </swiper>
-
-        <swiper
-          class="col-12 row gt-md"
-          :slidesPerView="5"
-          :centeredSlides="false"
-          :spaceBetween="5"
-          :modules="modules"
-          :autoplay="{
-            delay: 2500,
-            disableOnInteraction: false,
-          }"
-        >
-          <swiper-slide class="col-12 row q-px-xs">
-            <div class="col-12">
-              <q-card class="row justify-center q-pa-sm companies-card">
-                <div class="col-12 row q-ma-sm q-px-sm">
-                  <q-img
-                    class="col-12"
-                    src="/assets/logo.svg"
-                    style="width: 75px; height: 100px"
-                  />
-
-                  <div class="col-12 row">
-                    <div class="col-12">نام شرکت</div>
-
-                    <div class="col-12">
-                      <q-badge class="q-my-xs">
-                        5.0
-                        <q-icon name="star" color="yellow" class="q-ml-xs" />
-                      </q-badge>
-                    </div>
-
-                    <div class="col-12 q-mt-md">
-                      <div class="text-primary">
-                        4 اگهی شغلی فعال
-                        <q-icon
-                          name="keyboard_backspace"
-                          size="16px"
-                          class="q-ml-sm q-mt-xs"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col-12 row q-mt-md q-px-sm q-py-xs">
-                  <q-btn
-                    unelevated
-                    class="col"
-                    color="blue-grey-11"
-                    text-color="black"
-                    icon="add"
-                    label="دنبال کنید"
-                  />
-                </div>
-              </q-card>
-            </div>
-          </swiper-slide>
-        </swiper>
-      </div>
     </div>
 
     <!-- Extra Small Screen Content -->
@@ -903,21 +781,10 @@
 
 <script>
 import { ref } from "vue";
-import { Swiper, SwiperSlide } from "swiper/vue";
-import "swiper/css";
-
-import "swiper/css/navigation";
-import "swiper/css/autoplay";
-
-import { Autoplay, Navigation } from "swiper/modules";
 
 import { getJobs } from "../../../composables/getJobs";
 
 export default {
-  components: {
-    Swiper,
-    SwiperSlide,
-  },
   setup() {
     const jobs = getJobs();
     const timeSincePosted = (postedDate) => {
@@ -956,7 +823,6 @@ export default {
         },
       ],
       slide: ref(1),
-      modules: [Autoplay, Navigation],
     };
   },
 };

@@ -313,7 +313,7 @@
 
     <div class="q-pb-md q-mt-xl full-width">
       <div class="row justify-center">
-        <div class="col-8">
+        <div class="col-xs-11 col-sm-11 col-md-11 col-lg-8 col-xl-7">
           <div
             class="text-center text-bold text-grey-8"
             :style="dynamicMediumFont"
@@ -321,185 +321,599 @@
             با برخی از همراهان جاب ویژن، بیشتر آشنا شوید.
           </div>
 
-          <!-- Companies List And Details -->
+          <!-- Companies List -->
 
           <div class="full-width q-my-md">
             <swiper
-              :centeredSlides="true"
               :slidesPerView="4"
               :spaceBetween="30"
               :autoplay="{
                 delay: 2500,
                 disableOnInteraction: false,
               }"
+              class="gt-md"
             >
-              <swiper-slide>
-                <q-card style="background: #f8f9fa" flat>
-                  <q-item>
-                    <q-item-section avatar>
-                      <q-avatar size="65px">
-                        <img src="https://cdn.quasar.dev/img/avatar2.jpg" />
-                      </q-avatar>
-                    </q-item-section>
+              <q-tabs
+                indicator-color="transparent"
+                active-class="active-tab"
+                model="tab"
+                outside-arrows
+                mobile-arrows
+              >
+                <q-tab name="nameOne">
+                  <swiper-slide>
+                    <div class="q-pa-md flex justify-center" flat>
+                      <q-item>
+                        <q-item-section avatar>
+                          <q-avatar size="60px">
+                            <img src="https://cdn.quasar.dev/img/avatar2.jpg" />
+                          </q-avatar>
+                        </q-item-section>
 
-                    <q-item-section>
-                      <q-item-label>شرکت تربت پاک</q-item-label>
-                      <q-item-label class="q-pt-sm" caption
-                        >501 تا 1000 نفر</q-item-label
-                      >
-                    </q-item-section>
-                  </q-item>
-                </q-card>
-              </swiper-slide>
+                        <q-item-section>
+                          <q-item-label>شرکت تربت پاک</q-item-label>
+                          <q-item-label class="q-pt-sm" caption
+                            >501 تا 1000 نفر</q-item-label
+                          >
+                        </q-item-section>
+                      </q-item>
+                    </div>
+                  </swiper-slide>
+                </q-tab>
+
+                <q-tab name="nameTwo">
+                  <swiper-slide>
+                    <div class="q-pa-md flex justify-center" flat>
+                      <q-item>
+                        <q-item-section avatar>
+                          <q-avatar size="60px">
+                            <img src="https://cdn.quasar.dev/img/avatar2.jpg" />
+                          </q-avatar>
+                        </q-item-section>
+
+                        <q-item-section>
+                          <q-item-label>شرکت تربت پاک</q-item-label>
+                          <q-item-label class="q-pt-sm" caption
+                            >501 تا 1000 نفر</q-item-label
+                          >
+                        </q-item-section>
+                      </q-item>
+                    </div>
+                  </swiper-slide>
+                </q-tab>
+
+                <q-tab name="nameThree">
+                  <swiper-slide>
+                    <div class="q-pa-md flex justify-center" flat>
+                      <q-item>
+                        <q-item-section avatar>
+                          <q-avatar size="60px">
+                            <img src="https://cdn.quasar.dev/img/avatar2.jpg" />
+                          </q-avatar>
+                        </q-item-section>
+
+                        <q-item-section>
+                          <q-item-label>شرکت تربت پاک</q-item-label>
+                          <q-item-label class="q-pt-sm" caption
+                            >501 تا 1000 نفر</q-item-label
+                          >
+                        </q-item-section>
+                      </q-item>
+                    </div>
+                  </swiper-slide>
+                </q-tab>
+
+                <q-tab name="nameFour">
+                  <swiper-slide>
+                    <div class="q-pa-md flex justify-center" flat>
+                      <q-item>
+                        <q-item-section avatar>
+                          <q-avatar size="60px">
+                            <img src="https://cdn.quasar.dev/img/avatar2.jpg" />
+                          </q-avatar>
+                        </q-item-section>
+
+                        <q-item-section>
+                          <q-item-label>شرکت تربت پاک</q-item-label>
+                          <q-item-label class="q-pt-sm" caption
+                            >501 تا 1000 نفر</q-item-label
+                          >
+                        </q-item-section>
+                      </q-item>
+                    </div>
+                  </swiper-slide>
+                </q-tab>
+
+                <q-tab name="nameFive">
+                  <swiper-slide>
+                    <div class="q-pa-md flex justify-center" flat>
+                      <q-item>
+                        <q-item-section avatar>
+                          <q-avatar size="60px">
+                            <img src="https://cdn.quasar.dev/img/avatar2.jpg" />
+                          </q-avatar>
+                        </q-item-section>
+
+                        <q-item-section>
+                          <q-item-label>شرکت تربت پاک</q-item-label>
+                          <q-item-label class="q-pt-sm" caption
+                            >501 تا 1000 نفر</q-item-label
+                          >
+                        </q-item-section>
+                      </q-item>
+                    </div>
+                  </swiper-slide>
+                </q-tab>
+
+                <q-tab name="nameSix">
+                  <swiper-slide>
+                    <div class="q-pa-md flex justify-center" flat>
+                      <q-item>
+                        <q-item-section avatar>
+                          <q-avatar size="60px">
+                            <img src="https://cdn.quasar.dev/img/avatar2.jpg" />
+                          </q-avatar>
+                        </q-item-section>
+
+                        <q-item-section>
+                          <q-item-label>شرکت تربت پاک</q-item-label>
+                          <q-item-label class="q-pt-sm" caption
+                            >501 تا 1000 نفر</q-item-label
+                          >
+                        </q-item-section>
+                      </q-item>
+                    </div>
+                  </swiper-slide>
+                </q-tab>
+              </q-tabs>
+            </swiper>
+
+            <swiper
+              :slidesPerView="3"
+              :spaceBetween="30"
+              :autoplay="{
+                delay: 2500,
+                disableOnInteraction: false,
+              }"
+              class="gt-sm lt-lg"
+            >
+              <q-tabs
+                indicator-color="transparent"
+                active-class="active-tab"
+                model="tab"
+                outside-arrows
+                mobile-arrows
+              >
+                <q-tab name="nameOne">
+                  <swiper-slide>
+                    <div class="q-pa-md flex justify-center" flat>
+                      <q-item>
+                        <q-item-section avatar>
+                          <q-avatar size="60px">
+                            <img src="https://cdn.quasar.dev/img/avatar2.jpg" />
+                          </q-avatar>
+                        </q-item-section>
+
+                        <q-item-section>
+                          <q-item-label>شرکت تربت پاک</q-item-label>
+                          <q-item-label class="q-pt-sm" caption
+                            >501 تا 1000 نفر</q-item-label
+                          >
+                        </q-item-section>
+                      </q-item>
+                    </div>
+                  </swiper-slide>
+                </q-tab>
+
+                <q-tab name="nameTwo">
+                  <swiper-slide>
+                    <div class="q-pa-md flex justify-center" flat>
+                      <q-item>
+                        <q-item-section avatar>
+                          <q-avatar size="60px">
+                            <img src="https://cdn.quasar.dev/img/avatar2.jpg" />
+                          </q-avatar>
+                        </q-item-section>
+
+                        <q-item-section>
+                          <q-item-label>شرکت تربت پاک</q-item-label>
+                          <q-item-label class="q-pt-sm" caption
+                            >501 تا 1000 نفر</q-item-label
+                          >
+                        </q-item-section>
+                      </q-item>
+                    </div>
+                  </swiper-slide>
+                </q-tab>
+
+                <q-tab name="nameThree">
+                  <swiper-slide>
+                    <div class="q-pa-md flex justify-center" flat>
+                      <q-item>
+                        <q-item-section avatar>
+                          <q-avatar size="60px">
+                            <img src="https://cdn.quasar.dev/img/avatar2.jpg" />
+                          </q-avatar>
+                        </q-item-section>
+
+                        <q-item-section>
+                          <q-item-label>شرکت تربت پاک</q-item-label>
+                          <q-item-label class="q-pt-sm" caption
+                            >501 تا 1000 نفر</q-item-label
+                          >
+                        </q-item-section>
+                      </q-item>
+                    </div>
+                  </swiper-slide>
+                </q-tab>
+
+                <q-tab name="nameFour">
+                  <swiper-slide>
+                    <div class="q-pa-md flex justify-center" flat>
+                      <q-item>
+                        <q-item-section avatar>
+                          <q-avatar size="60px">
+                            <img src="https://cdn.quasar.dev/img/avatar2.jpg" />
+                          </q-avatar>
+                        </q-item-section>
+
+                        <q-item-section>
+                          <q-item-label>شرکت تربت پاک</q-item-label>
+                          <q-item-label class="q-pt-sm" caption
+                            >501 تا 1000 نفر</q-item-label
+                          >
+                        </q-item-section>
+                      </q-item>
+                    </div>
+                  </swiper-slide>
+                </q-tab>
+
+                <q-tab name="nameFive">
+                  <swiper-slide>
+                    <div class="q-pa-md flex justify-center" flat>
+                      <q-item>
+                        <q-item-section avatar>
+                          <q-avatar size="60px">
+                            <img src="https://cdn.quasar.dev/img/avatar2.jpg" />
+                          </q-avatar>
+                        </q-item-section>
+
+                        <q-item-section>
+                          <q-item-label>شرکت تربت پاک</q-item-label>
+                          <q-item-label class="q-pt-sm" caption
+                            >501 تا 1000 نفر</q-item-label
+                          >
+                        </q-item-section>
+                      </q-item>
+                    </div>
+                  </swiper-slide>
+                </q-tab>
+
+                <q-tab name="nameSix">
+                  <swiper-slide>
+                    <div class="q-pa-md flex justify-center" flat>
+                      <q-item>
+                        <q-item-section avatar>
+                          <q-avatar size="60px">
+                            <img src="https://cdn.quasar.dev/img/avatar2.jpg" />
+                          </q-avatar>
+                        </q-item-section>
+
+                        <q-item-section>
+                          <q-item-label>شرکت تربت پاک</q-item-label>
+                          <q-item-label class="q-pt-sm" caption
+                            >501 تا 1000 نفر</q-item-label
+                          >
+                        </q-item-section>
+                      </q-item>
+                    </div>
+                  </swiper-slide>
+                </q-tab>
+              </q-tabs>
+            </swiper>
+
+            <swiper
+              :slidesPerView="1"
+              :spaceBetween="30"
+              :autoplay="{
+                delay: 2500,
+                disableOnInteraction: false,
+              }"
+              class="lt-md"
+            >
+              <q-tabs
+                indicator-color="transparent"
+                active-class="active-tab"
+                outside-arrows
+                mobile-arrows
+                model="tab"
+              >
+                <q-tab name="nameOne">
+                  <swiper-slide>
+                    <div class="q-pa-md flex justify-center" flat>
+                      <q-item>
+                        <q-item-section avatar>
+                          <q-avatar size="60px">
+                            <img src="https://cdn.quasar.dev/img/avatar2.jpg" />
+                          </q-avatar>
+                        </q-item-section>
+
+                        <q-item-section>
+                          <q-item-label>شرکت تربت پاک</q-item-label>
+                          <q-item-label class="q-pt-sm" caption
+                            >501 تا 1000 نفر</q-item-label
+                          >
+                        </q-item-section>
+                      </q-item>
+                    </div>
+                  </swiper-slide>
+                </q-tab>
+
+                <q-tab name="nameTwo">
+                  <swiper-slide>
+                    <div class="q-pa-md flex justify-center" flat>
+                      <q-item>
+                        <q-item-section avatar>
+                          <q-avatar size="60px">
+                            <img src="https://cdn.quasar.dev/img/avatar2.jpg" />
+                          </q-avatar>
+                        </q-item-section>
+
+                        <q-item-section>
+                          <q-item-label>شرکت تربت پاک</q-item-label>
+                          <q-item-label class="q-pt-sm" caption
+                            >501 تا 1000 نفر</q-item-label
+                          >
+                        </q-item-section>
+                      </q-item>
+                    </div>
+                  </swiper-slide>
+                </q-tab>
+
+                <q-tab name="nameThree">
+                  <swiper-slide>
+                    <div class="q-pa-md flex justify-center" flat>
+                      <q-item>
+                        <q-item-section avatar>
+                          <q-avatar size="60px">
+                            <img src="https://cdn.quasar.dev/img/avatar2.jpg" />
+                          </q-avatar>
+                        </q-item-section>
+
+                        <q-item-section>
+                          <q-item-label>شرکت تربت پاک</q-item-label>
+                          <q-item-label class="q-pt-sm" caption
+                            >501 تا 1000 نفر</q-item-label
+                          >
+                        </q-item-section>
+                      </q-item>
+                    </div>
+                  </swiper-slide>
+                </q-tab>
+
+                <q-tab name="nameFour">
+                  <swiper-slide>
+                    <div class="q-pa-md flex justify-center" flat>
+                      <q-item>
+                        <q-item-section avatar>
+                          <q-avatar size="60px">
+                            <img src="https://cdn.quasar.dev/img/avatar2.jpg" />
+                          </q-avatar>
+                        </q-item-section>
+
+                        <q-item-section>
+                          <q-item-label>شرکت تربت پاک</q-item-label>
+                          <q-item-label class="q-pt-sm" caption
+                            >501 تا 1000 نفر</q-item-label
+                          >
+                        </q-item-section>
+                      </q-item>
+                    </div>
+                  </swiper-slide>
+                </q-tab>
+
+                <q-tab name="nameFive">
+                  <swiper-slide>
+                    <div class="q-pa-md flex justify-center" flat>
+                      <q-item>
+                        <q-item-section avatar>
+                          <q-avatar size="60px">
+                            <img src="https://cdn.quasar.dev/img/avatar2.jpg" />
+                          </q-avatar>
+                        </q-item-section>
+
+                        <q-item-section>
+                          <q-item-label>شرکت تربت پاک</q-item-label>
+                          <q-item-label class="q-pt-sm" caption
+                            >501 تا 1000 نفر</q-item-label
+                          >
+                        </q-item-section>
+                      </q-item>
+                    </div>
+                  </swiper-slide>
+                </q-tab>
+
+                <q-tab name="nameSix">
+                  <swiper-slide>
+                    <div class="q-pa-md flex justify-center" flat>
+                      <q-item>
+                        <q-item-section avatar>
+                          <q-avatar size="60px">
+                            <img src="https://cdn.quasar.dev/img/avatar2.jpg" />
+                          </q-avatar>
+                        </q-item-section>
+
+                        <q-item-section>
+                          <q-item-label>شرکت تربت پاک</q-item-label>
+                          <q-item-label class="q-pt-sm" caption
+                            >501 تا 1000 نفر</q-item-label
+                          >
+                        </q-item-section>
+                      </q-item>
+                    </div>
+                  </swiper-slide>
+                </q-tab>
+              </q-tabs>
             </swiper>
           </div>
 
-          <div class="row q-mt-lg">
-            <div class="col-6 q-px-md">
-              <q-img
-                src="https://cdn.quasar.dev/img/parallax2.jpg"
-                style="height: 70%"
-              />
-            </div>
+          <!-- Companies Details -->
 
-            <div class="col-6 row justify-end q-px-md">
-              <div class="col-12">
-                <!-- Some Details About Company -->
-
-                <div class="col-12 row justify-between">
-                  <div class="text-bold col-3" style="font-size: 26px">
-                    شرکت تربت پاک
-                  </div>
-
-                  <div class="col-8 row items-center">
-                    <div class="col-6 row">
-                      <q-avatar class="q-mr-md" size="25px">
-                        <q-img
-                          src="https://jobvision.ir/assets/images/landings/new-year/i-1.svg"
-                        />
-                      </q-avatar>
-
-                      <div class="text-grey-7" style="font-size: 15px">
-                        خودرو و صنایع وابسته
-                      </div>
-                    </div>
-
-                    <div class="col-6 row">
-                      <q-avatar class="q-mr-md" size="25px">
-                        <q-img
-                          src="https://jobvision.ir/assets/images/landings/new-year/i-2.svg"
-                        />
-                      </q-avatar>
-
-                      <div class="text-grey-7" style="font-size: 15px">
-                        51 تا 200 نفر
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Offers And Goodies -->
-
-                <div class="full-width q-py-md">
-                  <div class="full-width row justify-between">
-                    <div class="col-5">
-                      <div class="row q-my-sm">
-                        <q-btn rounded dense color="positive" class="q-mr-sm">
-                          <q-icon size="20px" name="done" />
-                        </q-btn>
-
-                        <div>صندوق رفاهیات (وام)</div>
-                      </div>
-
-                      <div class="row q-my-sm">
-                        <q-btn rounded dense color="positive" class="q-mr-sm">
-                          <q-icon size="20px" name="done" />
-                        </q-btn>
-
-                        <div>پارکینگ اختصاصی</div>
-                      </div>
-
-                      <div class="row q-my-sm">
-                        <q-btn rounded dense color="positive" class="q-mr-sm">
-                          <q-icon size="20px" name="done" />
-                        </q-btn>
-
-                        <div>باشگاه ورزشی در محل کار</div>
-                      </div>
-
-                      <div class="row q-my-sm">
-                        <q-btn rounded dense color="positive" class="q-mr-sm">
-                          <q-icon size="20px" name="done" />
-                        </q-btn>
-
-                        <div>ساعت کار منعطف</div>
-                      </div>
-
-                      <div class="row q-my-sm">
-                        <q-btn rounded dense color="positive" class="q-mr-sm">
-                          <q-icon size="20px" name="done" />
-                        </q-btn>
-
-                        <div>بیمه تکمیل درمان</div>
-                      </div>
-
-                      <div class="row q-my-sm">
-                        <q-btn rounded dense color="positive" class="q-mr-sm">
-                          <q-icon size="20px" name="done" />
-                        </q-btn>
-
-                        <div>هدایای مناسبتی</div>
-                      </div>
-                    </div>
-
-                    <div class="col-5">
-                      <div class="row q-my-sm">
-                        <q-btn rounded dense color="positive" class="q-mr-sm">
-                          <q-icon size="20px" name="done" />
-                        </q-btn>
-
-                        <div>حقوق و مزایای رقابتی</div>
-                      </div>
-
-                      <div class="row q-my-sm">
-                        <q-btn rounded dense color="positive" class="q-mr-sm">
-                          <q-icon size="20px" name="done" />
-                        </q-btn>
-
-                        <div>کمک هزینه آموزش</div>
-                      </div>
-
-                      <div class="row q-my-sm">
-                        <q-btn rounded dense color="positive" class="q-mr-sm">
-                          <q-icon size="20px" name="done" />
-                        </q-btn>
-
-                        <div>میان وعده</div>
-                      </div>
-
-                      <div class="row q-my-sm">
-                        <q-btn rounded dense color="positive" class="q-mr-sm">
-                          <q-icon size="20px" name="done" />
-                        </q-btn>
-
-                        <div>اقامتگاه تفریحی (بزودی)</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="row justify-end">
-                  <q-btn
-                    outline
-                    color="primary"
-                    label="مشاهده صفحه شرکت"
-                    icon-right="arrow_back_ios"
-                    to="/company"
+          <q-tab-panels v-model="tab">
+            <q-tab-panel name="nameOne">
+              <div class="row q-mt-lg">
+                <div class="col-xs-12 col-sm-12 col-md-6 q-px-md">
+                  <q-img
+                    src="https://jobvision.ir/assets/images/landings/new-year/company/bime_saman.jpg"
+                    class="responsive-image"
                   />
                 </div>
+
+                <div
+                  class="col-xs-12 col-sm-12 col-md-6 row justify-end q-px-md"
+                >
+                  <!-- Some Details About Company -->
+
+                  <div class="full-width row justify-between">
+                    <div
+                      class="text-bold col-xs-12 col-sm-12 col-md-5 col-lg-6 q-pb-md q-px-sm"
+                      style="font-size: 26px"
+                    >
+                      شرکت تربت پاک
+                    </div>
+
+                    <div
+                      class="col-xs-12 col-sm-12 col-md-7 col-lg-6 row items-center q-gutter-y-md q-px-sm"
+                    >
+                      <div
+                        class="col-xs-12 col-sm-12 col-md-6 row q-gutter-x-sm"
+                      >
+                        <img
+                          src="https://jobvision.ir/assets/images/landings/new-year/i-1.svg"
+                        />
+
+                        <div class="text-grey-7" style="font-size: 15px">
+                          بیمه
+                        </div>
+                      </div>
+
+                      <div
+                        class="col-xs-12 col-sm-12 col-md-6 row q-gutter-x-sm"
+                      >
+                        <img
+                          src="https://jobvision.ir/assets/images/landings/new-year/i-2.svg"
+                        />
+
+                        <div class="text-grey-7" style="font-size: 15px">
+                          51 تا 200 نفر
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Offers And Goodies -->
+
+                  <div class="full-width q-py-md">
+                    <div class="full-width row justify-between">
+                      <div class="col-5">
+                        <div class="row q-my-sm">
+                          <q-btn rounded dense color="positive" class="q-mr-sm">
+                            <q-icon size="20px" name="done" />
+                          </q-btn>
+
+                          <div>صندوق رفاهیات (وام)</div>
+                        </div>
+
+                        <div class="row q-my-sm">
+                          <q-btn rounded dense color="positive" class="q-mr-sm">
+                            <q-icon size="20px" name="done" />
+                          </q-btn>
+
+                          <div>پارکینگ اختصاصی</div>
+                        </div>
+
+                        <div class="row q-my-sm">
+                          <q-btn rounded dense color="positive" class="q-mr-sm">
+                            <q-icon size="20px" name="done" />
+                          </q-btn>
+
+                          <div>باشگاه ورزشی در محل کار</div>
+                        </div>
+
+                        <div class="row q-my-sm">
+                          <q-btn rounded dense color="positive" class="q-mr-sm">
+                            <q-icon size="20px" name="done" />
+                          </q-btn>
+
+                          <div>ساعت کار منعطف</div>
+                        </div>
+
+                        <div class="row q-my-sm">
+                          <q-btn rounded dense color="positive" class="q-mr-sm">
+                            <q-icon size="20px" name="done" />
+                          </q-btn>
+
+                          <div>بیمه تکمیل درمان</div>
+                        </div>
+
+                        <div class="row q-my-sm">
+                          <q-btn rounded dense color="positive" class="q-mr-sm">
+                            <q-icon size="20px" name="done" />
+                          </q-btn>
+
+                          <div>هدایای مناسبتی</div>
+                        </div>
+                      </div>
+
+                      <div class="col-5">
+                        <div class="row q-my-sm">
+                          <q-btn rounded dense color="positive" class="q-mr-sm">
+                            <q-icon size="20px" name="done" />
+                          </q-btn>
+
+                          <div>حقوق و مزایای رقابتی</div>
+                        </div>
+
+                        <div class="row q-my-sm">
+                          <q-btn rounded dense color="positive" class="q-mr-sm">
+                            <q-icon size="20px" name="done" />
+                          </q-btn>
+
+                          <div>کمک هزینه آموزش</div>
+                        </div>
+
+                        <div class="row q-my-sm">
+                          <q-btn rounded dense color="positive" class="q-mr-sm">
+                            <q-icon size="20px" name="done" />
+                          </q-btn>
+
+                          <div>میان وعده</div>
+                        </div>
+
+                        <div class="row q-my-sm">
+                          <q-btn rounded dense color="positive" class="q-mr-sm">
+                            <q-icon size="20px" name="done" />
+                          </q-btn>
+
+                          <div>اقامتگاه تفریحی (بزودی)</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div :class="dynamicPositioning">
+                    <q-btn
+                      outline
+                      color="primary"
+                      label="مشاهده صفحه شرکت"
+                      icon-right="arrow_back_ios"
+                      to="/company"
+                    />
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
+            </q-tab-panel>
+          </q-tab-panels>
         </div>
       </div>
     </div>
@@ -508,20 +922,8 @@
 
 <script>
 import { ref } from "vue";
-import { Swiper, SwiperSlide } from "swiper/vue";
-import "swiper/css";
-
-import "swiper/css/navigation";
-import "swiper/css/autoplay";
-
-import { Autoplay } from "swiper/modules";
 
 export default {
-  components: {
-    Swiper,
-    SwiperSlide,
-  },
-
   computed: {
     dynamicFont() {
       return {
@@ -579,15 +981,22 @@ export default {
         "q-my-xl": this.$q.screen.gt.xs,
       };
     },
+    dynamicPositioning() {
+      return {
+        "full-width flex": true,
+        "justify-center": this.$q.screen.xs,
+        "justify-end": this.$q.screen.gt.xs,
+      };
+    },
   },
 
   setup() {
     const items = ref(new Array(6).fill(null));
 
     return {
+      tab: ref("nameOne"),
       items,
       slide: ref(1),
-      modules: [Autoplay],
     };
   },
 };
@@ -604,11 +1013,6 @@ export default {
   font-weight: 500;
 }
 
-.q-badge {
-  background-color: transparent;
-  color: green;
-}
-
 .q-tab-panels {
   background-color: transparent;
 }
@@ -617,44 +1021,20 @@ export default {
   padding: 0;
 }
 
-.active-tabs {
-  background-color: #5660f2 !important;
-  color: white !important;
-}
-
 .active-tab {
-  border-left: 3px solid;
-  border-color: #5660f2 !important;
-  border-top-left-radius: 0px !important;
-  border-bottom-left-radius: 0px !important;
-  font-weight: bold !important;
+  border-radius: 13px;
+  border-bottom: 7px solid #5660f2;
+  background-color: white;
 }
 
-.active-sort-type {
-  background-color: #5660f2 !important;
-  color: white !important;
+.responsive-image {
+  border-radius: 5px;
+  height: 70%;
 }
 
-.custom-border {
-  border-radius: 10px !important;
-  border: 2px solid #dde1e6;
-}
-
-.active-category {
-  background: #4a4e57 !important;
-  color: white !important;
-}
-
-.not-active-category {
-  cursor: pointer;
-  border-radius: 40px;
-  background-color: #fff;
-  border: 1px solid #e0e0e0;
-  margin: 0 4px;
-  padding: 8px 16px;
-}
-
-.br-10 {
-  border-radius: 10px !important;
+@media (max-width: 1023px) {
+  .responsive-image {
+    height: 90%;
+  }
 }
 </style>
