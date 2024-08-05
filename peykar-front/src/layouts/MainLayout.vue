@@ -27,14 +27,14 @@
             <q-btn
               flat
               label="فرصت های شغلی"
-              to="/recommended-jobs"
+              to="/jobs"
               class="btn--no-hover button-effect"
             />
 
             <q-btn
               flat
               label="فرصت های شغلی پیشنهادی"
-              to="/jobs"
+              to="/recommended-jobs"
               class="btn--no-hover"
             />
 
@@ -74,15 +74,16 @@
               <div class="col-12">
                 <q-item class="full-width">
                   <q-item-section top avatar>
-                    <q-avatar size="50px" color="grey-4">
-                      <q-icon name="person" size="69px" />
-                    </q-avatar>
+                    <img
+                      src="https://fileapi.jobvision.ir/StaticFiles/Candidate/DefaultImages/default-user-Male.png?v=20231122"
+                      style="width: 50px; height: 50px; border-radius: 50%"
+                    />
                   </q-item-section>
 
                   <!-- Full Name, Job And Edit Button -->
 
                   <q-item-section>
-                    <q-item-label v-if="user.name">
+                    <q-item-label class="text-bold" v-if="user.name">
                       {{ user.name }}
                     </q-item-label>
 
@@ -99,11 +100,9 @@
                       <div class="text-black q-mb-sm" style="font-size: 12px">
                         {{ user.jobTitle }}
 
-                        <q-btn flat>
-                          <q-icon
-                            size="20px"
-                            name="edit"
-                            @click="toggleJobTitleDialog"
+                        <q-btn flat @click="toggleJobTitleDialog">
+                          <img
+                            src="https://jobvision.ir/assets/images/header/menu-black/edit-cv-black.svg"
                           />
                         </q-btn>
                       </div>
@@ -135,12 +134,15 @@
             </div>
 
             <q-list class="q-px-md">
-              <q-item clickable v-ripple>
+              <q-item to="recommended-jobs" clickable v-ripple>
                 <q-item-section avatar>
-                  <q-icon name="hotel_class" />
+                  <img
+                    src="https://jobvision.ir/assets/images/header/menu-black/recommended-jobs-black.svg"
+                  />
                 </q-item-section>
+
                 <q-item-section>مشاغل پیشنهادی</q-item-section>
-                <div class="q-mx-lg"></div>
+
                 <q-item-section side>
                   <q-badge
                     class="text-bold"
@@ -151,59 +153,85 @@
                 </q-item-section>
               </q-item>
 
-              <q-item clickable v-ripple>
+              <q-item to="my-applications" clickable v-ripple>
                 <q-item-section avatar>
-                  <q-icon name="drive_folder_upload" />
+                  <img
+                    src="https://jobvision.ir/assets/images/header/menu-black/my-applications-black.svg"
+                  />
                 </q-item-section>
+
                 <q-item-section>رزومه های ارسال شده</q-item-section>
-                <div class="q-mx-lg"></div>
               </q-item>
 
-              <q-item clickable v-ripple>
+              <q-item to="saved-jobs" clickable v-ripple>
                 <q-item-section avatar>
-                  <q-icon name="favorite_outline" />
+                  <img
+                    src="https://jobvision.ir/assets/images/header/menu-black/saved-jobs-black.svg"
+                  />
                 </q-item-section>
+
                 <q-item-section>مشاغل نشان شده</q-item-section>
-                <div class="q-mx-lg"></div>
               </q-item>
 
-              <q-item clickable v-ripple>
+              <q-item to="saved-searches" clickable v-ripple>
                 <q-item-section avatar>
-                  <q-icon name="saved_search" />
+                  <img
+                    src="https://jobvision.ir/assets/images/header/menu-black/saved-searches-black.svg"
+                  />
                 </q-item-section>
+
                 <q-item-section>جستجو های ذخیره شده</q-item-section>
-                <div class="q-mx-lg"></div>
+
                 <q-item-section side>1</q-item-section>
               </q-item>
 
-              <q-item clickable v-ripple>
+              <q-item to="followed-companies" clickable v-ripple>
                 <q-item-section avatar>
-                  <q-icon name="apartment" />
+                  <img
+                    src="https://jobvision.ir/assets/images/header/menu-black/followed-companies-black.svg"
+                  />
                 </q-item-section>
+
                 <q-item-section>شرکت های دنبال شده</q-item-section>
-                <div class="q-mx-lg"></div>
               </q-item>
 
-              <q-item clickable v-ripple>
+              <q-item to="" clickable v-ripple>
                 <q-item-section avatar>
-                  <q-icon name="school" />
+                  <img
+                    src="https://jobvision.ir/assets/images/header/menu-black/my-courses-black.svg"
+                  />
                 </q-item-section>
+
                 <q-item-section>دوره های آموزشی پیشنهادی</q-item-section>
-                <div class="q-mx-lg"></div>
               </q-item>
 
-              <q-item clickable v-ripple>
+              <q-item to="jobfair-history" clickable v-ripple>
                 <q-item-section avatar>
-                  <q-icon name="business_center" />
+                  <img
+                    src="https://jobvision.ir/assets/images/header/menu-black/job-fair-black.svg"
+                  />
                 </q-item-section>
+
                 <q-item-section>نمایشگاه کار</q-item-section>
-                <div class="q-mx-lg"></div>
               </q-item>
 
-              <q-item clickable v-ripple>
+              <q-item to="notifications" clickable v-ripple>
                 <q-item-section avatar>
-                  <q-icon name="settings" />
+                  <img
+                    src="https://jobvision.ir/assets/images/header/menu-black/notifications-black.svg"
+                  />
                 </q-item-section>
+
+                <q-item-section>اعلان‌های من</q-item-section>
+              </q-item>
+
+              <q-item to="account-settings" clickable v-ripple>
+                <q-item-section avatar>
+                  <img
+                    src="https://jobvision.ir/assets/images/header/menu-black/settings-black.svg"
+                  />
+                </q-item-section>
+
                 <q-item-section>تنظیمات ناحیه کاربری</q-item-section>
               </q-item>
 
@@ -273,19 +301,22 @@
               <div class="col-12">
                 <q-item class="full-width">
                   <q-item-section top avatar>
-                    <q-avatar size="50px" color="grey-4">
-                      <q-icon name="person" size="69px" />
-                    </q-avatar>
+                    <img
+                      src="https://fileapi.jobvision.ir/StaticFiles/Candidate/DefaultImages/default-user-Male.png?v=20231122"
+                      style="width: 50px; height: 50px; border-radius: 50%"
+                    />
                   </q-item-section>
 
                   <!-- Full Namem, Job And Edit Button -->
 
                   <q-item-section>
-                    <q-item-label v-if="user.name">
+                    <q-item-label class="text-bold" v-if="user.name">
                       {{ user.name }}
 
                       <q-btn @click="toggleDialog" flat>
-                        <q-icon size="20px" name="edit" />
+                        <img
+                          src="https://jobvision.ir/assets/images/header/menu-black/edit-cv-black.svg"
+                        />
                       </q-btn>
                     </q-item-label>
 
@@ -321,12 +352,15 @@
             </div>
 
             <q-list class="q-px-md">
-              <q-item clickable v-ripple>
+              <q-item to="recommended-jobs" clickable v-ripple>
                 <q-item-section avatar>
-                  <q-icon name="hotel_class" />
+                  <img
+                    src="https://jobvision.ir/assets/images/header/menu-black/recommended-jobs-black.svg"
+                  />
                 </q-item-section>
+
                 <q-item-section>مشاغل پیشنهادی</q-item-section>
-                <div class="q-mx-lg"></div>
+
                 <q-item-section side>
                   <q-badge
                     class="text-bold"
@@ -337,59 +371,85 @@
                 </q-item-section>
               </q-item>
 
-              <q-item clickable v-ripple>
+              <q-item to="my-applications" clickable v-ripple>
                 <q-item-section avatar>
-                  <q-icon name="drive_folder_upload" />
+                  <img
+                    src="https://jobvision.ir/assets/images/header/menu-black/my-applications-black.svg"
+                  />
                 </q-item-section>
+
                 <q-item-section>رزومه های ارسال شده</q-item-section>
-                <div class="q-mx-lg"></div>
               </q-item>
 
-              <q-item clickable v-ripple>
+              <q-item to="saved-jobs" clickable v-ripple>
                 <q-item-section avatar>
-                  <q-icon name="favorite_outline" />
+                  <img
+                    src="https://jobvision.ir/assets/images/header/menu-black/saved-jobs-black.svg"
+                  />
                 </q-item-section>
+
                 <q-item-section>مشاغل نشان شده</q-item-section>
-                <div class="q-mx-lg"></div>
               </q-item>
 
-              <q-item clickable v-ripple>
+              <q-item to="saved-searches" clickable v-ripple>
                 <q-item-section avatar>
-                  <q-icon name="saved_search" />
+                  <img
+                    src="https://jobvision.ir/assets/images/header/menu-black/saved-searches-black.svg"
+                  />
                 </q-item-section>
+
                 <q-item-section>جستجو های ذخیره شده</q-item-section>
-                <div class="q-mx-lg"></div>
+
                 <q-item-section side>1</q-item-section>
               </q-item>
 
-              <q-item clickable v-ripple>
+              <q-item to="followed-companies" clickable v-ripple>
                 <q-item-section avatar>
-                  <q-icon name="apartment" />
+                  <img
+                    src="https://jobvision.ir/assets/images/header/menu-black/followed-companies-black.svg"
+                  />
                 </q-item-section>
+
                 <q-item-section>شرکت های دنبال شده</q-item-section>
-                <div class="q-mx-lg"></div>
               </q-item>
 
-              <q-item clickable v-ripple>
+              <q-item to="" clickable v-ripple>
                 <q-item-section avatar>
-                  <q-icon name="school" />
+                  <img
+                    src="https://jobvision.ir/assets/images/header/menu-black/my-courses-black.svg"
+                  />
                 </q-item-section>
+
                 <q-item-section>دوره های آموزشی پیشنهادی</q-item-section>
-                <div class="q-mx-lg"></div>
               </q-item>
 
-              <q-item clickable v-ripple>
+              <q-item to="jobfair-history" clickable v-ripple>
                 <q-item-section avatar>
-                  <q-icon name="business_center" />
+                  <img
+                    src="https://jobvision.ir/assets/images/header/menu-black/job-fair-black.svg"
+                  />
                 </q-item-section>
+
                 <q-item-section>نمایشگاه کار</q-item-section>
-                <div class="q-mx-lg"></div>
               </q-item>
 
-              <q-item clickable v-ripple>
+              <q-item to="notifications" clickable v-ripple>
                 <q-item-section avatar>
-                  <q-icon name="settings" />
+                  <img
+                    src="https://jobvision.ir/assets/images/header/menu-black/notifications-black.svg"
+                  />
                 </q-item-section>
+
+                <q-item-section>اعلان‌های من</q-item-section>
+              </q-item>
+
+              <q-item to="account-settings" clickable v-ripple>
+                <q-item-section avatar>
+                  <img
+                    src="https://jobvision.ir/assets/images/header/menu-black/settings-black.svg"
+                  />
+                </q-item-section>
+
                 <q-item-section>تنظیمات ناحیه کاربری</q-item-section>
               </q-item>
 
@@ -489,7 +549,6 @@
       behavior="mobile"
       show-if-above
       :mini="!drawer || miniState"
-      @click.capture="drawerClick"
       :breakpoint="500"
       width="full"
       no-swipe-open
