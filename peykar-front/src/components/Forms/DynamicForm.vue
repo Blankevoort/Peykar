@@ -148,6 +148,7 @@
               :type="field.type === 'textarea' ? 'textarea' : undefined"
               :multiple="field.multiple === true"
               :counter="field.type === 'textarea'"
+              :filled="field.filled === true"
               outlined
             />
           </div>

@@ -521,7 +521,7 @@
                       <div>{{ colleague.contactNumber }}</div>
                     </div>
 
-                    <div>
+                    <div class="q-gutter-x-sm">
                       <span class="text-grey-7">
                         از {{ colleague.startYear }} تا
                         {{
@@ -530,6 +530,7 @@
                             : colleague.endYear
                         }}
                       </span>
+
                       <span>{{ colleague.organizationalRelationship }}</span>
                     </div>
                   </div>

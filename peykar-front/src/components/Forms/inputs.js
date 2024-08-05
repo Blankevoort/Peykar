@@ -393,9 +393,10 @@ export const formConfigs = {
     mainPath: "profile.additionalInformation.awards",
     fields: [
       {
-        type: "input",
+        type: "textarea",
         name: "title",
         label: "عنوان",
+        filled: true,
         path: "profile.additionalInformation.awards.title",
       },
       {
@@ -403,6 +404,7 @@ export const formConfigs = {
         name: "year",
         label: "سال",
         options: ["1400", "14001", "1402"],
+        filled: true,
         path: "profile.additionalInformation.awards.year",
       },
     ],
@@ -416,6 +418,7 @@ export const formConfigs = {
         type: "input",
         name: "title",
         label: "عنوان",
+        filled: true,
         path: "profile.additionalInformation.academicExperiences.title",
       },
       {
@@ -423,6 +426,7 @@ export const formConfigs = {
         name: "year",
         label: "سال",
         options: ["1400", "14001", "1402"],
+        filled: true,
         path: "profile.additionalInformation.academicExperiences.year",
       },
     ],
@@ -436,12 +440,14 @@ export const formConfigs = {
         type: "input",
         name: "title",
         label: "عنوان",
+        filled: true,
         path: "profile.additionalInformation.publications.title",
       },
       {
         type: "input",
         name: "publisher",
         label: "ناشر",
+        filled: true,
         path: "profile.additionalInformation.publications.publisher",
       },
       {
@@ -449,6 +455,7 @@ export const formConfigs = {
         name: "year",
         label: "سال",
         options: ["1400", "14001", "1402"],
+        filled: true,
         path: "profile.additionalInformation.publications.year",
       },
     ],
@@ -462,6 +469,7 @@ export const formConfigs = {
         type: "input",
         name: "title",
         label: "عنوان",
+        filled: true,
         path: "profile.additionalInformation.volunteerActivities.title",
       },
       {
@@ -469,6 +477,7 @@ export const formConfigs = {
         name: "year",
         label: "سال",
         options: ["1400", "14001", "1402"],
+        filled: true,
         path: "profile.additionalInformation.volunteerActivities.year",
       },
     ],

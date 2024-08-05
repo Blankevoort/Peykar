@@ -210,8 +210,8 @@ onMounted(() => {
             publications: [
               {
                 title: "کتاب برنامه‌نویسی پیشرفته",
-                date: "1400/03/01",
-                publisher: ["نویسنده الف", "نویسنده ب"],
+                publisher: "ناشر",
+                year: 1390,
               },
             ],
             patents: [
