@@ -22,7 +22,7 @@
           </div>
         </div>
 
-        <!-- Resume Complition Rate -->
+        <!-- Mobile Resume Complition Rate -->
 
         <div
           class="lt-md bg-white q-px-md q-pt-md q-pb-sm"
@@ -69,33 +69,43 @@
             class="col-xs-8 col-sm-8 col-md-8 col-lg-6 col-xl-6 justify-end row items-center"
           >
             <div class="row">
-              <img
-                src="https://jobvision.ir/assets/images/download-muted.svg"
-              />
+              <q-btn flat size="md" color="grey-7" :class="dynamicBtnPadding">
+                <div class="row items-center">
+                  <img
+                    src="https://jobvision.ir/assets/images/download-muted.svg"
+                    class="q-mr-sm"
+                    alt="Download"
+                  />
+                  <span>دانلود رزومه</span>
+                </div>
 
-              <q-btn
-                flat
-                dense
-                size="md"
-                color="grey-7"
-                label="دانلود رزومه"
-                :class="dynamicBtnPadding"
-              />
+                <q-menu>
+                  <q-list>
+                    <q-item clickable v-ripple @click="onDownload('resume1')">
+                      <q-item-section>ورزمه فارسی</q-item-section>
+                    </q-item>
+                  </q-list>
+                </q-menu>
+              </q-btn>
             </div>
 
-            <div class="row q-gutter-x-sm" style="cursor: pointer">
-              <img
-                src="https://jobvision.ir/assets/images/share-muted.svg"
-                class="gt-sm"
-              />
-
+            <div class="row">
               <q-btn
                 flat
-                dense
+                size="md"
                 color="grey-7"
-                label="اشتراک گذاری رزومه "
-                class="gt-sm"
-              />
+                :class="dynamicBtnPadding"
+                @click="toggleResumeShareDialog"
+              >
+                <div class="row items-center">
+                  <img
+                    src="https://jobvision.ir/assets/images/share-muted.svg"
+                    class="q-mr-sm"
+                    alt="Download"
+                  />
+                  <span>اشتراک گذاری رزومه</span>
+                </div>
+              </q-btn>
             </div>
 
             <img
@@ -247,15 +257,19 @@
                   noModel="تحصیلات دانشگاهی ندارم"
                   :educationSection="true"
                   :isSmall="true"
+                  id="education"
                 >
                   <div class="q-gutter-y-xs">
                     <div class="text-bold">
                       سطح: {{ edu.degree }} رشته: {{ edu.field }}
                     </div>
+
                     <div class="text-grey-7">{{ edu.university }}</div>
+
                     <div class="text-grey-7">
                       {{ edu.startYear }} - {{ edu.endYear }}
                     </div>
+
                     <div class="text-grey-7">معدل: {{ edu.grade }}</div>
                   </div>
                 </useCard>
@@ -281,6 +295,7 @@
                   :checkboxModel="noWorkExperience"
                   v-for="experience in workExperienceData"
                   :key="experience"
+                  id="workExperience"
                 >
                   <div class="q-gutter-y-xs">
                     <div class="text-bold">
@@ -509,9 +524,9 @@
                   :hasModel="hadFormerColleagues"
                   :isAdditional="true"
                   :noCheckbox="true"
-                  :isLarge="true"
                   v-for="colleague in formerColleagues"
                   :key="colleague.name"
+                  id="formerColleagues"
                 >
                   <div class="q-gutter-y-sm">
                     <div class="text-bold">{{ colleague.fullName }}</div>
@@ -557,9 +572,9 @@
                   :hasModel="hadEducationCourses"
                   :noCheckbox="true"
                   :isAdditional="true"
-                  :isLarge="true"
                   v-for="eduCourses in educationCoursesData"
                   :key="eduCourses"
+                  id="educationCourses"
                 >
                   <div class="q-gutter-y-sm">
                     <div class="text-bold">{{ eduCourses.courseName }}</div>
@@ -590,6 +605,7 @@
                   :isAdditional="true"
                   v-for="award in awardsData"
                   :key="award"
+                  id="awards"
                 >
                   <div class="q-gutter-y-sm">
                     <div class="text-bold">
@@ -618,6 +634,7 @@
                   :isAdditional="true"
                   v-for="academicExperiences in academicExperiencesData"
                   :key="academicExperiences"
+                  id="academicExperiences"
                 >
                   <div class="q-gutter-y-sm">
                     <div class="text-bold">
@@ -646,6 +663,7 @@
                   :isAdditional="true"
                   v-for="booksAndArticles in booksAndArticlesData"
                   :key="booksAndArticles"
+                  id="booksAndArticles"
                 >
                   <div class="q-gutter-y-sm">
                     <div class="text-bold">
@@ -678,6 +696,7 @@
                   :isAdditional="true"
                   v-for="voluntaryActivity in voluntaryActivitiesData"
                   :key="voluntaryActivity"
+                  id="voluntaryActivities"
                 >
                   <div class="q-gutter-y-sm">
                     <div class="text-bold">
@@ -1197,6 +1216,7 @@ export default defineComponent({
       { name: "testResults", label: "سنتایج تست‌های" },
     ]);
     const activeTab = ref("about");
+    const shareResume = ref(false);
 
     const editEmail = ref(false);
     const editPhone = ref(false);
@@ -1238,66 +1258,24 @@ export default defineComponent({
     const educationData = ref();
     const noUniversityEducation = ref(false);
 
-    function fillEducationData() {
-      const userData = JSON.parse(localStorage.getItem("user"));
-      if (userData && userData.profile && userData.profile.education) {
-        educationData.value = userData.profile.education.higherEducation;
-        hasEducation.value = true;
-      } else {
-        hasEducation.value = false;
-      }
-    }
-
     // Work Experience
 
     const noWorkExperience = ref(false);
     const workExperienceData = ref([]);
     const hasWorkExperience = ref(true);
 
-    function fillWorkExperienceData() {
-      const userData = JSON.parse(localStorage.getItem("user"));
-      if (userData && userData.profile && userData.profile.workExperience) {
-        workExperienceData.value = userData.profile.workExperience;
-        noWorkExperience.value = true;
-      } else {
-        noWorkExperience.value = false;
-      }
-    }
-
     // Languages
 
     const langs = ref();
-
-    function fillLangData() {
-      const userData = JSON.parse(localStorage.getItem("user"));
-      if (userData && userData.profile && userData.profile.languages) {
-        langs.value = userData.profile.languages;
-      }
-    }
 
     // Software Skills
 
     const softwareSkills = ref();
 
-    function fillSoftwareSkillsData() {
-      const userData = JSON.parse(localStorage.getItem("user"));
-      if (userData && userData.profile && userData.profile.softwareSkills) {
-        softwareSkills.value = userData.profile.softwareSkills;
-      }
-    }
-
     // Software Skills
 
     const additionalSkills = ref();
     const additionalSkillsCount = ref();
-
-    function fillAdditionalSkillsData() {
-      const userData = JSON.parse(localStorage.getItem("user"));
-      if (userData && userData.profile && userData.profile.additionalSkills) {
-        additionalSkills.value = userData.profile.additionalSkills;
-        additionalSkillsCount.value = additionalSkills.value.length;
-      }
-    }
 
     // Additional Skills
 
@@ -1306,107 +1284,30 @@ export default defineComponent({
     const hadFormerColleagues = ref(false);
     const formerColleagues = ref();
 
-    function fillFormerColleaguesData() {
-      const userData = JSON.parse(localStorage.getItem("user"));
-      if (
-        userData &&
-        userData.profile &&
-        userData.profile.additionalInformation.formerColleagues
-      ) {
-        formerColleagues.value =
-          userData.profile.additionalInformation.formerColleagues;
-        hadFormerColleagues.value = true;
-      }
-    }
-
     // Education CoursesData
 
     const hadEducationCourses = ref(false);
     const educationCoursesData = ref();
-
-    function fillEducationCoursesData() {
-      const userData = JSON.parse(localStorage.getItem("user"));
-      if (
-        userData &&
-        userData.profile &&
-        userData.profile.additionalInformation.educationCourses
-      ) {
-        educationCoursesData.value =
-          userData.profile.additionalInformation.educationCourses;
-        hadEducationCourses.value = true;
-      }
-    }
 
     // Awards
 
     const hadAwards = ref(false);
     const awardsData = ref();
 
-    function fillAwardsData() {
-      const userData = JSON.parse(localStorage.getItem("user"));
-      if (
-        userData &&
-        userData.profile &&
-        userData.profile.additionalInformation.awards
-      ) {
-        awardsData.value = userData.profile.additionalInformation.awards;
-        hadAwards.value = true;
-      }
-    }
-
     // Academic Experiences
 
     const hadAcademicExperiences = ref(false);
     const academicExperiencesData = ref();
-
-    function fillAcademicExperiencesData() {
-      const userData = JSON.parse(localStorage.getItem("user"));
-      if (
-        userData &&
-        userData.profile &&
-        userData.profile.additionalInformation.academicExperiences
-      ) {
-        academicExperiencesData.value =
-          userData.profile.additionalInformation.academicExperiences;
-        hadAcademicExperiences.value = true;
-      }
-    }
 
     // Books And Articles
 
     const hadBooksAndArticles = ref(false);
     const booksAndArticlesData = ref();
 
-    function fillBooksAndArticlesData() {
-      const userData = JSON.parse(localStorage.getItem("user"));
-      if (
-        userData &&
-        userData.profile &&
-        userData.profile.additionalInformation.publications
-      ) {
-        booksAndArticlesData.value =
-          userData.profile.additionalInformation.publications;
-        hadBooksAndArticles.value = true;
-      }
-    }
-
     // Voluntary Activities
 
     const hadVoluntaryActivities = ref(false);
     const voluntaryActivitiesData = ref();
-
-    function fillVoluntaryActivitiesData() {
-      const userData = JSON.parse(localStorage.getItem("user"));
-      if (
-        userData &&
-        userData.profile &&
-        userData.profile.additionalInformation.volunteerActivities
-      ) {
-        voluntaryActivitiesData.value =
-          userData.profile.additionalInformation.volunteerActivities;
-        hadVoluntaryActivities.value = true;
-      }
-    }
 
     // General Functions
 
@@ -1425,17 +1326,92 @@ export default defineComponent({
     function generalData() {
       // Fetch ALL Dummy Data from LocalStorage
 
-      fillEducationData();
-      fillWorkExperienceData();
-      fillLangData();
-      fillSoftwareSkillsData();
-      fillAdditionalSkillsData();
-      fillFormerColleaguesData();
-      fillEducationCoursesData();
-      fillAwardsData();
-      fillAcademicExperiencesData();
-      fillBooksAndArticlesData();
-      fillVoluntaryActivitiesData();
+      const userData = JSON.parse(localStorage.getItem("user"));
+      if (userData && userData.profile && userData.profile.education) {
+        educationData.value = userData.profile.education.higherEducation;
+        hasEducation.value = true;
+      } else {
+        hasEducation.value = false;
+        if (userData && userData.profile && userData.profile.languages) {
+          langs.value = userData.profile.languages;
+        }
+      }
+
+      if (userData && userData.profile && userData.profile.workExperience) {
+        workExperienceData.value = userData.profile.workExperience;
+        noWorkExperience.value = true;
+      } else {
+        noWorkExperience.value = false;
+      }
+      if (userData && userData.profile && userData.profile.softwareSkills) {
+        softwareSkills.value = userData.profile.softwareSkills;
+      }
+      if (userData && userData.profile && userData.profile.additionalSkills) {
+        additionalSkills.value = userData.profile.additionalSkills;
+        additionalSkillsCount.value = additionalSkills.value.length;
+      }
+      if (
+        userData &&
+        userData.profile &&
+        userData.profile.additionalInformation.formerColleagues
+      ) {
+        formerColleagues.value =
+          userData.profile.additionalInformation.formerColleagues;
+        hadFormerColleagues.value = true;
+      }
+
+      if (
+        userData &&
+        userData.profile &&
+        userData.profile.additionalInformation.educationCourses
+      ) {
+        educationCoursesData.value =
+          userData.profile.additionalInformation.educationCourses;
+        hadEducationCourses.value = true;
+      }
+
+      if (
+        userData &&
+        userData.profile &&
+        userData.profile.additionalInformation.awards
+      ) {
+        awardsData.value = userData.profile.additionalInformation.awards;
+        hadAwards.value = true;
+      }
+
+      if (
+        userData &&
+        userData.profile &&
+        userData.profile.additionalInformation.academicExperiences
+      ) {
+        academicExperiencesData.value =
+          userData.profile.additionalInformation.academicExperiences;
+        hadAcademicExperiences.value = true;
+      }
+
+      if (
+        userData &&
+        userData.profile &&
+        userData.profile.additionalInformation.publications
+      ) {
+        booksAndArticlesData.value =
+          userData.profile.additionalInformation.publications;
+        hadBooksAndArticles.value = true;
+      }
+
+      if (
+        userData &&
+        userData.profile &&
+        userData.profile.additionalInformation.volunteerActivities
+      ) {
+        voluntaryActivitiesData.value =
+          userData.profile.additionalInformation.volunteerActivities;
+        hadVoluntaryActivities.value = true;
+      }
+    }
+
+    function toggleResumeShareDialog() {
+      shareResume.value = true;
     }
 
     onMounted(() => {
@@ -1453,6 +1429,7 @@ export default defineComponent({
       preferred,
       value: 100,
       awardsData,
+      shareResume,
       setActiveTab,
       hasEducation,
       educationData,
@@ -1476,6 +1453,7 @@ export default defineComponent({
       hadAcademicExperiences,
       academicExperiencesData,
       voluntaryActivitiesData,
+      toggleResumeShareDialog,
       preferredOptions: ["خودم", "کارفرما"],
     };
   },

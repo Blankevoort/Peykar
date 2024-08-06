@@ -3,6 +3,7 @@
     <!-- Content -->
 
     <SidebarWithIcons
+      :id="id"
       :additional="isAdditional"
       :small="isSmall"
       :large="isLarge"

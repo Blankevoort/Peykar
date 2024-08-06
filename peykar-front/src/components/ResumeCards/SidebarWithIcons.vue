@@ -1,57 +1,87 @@
 <template>
-  <div class="row items-center q-pb-md" :style="marginTopStyle">
-    <q-item
-      style="background-color: white; border-radius: 8px"
-      class="q-my-xs gt-xs"
-    >
-      <q-item-section avatar>
-        <div :class="sectionClass" :style="sectionStyle">
-          <div>
+  <div>
+    <div class="row items-center q-pb-md" :style="marginTopStyle">
+      <q-item
+        style="background-color: white; border-radius: 8px"
+        class="q-my-xs gt-xs"
+      >
+        <q-item-section avatar>
+          <div :class="sectionClass" :style="sectionStyle">
+            <!-- Edit Button -->
+
+            <div @click="openDialog('edit')">
+              <img
+                src="https://jobvision.ir/assets/images/cv-maker/edit-secondary.svg"
+              />
+            </div>
+
+            <!-- Delete Button -->
+
             <img
-              src="https://jobvision.ir/assets/images/cv-maker/edit-secondary.svg"
+              class="q-pt-xs"
+              :class="ptClass"
+              src="https://jobvision.ir/assets/images/delete-secondary.svg"
+              @click="openDialog('delete')"
             />
           </div>
+        </q-item-section>
 
+        <q-item-section>
+          <slot></slot>
+        </q-item-section>
+      </q-item>
+    </div>
+
+    <div class="lt-sm">
+      <slot></slot>
+
+      <div class="flex items-center justify-center q-mt-md">
+        <div
+          class="row justify-center items-center q-gutter-x-md q-py-sm br-10"
+          style="background-color: #f6f7f9 !important"
+          :class="{ 'w-36': large || additional }"
+        >
+          <!-- Edit Button -->
           <img
-            class="q-pt-xs"
-            :class="ptClass"
+            style="width: 16px; height: 16px"
+            src="https://jobvision.ir/assets/images/cv-maker/edit-secondary.svg"
+            @click="openDialog('edit')"
+          />
+
+          <!-- Delete Button -->
+          <img
+            style="height: 16px"
+            class="q-pr-lg"
             src="https://jobvision.ir/assets/images/delete-secondary.svg"
+            @click="openDialog('delete')"
           />
         </div>
-      </q-item-section>
-
-      <q-item-section>
-        <slot></slot>
-      </q-item-section>
-    </q-item>
-  </div>
-
-  <div class="lt-sm">
-    <slot></slot>
-
-    <div class="flex items-center justify-center q-mt-md">
-      <div
-        class="row justify-center items-center q-gutter-x-md q-py-sm br-10"
-        style="background-color: #f6f7f9 !important"
-        :class="{ 'w-36': large }"
-      >
-        <img
-          style="width: 16px; height: 16px"
-          src="https://jobvision.ir/assets/images/cv-maker/edit-secondary.svg"
-        />
-        <img
-          style="height: 16px"
-          class="q-pr-lg"
-          src="https://jobvision.ir/assets/images/delete-secondary.svg"
-        />
       </div>
     </div>
+
+    <!-- Dialog Component -->
+
+    <FormDialog
+      v-if="showFormDialog"
+      :id="formDialogId"
+      :action="formDialogAction"
+      @close-dialog="closeFormDialog"
+      @dialog-closed="resetDialog"
+      @hide="resetDialog"
+    />
   </div>
 </template>
 
 <script>
-export default {
+import { defineComponent, ref } from "vue";
+import FormDialog from "../Forms/DynamicForm.vue";
+
+export default defineComponent({
   props: {
+    id: {
+      type: String,
+      required: true,
+    },
     small: {
       type: Boolean,
       default: false,
@@ -64,6 +94,10 @@ export default {
       type: Boolean,
       default: false,
     },
+  },
+
+  components: {
+    FormDialog,
   },
 
   computed: {
@@ -94,11 +128,47 @@ export default {
       };
     },
   },
-};
+
+  setup(props) {
+    const formDialogId = ref("");
+    const formDialogAction = ref("");
+    const showFormDialog = ref(false);
+
+    const openDialog = (action) => {
+      console.log(props.id);
+      formDialogId.value = props.id;
+      formDialogAction.value = action;
+      showFormDialog.value = true;
+    };
+
+    const closeFormDialog = () => {
+      showFormDialog.value = false;
+    };
+
+    const resetDialog = () => {
+      showFormDialog.value = false;
+      formDialogId.value = "";
+      formDialogAction.value = "";
+    };
+
+    return {
+      formDialogId,
+      formDialogAction,
+      showFormDialog,
+      openDialog,
+      closeFormDialog,
+      resetDialog,
+    };
+  },
+});
 </script>
 
 <style scoped>
 .q-item {
   padding: 0;
+}
+
+.w-36 {
+  width: 200px;
 }
 </style>
