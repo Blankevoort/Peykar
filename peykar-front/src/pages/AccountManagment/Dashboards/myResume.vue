@@ -1332,9 +1332,10 @@ export default defineComponent({
         hasEducation.value = true;
       } else {
         hasEducation.value = false;
-        if (userData && userData.profile && userData.profile.languages) {
-          langs.value = userData.profile.languages;
-        }
+      }
+
+      if (userData && userData.profile && userData.profile.languages) {
+        langs.value = userData.profile.languages;
       }
 
       if (userData && userData.profile && userData.profile.workExperience) {

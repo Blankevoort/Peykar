@@ -459,7 +459,7 @@ export const formConfigs = {
         path: "profile.additionalInformation.publications.year",
       },
     ],
-  },
+  },  
   voluntaryActivities: {
     title: "فعالیت داوطلبانه",
     customContent: false,

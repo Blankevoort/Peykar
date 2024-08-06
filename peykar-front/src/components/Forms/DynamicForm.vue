@@ -1,6 +1,6 @@
 <template>
   <q-dialog persistent no-shake v-model="isDialogOpen" class="custom-dialog">
-    <div class="dialog-container" :style="dialogContainerStyles">
+    <div class="dialog-container q-gutter-y-sm" :style="dialogContainerStyles">
       <div class="dialog-header">
         <q-card-section class="header-content justify-center q-my-md q-mx-lg">
           <img
@@ -14,163 +14,168 @@
         </q-card-section>
       </div>
 
-      <div class="dialog-body q-mx-md">
-        <div v-if="formComponent">
-          <component :is="formComponent" :formData="formData" />
+      <div class="dialog-body q-mx-md" :style="dialogBodyStyle">
+        <div v-if="action === 'delete'" class="q-pt-md q-pb-xs text-grey-7">
+          آیا از حذف این آیتم مطمئنید؟
         </div>
 
-        <div
-          v-for="(field, index) in formFields"
-          :key="index"
-          class="field-wrapper"
-        >
-          <div v-if="field.type === 'checkbox'" class="checkbox-container">
-            <q-checkbox
-              v-model="formData[field.name]"
-              :label="field.label"
-              class="checkbox"
-            />
-
-            <div v-if="field.tip" class="checkbox-tip">
-              <q-btn flat dense size="sm">
-                <img
-                  src="https://jobvision.ir/assets/images/my-cv/tooltip-info.svg"
-                />
-
-                <q-tooltip
-                  style="background-color: #333663"
-                  anchor="center left"
-                  self="center right"
-                >
-                  <div
-                    class="q-pa-sm text-center"
-                    style="font-size: 0.765625rem; max-width: 220px"
-                  >
-                    {{ field.tip }}
-                  </div>
-                </q-tooltip>
-              </q-btn>
-            </div>
-
-            <div v-if="formData[field.name] && field.questionOnTrue">
-              <div
-                v-for="question in field.questionOnTrue"
-                :key="question.title"
-              >
-                <div class="q-pb-sm text-grey-8">{{ question.title }}</div>
-
-                <q-select
-                  v-model="formData[question.name]"
-                  :options="question.options"
-                  style="min-width: 250px"
-                  outlined
-                />
-              </div>
-            </div>
+        <div class="full-width" v-else>
+          <div v-if="formComponent">
+            <component :is="formComponent" :formData="formData" />
           </div>
 
-          <div v-else-if="field.type === 'multiple'" class="multiple-field">
-            <div class="row">
-              <div
-                v-for="(subField, subIndex) in field.multiple"
-                :key="subIndex"
-                class="sub-field"
-              >
-                <div class="q-pb-sm text-grey-8">
-                  {{ subField.label }}
+          <div
+            v-for="(field, index) in formFields"
+            :key="index"
+            class="field-wrapper"
+          >
+            <div v-if="field.type === 'checkbox'" class="checkbox-container">
+              <q-checkbox
+                v-model="formData[field.name]"
+                :label="field.label"
+                class="checkbox"
+              />
 
-                  <q-btn
-                    v-if="subField.tip"
-                    flat
-                    dense
-                    size="sm"
-                    class="q-ml-sm"
+              <div v-if="field.tip" class="checkbox-tip">
+                <q-btn flat dense size="sm">
+                  <img
+                    src="https://jobvision.ir/assets/images/my-cv/tooltip-info.svg"
+                  />
+
+                  <q-tooltip
+                    style="background-color: #333663"
+                    anchor="center left"
+                    self="center right"
                   >
-                    <img
-                      src="https://jobvision.ir/assets/images/my-cv/tooltip-info.svg"
-                    />
-
-                    <q-tooltip
-                      style="background-color: #333663"
-                      anchor="center left"
-                      self="center right"
+                    <div
+                      class="q-pa-sm text-center"
+                      style="font-size: 0.765625rem; max-width: 220px"
                     >
-                      <div
-                        class="q-pa-sm text-center"
-                        style="font-size: 0.765625rem; max-width: 220px"
-                      >
-                        {{ subField.tip }}
-                      </div>
-                    </q-tooltip>
-                  </q-btn>
-                </div>
+                      {{ field.tip }}
+                    </div>
+                  </q-tooltip>
+                </q-btn>
+              </div>
 
-                <component
-                  :is="getComponent(subField)"
-                  v-model="formData[subField.name]"
-                  :options="subField.options"
-                  :multiple="subField.multiple"
-                  :type="subField.type === 'textarea' ? 'textarea' : undefined"
-                  :counter="subField.type === 'textarea'"
-                  outlined
-                />
+              <div v-if="formData[field.name] && field.questionOnTrue">
+                <div
+                  v-for="question in field.questionOnTrue"
+                  :key="question.title"
+                >
+                  <div class="q-pb-sm text-grey-8">{{ question.title }}</div>
+
+                  <q-select
+                    v-model="formData[question.name]"
+                    :options="question.options"
+                    style="min-width: 250px"
+                    outlined
+                  />
+                </div>
               </div>
             </div>
-          </div>
 
-          <div v-else class="field">
-            <div class="q-pb-sm text-grey-8">
-              {{ field.label }}
-              <q-btn v-if="field.tip" flat dense size="sm" class="q-ml-sm">
-                <img
-                  src="https://jobvision.ir/assets/images/my-cv/tooltip-info.svg"
-                />
-
-                <q-tooltip
-                  style="background-color: #333663"
-                  anchor="center left"
-                  self="center right"
+            <div v-else-if="field.type === 'multiple'" class="multiple-field">
+              <div class="row">
+                <div
+                  v-for="(subField, subIndex) in field.multiple"
+                  :key="subIndex"
+                  class="sub-field"
                 >
-                  <div
-                    class="q-pa-sm text-center"
-                    style="font-size: 0.765625rem; max-width: 220px"
-                  >
-                    {{ field.tip }}
+                  <div class="q-pb-sm text-grey-8">
+                    {{ subField.label }}
+
+                    <q-btn
+                      v-if="subField.tip"
+                      flat
+                      dense
+                      size="sm"
+                      class="q-ml-sm"
+                    >
+                      <img
+                        src="https://jobvision.ir/assets/images/my-cv/tooltip-info.svg"
+                      />
+
+                      <q-tooltip
+                        style="background-color: #333663"
+                        anchor="center left"
+                        self="center right"
+                      >
+                        <div
+                          class="q-pa-sm text-center"
+                          style="font-size: 0.765625rem; max-width: 220px"
+                        >
+                          {{ subField.tip }}
+                        </div>
+                      </q-tooltip>
+                    </q-btn>
                   </div>
-                </q-tooltip>
-              </q-btn>
+
+                  <component
+                    :is="getComponent(subField)"
+                    v-model="formData[subField.name]"
+                    :options="subField.options"
+                    :multiple="subField.multiple"
+                    :type="
+                      subField.type === 'textarea' ? 'textarea' : undefined
+                    "
+                    :counter="subField.type === 'textarea'"
+                    outlined
+                  />
+                </div>
+              </div>
             </div>
 
-            <component
-              :is="getComponent(field)"
-              v-model="formData[field.name]"
-              :options="field.options"
-              :type="field.type === 'textarea' ? 'textarea' : undefined"
-              :multiple="field.multiple === true"
-              :counter="field.type === 'textarea'"
-              :filled="field.filled === true"
-              outlined
-            />
+            <div v-else class="field">
+              <div class="q-pb-sm text-grey-8">
+                {{ field.label }}
+                <q-btn v-if="field.tip" flat dense size="sm" class="q-ml-sm">
+                  <img
+                    src="https://jobvision.ir/assets/images/my-cv/tooltip-info.svg"
+                  />
+
+                  <q-tooltip
+                    style="background-color: #333663"
+                    anchor="center left"
+                    self="center right"
+                  >
+                    <div
+                      class="q-pa-sm text-center"
+                      style="font-size: 0.765625rem; max-width: 220px"
+                    >
+                      {{ field.tip }}
+                    </div>
+                  </q-tooltip>
+                </q-btn>
+              </div>
+
+              <component
+                :is="getComponent(field)"
+                v-model="formData[field.name]"
+                :options="field.options"
+                :type="field.type === 'textarea' ? 'textarea' : undefined"
+                :multiple="field.multiple === true"
+                :counter="field.type === 'textarea'"
+                :filled="field.filled === true"
+                outlined
+              />
+            </div>
           </div>
         </div>
       </div>
 
-      <div
-        v-if="!formConfig.actionButtons"
-        class="dialog-footer q-mt-md q-pa-md"
-      >
+      <div v-if="!formConfig.actionButtons" class="dialog-footer q-pa-md">
         <q-card-section class="footer-content justify-end">
           <q-btn
             v-if="formConfig.CustomCancelButton !== false"
             flat
             color="grey-7"
-            label="انصراف"
+            :label="action === 'delete' ? 'خیر' : 'انصراف'"
             @click="handleCancel"
           />
 
           <q-btn
-            color="primary"
-            :label="submitButtonLabel"
+            :color="action === 'delete' ? 'negative' : 'primary'"
+            :label="action === 'delete' ? 'بله، مطمئنم' : submitButtonLabel"
             @click="handleSubmit"
           />
         </q-card-section>
@@ -248,12 +253,31 @@ export default defineComponent({
       };
     },
     actionLabel() {
-      return this.action === "add" ? "افزودن" : "ویرایش";
+      switch (this.action) {
+        case "add":
+          return "افزودن";
+        case "edit":
+          return "ویرایش";
+        case "delete":
+          return "حذف";
+        default:
+          return "";
+      }
     },
     submitButtonLabel() {
       return this.action === "add"
         ? "افزودن"
         : this.formConfig.customDoneButton || "ذخیره تغییرات";
+    },
+    dialogBodyStyle() {
+      if (this.action === "delete") {
+        return {};
+      }
+      return {
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      };
     },
   },
 
@@ -375,11 +399,6 @@ export default defineComponent({
   background-color: white;
   border-radius: 18.5px !important;
   max-height: 600px !important;
-}
-
-.dialog-footer {
-  bottom: 0;
-  box-shadow: 0 1rem 3rem #0000002d !important;
 }
 
 .header-content,
