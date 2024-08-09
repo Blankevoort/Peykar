@@ -29,6 +29,7 @@ export const formConfigs = {
   info: {
     title: "اطلاعات اولیه",
     customContent: false,
+    width: "lg",
     mainPath: "profile",
     fields: [
       {
@@ -459,7 +460,7 @@ export const formConfigs = {
         path: "profile.additionalInformation.publications.year",
       },
     ],
-  },  
+  },
   voluntaryActivities: {
     title: "فعالیت داوطلبانه",
     customContent: false,

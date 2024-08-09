@@ -1621,10 +1621,6 @@ export default defineComponent({
   background-color: #fff;
 }
 
-:deep(.q-btn.btn--no-hover .q-focus-helper) {
-  display: none;
-}
-
 .button-effect:hover {
   border-color: #5660f2 !important;
   border-bottom-style: solid !important;

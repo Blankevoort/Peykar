@@ -8,23 +8,13 @@
       <q-select
         v-model="internalValue"
         :options="filteredOptions"
-        color="primary"
+        color="grey-8"
         outlined
         clearable
         use-input
-        @filter="filterOptions"
+        use-chips
         :multiple="multiple"
-      >
-        <template v-slot:selected>
-          <div
-            class="q-pa-sm br-4"
-            v-if="modelValue"
-            style="background: #e0e0e0 !important"
-          >
-            {{ modelValue }}
-          </div>
-        </template>
-      </q-select>
+      />
     </div>
   </div>
 </template>
@@ -62,16 +52,6 @@ export default {
         this.filteredOptions = newOptions;
       },
       immediate: true,
-    },
-  },
-  methods: {
-    filterOptions(val, update) {
-      const needle = val.toLowerCase();
-      update(() => {
-        this.filteredOptions = this.options.filter((v) =>
-          v.toLowerCase().includes(needle)
-        );
-      });
     },
   },
 };

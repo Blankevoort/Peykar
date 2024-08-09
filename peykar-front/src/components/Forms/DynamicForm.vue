@@ -14,21 +14,27 @@
         </q-card-section>
       </div>
 
-      <div class="dialog-body q-mx-md" :style="dialogBodyStyle">
+      <div class="dialog-body q-mx-lg" :style="dialogBodyStyle">
         <div v-if="action === 'delete'" class="q-pt-md q-pb-xs text-grey-7">
           آیا از حذف این آیتم مطمئنید؟
         </div>
 
         <div class="full-width" v-else>
+          <!-- Custom Component -->
+
           <div v-if="formComponent">
             <component :is="formComponent" :formData="formData" />
           </div>
 
+          <!-- Field Types -->
+          c
           <div
             v-for="(field, index) in formFields"
             :key="index"
             class="field-wrapper"
           >
+            <!-- Checkbox Inputs -->
+
             <div v-if="field.type === 'checkbox'" class="checkbox-container">
               <q-checkbox
                 v-model="formData[field.name]"
@@ -73,6 +79,8 @@
                 </div>
               </div>
             </div>
+
+            <!-- Multiple Inputs -->
 
             <div v-else-if="field.type === 'multiple'" class="multiple-field">
               <div class="row">
@@ -125,9 +133,14 @@
               </div>
             </div>
 
-            <div v-else class="field">
+            <!-- Other Inputs -->
+
+            <div v-else>
+              <!-- Tips -->
+
               <div class="q-pb-sm text-grey-8">
                 {{ field.label }}
+
                 <q-btn v-if="field.tip" flat dense size="sm" class="q-ml-sm">
                   <img
                     src="https://jobvision.ir/assets/images/my-cv/tooltip-info.svg"
@@ -146,7 +159,35 @@
                     </div>
                   </q-tooltip>
                 </q-btn>
+
+                <q-btn
+                  v-if="field.primaryTip"
+                  flat
+                  dense
+                  size="sm"
+                  class="q-ml-sm"
+                >
+                  <img
+                    src="https://jobvision.ir/assets/images/home-page-services/question.svg"
+                    style="width: 16px"
+                  />
+
+                  <q-tooltip
+                    style="background-color: #333663"
+                    anchor="center left"
+                    self="center right"
+                  >
+                    <div
+                      class="q-pa-sm text-center"
+                      style="font-size: 0.765625rem; max-width: 220px"
+                    >
+                      {{ field.primaryTip }}
+                    </div>
+                  </q-tooltip>
+                </q-btn>
               </div>
+
+              <!-- Other Type of Inputs -->
 
               <component
                 :is="getComponent(field)"
@@ -395,10 +436,13 @@ export default defineComponent({
 .dialog-container {
   display: flex;
   flex-direction: column;
-  height: auto;
   background-color: white;
   border-radius: 18.5px !important;
   max-height: 600px !important;
+}
+
+.dialog-container::-webkit-scrollbar {
+  width: 0px;
 }
 
 .header-content,
