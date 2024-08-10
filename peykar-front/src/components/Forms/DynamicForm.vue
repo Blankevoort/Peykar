@@ -19,15 +19,15 @@
           آیا از حذف این آیتم مطمئنید؟
         </div>
 
-        <div class="full-width" v-else>
-          <!-- Custom Component -->
+        <div class="full-width limited-height" v-else>
+          <!-- Custom Component At The Top -->
 
           <div v-if="formComponent">
             <component :is="formComponent" :formData="formData" />
           </div>
 
           <!-- Field Types -->
-          c
+
           <div
             v-for="(field, index) in formFields"
             :key="index"
@@ -123,6 +123,7 @@
                     v-model="formData[subField.name]"
                     :options="subField.options"
                     :multiple="subField.multiple"
+                    :filled="subField.filled === true"
                     :type="
                       subField.type === 'textarea' ? 'textarea' : undefined
                     "
@@ -200,6 +201,14 @@
                 outlined
               />
             </div>
+          </div>
+
+          <div v-if="formConfig.customBottomContent && bottomComponent">
+            <component
+              :is="bottomComponent"
+              :formData="formData"
+              @updateData="handleUpdate"
+            />
           </div>
         </div>
       </div>
@@ -328,6 +337,7 @@ export default defineComponent({
     const formFields = ref([]);
     const isDialogOpen = ref(true);
     const formComponent = ref(null);
+    const bottomComponent = ref(null);
     const formConfig = ref({});
 
     const getFormFieldValue = (path) => {
@@ -361,6 +371,12 @@ export default defineComponent({
           } else {
             formComponent.value = null;
           }
+
+          if (config.customBottomContent) {
+            bottomComponent.value = (await config.bottomComponent()).default;
+          } else {
+            bottomComponent.value = null;
+          }
         }
       },
       { immediate: true }
@@ -387,26 +403,35 @@ export default defineComponent({
     };
 
     const handleSubmit = () => {
-      if (props.action === "add" && formConfig.value.mainPath) {
-        const newData = {};
-        formFields.value.forEach((field) => {
-          if (field.name) {
-            newData[field.name] = formData.value[field.name];
-          }
-        });
+      const data = JSON.parse(localStorage.getItem("user") || "{}");
 
-        const data = JSON.parse(localStorage.getItem("user") || "{}");
+      if (props.action === "add" && formConfig.value.mainPath) {
+        const newData = formFields.value.reduce((acc, field) => {
+          if (field.name) {
+            acc[field.name] = formData.value[field.name];
+          }
+          return acc;
+        }, {});
+
         const arrayData = getNestedValue(data, formConfig.value.mainPath) || [];
         arrayData.push(newData);
         setNestedValue(data, formConfig.value.mainPath, arrayData);
-        localStorage.setItem("user", JSON.stringify(data));
       } else {
         formFields.value.forEach((field) => {
           if (field.path) {
             setFormFieldValue(field.path, formData.value[field.name]);
           }
         });
+
+        if (formConfig.value.customContent) {
+          setFormFieldValue(
+            `${formConfig.value.mainPath}.contactNumber`,
+            formData.value.contactNumber
+          );
+        }
       }
+
+      localStorage.setItem("user", JSON.stringify(data));
 
       emit("close-dialog");
       location.reload();
@@ -421,13 +446,17 @@ export default defineComponent({
       formData,
       formTitle,
       formFields,
+      formConfig,
       getComponent,
       handleSubmit,
       handleCancel,
       isDialogOpen,
       formComponent,
-      formConfig,
+      bottomComponent,
     };
+  },
+  handleUpdate(data) {
+    this.formData[data.field] = data.value;
   },
 });
 </script>
@@ -443,6 +472,10 @@ export default defineComponent({
 
 .dialog-container::-webkit-scrollbar {
   width: 0px;
+}
+
+.limited-height {
+  max-height: 400px;
 }
 
 .header-content,

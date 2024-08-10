@@ -388,6 +388,74 @@ export const formConfigs = {
       },
     ],
   },
+  formerColleagues: {
+    title: "مدیر یا همکار سابق",
+    customContent: true,
+    component: () => import("./CustomContents/FormerColleagues/TopComponent.vue"),
+    customBottomContent: true,
+    bottomComponent: () =>
+      import("./CustomContents/FormerColleagues/BottomComponent.vue"),
+    mainPath: "profile.additionalInformation.formerColleagues",
+    fields: [
+      {
+        filled: true,
+        type: "input",
+        name: "fullName",
+        label: "نام و نام خانوادگی",
+        path: "profile.additionalInformation.formerColleagues.fullName",
+      },
+      {
+        type: "multiple",
+        label: "محل",
+        multiple: [
+          {
+            filled: true,
+            type: "input",
+            name: "organizationName",
+            label: "نام سازمان",
+            path: "profile.additionalInformation.formerColleagues.organizationName",
+          },
+          {
+            filled: true,
+            type: "input",
+            name: "jobTitle",
+            label: "سمت سازمانی",
+            path: "profile.additionalInformation.formerColleagues.jobTitle",
+          },
+        ],
+      },
+      {
+        type: "input",
+        name: "organizationalRelationship",
+        label: "رابطه سازمانی",
+        path: "profile.additionalInformation.formerColleagues.organizationalRelationship",
+      },
+      {
+        type: "multiple",
+        label: "محل",
+        multiple: [
+          {
+            type: "input",
+            name: "startYear",
+            label: "سال شروع همکاری",
+            path: "profile.additionalInformation.formerColleagues.startYear",
+          },
+          {
+            type: "input",
+            name: "endYear",
+            label: "سال پایان همکاری",
+            path: "profile.additionalInformation.formerColleagues.endYear",
+          },
+        ],
+      },
+      {
+        type: "checkbox",
+        name: "weStillWorkTogether",
+        label: "هنوز همکار هستی.",
+        path: "profile.additionalInformation.formerColleagues.weStillWorkTogether",
+      },
+    ],
+  },
   awards: {
     title: "جایزه و افتخار",
     customContent: false,
