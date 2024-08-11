@@ -280,6 +280,10 @@ export default defineComponent({
       type: String,
       required: true,
     },
+    item: {
+      type: Object,
+      default: () => ({}),
+    },
   },
 
   computed: {
@@ -402,10 +406,75 @@ export default defineComponent({
       }
     };
 
+    function unwrapProxy(proxy) {
+      return JSON.parse(JSON.stringify(proxy));
+    }
+
+    function deepEqual(obj1, obj2) {
+      if (obj1 === obj2) return true;
+
+      if (
+        typeof obj1 !== "object" ||
+        typeof obj2 !== "object" ||
+        obj1 == null ||
+        obj2 == null
+      ) {
+        return false;
+      }
+
+      const keys1 = Object.keys(obj1);
+      const keys2 = Object.keys(obj2);
+
+      if (keys1.length !== keys2.length) {
+        return false;
+      }
+
+      for (let key of keys1) {
+        if (!keys2.includes(key) || !deepEqual(obj1[key], obj2[key])) {
+          return false;
+        }
+      }
+
+      return true;
+    }
+
+    function unsetNestedValue(object, path) {
+      const keys = path.split(".");
+      const lastKey = keys.pop();
+      const lastObject = keys.reduce((obj, key) => obj && obj[key], object);
+      if (lastObject && lastKey in lastObject) {
+        delete lastObject[lastKey];
+      }
+    }
+
+    function findPathToObject(obj, target, path = "") {
+      if (deepEqual(obj, target)) {
+        return path;
+      }
+      if (typeof obj === "object" && obj !== null) {
+        for (const key in obj) {
+          const fullPath = path ? `${path}.${key}` : key;
+          const result = findPathToObject(obj[key], target, fullPath);
+          if (result) return result;
+        }
+      }
+      return null;
+    }
+
     const handleSubmit = () => {
       const data = JSON.parse(localStorage.getItem("user") || "{}");
 
-      if (props.action === "add" && formConfig.value.mainPath) {
+      if (props.action === "delete" && formConfig.value.mainPath) {
+        const requestedObject = unwrapProxy(props.item);
+        const pathToObject = findPathToObject(data, requestedObject);
+
+        if (pathToObject) {
+          console.log(`Deleting object at path: ${pathToObject}`);
+          unsetNestedValue(data, pathToObject);
+        } else {
+          console.log("No matching object found for deletion.");
+        }
+      } else if (props.action === "add" && formConfig.value.mainPath) {
         const newData = formFields.value.reduce((acc, field) => {
           if (field.name) {
             acc[field.name] = formData.value[field.name];

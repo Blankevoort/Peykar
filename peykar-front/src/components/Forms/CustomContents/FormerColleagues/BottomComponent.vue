@@ -1,10 +1,5 @@
 <template>
   <div class="q-mt-lg">
-    <div>
-      <div class="q-pb-sm">شماره تماس</div>
-      <q-input v-model="localContactNumber" filled />
-    </div>
-
     <!-- Separator -->
 
     <div class="row items-center q-gutter-x-sm q-pt-xl">
@@ -57,7 +52,7 @@ export default {
       },
     },
   },
-  
+
   methods: {
     updateData(field, value) {
       this.$emit("updateData", { field, value });

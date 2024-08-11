@@ -580,9 +580,13 @@
               <!-- Content -->
 
               <div class="row full-width">
-                <div @click="tab = 'jobs'" class="col-12 row justify-between">
+                <div class="col-12 row justify-between">
                   <div class="col-6">
-                    <q-btn flat class="btn--no-hover q-my-sm button-effect">
+                    <q-btn
+                      flat
+                      class="btn--no-hover q-my-sm button-effect"
+                      to="/jobs"
+                    >
                       <span class="text-bold">فرصت های شغلی</span>
                     </q-btn>
                   </div>

@@ -258,6 +258,7 @@
                   :educationSection="true"
                   :isSmall="true"
                   id="education"
+                  :item_id="edu"
                 >
                   <div class="q-gutter-y-xs">
                     <div class="text-bold">
@@ -270,7 +271,7 @@
                       {{ edu.startYear }} - {{ edu.endYear }}
                     </div>
 
-                    <div class="text-grey-7">معدل: {{ edu.grade }}</div>
+                    <div class="text-grey-7">معدل: {{ edu.gpa }}</div>
                   </div>
                 </useCard>
               </BadgeAndTitle>
@@ -296,6 +297,7 @@
                   v-for="experience in workExperienceData"
                   :key="experience"
                   id="workExperience"
+                  :item_id="experience"
                 >
                   <div class="q-gutter-y-xs">
                     <div class="text-bold">
@@ -381,6 +383,7 @@
                 title="زبان‌ها"
                 :showButton="true"
                 id="languages"
+                @click="editLang"
               >
                 <!-- Langs List -->
 
@@ -425,6 +428,7 @@
                 title="مهارت های نرم افزاری"
                 :showButton="true"
                 id="softwareSkills"
+                @click="editSoftwareSkills"
               >
                 <!-- Software Skills List -->
 
@@ -473,6 +477,7 @@
                 :showButton="true"
                 :badge="false"
                 id="additionalSkills"
+                @click="editAdditionalSkills"
               >
                 <!-- Additional Skills Count -->
 
@@ -519,6 +524,7 @@
                 :progressValue="progressValue"
                 title="مدیران و همکاران سابق"
                 id="formerColleagues"
+                @click="editFormerColleagues"
               >
                 <useCard
                   :hasModel="hadFormerColleagues"
@@ -527,6 +533,7 @@
                   v-for="colleague in formerColleagues"
                   :key="colleague.name"
                   id="formerColleagues"
+                  :item_id="colleague"
                 >
                   <div class="q-gutter-y-sm">
                     <div class="text-bold">{{ colleague.fullName }}</div>
@@ -567,6 +574,7 @@
                 :progressValue="progressValue"
                 title="دوره‌های آموزشی"
                 id="educationCourses"
+                @click="editEducationCourses"
               >
                 <useCard
                   :hasModel="hadEducationCourses"
@@ -575,6 +583,7 @@
                   v-for="eduCourses in educationCoursesData"
                   :key="eduCourses"
                   id="educationCourses"
+                  :item_id="eduCourses"
                 >
                   <div class="q-gutter-y-sm">
                     <div class="text-bold">{{ eduCourses.courseName }}</div>
@@ -598,6 +607,7 @@
                 :progressValue="progressValue"
                 title="جوایز و افتخارات"
                 id="awards"
+                @click="editAwards"
               >
                 <useCard
                   :hasModel="hadAwards"
@@ -606,6 +616,7 @@
                   v-for="award in awardsData"
                   :key="award"
                   id="awards"
+                  :item_id="award"
                 >
                   <div class="q-gutter-y-sm">
                     <div class="text-bold">
@@ -627,6 +638,7 @@
                 :progressValue="progressValue"
                 title="پروژه‌ها و تجربیات آکادمیک"
                 id="academicExperiences"
+                @click="editaBademicExperiences"
               >
                 <useCard
                   :hasModel="hadAcademicExperiences"
@@ -635,6 +647,7 @@
                   v-for="academicExperiences in academicExperiencesData"
                   :key="academicExperiences"
                   id="academicExperiences"
+                  :item_id="academicExperiences"
                 >
                   <div class="q-gutter-y-sm">
                     <div class="text-bold">
@@ -656,6 +669,7 @@
                 :progressValue="progressValue"
                 title="کتاب‌ها و مقالات"
                 id="booksAndArticles"
+                @click="editBooksAndArticles"
               >
                 <useCard
                   :hasModel="hadBooksAndArticles"
@@ -664,6 +678,7 @@
                   v-for="booksAndArticles in booksAndArticlesData"
                   :key="booksAndArticles"
                   id="booksAndArticles"
+                  :item_id="booksAndArticles"
                 >
                   <div class="q-gutter-y-sm">
                     <div class="text-bold">
@@ -689,6 +704,7 @@
                 :progressValue="progressValue"
                 title="فعالیت‌های داوطلبانه"
                 id="voluntaryActivities"
+                @click="editVoluntaryActivities"
               >
                 <useCard
                   :hasModel="hadVoluntaryActivities"
@@ -697,6 +713,7 @@
                   v-for="voluntaryActivity in voluntaryActivitiesData"
                   :key="voluntaryActivity"
                   id="voluntaryActivities"
+                  :item_id="voluntaryActivity"
                 >
                   <div class="q-gutter-y-sm">
                     <div class="text-bold">

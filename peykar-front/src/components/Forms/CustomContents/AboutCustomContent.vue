@@ -24,6 +24,7 @@
           color="primary"
           label="بارگذاری تصویر پروفایل"
           icon="upload"
+          disable
         />
       </div>
     </div>

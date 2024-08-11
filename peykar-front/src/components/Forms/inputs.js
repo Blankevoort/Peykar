@@ -391,7 +391,8 @@ export const formConfigs = {
   formerColleagues: {
     title: "مدیر یا همکار سابق",
     customContent: true,
-    component: () => import("./CustomContents/FormerColleagues/TopComponent.vue"),
+    component: () =>
+      import("./CustomContents/FormerColleagues/TopComponent.vue"),
     customBottomContent: true,
     bottomComponent: () =>
       import("./CustomContents/FormerColleagues/BottomComponent.vue"),
@@ -453,6 +454,13 @@ export const formConfigs = {
         name: "weStillWorkTogether",
         label: "هنوز همکار هستی.",
         path: "profile.additionalInformation.formerColleagues.weStillWorkTogether",
+      },
+      {
+        filled: true,
+        type: "input",
+        name: "contactNumber",
+        label: "شماره تماس",
+        path: "profile.additionalInformation.formerColleagues.contactNumber",
       },
     ],
   },

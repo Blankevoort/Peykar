@@ -7,6 +7,7 @@
       :additional="isAdditional"
       :small="isSmall"
       :large="isLarge"
+      :itemid="item_id"
       v-if="hasModel"
     >
       <div>
@@ -49,6 +50,7 @@ export default {
   props: {
     id: String,
     title: String,
+    item_id: Object,
     noModel: String,
     isSmall: Boolean,
     isLarge: Boolean,

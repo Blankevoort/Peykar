@@ -65,6 +65,7 @@
       v-if="showFormDialog"
       :id="formDialogId"
       :action="formDialogAction"
+      :item="itemid"
       @close-dialog="closeFormDialog"
       @dialog-closed="resetDialog"
       @hide="resetDialog"
@@ -81,6 +82,9 @@ export default defineComponent({
     id: {
       type: String,
       required: true,
+    },
+    itemid: {
+      type: Object,
     },
     small: {
       type: Boolean,
@@ -135,9 +139,11 @@ export default defineComponent({
     const showFormDialog = ref(false);
 
     const openDialog = (action) => {
-      console.log(props.id);
       formDialogId.value = props.id;
       formDialogAction.value = action;
+      if (action === "delete") {
+        console.log("Attempting to edit/delete item with data:", props.itemid);
+      }
       showFormDialog.value = true;
     };
 
