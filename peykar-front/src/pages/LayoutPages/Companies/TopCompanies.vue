@@ -336,7 +336,7 @@
               <q-tabs
                 indicator-color="transparent"
                 active-class="active-tab"
-                model="tab"
+                v-model="tab"
                 outside-arrows
                 mobile-arrows
               >
@@ -480,7 +480,7 @@
               <q-tabs
                 indicator-color="transparent"
                 active-class="active-tab"
-                model="tab"
+                v-model="tab"
                 outside-arrows
                 mobile-arrows
               >
@@ -626,7 +626,7 @@
                 active-class="active-tab"
                 outside-arrows
                 mobile-arrows
-                model="tab"
+                v-model="tab"
               >
                 <q-tab name="nameOne">
                   <swiper-slide>
