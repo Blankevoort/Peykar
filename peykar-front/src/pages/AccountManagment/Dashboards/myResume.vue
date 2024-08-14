@@ -93,7 +93,7 @@
               <q-btn
                 flat
                 size="md"
-                color="grey-7"
+                color="grey-7 gt-sm"
                 :class="dynamicBtnPadding"
                 @click="toggleResumeShareDialog"
               >
