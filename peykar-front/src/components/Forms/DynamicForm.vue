@@ -442,7 +442,13 @@ export default defineComponent({
       const keys = path.split(".");
       const lastKey = keys.pop();
       const lastObject = keys.reduce((obj, key) => obj && obj[key], object);
-      if (lastObject && lastKey in lastObject) {
+
+      if (lastObject && Array.isArray(lastObject)) {
+        const indexToDelete = parseInt(lastKey);
+        if (!isNaN(indexToDelete)) {
+          lastObject.splice(indexToDelete, 1);
+        }
+      } else if (lastObject && lastKey in lastObject) {
         delete lastObject[lastKey];
       }
     }

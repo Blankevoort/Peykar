@@ -141,9 +141,10 @@ export default defineComponent({
     const openDialog = (action) => {
       formDialogId.value = props.id;
       formDialogAction.value = action;
-      if (action === "delete") {
-        console.log("Attempting to edit/delete item with data:", props.itemid);
-      }
+      console.log("Attempting to edit/delete item with data:", props.itemid);
+      // if (action === "delete") {
+      //   console.log("Attempting to edit/delete item with data:", props.itemid);
+      // }
       showFormDialog.value = true;
     };
 

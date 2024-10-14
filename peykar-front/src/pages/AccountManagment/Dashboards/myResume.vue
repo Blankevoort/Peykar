@@ -383,8 +383,8 @@
                 title="زبان‌ها"
                 :showButton="true"
                 id="languages"
-                @click="editLang"
               >
+                <!-- @click="editLang" -->
                 <!-- Langs List -->
 
                 <div class="q-gutter-y-sm q-pt-md">
@@ -428,8 +428,8 @@
                 title="مهارت های نرم افزاری"
                 :showButton="true"
                 id="softwareSkills"
-                @click="editSoftwareSkills"
               >
+                <!-- @click="editSoftwareSkills" -->
                 <!-- Software Skills List -->
 
                 <div class="row items-center q-pt-lg">
@@ -477,8 +477,8 @@
                 :showButton="true"
                 :badge="false"
                 id="additionalSkills"
-                @click="editAdditionalSkills"
               >
+                <!-- @click="editAdditionalSkills" -->
                 <!-- Additional Skills Count -->
 
                 <div class="text-grey-6 q-mt-md q-pb-sm font-12">
@@ -524,8 +524,8 @@
                 :progressValue="progressValue"
                 title="مدیران و همکاران سابق"
                 id="formerColleagues"
-                @click="editFormerColleagues"
               >
+                <!-- @click="editFormerColleagues" -->
                 <useCard
                   :hasModel="hadFormerColleagues"
                   :isAdditional="true"
@@ -574,8 +574,8 @@
                 :progressValue="progressValue"
                 title="دوره‌های آموزشی"
                 id="educationCourses"
-                @click="editEducationCourses"
               >
+                <!-- @click="editEducationCourses" -->
                 <useCard
                   :hasModel="hadEducationCourses"
                   :noCheckbox="true"
@@ -607,8 +607,8 @@
                 :progressValue="progressValue"
                 title="جوایز و افتخارات"
                 id="awards"
-                @click="editAwards"
               >
+                <!-- @click="editAwards" -->
                 <useCard
                   :hasModel="hadAwards"
                   :noCheckbox="true"
@@ -638,8 +638,8 @@
                 :progressValue="progressValue"
                 title="پروژه‌ها و تجربیات آکادمیک"
                 id="academicExperiences"
-                @click="editaBademicExperiences"
               >
+                <!-- @click="editaAdemicExperiences" -->
                 <useCard
                   :hasModel="hadAcademicExperiences"
                   :noCheckbox="true"
@@ -669,8 +669,8 @@
                 :progressValue="progressValue"
                 title="کتاب‌ها و مقالات"
                 id="booksAndArticles"
-                @click="editBooksAndArticles"
               >
+                <!-- @click="editBooksAndArticles" -->
                 <useCard
                   :hasModel="hadBooksAndArticles"
                   :noCheckbox="true"
@@ -704,8 +704,8 @@
                 :progressValue="progressValue"
                 title="فعالیت‌های داوطلبانه"
                 id="voluntaryActivities"
-                @click="editVoluntaryActivities"
               >
+                <!-- @click="editVoluntaryActivities" -->
                 <useCard
                   :hasModel="hadVoluntaryActivities"
                   :noCheckbox="true"
