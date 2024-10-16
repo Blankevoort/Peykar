@@ -191,7 +191,7 @@
       </div>
 
       <div class="col-12 row justify-center q-my-md q-px-xl">
-        <div class="col-md-12 col-lg-8 col-xl-8">
+        <div class="col-md-12 col-lg-7 col-xl-7">
           <div class="row justify-between items-start content-center q-my-md">
             <div class="col-5 q-px-sm row justify-center">
               <q-btn
@@ -598,7 +598,7 @@
                 class="col-12 fixed-bottom"
                 label="فعال سازی اطلاع رسانی شغلی"
                 icon="notification_add"
-                style="height: 50px; z-index: 9999999"
+                style="height: 50px; z-index: 9999"
               />
 
               <!-- Sorting options And Job offers Count -->
