@@ -62,21 +62,33 @@ class JobController extends Controller
     {
         $request->validate([
             'title' => 'required',
+            'image' => 'required',
             'workDate' => 'required',
             'workHours' => 'required',
-            'workSpace' => 'required',
+            'description' => 'required',
+            'location' => 'required',
         ]);
+
+        $backgroundImage = time() . '-' . $request->file('backgroundImage')->getClientOriginalName();
+        $request->file('backgroundImage')->move(storage_path('app/public/backgroundImages'), $backgroundImage);
+
+        $companyImage = time() . '-' . $request->file('image')->getClientOriginalName();
+        $request->file('image')->move(storage_path('app/public/companyImages'), $companyImage);
 
         $job = Job::create([
             'user_id' => $request->user()->id,
+            'backgroundImage' => $backgroundImage,
+            'image' => $companyImage,
             'title' => $request->title,
-            'workDate' => $request->workDate,
-            'workHours' => $request->workHours,
+            'workDates' => $request->workDate,
+            'benefits' => $request->benefits, 
             'description' => $request->description,
-            'province' => $request->province,
-            'street' => $request->street,
-            'rights_min' => $request->rightsMin,
-            'rights_max' => $request->rightsMax,
+            'similarExperience' => $request->similarExperience,
+            'workConditions' => $request->workHours,
+            'location' => $request->location,
+            'rightsMin' => $request->rightsMin,
+            'rightsMax' => $request->rightsMax,
+            'expiresAt' => $request->expiresAt,
         ]);
 
         $job->tags()->syncWithoutDetaching($request->tag_id);
@@ -126,7 +138,7 @@ class JobController extends Controller
                     $liked = true;
                     break;
                 }
-        }
+            }
         }
 
         if ($job->requests) {

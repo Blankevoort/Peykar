@@ -44,41 +44,41 @@ class Profile extends Model
     }
 
     public function socials() {
-        return $this->belongsToMany(Socials::class, 'socials_profile');
+        return $this->hasMany(Socials::class, 'socials_profile');
     }
 
     public function activities()
     {
-        return $this->belongsToMany(activities::class);
+        return $this->hasMany(activities::class);
     }
 
     public function academicEXPS()
     {
-        return $this->belongsToMany(AcademicExperience::class);
+        return $this->hasMany(AcademicExperience::class);
     }
 
     public function awards()
     {
-        return $this->belongsToMany(awards::class);
+        return $this->hasMany(awards::class);
     }
 
     public function books()
     {
-        return $this->belongsToMany(books::class);
+        return $this->hasMany(books::class);
     }
 
     public function courses()
     {
-        return $this->belongsToMany(courses::class);
+        return $this->hasMany(courses::class);
     }
 
     public function langs()
     {
-        return $this->belongsToMany(langs::class);
+        return $this->hasMany(langs::class);
     }
 
     public function skills()
     {
-        return $this->belongsToMany(skills::class, 'skills_profile');
+        return $this->hasMany(skills::class, 'skills_profile');
     }
 }

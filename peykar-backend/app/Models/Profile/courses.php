@@ -21,6 +21,6 @@ class courses extends Model
 
     public function profiles()
     {
-        return $this->belongsToMany(Profile::class);
+        return $this->belongsTo(Profile::class);
     }
 }

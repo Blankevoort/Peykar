@@ -17,6 +17,6 @@ class Socials extends Model
 
     public function profile()
     {
-        return $this->belongsToMany(Profile::class, 'socials_profile');
+        return $this->belongsTo(Profile::class, 'socials_profile');
     }
 }

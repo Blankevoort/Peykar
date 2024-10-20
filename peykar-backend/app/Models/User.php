@@ -2,11 +2,9 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\History;
 use App\Models\Profile;
 use App\Models\Request;
-use App\Models\Requests;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
@@ -60,6 +58,6 @@ class User extends Authenticatable
 
     public function history()
     {
-        return $this->hasMany(History::class);
+        return $this->hasOne(History::class);
     }
 }

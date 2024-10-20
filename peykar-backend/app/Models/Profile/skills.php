@@ -18,6 +18,6 @@ class skills extends Model
 
     public function profiles()
     {
-        return $this->belongsToMany(Profile::class, 'skills_profile');
+        return $this->belongsTo(Profile::class, 'skills_profile');
     }
 }
