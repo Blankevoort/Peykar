@@ -16,6 +16,7 @@ class Conditions extends Model
         "age",
         "gender",
         "militaryService",
+        "job_id",
     ];
 
     public function job()

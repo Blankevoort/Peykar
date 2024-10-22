@@ -44,7 +44,7 @@ class Profile extends Model
     }
 
     public function socials() {
-        return $this->hasMany(Socials::class, 'socials_profile');
+        return $this->hasMany(Socials::class);
     }
 
     public function activities()
@@ -79,6 +79,6 @@ class Profile extends Model
 
     public function skills()
     {
-        return $this->hasMany(skills::class, 'skills_profile');
+        return $this->hasMany(skills::class);
     }
 }

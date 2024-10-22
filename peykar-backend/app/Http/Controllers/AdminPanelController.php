@@ -18,21 +18,13 @@ class AdminPanelController extends Controller
         return;
     }
 
-    public function store(Request $request)
-    {
-    }
+    public function store(Request $request) {}
 
-    public function show($id)
-    {
-    }
+    public function show($id) {}
 
-    public function update(Request $request, $id)
-    {
-    }
+    public function update(Request $request, $id) {}
 
-    public function destroy($id)
-    {
-    }
+    public function destroy($id) {}
 
     //Get Something
 
@@ -76,18 +68,33 @@ class AdminPanelController extends Controller
     {
         $request->validate([
             'title' => 'required',
+            'image' => 'required',
             'workDate' => 'required',
             'workHours' => 'required',
-            'workSpace' => 'required',
+            'description' => 'required',
+            'location' => 'required',
         ]);
 
-        $job = Job::create([
-            'user_id' => Auth::user()->id,
+        $backgroundImage = time() . '-' . $request->file('backgroundImage')->getClientOriginalName();
+        $request->file('backgroundImage')->move(storage_path('app/public/backgroundImages'), $backgroundImage);
+
+        $companyImage = time() . '-' . $request->file('image')->getClientOriginalName();
+        $request->file('image')->move(storage_path('app/public/companyImages'), $companyImage);
+
+        Job::create([
+            'user_id' => $request->user()->id,
+            'backgroundImage' => $backgroundImage,
+            'image' => $companyImage,
             'title' => $request->title,
-            'workDate' => $request->workDate,
-            'workHours' => $request->workHours,
-            'workSpace' => $request->workSpace,
+            'workDates' => $request->workDate,
+            'benefits' => $request->benefits,
             'description' => $request->description,
+            'similarExperience' => $request->similarExperience,
+            'workConditions' => $request->workHours,
+            'location' => $request->location,
+            'rightsMin' => $request->rightsMin,
+            'rightsMax' => $request->rightsMax,
+            'expiresAt' => $request->expiresAt,
         ]);
 
         return response()->json(['status' => 204]);
@@ -111,12 +118,19 @@ class AdminPanelController extends Controller
         $user = Auth::user();
 
         if ($user->profile == null) {
-            $profile = Profile::create([
+            Profile::create([
                 'user_id' => $request->user_id,
-                'name' => $request->name,
                 'birth' => $request->birth,
                 'resume' => $request->resume,
+                'phone' => $request->phone,
                 'description' => $request->description,
+                'gender' => $request->gender,
+                'maritalStatus' => $request->maritalStatus,
+                'militaryServiceStatus' => $request->militaryServiceStatus,
+                'city' => $request->city,
+                'region' => $request->region,
+                'expectedSalary' => $request->expectedSalary,
+                'preferredJob' => $request->preferredJob,
             ]);
         } else {
             return response()->json(['This User Do Have a Profile!!']);
@@ -132,7 +146,7 @@ class AdminPanelController extends Controller
             'description' => 'required',
         ]);
 
-        $ticket = Ticket::create([
+        Ticket::create([
             'title' => $request->title,
             'priority' => $request->priority,
             'description' => $request->description,

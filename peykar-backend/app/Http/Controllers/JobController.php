@@ -81,7 +81,7 @@ class JobController extends Controller
             'image' => $companyImage,
             'title' => $request->title,
             'workDates' => $request->workDate,
-            'benefits' => $request->benefits, 
+            'benefits' => $request->benefits,
             'description' => $request->description,
             'similarExperience' => $request->similarExperience,
             'workConditions' => $request->workHours,
@@ -89,6 +89,12 @@ class JobController extends Controller
             'rightsMin' => $request->rightsMin,
             'rightsMax' => $request->rightsMax,
             'expiresAt' => $request->expiresAt,
+        ]);
+
+        $job->conditions()->create([
+            'age' => $request->age,
+            'gender' => $request->gender,
+            'militaryService' => $request->militaryService,
         ]);
 
         $job->tags()->syncWithoutDetaching($request->tag_id);

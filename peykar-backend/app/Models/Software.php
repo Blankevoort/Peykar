@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Conditions;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Software extends Model
 {
@@ -12,5 +13,11 @@ class Software extends Model
     protected $fillable = [
         "name",
         "proficiency",
+        'condition_id'
     ];
+
+    public function condition()
+    {
+        return $this->belongsTo(Conditions::class);
+    }
 }

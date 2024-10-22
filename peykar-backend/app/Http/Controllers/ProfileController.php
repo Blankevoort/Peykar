@@ -13,12 +13,12 @@ class ProfileController extends Controller
 
     public function index()
     {
-        return Profile::with('academicEXPS', 'awards', 'books', 'activities')->where('user_id', Auth::user()->id)->get();
+        return Profile::with('socials', 'awards', 'books', 'activities', 'academicEXPS', 'courses', 'langs', 'skills')->where('user_id', Auth::user()->id)->get();
     }
 
     public function store(Request $request)
     {
-        $profile = Profile::create([
+        Profile::create([
             'user_id' => Auth::user()->id,
             'birth' => $request->birth,
             'resume' => $request->resume,

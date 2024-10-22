@@ -10,9 +10,10 @@ return new class extends Migration
     {
         Schema::create('conditions', function (Blueprint $table) {
             $table->id();
-            $table->string("age");
+            $table->integer("age");
             $table->string("gender");
             $table->string("militaryService");
+            $table->foreignId('job_id')->constrained()->onDelete('cascade');
         });
     }
 

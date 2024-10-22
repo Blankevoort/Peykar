@@ -12,6 +12,7 @@ return new class extends Migration
             $table->id();
             $table->string("field");
             $table->string("proficiency");
+            $table->foreignId('condition_id')->constrained()->onDelete('cascade');
         });
     }
 
