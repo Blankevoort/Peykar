@@ -20,7 +20,10 @@ class educations extends Model
         "end",
         "stillStuding",
         "underDiploma",
+        'profile_id',
     ];
+
+    public $timestamps = false;
 
     public function profiles()
     {

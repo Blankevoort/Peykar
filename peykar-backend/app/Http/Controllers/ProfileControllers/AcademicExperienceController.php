@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\ProfileControllers;
 
-use App\Http\Controllers\Controller;
+use App\Models\Profile;
 use Illuminate\Http\Request;
 use App\Traits\HttpResponses;
-use App\Models\Profile\academicExperience;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Profile\academicExperience;
 
 class AcademicExperienceController extends Controller
 {
@@ -19,12 +20,17 @@ class AcademicExperienceController extends Controller
 
     public function store(Request $request)
     {
-        $academicExperience = academicExperience::create([
+        $profile = Profile::where('user_id', Auth::user()->id)->firstOrFail();
+
+        if (!$profile) {
+            return response()->json(['error' => 'Profile not found for the user'], 404);
+        }
+
+        academicExperience::create([
             'name' => $request->name,
             'year' => $request->year,
+            'profile_id' => $profile->id,
         ]);
-
-        $academicExperience->profiles()->syncWithoutDetaching($request->profile_id);
 
         return response()->json(['status' => 204]);
     }
@@ -41,7 +47,7 @@ class AcademicExperienceController extends Controller
         return $this->isNotAuthorized($academicExperience) ? $this->isNotAuthorized($academicExperience) : $academicExperience->find($request->academicEXP_id)->delete();
     }
 
-    private function isNotAuthorized($academicExperiences)
+    private function isNotAuthorized($academicExperience)
     {
         if (!Auth::user()->id) {
             return $this->error('', 'You are not authorized to make this request', 403);

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->boolean("certified");
             $table->dateTime("year");
             $table->dateTime("length");
+            $table->foreignId('profile_id')->constrained('profiles')->onDelete('cascade');
         });
     }
 

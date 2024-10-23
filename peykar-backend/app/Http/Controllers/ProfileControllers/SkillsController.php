@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\ProfileControllers;
 
-use App\Http\Controllers\Controller;
-use App\Models\Profile\skills;
+use App\Models\Profile;
 use Illuminate\Http\Request;
 use App\Traits\HttpResponses;
+use App\Models\Profile\skills;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
 class SkillsController extends Controller
@@ -19,13 +20,14 @@ class SkillsController extends Controller
 
     public function store(Request $request)
     {
-        $skills = skills::create([
+        $profile = Profile::where('user_id', Auth::user()->id)->firstOrFail();
+
+        skills::create([
             'name' => $request->name,
             'level' => $request->level,
             'additionalSkills' => $request->additionalSkills,
+            'profile_id' => $profile->id,
         ]);
-
-        $skills->profiles()->syncWithoutDetaching($request->profile_id);
 
         return response()->json(['status' => 204]);
     }

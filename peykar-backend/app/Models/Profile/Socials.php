@@ -12,11 +12,14 @@ class Socials extends Model
 
     protected $fillable = [
         'name',
-        'address'
+        'address',
+        'profile_id',
     ];
+
+    public $timestamps = false;
 
     public function profile()
     {
-        return $this->belongsTo(Profile::class, 'socials_profile');
+        return $this->belongsTo(Profile::class);
     }
 }

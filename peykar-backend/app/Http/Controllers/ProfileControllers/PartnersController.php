@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\ProfileControllers;
 
-use App\Http\Controllers\Controller;
-use App\Models\Profile\partners;
+use App\Models\Profile;
 use Illuminate\Http\Request;
 use App\Traits\HttpResponses;
+use App\Models\Profile\partners;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
 class PartnersController extends Controller
@@ -19,14 +20,15 @@ class PartnersController extends Controller
 
     public function store(Request $request)
     {
-        $partners = partners::create([
+        $profile = Profile::where('user_id', Auth::user()->id)->firstOrFail();
+
+        partners::create([
             'name' => $request->name,
             'role' => $request->role,
             'company' => $request->company,
             'phone' => $request->phone,
+            'profile_id' => $profile->id,
         ]);
-
-        $partners->profiles()->syncWithoutDetaching($request->profile_id);
 
         return response()->json(['status' => 204]);
     }

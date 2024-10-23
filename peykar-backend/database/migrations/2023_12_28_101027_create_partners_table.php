@@ -14,6 +14,7 @@ return new class extends Migration
             $table->string("role");
             $table->string("company");
             $table->integer("phone");
+            $table->foreignId('profile_id')->constrained('profiles')->onDelete('cascade');
         });
     }
 

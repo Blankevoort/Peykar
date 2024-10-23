@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\ProfileControllers;
 
-use App\Http\Controllers\Controller;
-use App\Models\Profile\educations;
+use App\Models\Profile;
 use Illuminate\Http\Request;
 use App\Traits\HttpResponses;
+use App\Models\Profile\educations;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
 class EducationsController extends Controller
@@ -19,7 +20,9 @@ class EducationsController extends Controller
 
     public function store(Request $request)
     {
-        $educations = educations::create([
+        $profile = Profile::where('user_id', Auth::user()->id)->firstOrFail();
+
+        educations::create([
             'name' => $request->name,
             'grade' => $request->grade,
             'fieldofStudy' => $request->fieldofStudy,
@@ -29,9 +32,8 @@ class EducationsController extends Controller
             'end' => $request->end,
             'stillStuding' => $request->stillStuding,
             'underDiploma' => $request->underDiploma,
+            'profile_id' => $profile->id,
         ]);
-
-        $educations->profiles()->syncWithoutDetaching($request->profile_id);
 
         return response()->json(['status' => 204]);
     }

@@ -16,8 +16,11 @@ class courses extends Model
         'length',
         'country',
         'certified',
-        'year'
+        'year',
+        'profile_id',
     ];
+
+    public $timestamps = false;
 
     public function profiles()
     {

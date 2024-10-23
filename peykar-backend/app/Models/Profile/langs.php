@@ -12,8 +12,11 @@ class langs extends Model
 
     protected $fillable = [
         'lang',
-        'level'
+        'level',
+        'profile_id',
     ];
+
+    public $timestamps = false;
 
     public function profiles()
     {

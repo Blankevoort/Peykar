@@ -13,6 +13,7 @@ return new class extends Migration
             $table->string("name");
             $table->string("level");
             $table->string("additionalSkills");
+            $table->foreignId('profile_id')->constrained('profiles')->onDelete('cascade');
             $table->timestamps();
         });
     }

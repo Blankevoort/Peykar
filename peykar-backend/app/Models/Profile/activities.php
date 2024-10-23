@@ -12,8 +12,11 @@ class activities extends Model
 
     protected $fillable = [
         'name',
-        'year'
+        'year',
+        'profile_id',
     ];
+
+    public $timestamps = false;
 
     public function profiles()
     {

@@ -12,6 +12,7 @@ return new class extends Migration
             $table->id();
             $table->string("name");
             $table->dateTime("year");
+            $table->foreignId('profile_id')->constrained('profiles')->onDelete('cascade');
         });
     }
 

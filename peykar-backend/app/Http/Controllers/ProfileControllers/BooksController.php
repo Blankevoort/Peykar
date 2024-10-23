@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\ProfileControllers;
 
-use App\Http\Controllers\Controller;
-use App\Models\Profile\books;
+use App\Models\Profile;
 use Illuminate\Http\Request;
+use App\Models\Profile\books;
 use App\Traits\HttpResponses;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
 class BooksController extends Controller
@@ -19,16 +20,18 @@ class BooksController extends Controller
 
     public function store(Request $request)
     {
-        $books = books::create([
-            'name' => $request->name,
-            'publisher' =>$request->publisher,
-            'year' => $request->year,
-        ]);
+        $profile = Profile::where('user_id', Auth::user()->id)->firstOrFail();
 
-        $books->profiles()->syncWithoutDetaching($request->profile_id);
+        books::create([
+            'name' => $request->name,
+            'publisher' => $request->publisher,
+            'year' => $request->year,
+            'profile_id' => $profile->id,
+        ]);
 
         return response()->json(['status' => 204]);
     }
+
 
     public function update(Request $request, books $books)
     {

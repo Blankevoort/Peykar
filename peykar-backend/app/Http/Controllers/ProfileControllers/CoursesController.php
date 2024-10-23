@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\ProfileControllers;
 
-use App\Http\Controllers\Controller;
-use App\Models\Profile\courses;
+use App\Models\Profile;
 use Illuminate\Http\Request;
 use App\Traits\HttpResponses;
+use App\Models\Profile\courses;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
 class CoursesController extends Controller
@@ -19,19 +20,21 @@ class CoursesController extends Controller
 
     public function store(Request $request)
     {
-        $courses = courses::create([
+        $profile = Profile::where('user_id', Auth::user()->id)->firstOrFail();
+
+        courses::create([
             'name' => $request->name,
             'organizer' => $request->organizer,
             'country' => $request->country,
             'certified' => $request->certified,
             'length' => $request->length,
             'year' => $request->year,
+            'profile_id' => $profile->id,
         ]);
-
-        $courses->profiles()->syncWithoutDetaching($request->profile_id);
 
         return response()->json(['status' => 204]);
     }
+
 
     public function update(Request $request, courses $courses)
     {

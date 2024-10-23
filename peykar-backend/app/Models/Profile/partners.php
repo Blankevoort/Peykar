@@ -14,8 +14,11 @@ class partners extends Model
         'name',
         'role',
         'company',
-        'phone'
+        'phone',
+        'profile_id',
     ];
+
+    public $timestamps = false;
 
     public function profiles()
     {

@@ -23,14 +23,17 @@ class ProfileController extends Controller
             'birth' => $request->birth,
             'resume' => $request->resume,
             'description' => $request->description,
-            'phone' => $request->phone,
             'gender' => $request->gender,
             'maritalStatus' => $request->maritalStatus,
             'militaryServiceStatus' => $request->militaryServiceStatus,
             'city' => $request->city,
             'region' => $request->region,
             'expectedSalary' => $request->expectedSalary,
-            'preferredJob' => $request->preferredJob,
+            'preferredJob' => json_encode($request->preferredJob),
+            'foreigners' => $request->foreigners,
+            'disability' => $request->disability,
+            'nationality' => $request->nationality,
+            'disabilityType' => $request->disabilityType,
         ]);
 
         return response()->json(['status' => 204]);

@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\ProfileControllers;
 
-use App\Http\Controllers\Controller;
-use App\Models\Profile\activities;
+use App\Models\Profile;
 use Illuminate\Http\Request;
 use App\Traits\HttpResponses;
+use App\Models\Profile\activities;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
 class ActivitiesController extends Controller
@@ -19,15 +20,21 @@ class ActivitiesController extends Controller
 
     public function store(Request $request)
     {
-        $activities = activities::create([
+        $profile = Profile::where('user_id', Auth::user()->id)->firstOrFail();
+
+        if (!$profile) {
+            return response()->json(['error' => 'Profile not found for the user'], 404);
+        }
+
+        activities::create([
             'name' => $request->name,
             'year' => $request->year,
+            'profile_id' => $profile->id, 
         ]);
-
-        $activities->profiles()->syncWithoutDetaching($request->profile_id);
 
         return response()->json(['status' => 204]);
     }
+
 
     public function update(Request $request, activities $activities)
     {

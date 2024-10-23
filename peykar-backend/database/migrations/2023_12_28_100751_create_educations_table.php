@@ -19,6 +19,7 @@ return new class extends Migration
             $table->dateTime('end')->nullable();
             $table->boolean('stillStuding')->nullable();
             $table->boolean('underDiploma')->nullable();
+            $table->foreignId('profile_id')->constrained('profiles')->onDelete('cascade');
             $table->timestamps();
         });
     }

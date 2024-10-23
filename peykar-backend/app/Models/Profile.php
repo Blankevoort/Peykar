@@ -22,7 +22,6 @@ class Profile extends Model
         "birth",
         "resume",
         "description",
-        "phone",
         "gender",
         "maritalStatus",
         "militaryServiceStatus",
@@ -30,6 +29,10 @@ class Profile extends Model
         "region",
         "expectedSalary",
         "preferredJob",
+        "foreigners",
+        "disability",
+        "nationality",
+        "disabilityType",
         "user_id",
     ];
 

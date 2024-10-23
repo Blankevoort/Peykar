@@ -13,11 +13,14 @@ class skills extends Model
     protected $fillable = [
         'name',
         'level',
-        'additionalSkills'
+        'additionalSkills',
+        'profile_id',
     ];
+
+    public $timestamps = false;
 
     public function profiles()
     {
-        return $this->belongsTo(Profile::class, 'skills_profile');
+        return $this->belongsTo(Profile::class);
     }
 }

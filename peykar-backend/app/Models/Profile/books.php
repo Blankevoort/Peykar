@@ -13,8 +13,11 @@ class books extends Model
     protected $fillable = [
         'name',
         'publisher',
-        'year'
+        'year',
+        'profile_id',
     ];
+
+    public $timestamps = false;
 
     public function profiles()
     {

@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\ProfileControllers;
 
-use App\Http\Controllers\Controller;
-use App\Models\Profile\Socials;
+use App\Models\Profile;
 use Illuminate\Http\Request;
 use App\Traits\HttpResponses;
+use App\Models\Profile\Socials;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
 class SocialsController extends Controller
@@ -19,12 +20,13 @@ class SocialsController extends Controller
 
     public function store(Request $request)
     {
-        $socials = Socials::create([
+        $profile = Profile::where('user_id', Auth::user()->id)->firstOrFail();
+
+        Socials::create([
             'name' => $request->name,
             'address' => $request->address,
+            'profile_id' => $profile->id,
         ]);
-
-        $socials->profile()->syncWithoutDetaching($request->profile_id);
 
         return response()->json(['status' => 204]);
     }

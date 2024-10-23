@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\ProfileControllers;
 
-use App\Http\Controllers\Controller;
-use App\Models\Profile\langs;
+use App\Models\Profile;
 use Illuminate\Http\Request;
+use App\Models\Profile\langs;
 use App\Traits\HttpResponses;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
 class LangsController extends Controller
@@ -19,12 +20,13 @@ class LangsController extends Controller
 
     public function store(Request $request)
     {
-        $langs = langs::create([
+        $profile = Profile::where('user_id', Auth::user()->id)->firstOrFail();
+
+        langs::create([
             'lang' => $request->lang,
             'level' => $request->level,
+            'profile_id' => $profile->id,
         ]);
-
-        $langs->profiles()->syncWithoutDetaching($request->profile_id);
 
         return response()->json(['status' => 204]);
     }
