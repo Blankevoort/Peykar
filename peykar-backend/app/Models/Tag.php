@@ -14,10 +14,7 @@ class Tag extends Model
         "name"
     ];
 
-    protected $casts = [
-        'created_at' => 'datetime:Y-m-d',
-        'updated_at' => 'datetime:Y-m-d',
-    ];
+    public $timestamps = false;
 
     public function jobs()
     {

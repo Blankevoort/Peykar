@@ -17,7 +17,7 @@ class Job extends Model
         "title",
         "backgroundImage",
         "image",
-        "workDates",
+        "workDate",
         "benefits",
         "description",
         "similarExperience",
@@ -45,7 +45,7 @@ class Job extends Model
         return $this->belongsToMany(NeededSkill::class);
     }
 
-    public function employmentConditions()
+    public function employmentCondition()
     {
         return $this->hasOne(Conditions::class);
     }

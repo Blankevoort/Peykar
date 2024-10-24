@@ -19,6 +19,8 @@ class Conditions extends Model
         "job_id",
     ];
 
+    public $timestamps = false;
+
     public function job()
     {
         return $this->belongsTo(Job::class);
@@ -26,11 +28,11 @@ class Conditions extends Model
 
     public function degree()
     {
-        return $this->hasOne(Degree::class);
+        return $this->hasOne(Degree::class, 'condition_id');
     }
 
     public function softwares()
     {
-        return $this->hasMany(Software::class);
+        return $this->hasMany(Software::class, 'condition_id');
     }
 }

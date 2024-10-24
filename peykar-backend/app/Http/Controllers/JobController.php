@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Job;
 use Illuminate\Http\Request;
 use App\Traits\HttpResponses;
@@ -14,88 +15,129 @@ class JobController extends Controller
 
     public function index()
     {
-        $jobs = Job::all();
+        $jobs = Job::with([
+            'employmentCondition.degree',
+            'employmentCondition.softwares',
+            'tags',
+            'employmentCondition',
+        ])->get();
 
-        foreach ($jobs as $job) {
-            $job->likeCount = $job->likes->count();
-            $job->requestCount = $job->requests->count();
-            $job->tagsCount = $job->tags->count();
+        return response()->json($jobs);
 
-            $liked = false;
-            $requested = false;
-            $tagsList = [];
+        // foreach ($jobs as $job) {
+        //     $job->likeCount = $job->likes->count();
+        //     $job->requestCount = $job->requests->count();
+        //     $job->tagsCount = $job->tags->count();
 
-            if ($job->likes) {
-                foreach ($job->likes as $like) {
-                    if ($like->user_id) {
-                        $liked = true;
-                        break;
-                    }
-                }
-            }
+        //     $liked = false;
+        //     $requested = false;
+        //     $tagsList = [];
 
-            if ($job->requests) {
-                foreach ($job->requests as $request) {
-                    if ($request->user_id) {
-                        $requested = true;
-                        break;
-                    }
-                }
-            }
+        //     if ($job->likes) {
+        //         foreach ($job->likes as $like) {
+        //             if ($like->user_id) {
+        //                 $liked = true;
+        //                 break;
+        //             }
+        //         }
+        //     }
 
-            if ($job->tags) {
-                foreach ($job->tags as $tag) {
-                    $tagsList[] = $tag->name;
-                }
-            }
+        //     if ($job->requests) {
+        //         foreach ($job->requests as $request) {
+        //             if ($request->user_id) {
+        //                 $requested = true;
+        //                 break;
+        //             }
+        //         }
+        //     }
 
-            $job->requested = $requested;
-            $job->liked = $liked;
-            $job->tagsList = $tagsList;
-        }
+        //     if ($job->tags) {
+        //         foreach ($job->tags as $tag) {
+        //             $tagsList[] = $tag->name;
+        //         }
+        //     }
 
-        return JobResource::collection($jobs);
+        //     $job->requested = $requested;
+        //     $job->liked = $liked;
+        //     $job->tagsList = $tagsList;
+        // }
+
+        // return JobResource::collection($jobs);
     }
-
 
     public function store(Request $request)
     {
         $request->validate([
             'title' => 'required',
-            'image' => 'required',
+            'image' => 'required|file',
             'workDate' => 'required',
             'workHours' => 'required',
             'description' => 'required',
             'location' => 'required',
+            'degree_field' => 'nullable|string',
+            'degree_proficiency' => 'nullable|string',
         ]);
 
-        $backgroundImage = time() . '-' . $request->file('backgroundImage')->getClientOriginalName();
-        $request->file('backgroundImage')->move(storage_path('app/public/backgroundImages'), $backgroundImage);
+        $defaultBackgroundImage = 'https://fileapi.jobvision.ir/StaticFiles/Employer/DefaultImages/default-companyHeader.jpeg?v=20231122';
 
-        $companyImage = time() . '-' . $request->file('image')->getClientOriginalName();
-        $request->file('image')->move(storage_path('app/public/companyImages'), $companyImage);
+        if ($request->hasFile('backgroundImage')) {
+            $backgroundImage = time() . '-' . $request->file('backgroundImage')->getClientOriginalName();
+            $request->file('backgroundImage')->move(storage_path('app/public/backgroundImages'), $backgroundImage);
+        } else {
+            $backgroundImage = $defaultBackgroundImage;
+        }
+
+        if ($request->hasFile('image')) {
+            $companyImage = time() . '-' . $request->file('image')->getClientOriginalName();
+            $request->file('image')->move(storage_path('app/public/companyImages'), $companyImage);
+        } else {
+            return response()->json(['error' => 'Company image is required'], 422);
+        }
+
+        $randomDays = rand(30, 360);
+
+        $expiresAt = Carbon::now()->addDays($randomDays);
 
         $job = Job::create([
             'user_id' => $request->user()->id,
             'backgroundImage' => $backgroundImage,
             'image' => $companyImage,
             'title' => $request->title,
-            'workDates' => $request->workDate,
-            'benefits' => $request->benefits,
+            'workDate' => $request->workDate,
+            'workConditions' => $request->workHours,
+            'benefits' => json_encode($request->benefits),
             'description' => $request->description,
             'similarExperience' => $request->similarExperience,
-            'workConditions' => $request->workHours,
             'location' => $request->location,
             'rightsMin' => $request->rightsMin,
             'rightsMax' => $request->rightsMax,
-            'expiresAt' => $request->expiresAt,
+            'expiresAt' => $expiresAt,
         ]);
 
-        $job->conditions()->create([
+        $condition = $job->employmentCondition()->create([
             'age' => $request->age,
             'gender' => $request->gender,
             'militaryService' => $request->militaryService,
         ]);
+
+        if ($request->degree_field && $request->degree_proficiency) {
+            $condition->degree()->create([
+                'field' => $request->degree_field,
+                'proficiency' => $request->degree_proficiency,
+                'condition_id' => $condition->id,
+            ]);
+        }
+
+        if ($request->has('softwares')) {
+            $softwares = json_decode($request->input('softwares'), true);
+
+            foreach ($softwares as $software) {
+                $condition->softwares()->create([
+                    'name' => $software['name'],
+                    'proficiency' => $software['proficiency'],
+                ]);
+            }
+        }
 
         $job->tags()->syncWithoutDetaching($request->tag_id);
 

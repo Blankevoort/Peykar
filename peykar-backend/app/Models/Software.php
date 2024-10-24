@@ -16,8 +16,10 @@ class Software extends Model
         'condition_id'
     ];
 
+    public $timestamps = false;
+
     public function condition()
     {
-        return $this->belongsTo(Conditions::class);
+        return $this->belongsTo(Conditions::class, 'condition_id');
     }
 }
