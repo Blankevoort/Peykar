@@ -244,7 +244,7 @@ onMounted(() => {
           },
         },
       };
-      localStorage.setItem("user", JSON.stringify(user.value));
+      // localStorage.setItem("user", JSON.stringify(user.value));
     } else {
       if (!savedUser.updated) {
         user.value = mergeUserData(savedUser, user.value);
@@ -255,7 +255,7 @@ onMounted(() => {
     }
   }
 
-  localStorage.setItem("setUser", JSON.stringify(userLoggedOut));
+  // localStorage.setItem("setUser", JSON.stringify(userLoggedOut));
 });
 </script>
 

@@ -83,7 +83,12 @@
                   <!-- Full Name, Job And Edit Button -->
 
                   <q-item-section>
-                    <q-item-label class="text-bold" v-if="user.name">
+                    <q-item-label
+                      @click="toggleNameDialog"
+                      class="text-bold"
+                      v-if="user.name"
+                      style="cursor: pointer"
+                    >
                       {{ user.name }}
                     </q-item-label>
 
@@ -491,7 +496,7 @@
             <div
               class="col-xs-12 col-sm-9 col-md-9 col-lg-9 col-xl-9 q-px-sm q-mt-sm"
             >
-              <q-input outlined color="grey-5" v-model="user_name" />
+              <q-input autofocus outlined color="grey-5" v-model="name" />
             </div>
 
             <div
@@ -523,7 +528,7 @@
             <div
               class="col-xs-12 col-sm-9 col-md-9 col-lg-9 col-xl-9 q-px-sm q-mt-sm"
             >
-              <q-input outlined color="grey-5" v-model="jobTitle" />
+              <q-input autofocus outlined color="grey-5" v-model="jobTitle" />
             </div>
 
             <div
@@ -1433,9 +1438,10 @@
 </template>
 
 <script>
-import { defineComponent, ref } from "vue";
+import { defineComponent, onBeforeMount, ref } from "vue";
 
-import { getUser } from "../composables/getUser";
+// import { getUser } from "../composables/getUser";
+import { api } from "src/boot/axios";
 
 import JobsList from "../components/Layout/DrawerJobsList.vue";
 import FooterDropdown from "../components/Layout/FooterDropdown.vue";
@@ -1445,9 +1451,10 @@ export default defineComponent({
   name: "MainLayout",
   components: { FooterDropdown, JobsList, PanelHeader },
   setup() {
-    const user = getUser();
+    // const user = getUser();
+    const user = ref();
     const drawer = ref();
-    const user_name = ref();
+    const name = ref();
     const jobTitle = ref();
     const tab = ref("default");
     const addName = ref(false);
@@ -1493,6 +1500,12 @@ export default defineComponent({
       },
     ]);
 
+    function getUser() {
+      api.get("api/user").then((r) => {
+        user.value = r.data;
+      });
+    }
+
     function toggleNameDialog() {
       addName.value = !addName.value;
     }
@@ -1503,42 +1516,32 @@ export default defineComponent({
     }
 
     function changeName() {
-      try {
-        const userData = localStorage.getItem("user");
-        if (userData) {
-          const userObj = JSON.parse(userData);
-          userObj.name = user_name.value;
-          localStorage.setItem("user", JSON.stringify(userObj));
-          user.value = userObj;
-          toggleNameDialog();
-        }
-      } catch (error) {
-        console.error("Error changing name in localStorage:", error);
-      }
+      api
+        .patch("api/user/" + user.value.id + "/update/", {
+          name: name.value,
+        })
+        .then(getUser(), toggleNameDialog())
+        .catch((err) => {
+          console.log(err);
+        });
     }
 
     function changeJobTitle() {
-      try {
-        const userData = localStorage.getItem("user");
-        if (userData) {
-          const userObj = JSON.parse(userData);
-          userObj.jobTitle = jobTitle.value;
-          localStorage.setItem("user", JSON.stringify(userObj));
-          user.value = userObj;
+      api
+        .patch("api/user/" + user.value.id + "/update/", {
+          jobTitle: jobTitle.value,
+        })
+        .then(() => {
+          getUser();
           toggleJobTitleDialog();
-        }
-      } catch (error) {
-        console.error("Error changing name in localStorage:", error);
-      }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
 
     function logout() {
-      try {
-        localStorage.setItem("setUser", "false");
-        location.reload();
-      } catch (error) {
-        console.error("Error setting setUser in localStorage:", error);
-      }
+      api.post("api/logout").then(Cookies.remove("token"), location.reload());
     }
 
     const updateTab = () => {
@@ -1549,6 +1552,10 @@ export default defineComponent({
       drawer.value = !drawer.value;
     };
 
+    onBeforeMount(() => {
+      getUser();
+    });
+
     return {
       tab,
       user,
@@ -1558,7 +1565,7 @@ export default defineComponent({
       jobTitle,
       expanded,
       questions,
-      user_name,
+      name,
       updateTab,
       changeName,
       addJobTitle,

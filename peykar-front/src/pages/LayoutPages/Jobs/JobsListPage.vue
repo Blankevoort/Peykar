@@ -266,26 +266,46 @@
                   </div>
                 </div>
 
-                <q-card flat>
+                <q-card
+                  class="full-width"
+                  style="background-color: transparent"
+                  flat
+                >
+                  <!-- Job`s Tags -->
+
+                  <div class="row justify-between" v-if="job.tags">
+                    <div class="row col-12">
+                      <div class="col-10">
+                        <q-badge
+                          v-for="(tag, index) in job.tags"
+                          :key="index"
+                          class="q-my-xs q-mx-xs q-py-sm"
+                          :color="tag.important ? 'red-2' : 'indigo-1'"
+                          :text-color="tag.important ? 'negative' : 'primary'"
+                          :label="tag.label"
+                        />
+                      </div>
+
+                      <div class="col-2 text-right">
+                        <q-btn flat icon="favorite_outline" />
+                      </div>
+                    </div>
+                  </div>
+
                   <q-card-section horizontal>
-                    <q-card-section class="col-3 flex flex-center">
+                    <q-card-section class="col-xs-5 col-sm-3 flex flex-center">
                       <q-img
                         class="rounded-borders"
-                        :src="job.image"
+                        :src="
+                          'http://127.0.0.1:8000/storage/companyImages/' +
+                          job.image
+                        "
                         style="width: 48px; height: 48px"
                       />
                     </q-card-section>
 
-                    <q-card-section class="col-9">
-                      <div
-                        class="q-mt-sm q-mb-xs row justify-between items-center q-pr-sm"
-                      >
-                        <div class="col-sm-9 col-10">{{ job.title }}</div>
-
-                        <div class="col-sm-3 col-2">
-                          <q-btn flat icon="favorite_outline" />
-                        </div>
-                      </div>
+                    <q-card-section>
+                      <div class="q-mt-sm q-mb-xs">{{ job.title }}</div>
 
                       <div class="text-caption" v-if="job.company">
                         {{ job.company }}
@@ -299,18 +319,26 @@
                         <div class="row" v-if="job.rightsMin">
                           <span class="q-px-sm">|</span>
 
-                          <p v-if="job.rightsMax">
+                          <p class="text-positive" v-if="job.rightsMax">
                             {{ job.rightsMin }} - {{ job.rightsMax }}
                           </p>
-                          <p v-else>{{ job.rightsMin }}+</p>
+                          <p class="text-positive" v-else>
+                            {{ job.rightsMin }}+
+                          </p>
                         </div>
                       </div>
                     </q-card-section>
                   </q-card-section>
 
-                  <div class="q-px-sm">
+                  <q-separator inset />
+
+                  <q-card-actions class="q-px-sm">
                     <q-btn flat> {{ timeSincePosted(job.postedDate) }}</q-btn>
-                  </div>
+
+                    <q-space />
+
+                    <q-btn color="positive" label="ارسال رزومه" />
+                  </q-card-actions>
                 </q-card>
               </div>
 
@@ -665,7 +693,7 @@
                     <div class="row col-12">
                       <div class="col-10">
                         <q-badge
-                          v-for="(tag, index) in job.tagList"
+                          v-for="(tag, index) in job.tags"
                           :key="index"
                           class="q-my-xs q-mx-xs q-py-sm"
                           :color="tag.important ? 'red-2' : 'indigo-1'"
@@ -680,19 +708,43 @@
                     </div>
                   </div>
 
-                  <q-card flat>
+                  <q-card style="background-color: transparent" flat>
+                    <!-- Job`s Tags -->
+
+                    <div class="row justify-between" v-if="job.tags">
+                      <div class="row col-12">
+                        <div class="col-10">
+                          <q-badge
+                            v-for="(tag, index) in job.tags"
+                            :key="index"
+                            class="q-my-xs q-mx-xs q-py-sm"
+                            :color="tag.important ? 'red-2' : 'indigo-1'"
+                            :text-color="tag.important ? 'negative' : 'primary'"
+                            :label="tag.label"
+                          />
+                        </div>
+
+                        <div class="col-2 text-right">
+                          <q-btn flat icon="favorite_outline" />
+                        </div>
+                      </div>
+                    </div>
+
                     <q-card-section horizontal>
                       <q-card-section
-                        class="col-xs-5 col-sm-2 flex flex-center"
+                        class="col-xs-3 col-sm-1 flex flex-center q-px-md"
                       >
                         <q-img
                           class="rounded-borders"
-                          :src="job.image"
                           style="width: 48px; height: 48px"
+                          :src="
+                            'http://127.0.0.1:8000/storage/companyImages/' +
+                            job.image
+                          "
                         />
                       </q-card-section>
 
-                      <q-card-section class="col-xs-7 cl-sm-10">
+                      <q-card-section>
                         <div class="q-mt-sm q-mb-xs">{{ job.title }}</div>
 
                         <div class="text-caption" v-if="job.company">
@@ -707,18 +759,26 @@
                           <div class="row" v-if="job.rightsMin">
                             <span class="q-px-sm">|</span>
 
-                            <p v-if="job.rightsMax">
+                            <p class="text-positive" v-if="job.rightsMax">
                               {{ job.rightsMin }} - {{ job.rightsMax }}
                             </p>
-                            <p v-else>{{ job.rightsMin }}+</p>
+                            <p class="text-positive" v-else>
+                              {{ job.rightsMin }}+
+                            </p>
                           </div>
                         </div>
                       </q-card-section>
                     </q-card-section>
 
-                    <div class="q-px-sm">
+                    <q-separator inset />
+
+                    <q-card-actions class="q-px-sm">
                       <q-btn flat> {{ timeSincePosted(job.postedDate) }}</q-btn>
-                    </div>
+
+                      <q-space />
+
+                      <q-btn color="positive" label="ارسال رزومه" />
+                    </q-card-actions>
                   </q-card>
                 </div>
               </div>
@@ -780,26 +840,53 @@
 </template>
 
 <script>
-import { ref } from "vue";
+import { onBeforeMount, ref } from "vue";
 
-import { getJobs } from "../../../composables/getJobs";
+// import { getJobs } from "../../../composables/getJobs";
+import { api } from "src/boot/axios";
 
 export default {
   setup() {
-    const jobs = getJobs();
+    const jobs = ref([]);
+    jobs.value.forEach((job) => {
+      console.log(job.created_at);
+      const time = timeSincePosted(job.created_at);
+      console.log(time);
+    });
     const timeSincePosted = (postedDate) => {
       const now = new Date();
       const posted = new Date(postedDate);
       const diffInMilliseconds = now - posted;
       const diffInHours = Math.floor(diffInMilliseconds / (1000 * 60 * 60));
-      const diffInDays = Math.floor(diffInHours / 24);
+      const diffInDays = Math.floor(diffInMilliseconds / (1000 * 60 * 60 * 24));
 
       if (diffInDays > 0) {
         return `${diffInDays} روز پیش`;
-      } else {
+      } else if (diffInHours > 0) {
         return `${diffInHours} ساعت پیش`;
+      } else {
+        const diffInMinutes = Math.floor(diffInMilliseconds / (1000 * 60));
+        return `${diffInMinutes} دقیقه پیش`;
       }
     };
+
+    function getJobs() {
+      api
+        .get("api/jobs")
+        .then((r) => {
+          jobs.value = r.data;
+        })
+        .catch((err) => {
+          console.log(err);
+          // if (err.response.status === 404) {
+          //   router.push("/404");
+          // }
+        });
+    }
+
+    onBeforeMount(() => {
+      getJobs();
+    });
 
     return {
       jobs,

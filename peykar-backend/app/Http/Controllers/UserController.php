@@ -24,16 +24,23 @@ class UserController extends Controller
 
     public function update(Request $request, $id)
     {
-        $validatedData = $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-        ]);
-
         $user = User::findOrFail($id);
 
-        $user->name = $validatedData['name'];
+        $validatedData = $request->validate([
+            'name' => ['sometimes', 'string', 'max:120'],
+            'phone' => ['sometimes', 'phone', 'max:11'],
+            'email' => ['sometimes', 'email', 'max:255'],
+            'jobTitle' => ['sometimes', 'string', 'max:255'],
+            'linkedIn' => ['sometimes', 'string', 'max:255'],
+        ]);
+
+        foreach ($validatedData as $key => $value) {
+            $user->$key = $value;
+        }
+
         $user->save();
 
-        return response()->json(['message' => 'User name updated successfully'], 204);
+        return response()->json(['message' => 'User updated successfully'], 204);
     }
 
     public function destroy($id)

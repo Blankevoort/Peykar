@@ -123,16 +123,21 @@
           <div
             v-for="(job, index) in jobs"
             :key="'job-' + index + 1"
-            class="q-px-sm q-my-md col-lg-6 col-xl-4"
+            class="q-my-md q-px-xs col-md-4 col-lg-4 col-xl-4"
           >
-            <q-card style="background-color: transparent" flat bordered>
+            <q-card
+              class="full-width"
+              style="background-color: transparent"
+              flat
+              bordered
+            >
               <!-- Job`s Tags -->
 
-              <div class="row justify-between" v-if="job.tagList">
+              <div class="row justify-between" v-if="job.tags">
                 <div class="row col-12">
                   <div class="col-10">
                     <q-badge
-                      v-for="(tag, index) in job.tagList"
+                      v-for="(tag, index) in job.tags"
                       :key="index"
                       class="q-my-xs q-mx-xs q-py-sm"
                       :color="tag.important ? 'red-2' : 'indigo-1'"
@@ -151,7 +156,9 @@
                 <q-card-section class="col-xs-5 col-sm-3 flex flex-center">
                   <q-img
                     class="rounded-borders"
-                    :src="job.image"
+                    :src="
+                      'http://127.0.0.1:8000/storage/companyImages/' + job.image
+                    "
                     style="width: 48px; height: 48px"
                   />
                 </q-card-section>
@@ -370,11 +377,11 @@
             <q-card style="background-color: transparent" flat bordered>
               <!-- Job`s Tags -->
 
-              <div class="row justify-between" v-if="job.tagList">
+              <div class="row justify-between" v-if="job.tags">
                 <div class="row col-12">
                   <div class="col-10">
                     <q-badge
-                      v-for="(tag, index) in job.tagList"
+                      v-for="(tag, index) in job.tags"
                       :key="index"
                       class="q-my-xs q-mx-xs q-py-sm"
                       :color="tag.important ? 'red-2' : 'indigo-1'"
@@ -390,11 +397,15 @@
               </div>
 
               <q-card-section horizontal>
-                <q-card-section class="col-xs-5 col-sm-2 flex flex-center">
+                <q-card-section
+                  class="col-xs-3 col-sm-1 flex flex-center q-px-md"
+                >
                   <q-img
                     class="rounded-borders"
                     style="width: 48px; height: 48px"
-                    :src="job.image"
+                    :src="
+                      'http://127.0.0.1:8000/storage/companyImages/' + job.image
+                    "
                   />
                 </q-card-section>
 
@@ -490,28 +501,55 @@
 
 <script>
 import { ref, onBeforeMount } from "vue";
+// import { useRouter } from "vue-router";
 
-import { getJobs } from "../composables/getJobs";
+import { api } from "src/boot/axios";
+// import { getJobs } from "../composables/getJobs";
 
 export default {
   setup() {
     const isLoading = ref(true);
-    const jobs = getJobs();
+    // const jobs = getJobs();
+    // const router = useRouter();
+    const jobs = ref([]);
+    jobs.value.forEach((job) => {
+      console.log(job.created_at);
+      const time = timeSincePosted(job.created_at);
+      console.log(time);
+    });
     const timeSincePosted = (postedDate) => {
       const now = new Date();
       const posted = new Date(postedDate);
       const diffInMilliseconds = now - posted;
       const diffInHours = Math.floor(diffInMilliseconds / (1000 * 60 * 60));
-      const diffInDays = Math.floor(diffInHours / 24);
+      const diffInDays = Math.floor(diffInMilliseconds / (1000 * 60 * 60 * 24));
 
       if (diffInDays > 0) {
         return `${diffInDays} روز پیش`;
-      } else {
+      } else if (diffInHours > 0) {
         return `${diffInHours} ساعت پیش`;
+      } else {
+        const diffInMinutes = Math.floor(diffInMilliseconds / (1000 * 60));
+        return `${diffInMinutes} دقیقه پیش`;
       }
     };
 
+    function getJobs() {
+      api
+        .get("api/jobs")
+        .then((r) => {
+          jobs.value = r.data;
+        })
+        .catch((err) => {
+          console.log(err);
+          // if (err.response.status === 404) {
+          //   router.push("/404");
+          // }
+        });
+    }
+
     onBeforeMount(() => {
+      getJobs();
       setTimeout(() => {
         isLoading.value = false;
       }, 2000);
