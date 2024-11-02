@@ -58,8 +58,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     Route::resource('tickets', TicketController::class);
 
-    Route::post('like', [LikeController::class, 'store']);
-    Route::delete('like/{like}', [LikeController::class, 'destroy'])->name('like.destroy');
+    Route::post('like', [LikeController::class, 'toggleLike']);
 
     Route::resource('request', RequestController::class);
 

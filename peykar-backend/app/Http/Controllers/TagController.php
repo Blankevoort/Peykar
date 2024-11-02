@@ -19,11 +19,11 @@ class TagController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|unique:tags',
+            'label' => 'required|unique:tags',
         ]);
 
         Tag::create([
-            'name' => $request->name,
+            'label' => $request->label,
         ]);
 
         return response()->json('', 204);
@@ -32,11 +32,11 @@ class TagController extends Controller
     public function update(Request $request, Tag $tag)
     {
         $request->validate([
-            'name' => 'required|unique:tags,name,' . $tag->id,
+            'label' => 'required|unique:tags,label,' . $tag->id,
         ]);
 
         $tag->update([
-            'name' => $request->name,
+            'label' => $request->label,
         ]);
 
         return $tag;

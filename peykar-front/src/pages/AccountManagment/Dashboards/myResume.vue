@@ -1,5 +1,9 @@
 <template>
-  <q-page class="row justify-center q-pb-md" style="background-color: #f8f9fa">
+  <q-page
+    class="row justify-center q-pb-md"
+    style="background-color: #f8f9fa"
+    v-if="user"
+  >
     <div class="col-xs-12 col-sm-11 col-md-11 col-lg-8 col-xl-7">
       <!-- Preferred Resume & Resume Complition Rate -->
 
@@ -1131,7 +1135,8 @@
 <script>
 import { ref, defineComponent, onMounted, computed } from "vue";
 
-import { getUser } from "../../../composables/getUser";
+// import { getUser } from "../../../composables/getUser";
+import { api } from "src/boot/axios";
 
 import UseCard from "../../../components/ResumeCard.vue";
 import BadgeAndTitle from "../../../components/ResumeCards/ResumeBadgeAndTitle.vue";
@@ -1212,7 +1217,7 @@ export default defineComponent({
   },
 
   setup() {
-    const user = getUser();
+    const user = ref();
     const tabs = ref([
       { name: "about", label: "درباره من" },
       { name: "info", label: "اطلاعات اولیه" },
@@ -1341,6 +1346,11 @@ export default defineComponent({
     }
 
     function generalData() {
+      api.get("api/user").then((r) => {
+        console.log(r.data.profile.description);
+        user.value = r.data;
+      });
+
       // Fetch ALL Dummy Data from LocalStorage
 
       const userData = JSON.parse(localStorage.getItem("user"));

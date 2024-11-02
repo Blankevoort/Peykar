@@ -18,49 +18,45 @@ class JobController extends Controller
         $jobs = Job::with([
             'employmentCondition.degree',
             'employmentCondition.softwares',
-            'tags',
             'employmentCondition',
         ])->get();
 
+
+        foreach ($jobs as $job) {
+            $liked = false;
+            $requested = false;
+            $tagsList = [];
+
+            if ($job->likes) {
+                foreach ($job->likes as $like) {
+                    if ($like->user_id) {
+                        $liked = true;
+                        break;
+                    }
+                }
+            }
+
+            if ($job->requests) {
+                foreach ($job->requests as $request) {
+                    if ($request->user_id) {
+                        $requested = true;
+                        break;
+                    }
+                }
+            }
+
+            if ($job->tags) {
+                foreach ($job->tags as $tag) {
+                    $tagsList[] = $tag->label;
+                }
+            }
+
+            $job->requested = $requested;
+            $job->liked = $liked;
+            $job->tagsList = $tagsList;
+        }
+
         return response()->json($jobs);
-
-        // foreach ($jobs as $job) {
-        //     $job->likeCount = $job->likes->count();
-        //     $job->requestCount = $job->requests->count();
-        //     $job->tagsCount = $job->tags->count();
-
-        //     $liked = false;
-        //     $requested = false;
-        //     $tagsList = [];
-
-        //     if ($job->likes) {
-        //         foreach ($job->likes as $like) {
-        //             if ($like->user_id) {
-        //                 $liked = true;
-        //                 break;
-        //             }
-        //         }
-        //     }
-
-        //     if ($job->requests) {
-        //         foreach ($job->requests as $request) {
-        //             if ($request->user_id) {
-        //                 $requested = true;
-        //                 break;
-        //             }
-        //         }
-        //     }
-
-        //     if ($job->tags) {
-        //         foreach ($job->tags as $tag) {
-        //             $tagsList[] = $tag->name;
-        //         }
-        //     }
-
-        //     $job->requested = $requested;
-        //     $job->liked = $liked;
-        //     $job->tagsList = $tagsList;
-        // }
 
         // return JobResource::collection($jobs);
     }

@@ -15,8 +15,8 @@ return new class extends Migration
             $table->string('fieldofStudy')->nullable();
             $table->string('university')->nullable();
             $table->string('GPA')->nullable();
-            $table->dateTime('start')->nullable();
-            $table->dateTime('end')->nullable();
+            $table->date('start')->nullable();
+            $table->date('end')->nullable();
             $table->boolean('stillStuding')->nullable();
             $table->boolean('underDiploma')->nullable();
             $table->foreignId('profile_id')->constrained('profiles')->onDelete('cascade');

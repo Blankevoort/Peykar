@@ -147,7 +147,20 @@
                   </div>
 
                   <div class="col-2 text-right">
-                    <q-btn flat icon="favorite_outline" />
+                    <q-btn
+                      v-if="!job.liked"
+                      @click="like(job.id)"
+                      flat
+                      icon="favorite_outline"
+                    />
+
+                    <q-btn
+                      v-else
+                      @click="like(job.id)"
+                      color="red"
+                      flat
+                      icon="favorite"
+                    />
                   </div>
                 </div>
               </div>
@@ -391,7 +404,20 @@
                   </div>
 
                   <div class="col-2 text-right">
-                    <q-btn flat icon="favorite_outline" />
+                    <q-btn
+                      v-if="!job.liked"
+                      @click="like(job.id)"
+                      flat
+                      icon="favorite_outline"
+                    />
+
+                    <q-btn
+                      v-else
+                      @click="like(job.id)"
+                      color="red"
+                      flat
+                      icon="favorite"
+                    />
                   </div>
                 </div>
               </div>
@@ -548,6 +574,19 @@ export default {
         });
     }
 
+    function like(jobId) {
+      api
+        .post("api/like", {
+          job_id: jobId,
+        })
+        .then((r) => {
+          jobs.value = r.data;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+
     onBeforeMount(() => {
       getJobs();
       setTimeout(() => {
@@ -557,6 +596,7 @@ export default {
 
     return {
       jobs,
+      like,
       isLoading,
       timeSincePosted,
       model: ref(null),
