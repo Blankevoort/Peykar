@@ -11,6 +11,7 @@ use App\Models\Profile\skills;
 use App\Models\Profile\courses;
 use App\Models\Profile\Socials;
 use App\Models\Profile\activities;
+use App\Models\Profile\softwareSkills;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -55,7 +56,12 @@ class Profile extends Model
         return $this->hasMany(activities::class);
     }
 
-    public function academicEXPS()
+    public function softwareskills()
+    {
+        return $this->hasMany(softwareSkills::class);
+    }
+
+    public function academicexps()
     {
         return $this->hasMany(AcademicExperience::class);
     }

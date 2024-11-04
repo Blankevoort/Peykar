@@ -411,11 +411,11 @@
                           class="br-4 q-pa-xs text-white row items-center q-gutter-x-sm"
                           style="background-color: #5c6573 !important"
                         >
-                          <div class="text-bold">{{ lang.language }}</div>
+                          <div class="text-bold">{{ lang.lang }}</div>
 
                           <q-separator class="q-py-xs" color="white" vertical />
 
-                          <div class="q-pr-sm">{{ lang.proficiency }}</div>
+                          <div class="q-pr-sm">{{ lang.level }}</div>
                         </div>
                       </div>
                     </div>
@@ -462,7 +462,7 @@
                               vertical
                             />
 
-                            <div class="q-pr-sm">{{ software.skill }}</div>
+                            <div class="q-pr-sm">{{ software.level }}</div>
                           </div>
                         </div>
                       </div>
@@ -590,15 +590,15 @@
                   :item_id="eduCourses"
                 >
                   <div class="q-gutter-y-sm">
-                    <div class="text-bold">{{ eduCourses.courseName }}</div>
+                    <div class="text-bold">{{ eduCourses.name }}</div>
 
                     <div class="text-grey-7">{{ eduCourses.organizer }}</div>
 
                     <div class="text-grey-7">
-                      {{ eduCourses.courseDuration }}
+                      {{ eduCourses.length }}
                     </div>
 
-                    <div class="text-grey-7">{{ eduCourses.courseYear }}</div>
+                    <div class="text-grey-7">{{ eduCourses.year }}</div>
                   </div>
                 </useCard>
               </BadgeAndTitle>
@@ -624,7 +624,7 @@
                 >
                   <div class="q-gutter-y-sm">
                     <div class="text-bold">
-                      {{ award.title }}
+                      {{ award.name }}
                     </div>
 
                     <div class="text-grey-7">
@@ -655,7 +655,7 @@
                 >
                   <div class="q-gutter-y-sm">
                     <div class="text-bold">
-                      {{ academicExperiences.title }}
+                      {{ academicExperiences.name }}
                     </div>
 
                     <div class="text-grey-7">
@@ -686,7 +686,7 @@
                 >
                   <div class="q-gutter-y-sm">
                     <div class="text-bold">
-                      {{ booksAndArticles.title }}
+                      {{ booksAndArticles.name }}
                     </div>
 
                     <div class="text-grey-7">
@@ -721,7 +721,7 @@
                 >
                   <div class="q-gutter-y-sm">
                     <div class="text-bold">
-                      {{ voluntaryActivity.title }}
+                      {{ voluntaryActivity.name }}
                     </div>
 
                     <div class="text-grey-7">
@@ -1259,8 +1259,8 @@ export default defineComponent({
           info: user.value.profile.militaryServiceStatus,
         },
         { title: "شهر محل سکونت", info: user.value.profile.city },
-        { title: "محل سکونت", info: user.value.profile.address },
-        { title: "تاریخ تولد", info: user.value.profile.birthDate },
+        { title: "محل سکونت", info: user.value.profile.region },
+        { title: "تاریخ تولد", info: user.value.profile.birth },
         { title: "شماره ثابت", info: user.value.phone },
         { title: "حقوق درخواستی", info: user.value.profile.expectedSalary },
         ...(interestedJobGroups.length > 0
@@ -1346,96 +1346,96 @@ export default defineComponent({
     }
 
     function generalData() {
-      api.get("api/user").then((r) => {
-        console.log(r.data.profile.description);
-        user.value = r.data;
+      api.get("api/user-cv").then((r) => {
+        // console.log(r.data.profile.academicexps);
+        user.value = r.data.data;
+
+        // Fetch ALL Dummy Data from LocalStorage
+
+        const userData = user.value;
+        if (userData && userData.profile && userData.profile.education) {
+          educationData.value = userData.profile.education.higherEducation;
+          hasEducation.value = true;
+        } else {
+          hasEducation.value = false;
+        }
+
+        if (userData && userData.profile && userData.profile.languages) {
+          langs.value = userData.profile.languages;
+        }
+
+        if (userData && userData.profile && userData.profile.workExperience) {
+          workExperienceData.value = userData.profile.workExperience;
+          noWorkExperience.value = true;
+        } else {
+          noWorkExperience.value = false;
+        }
+        if (userData && userData.profile && userData.profile.softwareSkills) {
+          softwareSkills.value = userData.profile.softwareSkills;
+        }
+        if (userData && userData.profile && userData.profile.additionalSkills) {
+          additionalSkills.value = userData.profile.additionalSkills;
+          additionalSkillsCount.value = additionalSkills.value.length;
+        }
+        if (
+          userData &&
+          userData.profile &&
+          userData.profile.additionalInformation.formerColleagues
+        ) {
+          formerColleagues.value =
+            userData.profile.additionalInformation.formerColleagues;
+          hadFormerColleagues.value = true;
+        }
+
+        if (
+          userData &&
+          userData.profile &&
+          userData.profile.additionalInformation.educationCourses
+        ) {
+          educationCoursesData.value =
+            userData.profile.additionalInformation.educationCourses;
+          hadEducationCourses.value = true;
+        }
+
+        if (
+          userData &&
+          userData.profile &&
+          userData.profile.additionalInformation.awards
+        ) {
+          awardsData.value = userData.profile.additionalInformation.awards;
+          hadAwards.value = true;
+        }
+
+        if (
+          userData &&
+          userData.profile &&
+          userData.profile.additionalInformation.academicExperiences
+        ) {
+          academicExperiencesData.value =
+            userData.profile.additionalInformation.academicExperiences;
+          hadAcademicExperiences.value = true;
+        }
+
+        if (
+          userData &&
+          userData.profile &&
+          userData.profile.additionalInformation.publications
+        ) {
+          booksAndArticlesData.value =
+            userData.profile.additionalInformation.publications;
+          hadBooksAndArticles.value = true;
+        }
+
+        if (
+          userData &&
+          userData.profile &&
+          userData.profile.additionalInformation.volunteerActivities
+        ) {
+          voluntaryActivitiesData.value =
+            userData.profile.additionalInformation.volunteerActivities;
+          hadVoluntaryActivities.value = true;
+        }
       });
-
-      // Fetch ALL Dummy Data from LocalStorage
-
-      const userData = JSON.parse(localStorage.getItem("user"));
-      if (userData && userData.profile && userData.profile.education) {
-        educationData.value = userData.profile.education.higherEducation;
-        hasEducation.value = true;
-      } else {
-        hasEducation.value = false;
-      }
-
-      if (userData && userData.profile && userData.profile.languages) {
-        langs.value = userData.profile.languages;
-      }
-
-      if (userData && userData.profile && userData.profile.workExperience) {
-        workExperienceData.value = userData.profile.workExperience;
-        noWorkExperience.value = true;
-      } else {
-        noWorkExperience.value = false;
-      }
-      if (userData && userData.profile && userData.profile.softwareSkills) {
-        softwareSkills.value = userData.profile.softwareSkills;
-      }
-      if (userData && userData.profile && userData.profile.additionalSkills) {
-        additionalSkills.value = userData.profile.additionalSkills;
-        additionalSkillsCount.value = additionalSkills.value.length;
-      }
-      if (
-        userData &&
-        userData.profile &&
-        userData.profile.additionalInformation.formerColleagues
-      ) {
-        formerColleagues.value =
-          userData.profile.additionalInformation.formerColleagues;
-        hadFormerColleagues.value = true;
-      }
-
-      if (
-        userData &&
-        userData.profile &&
-        userData.profile.additionalInformation.educationCourses
-      ) {
-        educationCoursesData.value =
-          userData.profile.additionalInformation.educationCourses;
-        hadEducationCourses.value = true;
-      }
-
-      if (
-        userData &&
-        userData.profile &&
-        userData.profile.additionalInformation.awards
-      ) {
-        awardsData.value = userData.profile.additionalInformation.awards;
-        hadAwards.value = true;
-      }
-
-      if (
-        userData &&
-        userData.profile &&
-        userData.profile.additionalInformation.academicExperiences
-      ) {
-        academicExperiencesData.value =
-          userData.profile.additionalInformation.academicExperiences;
-        hadAcademicExperiences.value = true;
-      }
-
-      if (
-        userData &&
-        userData.profile &&
-        userData.profile.additionalInformation.publications
-      ) {
-        booksAndArticlesData.value =
-          userData.profile.additionalInformation.publications;
-        hadBooksAndArticles.value = true;
-      }
-
-      if (
-        userData &&
-        userData.profile &&
-        userData.profile.additionalInformation.volunteerActivities
-      ) {
-        voluntaryActivitiesData.value =
-          userData.profile.additionalInformation.volunteerActivities;
-        hadVoluntaryActivities.value = true;
-      }
     }
 
     function toggleResumeShareDialog() {

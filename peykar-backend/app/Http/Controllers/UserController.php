@@ -4,12 +4,26 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Resources\UserProfileResource;
 
 class UserController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $user = $request->user()->load([
+            'profile',
+            'profile.socials',
+            'profile.activities',
+            'profile.academicexps',
+            'profile.softwareskills',
+            'profile.awards',
+            'profile.books',
+            'profile.courses',
+            'profile.langs',
+            'profile.skills',
+        ]);
+
+        return new UserProfileResource($user);
     }
 
     public function store(Request $request)

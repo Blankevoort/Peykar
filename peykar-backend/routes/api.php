@@ -28,6 +28,7 @@ use App\Http\Controllers\ProfileControllers\PartnersController;
 use App\Http\Controllers\ProfileControllers\ActivitiesController;
 use App\Http\Controllers\ProfileControllers\EducationsController;
 use App\Http\Controllers\ProfileControllers\AcademicExperienceController;
+use App\Http\Controllers\SoftwareSkillsController;
 
 // User Existence, Login And Register Requests
 
@@ -74,11 +75,15 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
         return $request->user();
     });
 
+    Route::get('user-cv', [UserController::class, 'index']);
+
     Route::prefix('user-cv')->group(function () {
 
-        Route::resource('academic-exp', AcademicExperienceController::class);
+        Route::resource('academicExps', AcademicExperienceController::class);
 
-        Route::resource('activity', ActivitiesController::class);
+        Route::resource('softwareSkills', SoftwareSkillsController::class);
+
+        Route::resource('activities', ActivitiesController::class);
 
         Route::resource('awards', AwardsController::class);
 
@@ -102,15 +107,15 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
 
-    Route::post('create-user', function (Request $request) {
-        $user = new User;
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->password = Hash::make($request->password);
-        $user->save();
+    // Route::post('create-user', function (Request $request) {
+    //     $user = new User;
+    //     $user->name = $request->name;
+    //     $user->email = $request->email;
+    //     $user->password = Hash::make($request->password);
+    //     $user->save();
 
-        return response()->json(['status' => 204]);
-    });
+    //     return response()->json(['status' => 204]);
+    // });
 
     Route::prefix('get')->group(function () {
 

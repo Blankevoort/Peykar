@@ -15,6 +15,7 @@ use Illuminate\Database\Seeder;
 use App\Models\Profile\partners;
 use App\Models\Profile\activities;
 use App\Models\Profile\academicExperience;
+use App\Models\Profile\softwareSkills;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class userSeeder extends Seeder
@@ -88,6 +89,12 @@ class userSeeder extends Seeder
             'country' => 'Iran',
             'certified' => true,
             'year' => $currentDate,
+            'profile_id' => $profile->id,
+        ]);
+
+        softwareSkills::firstOrCreate([
+            'name' => 'Figma',
+            'level' => 'Fluent',
             'profile_id' => $profile->id,
         ]);
 
