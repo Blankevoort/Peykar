@@ -1353,84 +1353,60 @@ export default defineComponent({
         // Fetch ALL Dummy Data from LocalStorage
 
         const userData = user.value;
-        if (userData && userData.profile && userData.profile.education) {
-          educationData.value = userData.profile.education.higherEducation;
+        if (userData.profile.educations) {
+          educationData.value = userData.profile.educations.higherEducation;
           hasEducation.value = true;
         } else {
           hasEducation.value = false;
         }
 
-        if (userData && userData.profile && userData.profile.languages) {
+        if (userData.profile.languages) {
           langs.value = userData.profile.languages;
         }
 
-        if (userData && userData.profile && userData.profile.workExperience) {
+        if (userData.profile.workExperience) {
           workExperienceData.value = userData.profile.workExperience;
           noWorkExperience.value = true;
         } else {
           noWorkExperience.value = false;
         }
-        if (userData && userData.profile && userData.profile.softwareSkills) {
+        if (userData.profile.softwareSkills) {
           softwareSkills.value = userData.profile.softwareSkills;
         }
-        if (userData && userData.profile && userData.profile.additionalSkills) {
+        if (userData.profile.additionalSkills) {
           additionalSkills.value = userData.profile.additionalSkills;
           additionalSkillsCount.value = additionalSkills.value.length;
         }
-        if (
-          userData &&
-          userData.profile &&
-          userData.profile.additionalInformation.formerColleagues
-        ) {
+        if (userData.profile.additionalInformation.colleagues) {
           formerColleagues.value =
-            userData.profile.additionalInformation.formerColleagues;
+            userData.profile.additionalInformation.colleagues;
           hadFormerColleagues.value = true;
         }
 
-        if (
-          userData &&
-          userData.profile &&
-          userData.profile.additionalInformation.educationCourses
-        ) {
+        if (userData.profile.additionalInformation.educationCourses) {
           educationCoursesData.value =
             userData.profile.additionalInformation.educationCourses;
           hadEducationCourses.value = true;
         }
 
-        if (
-          userData &&
-          userData.profile &&
-          userData.profile.additionalInformation.awards
-        ) {
+        if (userData.profile.additionalInformation.awards) {
           awardsData.value = userData.profile.additionalInformation.awards;
           hadAwards.value = true;
         }
 
-        if (
-          userData &&
-          userData.profile &&
-          userData.profile.additionalInformation.academicExperiences
-        ) {
+        if (userData.profile.additionalInformation.academicExperiences) {
           academicExperiencesData.value =
             userData.profile.additionalInformation.academicExperiences;
           hadAcademicExperiences.value = true;
         }
 
-        if (
-          userData &&
-          userData.profile &&
-          userData.profile.additionalInformation.publications
-        ) {
+        if (userData.profile.additionalInformation.publications) {
           booksAndArticlesData.value =
             userData.profile.additionalInformation.publications;
           hadBooksAndArticles.value = true;
         }
 
-        if (
-          userData &&
-          userData.profile &&
-          userData.profile.additionalInformation.volunteerActivities
-        ) {
+        if (userData.profile.additionalInformation.volunteerActivities) {
           voluntaryActivitiesData.value =
             userData.profile.additionalInformation.volunteerActivities;
           hadVoluntaryActivities.value = true;

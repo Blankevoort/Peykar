@@ -12,7 +12,6 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('job_id');
             $table->unsignedBigInteger('user_id');
-            $table->timestamps();
         });
     }
 

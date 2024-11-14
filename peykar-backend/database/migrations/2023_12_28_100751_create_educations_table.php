@@ -12,7 +12,7 @@ return new class extends Migration
             $table->id();
             $table->string('name')->nullable();
             $table->string('grade')->nullable();
-            $table->string('fieldofStudy')->nullable();
+            $table->string('fieldOfStudy')->nullable();
             $table->string('university')->nullable();
             $table->string('GPA')->nullable();
             $table->date('start')->nullable();

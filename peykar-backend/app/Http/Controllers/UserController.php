@@ -21,19 +21,12 @@ class UserController extends Controller
             'profile.courses',
             'profile.langs',
             'profile.skills',
+            'profile.colleagues',
+            'profile.educations',
+            'profile.workExperience',
         ]);
 
         return new UserProfileResource($user);
-    }
-
-    public function store(Request $request)
-    {
-        //
-    }
-
-    public function show($id)
-    {
-        //
     }
 
     public function update(Request $request, $id)
@@ -55,10 +48,5 @@ class UserController extends Controller
         $user->save();
 
         return response()->json(['message' => 'User updated successfully'], 204);
-    }
-
-    public function destroy($id)
-    {
-        //
     }
 }

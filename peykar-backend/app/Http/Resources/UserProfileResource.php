@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class UserProfileResource extends JsonResource
@@ -31,11 +32,24 @@ class UserProfileResource extends JsonResource
                 'nationality' => $this->profile->nationality ?? null,
                 'disabilityType' => $this->profile->disabilityType ?? null,
 
-                'education' => $this->profile->education ?? null,
                 'languages' => $this->profile->langs ?? null,
                 'workExperience' => $this->profile->workExperience ?? null,
                 'softwareSkills' => $this->profile->softwareskills ?? null,
                 'additionalSkills' => $this->profile->skills ?? null,
+                'educations' => [
+                    'hasDiploma' => $this->profile->educations->where('underDiploma', true)->isNotEmpty(),
+                    'higherEducation' => $this->profile->educations->where('underDiploma', false)->map(function ($education) {
+                        return [
+                            'degree' => $education->grade,
+                            'university' => $education->university,
+                            'field' => $education->fieldOfStudy,
+                            'gpa' => $education->GPA,
+                            'startYear' => Carbon::parse($education->start)->year,
+                            'endYear' => $education->stillStuding ? null : Carbon::parse($education->end)->year,
+                            'isStudying' => $education->stillStuding,
+                        ];
+                    })->values(),
+                ],
 
                 'additionalInformation' => [
                     'formerColleagues' => $this->when(
@@ -61,6 +75,10 @@ class UserProfileResource extends JsonResource
                     'volunteerActivities' => $this->when(
                         $this->profile && $this->profile->activities,
                         $this->profile->activities
+                    ),
+                    'colleagues' => $this->when(
+                        $this->profile->colleagues,
+                        $this->profile->colleagues
                     ),
                 ],
             ],

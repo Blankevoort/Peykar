@@ -14,8 +14,11 @@ use App\Models\Profile\Socials;
 use Illuminate\Database\Seeder;
 use App\Models\Profile\partners;
 use App\Models\Profile\activities;
-use App\Models\Profile\academicExperience;
+use App\Models\Profile\colleagues;
+use App\Models\Profile\educations;
 use App\Models\Profile\softwareSkills;
+use App\Models\Profile\workExperience;
+use App\Models\Profile\academicExperience;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class userSeeder extends Seeder
@@ -122,6 +125,48 @@ class userSeeder extends Seeder
         Socials::firstOrCreate([
             'name' => 'LinkedIn',
             'address' => 'https://www.linkedin.com/in/moeensedaghaty',
+            'profile_id' => $profile->id,
+        ]);
+
+        educations::firstOrCreate([
+            "name" => "High School",
+            "grade" => "Diploma",
+            "fieldOfStudy" => "Science",
+            "university" => "Tehran High School",
+            "GPA" => "3.8",
+            "start" => $currentDate,
+            "end" => $currentDate,
+            "stillStuding" => false,
+            "underDiploma" => false,
+            'profile_id' => $profile->id,
+        ]);
+
+        colleagues::firstOrCreate([
+            'fullName' => 'Jane Smith',
+            'organizationName' => 'InnovateX',
+            'jobTitle' => 'Software Engineer',
+            'organizationalRelationship' => 'Team Member',
+            'contactNumber' => '987654321',
+            'startYear' => $currentDate,
+            'endYear' => $currentDate,
+            'weStillWorkTogether' => false,
+            'profile_id' => $profile->id,
+        ]);
+
+        workExperience::firstOrCreate([
+            'jobTitle' => 'Backend Developer',
+            'field' => 'Web Development',
+            'organizationalLevel' => 'Junior',
+            'companyName' => 'Web Innovators',
+            'companyField' => 'Digital Solutions',
+            'country' => 'Iran',
+            'city' => 'Isfahan',
+            'startMonth' => 'February',
+            'startYear' => $currentDate,
+            'endMonth' => 'Ongoing',
+            'endYear' => $currentDate,
+            'currentlyWorking' => true,
+            'achievements' => 'Built APIs for major clients.',
             'profile_id' => $profile->id,
         ]);
     }

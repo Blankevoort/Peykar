@@ -6,20 +6,19 @@ use App\Models\Profile;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class educations extends Model
+class colleagues extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        "name",
-        "grade",
-        "fieldOfStudy",
-        "university",
-        "GPA",
-        "start",
-        "end",
-        "stillStuding",
-        "underDiploma",
+        'fullName',
+        'organizationName',
+        'jobTitle',
+        'organizationalRelationship',
+        'contactNumber',
+        'startYear',
+        'endYear',
+        'weStillWorkTogether',
         'profile_id',
     ];
 
