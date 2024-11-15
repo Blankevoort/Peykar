@@ -18,6 +18,7 @@ use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RequestController;
 use App\Http\Controllers\AdminPanelController;
+use App\Http\Controllers\SoftwareSkillsController;
 use App\Http\Controllers\ProfileControllers\BooksController;
 use App\Http\Controllers\ProfileControllers\LangsController;
 use App\Http\Controllers\ProfileControllers\AwardsController;
@@ -28,7 +29,6 @@ use App\Http\Controllers\ProfileControllers\PartnersController;
 use App\Http\Controllers\ProfileControllers\ActivitiesController;
 use App\Http\Controllers\ProfileControllers\EducationsController;
 use App\Http\Controllers\ProfileControllers\AcademicExperienceController;
-use App\Http\Controllers\SoftwareSkillsController;
 
 // User Existence, Login And Register Requests
 

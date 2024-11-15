@@ -14,7 +14,7 @@ return new class extends Migration
             $table->string("organizer");
             $table->string("country");
             $table->boolean("certified");
-            $table->date("year");
+            $table->string("year");
             $table->string("length");
             $table->foreignId('profile_id')->constrained('profiles')->onDelete('cascade');
         });

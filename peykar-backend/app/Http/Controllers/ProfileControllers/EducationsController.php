@@ -22,32 +22,51 @@ class EducationsController extends Controller
     {
         $profile = Profile::where('user_id', Auth::user()->id)->firstOrFail();
 
+        $underDiploma = $request->degree ? false : $request->underDiploma;
+
         educations::create([
-            'name' => $request->name,
-            'grade' => $request->grade,
-            'fieldofStudy' => $request->fieldofStudy,
+            'degree' => $request->degree,
+            'field' => $request->field,
             'university' => $request->university,
-            'GPA' => $request->GPA,
-            'start' => $request->start,
-            'end' => $request->end,
-            'stillStuding' => $request->stillStuding,
-            'underDiploma' => $request->underDiploma,
+            'gpa' => $request->gpa,
+            'start' => $request->startYear,
+            'end' => $request->endYear,
+            'stillStuding' => $request->isStudying,
+            'underDiploma' => $underDiploma,
             'profile_id' => $profile->id,
         ]);
 
         return response()->json(['status' => 204]);
     }
 
-    public function update(Request $request, educations $educations)
+    public function update(Request $request, $id)
     {
-        $educations->find($request->educations_id)->update($request->all());
+        $educations = educations::findOrFail($id);
+
+        $underDiploma = $request->degree ? false : $request->underDiploma;
+
+        $profile = Profile::where('user_id', Auth::user()->id)->firstOrFail();
+
+        $educations->update([
+            'grade' => $request->grade,
+            'fieldofStudy' => $request->degree,
+            'university' => $request->university,
+            'GPA' => $request->gpa,
+            'start' => $request->startYear,
+            'end' => $request->endYear,
+            'stillStuding' => $request->isStudying,
+            'underDiploma' => $underDiploma,
+            'profile_id' => $profile->id,
+        ]);
 
         return response()->json(['status' => 204]);
     }
 
-    public function destroy(educations $educations, Request $request)
+    public function destroy($id, Request $request)
     {
-        return $this->isNotAuthorized($educations) ? $this->isNotAuthorized($educations) : $educations->find($request->educations_id)->delete();
+        $educations = educations::findOrFail($id);
+
+        return $this->isNotAuthorized($educations) ? $this->isNotAuthorized($educations) : $educations->delete();
     }
 
     private function isNotAuthorized($educations)

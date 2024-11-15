@@ -499,7 +499,7 @@ export default defineComponent({
           formConfig.value.name || props.id || "unknown-section";
         const url = `api/user-cv/${sectionName}`;
 
-        if (props.action === "add" || props.action === "update") {
+        if (props.action === "add" || props.action === "edit") {
           const dataToSubmit = formFields.value.reduce((acc, field) => {
             const fieldName = field.name;
             const fieldValue = formData.value[fieldName];
@@ -510,8 +510,8 @@ export default defineComponent({
           if (props.action === "add") {
             console.log("Posting data to:", url);
             await api.post(url, dataToSubmit);
-          } else if (props.action === "update") {
-            const itemId = props.item?.id;
+          } else if (props.action === "edit") {
+            const itemId = props.item;
             if (itemId) {
               console.log("Patching data to:", `${url}/${itemId}`);
               await api.patch(`${url}/${itemId}`, dataToSubmit);
@@ -520,7 +520,7 @@ export default defineComponent({
             }
           }
         } else if (props.action === "delete") {
-          const itemId = props.item?.id;
+          const itemId = props.item;
           if (itemId) {
             console.log("Deleting item at:", `${url}/${itemId}`);
             await api.delete(`${url}/${itemId}`);

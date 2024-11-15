@@ -11,7 +11,7 @@ return new class extends Migration
         Schema::create('awards', function (Blueprint $table) {
             $table->id();
             $table->string("name");
-            $table->date("year");
+            $table->string("year");
             $table->foreignId('profile_id')->constrained('profiles')->onDelete('cascade');
         });
     }

@@ -19,9 +19,9 @@ return new class extends Migration
             $table->string("city");
             $table->string("startMonth");
             $table->string("achievements");
-            $table->date("startYear");
+            $table->string("startYear");
             $table->string("endMonth")->nullable();
-            $table->date("endYear")->nullable();
+            $table->string("endYear")->nullable();
             $table->boolean("currentlyWorking")->default(false);
             $table->foreignId('profile_id')->constrained('profiles')->onDelete('cascade');
             $table->timestamps();

@@ -15,8 +15,8 @@ return new class extends Migration
             $table->string("jobTitle");
             $table->string("organizationalRelationship");
             $table->string("contactNumber");
-            $table->date("startYear");
-            $table->date("endYear")->nullable();
+            $table->string("startYear");
+            $table->string("endYear")->nullable();
             $table->boolean("weStillWorkTogether")->default(false);
             $table->foreignId('profile_id')->constrained('profiles')->onDelete('cascade');
             $table->timestamps();

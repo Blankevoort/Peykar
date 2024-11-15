@@ -272,7 +272,8 @@
                     <div class="text-grey-7">{{ edu.university }}</div>
 
                     <div class="text-grey-7">
-                      {{ edu.startYear }} - {{ edu.endYear }}
+                      {{ edu.startYear }} -
+                      {{ edu.isStudying ? "تاکنون" : edu.endYear }}
                     </div>
 
                     <div class="text-grey-7">معدل: {{ edu.gpa }}</div>

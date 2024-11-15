@@ -25,7 +25,7 @@ class userSeeder extends Seeder
 {
     public function run()
     {
-        $currentDate = Carbon::now()->format('Y-m-d');
+        $currentDate = "2024";
 
         $admin = User::firstOrCreate(
             ['email' => 'moeensedaghaty86@gmail.com'],
@@ -129,11 +129,10 @@ class userSeeder extends Seeder
         ]);
 
         educations::firstOrCreate([
-            "name" => "High School",
-            "grade" => "Diploma",
-            "fieldOfStudy" => "Science",
+            "degree" => "Diploma",
+            "field" => "Science",
             "university" => "Tehran High School",
-            "GPA" => "3.8",
+            "gpa" => "3.8",
             "start" => $currentDate,
             "end" => $currentDate,
             "stillStuding" => false,

@@ -10,13 +10,12 @@ return new class extends Migration
     {
         Schema::create('educations', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->nullable();
-            $table->string('grade')->nullable();
-            $table->string('fieldOfStudy')->nullable();
+            $table->string('degree')->nullable();
+            $table->string('field')->nullable();
             $table->string('university')->nullable();
             $table->string('GPA')->nullable();
-            $table->date('start')->nullable();
-            $table->date('end')->nullable();
+            $table->string('start')->nullable();
+            $table->string('end')->nullable();
             $table->boolean('stillStuding')->nullable();
             $table->boolean('underDiploma')->nullable();
             $table->foreignId('profile_id')->constrained('profiles')->onDelete('cascade');

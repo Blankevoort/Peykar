@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string("rightsMax")->nullable();
             $table->string("location")->nullable();
             $table->unsignedBigInteger("user_id");
-            $table->date("expiresAt");
+            $table->string("expiresAt");
             $table->timestamps();
         });
     }

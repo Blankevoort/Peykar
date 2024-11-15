@@ -40,9 +40,10 @@ class UserProfileResource extends JsonResource
                     'hasDiploma' => $this->profile->educations->where('underDiploma', true)->isNotEmpty(),
                     'higherEducation' => $this->profile->educations->where('underDiploma', false)->map(function ($education) {
                         return [
-                            'degree' => $education->grade,
+                            'id' => $education->id,
+                            'degree' => $education->degree,
                             'university' => $education->university,
-                            'field' => $education->fieldOfStudy,
+                            'field' => $education->field,
                             'gpa' => $education->GPA,
                             'startYear' => Carbon::parse($education->start)->year,
                             'endYear' => $education->stillStuding ? null : Carbon::parse($education->end)->year,
@@ -50,6 +51,7 @@ class UserProfileResource extends JsonResource
                         ];
                     })->values(),
                 ],
+
 
                 'additionalInformation' => [
                     'formerColleagues' => $this->when(

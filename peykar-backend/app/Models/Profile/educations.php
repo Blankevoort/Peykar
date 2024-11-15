@@ -11,11 +11,10 @@ class educations extends Model
     use HasFactory;
 
     protected $fillable = [
-        "name",
-        "grade",
-        "fieldOfStudy",
+        "field",
+        "degree",
         "university",
-        "GPA",
+        "gpa",
         "start",
         "end",
         "stillStuding",
