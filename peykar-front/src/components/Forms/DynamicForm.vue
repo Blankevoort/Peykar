@@ -236,7 +236,7 @@
 
 <script>
 import { formConfigs } from "./inputs";
-import { defineComponent, ref, watch } from "vue";
+import { defineComponent, onMounted, ref, watch } from "vue";
 import {
   QDialog,
   QCard,
@@ -255,6 +255,7 @@ import SelectAge from "../Forms/CustomForms/SelectAge.vue";
 import SelectCustom from "../Forms/CustomForms/SelectCustom.vue";
 import SelectTab from "../Forms/CustomForms/SelectTab.vue";
 
+import { api } from "src/boot/axios";
 export default defineComponent({
   components: {
     QDialog,
@@ -336,6 +337,7 @@ export default defineComponent({
   },
 
   setup(props, { emit }) {
+    const user = ref({});
     const formData = ref({});
     const formTitle = ref("");
     const formFields = ref([]);
@@ -344,15 +346,30 @@ export default defineComponent({
     const bottomComponent = ref(null);
     const formConfig = ref({});
 
+    onMounted(async () => {
+      try {
+        const response = await api.get("api/user-cv");
+        user.value = response.data.data;
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+      }
+    });
+
     const getFormFieldValue = (path) => {
-      const data = JSON.parse(localStorage.getItem("user") || "{}");
-      return getNestedValue(data, path);
+      return getNestedValue(user.value, path);
     };
 
     const setFormFieldValue = (path, value) => {
-      const data = JSON.parse(localStorage.getItem("user") || "{}");
-      setNestedValue(data, path, value);
-      localStorage.setItem("user", JSON.stringify(data));
+      const [resource, id] = path.split(".");
+
+      api
+        .patch(`api/user-cv/${resource}/${id}`, { [resource]: value })
+        .then(() => {
+          console.log(`Updated ${resource} at path ${path}`);
+        })
+        .catch((error) => {
+          console.error(`Error updating ${resource}:`, error);
+        });
     };
 
     watch(
@@ -370,6 +387,7 @@ export default defineComponent({
                 return acc;
               }, {})
             : {};
+
           if (config.customContent) {
             formComponent.value = (await config.component()).default;
           } else {
@@ -467,49 +485,55 @@ export default defineComponent({
       return null;
     }
 
-    const handleSubmit = () => {
-      const data = JSON.parse(localStorage.getItem("user") || "{}");
+    const handleSubmit = async () => {
+      console.log("Submitted Form Data:");
 
-      if (props.action === "delete" && formConfig.value.mainPath) {
-        const requestedObject = unwrapProxy(props.item);
-        const pathToObject = findPathToObject(data, requestedObject);
+      formFields.value.forEach((field) => {
+        const fieldName = field.name;
+        const fieldValue = formData.value[fieldName];
+        console.log(`${fieldName}: ${fieldValue}`);
+      });
 
-        if (pathToObject) {
-          console.log(`Deleting object at path: ${pathToObject}`);
-          unsetNestedValue(data, pathToObject);
-        } else {
-          console.log("No matching object found for deletion.");
-        }
-      } else if (props.action === "add" && formConfig.value.mainPath) {
-        const newData = formFields.value.reduce((acc, field) => {
-          if (field.name) {
-            acc[field.name] = formData.value[field.name];
+      try {
+        const sectionName =
+          formConfig.value.name || props.id || "unknown-section";
+        const url = `api/user-cv/${sectionName}`;
+
+        if (props.action === "add" || props.action === "update") {
+          const dataToSubmit = formFields.value.reduce((acc, field) => {
+            const fieldName = field.name;
+            const fieldValue = formData.value[fieldName];
+            acc[fieldName] = fieldValue;
+            return acc;
+          }, {});
+
+          if (props.action === "add") {
+            console.log("Posting data to:", url);
+            await api.post(url, dataToSubmit);
+          } else if (props.action === "update") {
+            const itemId = props.item?.id;
+            if (itemId) {
+              console.log("Patching data to:", `${url}/${itemId}`);
+              await api.patch(`${url}/${itemId}`, dataToSubmit);
+            } else {
+              console.warn("Update action requested but no item ID provided.");
+            }
           }
-          return acc;
-        }, {});
-
-        const arrayData = getNestedValue(data, formConfig.value.mainPath) || [];
-        arrayData.push(newData);
-        setNestedValue(data, formConfig.value.mainPath, arrayData);
-      } else {
-        formFields.value.forEach((field) => {
-          if (field.path) {
-            setFormFieldValue(field.path, formData.value[field.name]);
+        } else if (props.action === "delete") {
+          const itemId = props.item?.id;
+          if (itemId) {
+            console.log("Deleting item at:", `${url}/${itemId}`);
+            await api.delete(`${url}/${itemId}`);
+          } else {
+            console.warn("Delete action requested but no item ID provided.");
           }
-        });
-
-        if (formConfig.value.customContent) {
-          setFormFieldValue(
-            `${formConfig.value.mainPath}.contactNumber`,
-            formData.value.contactNumber
-          );
         }
+
+        emit("close-dialog");
+        location.reload();
+      } catch (error) {
+        console.error("Error updating data:", error);
       }
-
-      localStorage.setItem("user", JSON.stringify(data));
-
-      emit("close-dialog");
-      location.reload();
     };
 
     const handleCancel = () => {

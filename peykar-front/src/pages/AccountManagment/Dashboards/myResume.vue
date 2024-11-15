@@ -245,14 +245,14 @@
 
             <!-- Educational Records -->
 
-            <div id="education" :class="paddingClass">
+            <div id="educations" :class="paddingClass">
               <BadgeAndTitle
                 :progressValue="progressValue"
                 title="سوابق تحصیلی"
                 :showButton="false"
                 :disableEditButton="true"
                 :isTrue="noUniversityEducation"
-                id="education"
+                id="educations"
               >
                 <useCard
                   v-for="edu in educationData"
@@ -261,7 +261,7 @@
                   noModel="تحصیلات دانشگاهی ندارم"
                   :educationSection="true"
                   :isSmall="true"
-                  id="education"
+                  id="educations"
                   :item_id="edu"
                 >
                   <div class="q-gutter-y-xs">
@@ -1222,7 +1222,7 @@ export default defineComponent({
     const tabs = ref([
       { name: "about", label: "درباره من" },
       { name: "info", label: "اطلاعات اولیه" },
-      { name: "education", label: "سوابق تحصیلی" },
+      { name: "educations", label: "سوابق تحصیلی" },
       { name: "workExperience", label: "سوابق شغلی" },
       { name: "languages", label: "زبان‌ها" },
       { name: "softwareSkills", label: "مهارت های نرم افزاری" },
@@ -1348,7 +1348,6 @@ export default defineComponent({
 
     function generalData() {
       api.get("api/user-cv").then((r) => {
-        // console.log(r.data.profile.academicexps);
         user.value = r.data.data;
 
         // Fetch ALL Dummy Data from LocalStorage

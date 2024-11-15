@@ -144,7 +144,7 @@ export const formConfigs = {
       },
     ],
   },
-  education: {
+  educations: {
     title: "سابقه تحصیلی",
     customContent: false,
     mainPath: "profile.education.higherEducation",

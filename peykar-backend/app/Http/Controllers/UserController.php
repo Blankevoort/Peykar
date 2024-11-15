@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Resources\UserProfileResource;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -29,9 +30,9 @@ class UserController extends Controller
         return new UserProfileResource($user);
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        $user = User::findOrFail($id);
+        $user = Auth::user();
 
         $validatedData = $request->validate([
             'name' => ['sometimes', 'string', 'max:120'],

@@ -47,7 +47,7 @@ Route::get('job/{id}', [JobController::class, "show"]);
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
 
-    Route::patch('user/{id}/update', [UserController::class, "update"]);
+    Route::patch('user', [UserController::class, "update"]);
 
     Route::post('job', [JobController::class, "store"]);
     Route::patch('job/{id}', [JobController::class, "update"]);
@@ -78,6 +78,8 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('user-cv', [UserController::class, 'index']);
 
     Route::prefix('user-cv')->group(function () {
+
+        Route::patch('about', [UserController::class, "update"]);
 
         Route::resource('academicExps', AcademicExperienceController::class);
 
