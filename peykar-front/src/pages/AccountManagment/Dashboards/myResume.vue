@@ -313,11 +313,12 @@
                     </div>
 
                     <div class="text-grey-7">
-                      از {{ experience.startYear }} تا
+                      از {{ experience.startMonth }} {{ experience.startYear }}
+                      تا
                       {{
-                        experience.isCurrentlyWorking
+                        experience.currentlyWorking
                           ? "تاکنون"
-                          : experience.endDate
+                          : experience.endMonth + " " + experience.endYear
                       }}
                     </div>
                   </div>
@@ -557,7 +558,7 @@
                         }}
                       </span>
 
-                      <span>{{ colleague.organizationalRelationship }}</span>
+                      <p>{{ colleague.organizationalRelationship }}</p>
                     </div>
                   </div>
 
