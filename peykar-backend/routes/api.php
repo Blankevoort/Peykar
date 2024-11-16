@@ -18,7 +18,7 @@ use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RequestController;
 use App\Http\Controllers\AdminPanelController;
-use App\Http\Controllers\SoftwareSkillsController;
+use App\Http\Controllers\ProfileControllers\SoftwareSkillsController;
 use App\Http\Controllers\ProfileControllers\BooksController;
 use App\Http\Controllers\ProfileControllers\LangsController;
 use App\Http\Controllers\ProfileControllers\AwardsController;
@@ -79,7 +79,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     Route::prefix('user-cv')->group(function () {
 
-        Route::patch('about', [UserController::class, "update"]);
+        Route::PATCH('info/{id}', [UserController::class, "update"]);
 
         Route::resource('academicExps', AcademicExperienceController::class);
 

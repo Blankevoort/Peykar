@@ -228,6 +228,7 @@
                 :showButton="true"
                 :disableEditButton="false"
                 id="info"
+                :item="basicInformation"
               >
                 <!-- Information Content -->
 

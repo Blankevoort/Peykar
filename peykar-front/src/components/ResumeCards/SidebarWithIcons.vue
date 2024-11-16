@@ -65,7 +65,7 @@
       v-if="showFormDialog"
       :id="formDialogId"
       :action="formDialogAction"
-      :item="itemid.id"
+      :item="itemid"
       @close-dialog="closeFormDialog"
       @dialog-closed="resetDialog"
       @hide="resetDialog"

@@ -1517,7 +1517,7 @@ export default defineComponent({
 
     function changeName() {
       api
-        .patch("api/user/" + user.value.id + "/update/", {
+        .patch("api/user", {
           name: name.value,
         })
         .then(getUser(), toggleNameDialog())

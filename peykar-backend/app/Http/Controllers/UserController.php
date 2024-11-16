@@ -33,21 +33,44 @@ class UserController extends Controller
     public function update(Request $request)
     {
         $user = Auth::user();
+        $profile = $user->profile;
 
         $validatedData = $request->validate([
-            'name' => ['sometimes', 'string', 'max:120'],
-            'phone' => ['sometimes', 'phone', 'max:11'],
-            'email' => ['sometimes', 'email', 'max:255'],
-            'jobTitle' => ['sometimes', 'string', 'max:255'],
-            'linkedIn' => ['sometimes', 'string', 'max:255'],
+            'name' => ['nullable', 'string', 'max:120'],
+            'phone' => ['nullable', 'string', 'max:15'],
+            'birth' => ['nullable', 'date'],
+            'region' => ['nullable', 'string', 'max:255'],
+            'city' => ['nullable', 'string', 'max:255'],
+            'disability' => ['nullable', 'string', 'max:255'],
+            'expectedSalary' => ['nullable', 'string', 'max:255'],
+            'foreigners' => ['nullable', 'string', 'max:255'],
+            'gender' => ['nullable', 'string', 'max:10'],
+            'preferredJob' => ['nullable', 'string', 'max:255'],
+            'maritalStatus' => ['nullable', 'string', 'max:255'],
+            'militaryServiceStatus' => ['nullable', 'string', 'max:255'],
         ]);
 
-        foreach ($validatedData as $key => $value) {
-            $user->$key = $value;
+        $userFields = ['name', 'phone'];
+        $profileFields = [
+            'birth', 'region', 'city', 'disability', 'expectedSalary',
+            'foreigners', 'gender', 'preferredJob', 'maritalStatus', 'militaryServiceStatus'
+        ];
+
+        foreach ($userFields as $field) {
+            if ($request->filled($field)) {
+                $user->$field = $validatedData[$field];
+            }
         }
 
-        $user->save();
+        foreach ($profileFields as $field) {
+            if ($request->filled($field)) {
+                $profile->$field = $validatedData[$field];
+            }
+        }
 
-        return response()->json(['message' => 'User updated successfully'], 204);
+        $user->isDirty() && $user->save();
+        $profile->isDirty() && $profile->save();
+
+        return response()->json(['message' => 'User and Profile updated successfully'], 204);
     }
 }

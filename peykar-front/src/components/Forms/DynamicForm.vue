@@ -511,16 +511,25 @@ export default defineComponent({
             console.log("Posting data to:", url);
             await api.post(url, dataToSubmit);
           } else if (props.action === "edit") {
-            const itemId = props.item;
+            console.log("requesting url" + url);
+            console.log("props item" + props.item);
+            console.log("props item id" + props.item?.id);
+
+            const itemId =
+              props.item?.id !== undefined ? props.item.id : user.value.id;
+
             if (itemId) {
               console.log("Patching data to:", `${url}/${itemId}`);
-              await api.patch(`${url}/${itemId}`, dataToSubmit);
+              const config = {
+    headers: { 'Accept': 'application/json' },
+};
+              await api.patch(`${url}/${itemId}`, dataToSubmit, config);
             } else {
               console.warn("Update action requested but no item ID provided.");
             }
           }
         } else if (props.action === "delete") {
-          const itemId = props.item;
+          const itemId = props.item?.id;
           if (itemId) {
             console.log("Deleting item at:", `${url}/${itemId}`);
             await api.delete(`${url}/${itemId}`);
