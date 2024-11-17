@@ -37,6 +37,8 @@ class UserController extends Controller
 
         $validatedData = $request->validate([
             'name' => ['nullable', 'string', 'max:120'],
+            'jobTitle' => ['nullable', 'string', 'max:120'],
+            'linkedIn' => ['nullable', 'string', 'max:256'],
             'phone' => ['nullable', 'string', 'max:15'],
             'birth' => ['nullable', 'date'],
             'region' => ['nullable', 'string', 'max:255'],
@@ -50,10 +52,18 @@ class UserController extends Controller
             'militaryServiceStatus' => ['nullable', 'string', 'max:255'],
         ]);
 
-        $userFields = ['name', 'phone'];
+        $userFields = ['name', 'phone', 'jobTitle', 'linkedIn'];
         $profileFields = [
-            'birth', 'region', 'city', 'disability', 'expectedSalary',
-            'foreigners', 'gender', 'preferredJob', 'maritalStatus', 'militaryServiceStatus'
+            'birth',
+            'region',
+            'city',
+            'disability',
+            'expectedSalary',
+            'foreigners',
+            'gender',
+            'preferredJob',
+            'maritalStatus',
+            'militaryServiceStatus'
         ];
 
         foreach ($userFields as $field) {

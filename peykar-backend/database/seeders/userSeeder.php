@@ -107,14 +107,6 @@ class userSeeder extends Seeder
             'profile_id' => $profile->id,
         ]);
 
-        partners::firstOrCreate([
-            'name' => 'John Doe',
-            'role' => 'Project Manager',
-            'company' => 'TechCorp',
-            'phone' => '123456789',
-            'profile_id' => $profile->id,
-        ]);
-
         skills::firstOrCreate([
             'name' => 'Laravel',
             'level' => 'Expert',

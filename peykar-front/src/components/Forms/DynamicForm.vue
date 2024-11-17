@@ -521,8 +521,8 @@ export default defineComponent({
             if (itemId) {
               console.log("Patching data to:", `${url}/${itemId}`);
               const config = {
-    headers: { 'Accept': 'application/json' },
-};
+                headers: { Accept: "application/json" },
+              };
               await api.patch(`${url}/${itemId}`, dataToSubmit, config);
             } else {
               console.warn("Update action requested but no item ID provided.");

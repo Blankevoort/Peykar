@@ -1,8 +1,6 @@
 <?php
 
-use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\TagController;
@@ -18,16 +16,15 @@ use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RequestController;
 use App\Http\Controllers\AdminPanelController;
-use App\Http\Controllers\ProfileControllers\SoftwareSkillsController;
 use App\Http\Controllers\ProfileControllers\BooksController;
 use App\Http\Controllers\ProfileControllers\LangsController;
 use App\Http\Controllers\ProfileControllers\AwardsController;
 use App\Http\Controllers\ProfileControllers\SkillsController;
 use App\Http\Controllers\ProfileControllers\CoursesController;
-use App\Http\Controllers\ProfileControllers\SocialsController;
-use App\Http\Controllers\ProfileControllers\PartnersController;
 use App\Http\Controllers\ProfileControllers\ActivitiesController;
 use App\Http\Controllers\ProfileControllers\EducationsController;
+use App\Http\Controllers\ProfileControllers\SoftwareSkillsController;
+use App\Http\Controllers\ProfileControllers\WorkExperienceController;
 use App\Http\Controllers\ProfileControllers\AcademicExperienceController;
 
 // User Existence, Login And Register Requests
@@ -79,29 +76,33 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     Route::prefix('user-cv')->group(function () {
 
+        Route::PATCH('about/{id}', [UserController::class, "update"]);
+
         Route::PATCH('info/{id}', [UserController::class, "update"]);
 
-        Route::resource('academicExps', AcademicExperienceController::class);
+        Route::resource('academicExperiences', AcademicExperienceController::class);
 
         Route::resource('softwareSkills', SoftwareSkillsController::class);
 
-        Route::resource('activities', ActivitiesController::class);
+        Route::resource('voluntaryActivities', ActivitiesController::class);
 
         Route::resource('awards', AwardsController::class);
 
-        Route::resource('books', BooksController::class);
+        Route::resource('booksAndArticles', BooksController::class);
 
-        Route::resource('courses', CoursesController::class);
+        Route::resource('educationCourses', CoursesController::class);
 
         Route::resource('educations', EducationsController::class);
 
-        Route::resource('partners', PartnersController::class);
+        Route::resource('languages', LangsController::class);
 
-        Route::resource('langs', LangsController::class);
+        Route::resource('additionalSkills', SkillsController::class);
 
-        Route::resource('skills', SkillsController::class);
+        // Route::resource('socials', SocialsController::class);
 
-        Route::resource('socials', SocialsController::class);
+        Route::resource('workExperience', WorkExperienceController::class);
+
+        Route::resource('formerColleagues', WorkExperienceController::class);
     });
 });
 
