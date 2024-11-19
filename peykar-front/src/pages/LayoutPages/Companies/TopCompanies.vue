@@ -816,84 +816,114 @@
                   <div class="full-width q-py-md">
                     <div class="full-width row justify-between">
                       <div class="col-5">
-                        <div class="row q-my-sm">
-                          <q-btn rounded dense color="positive" class="q-mr-sm">
-                            <q-icon size="20px" name="done" />
-                          </q-btn>
+                        <div
+                          class="row q-my-sm q-gutter-x-sm flex items-center"
+                        >
+                          <img
+                            src="https://jobvision.ir/assets/images/tick-success.svg"
+                            alt=""
+                          />
 
                           <div>صندوق رفاهیات (وام)</div>
                         </div>
 
-                        <div class="row q-my-sm">
-                          <q-btn rounded dense color="positive" class="q-mr-sm">
-                            <q-icon size="20px" name="done" />
-                          </q-btn>
+                        <div
+                          class="row q-my-sm q-gutter-x-sm flex items-center"
+                        >
+                          <img
+                            src="https://jobvision.ir/assets/images/tick-success.svg"
+                            alt=""
+                          />
 
                           <div>پارکینگ اختصاصی</div>
                         </div>
 
-                        <div class="row q-my-sm">
-                          <q-btn rounded dense color="positive" class="q-mr-sm">
-                            <q-icon size="20px" name="done" />
-                          </q-btn>
+                        <div
+                          class="row q-my-sm q-gutter-x-sm flex items-center"
+                        >
+                          <img
+                            src="https://jobvision.ir/assets/images/tick-success.svg"
+                            alt=""
+                          />
 
                           <div>باشگاه ورزشی در محل کار</div>
                         </div>
 
-                        <div class="row q-my-sm">
-                          <q-btn rounded dense color="positive" class="q-mr-sm">
-                            <q-icon size="20px" name="done" />
-                          </q-btn>
+                        <div
+                          class="row q-my-sm q-gutter-x-sm flex items-center"
+                        >
+                          <img
+                            src="https://jobvision.ir/assets/images/tick-success.svg"
+                            alt=""
+                          />
 
                           <div>ساعت کار منعطف</div>
                         </div>
 
-                        <div class="row q-my-sm">
-                          <q-btn rounded dense color="positive" class="q-mr-sm">
-                            <q-icon size="20px" name="done" />
-                          </q-btn>
+                        <div
+                          class="row q-my-sm q-gutter-x-sm flex items-center"
+                        >
+                          <img
+                            src="https://jobvision.ir/assets/images/tick-success.svg"
+                            alt=""
+                          />
 
                           <div>بیمه تکمیل درمان</div>
                         </div>
 
-                        <div class="row q-my-sm">
-                          <q-btn rounded dense color="positive" class="q-mr-sm">
-                            <q-icon size="20px" name="done" />
-                          </q-btn>
+                        <div
+                          class="row q-my-sm q-gutter-x-sm flex items-center"
+                        >
+                          <img
+                            src="https://jobvision.ir/assets/images/tick-success.svg"
+                            alt=""
+                          />
 
                           <div>هدایای مناسبتی</div>
                         </div>
                       </div>
 
                       <div class="col-5">
-                        <div class="row q-my-sm">
-                          <q-btn rounded dense color="positive" class="q-mr-sm">
-                            <q-icon size="20px" name="done" />
-                          </q-btn>
+                        <div
+                          class="row q-my-sm q-gutter-x-sm flex items-center"
+                        >
+                          <img
+                            src="https://jobvision.ir/assets/images/tick-success.svg"
+                            alt=""
+                          />
 
                           <div>حقوق و مزایای رقابتی</div>
                         </div>
 
-                        <div class="row q-my-sm">
-                          <q-btn rounded dense color="positive" class="q-mr-sm">
-                            <q-icon size="20px" name="done" />
-                          </q-btn>
+                        <div
+                          class="row q-my-sm q-gutter-x-sm flex items-center"
+                        >
+                          <img
+                            src="https://jobvision.ir/assets/images/tick-success.svg"
+                            alt=""
+                          />
 
                           <div>کمک هزینه آموزش</div>
                         </div>
 
-                        <div class="row q-my-sm">
-                          <q-btn rounded dense color="positive" class="q-mr-sm">
-                            <q-icon size="20px" name="done" />
-                          </q-btn>
+                        <div
+                          class="row q-my-sm q-gutter-x-sm flex items-center"
+                        >
+                          <img
+                            src="https://jobvision.ir/assets/images/tick-success.svg"
+                            alt=""
+                          />
 
                           <div>میان وعده</div>
                         </div>
 
-                        <div class="row q-my-sm">
-                          <q-btn rounded dense color="positive" class="q-mr-sm">
-                            <q-icon size="20px" name="done" />
-                          </q-btn>
+                        <div
+                          class="row q-my-sm q-gutter-x-sm flex items-center"
+                        >
+                          <img
+                            src="https://jobvision.ir/assets/images/tick-success.svg"
+                            alt=""
+                          />
 
                           <div>اقامتگاه تفریحی (بزودی)</div>
                         </div>

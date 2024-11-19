@@ -375,7 +375,7 @@ export default defineComponent({
           formFields.value = config.fields;
           formData.value = config.fields
             ? config.fields.reduce((acc, field) => {
-                const value = getFormFieldValue(field.path);
+                const value = getFormFieldValue(field.name);
                 acc[field.name] = value !== null ? value : "";
                 return acc;
               }, {})

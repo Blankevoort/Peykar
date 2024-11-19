@@ -60,6 +60,7 @@
             <div class="q-px-xs gt-sm">نحوه نمایش رزومه به:</div>
 
             <q-select
+              class="text-bold"
               dense
               borderless
               v-model="preferred"
@@ -199,6 +200,7 @@
                         <div
                           class="text-primary q-px-md q-py-sm"
                           style="border: 2px dashed #5660f2"
+                          @click="openDialog('about')"
                         >
                           + افزودن
                         </div>
@@ -1310,6 +1312,9 @@ export default defineComponent({
       } else if (id == "edit-email") {
         dialogAction.value = "edit";
         formDialogId.value = "email";
+      } else if (id == "about") {
+        dialogAction.value = "edit";
+        formDialogId.value = "about";
       }
 
       if (data && typeof data === "object" && !Array.isArray(data)) {
