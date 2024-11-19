@@ -843,6 +843,7 @@
                       <img
                         src="https://jobvision.ir/assets/images/cv-maker/edit-secondary.svg"
                         style="width: 16px"
+                        @click="openDialog('edit-email')"
                       />
                     </div>
 
@@ -881,7 +882,7 @@
                   :progressValue="progressValue"
                   title="معرفی صوتی"
                   :showButton="false"
-                  id="voice"
+                  id="audioIntroduction"
                 >
                   <!-- Voice Description and Benefits -->
 
@@ -956,19 +957,25 @@
                   <!-- Portfolio Content -->
 
                   <div class="q-pt-md q-pb-sm">
-                    <div class="row items-center">
+                    <div
+                      class="row justify-between items-center"
+                      v-for="portfolio in portfolios"
+                      :key="portfolio.id"
+                    >
                       <!-- Acion Buttons -->
 
                       <div class="col- flex items-center text-grey-8">
                         <img
                           src="https://jobvision.ir/assets/images/delete-secondary.svg"
                           style="width: 20px; height: 20px"
+                          @click="openDialog('delete-portfolio', portfolio)"
                         />
 
                         <img
                           class="q-pl-sm"
                           src="https://jobvision.ir/assets/images/cv-maker/edit-secondary.svg"
                           style="width: 30px; height: 30px"
+                          @click="openDialog('edit-portfolio', portfolio)"
                         />
                       </div>
 
@@ -983,15 +990,14 @@
                           <a
                             target="_blank"
                             class="text-primary"
-                            href="
-                            https://moeensedaqati.ir/#/"
+                            :href="portfolio.url"
                             style="
                               cursor: pointer;
                               direction: ltr;
                               text-decoration: none;
                             "
                           >
-                            https://moeensedaqati.ir/#/
+                            {{ portfolio.url }}
                           </a>
 
                           <!-- Icon -->
@@ -1132,6 +1138,14 @@
         </div>
       </div>
     </div>
+
+    <FormDialog
+      v-if="showFormDialog"
+      :id="formDialogId"
+      :action="dialogAction"
+      :item="item"
+      @close-dialog="closeFormDialog"
+    />
   </q-page>
 </template>
 
@@ -1144,12 +1158,14 @@ import { api } from "src/boot/axios";
 import UseCard from "../../../components/ResumeCard.vue";
 import BadgeAndTitle from "../../../components/ResumeCards/ResumeBadgeAndTitle.vue";
 import infoDisplay from "../../../components/BasicInformationContent.vue";
+import FormDialog from "../../../components/Forms/DynamicForm.vue";
 
 export default defineComponent({
   components: {
     UseCard,
     infoDisplay,
     BadgeAndTitle,
+    FormDialog,
   },
 
   computed: {
@@ -1243,6 +1259,8 @@ export default defineComponent({
     const activeTab = ref("about");
     const shareResume = ref(false);
 
+    // Handling Custom Edit and Delete Buttons
+
     const editEmail = ref(false);
     const editPhone = ref(false);
     const preferred = ref("خودم");
@@ -1277,6 +1295,43 @@ export default defineComponent({
       ];
     });
 
+    const showFormDialog = ref(false);
+    const dialogAction = ref("");
+    const formDialogId = ref("");
+    const item = ref(null);
+
+    const openDialog = (id, data) => {
+      if (id == "edit-portfolio") {
+        dialogAction.value = "edit";
+        formDialogId.value = "portfolio";
+      } else if (id == "delete-portfolio") {
+        dialogAction.value = "delete";
+        formDialogId.value = "portfolio";
+      } else if (id == "edit-email") {
+        dialogAction.value = "edit";
+        formDialogId.value = "email";
+      }
+
+      if (data && typeof data === "object" && !Array.isArray(data)) {
+        item.value = [data];
+      } else {
+        item.value = data;
+      }
+
+      item.value = data;
+      console.log("Action: " + dialogAction.value);
+      console.log("Dialog ID: " + formDialogId.value);
+      console.log("Data: " + item.value);
+      showFormDialog.value = true;
+    };
+
+    const closeFormDialog = () => {
+      showFormDialog.value = false;
+      dialogAction.value = "";
+      formDialogId.value = "";
+      item.value = null;
+    };
+
     // Educational Records
 
     const hasEducation = ref(false);
@@ -1292,6 +1347,10 @@ export default defineComponent({
     // Languages
 
     const langs = ref();
+
+    // Portfolios
+
+    const portfolios = ref();
 
     // Software Skills
 
@@ -1366,6 +1425,10 @@ export default defineComponent({
           langs.value = userData.profile.languages;
         }
 
+        if (userData.profile.portfolio) {
+          portfolios.value = userData.profile.portfolio;
+        }
+
         if (userData.profile.workExperience) {
           workExperienceData.value = userData.profile.workExperience;
           noWorkExperience.value = true;
@@ -1425,6 +1488,7 @@ export default defineComponent({
     });
 
     return {
+      item,
       user,
       tabs,
       langs,
@@ -1434,12 +1498,18 @@ export default defineComponent({
       editPhone,
       preferred,
       value: 100,
+      openDialog,
       awardsData,
+      portfolios,
       shareResume,
       setActiveTab,
       hasEducation,
+      dialogAction,
+      formDialogId,
       educationData,
       softwareSkills,
+      showFormDialog,
+      closeFormDialog,
       scrollToSection,
       formerColleagues,
       noWorkExperience,

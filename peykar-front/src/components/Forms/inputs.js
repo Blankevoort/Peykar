@@ -559,4 +559,79 @@ export const formConfigs = {
       },
     ],
   },
+  portfolio: {
+    title: "نمونه کار",
+    customContent: true,
+    component: () => import("./CustomContents/PortfolioCustomContent.vue"),
+    mainPath: "profile.portfolio",
+    fields: [
+      {
+        type: "input",
+        name: "url",
+        label: "لینک نمونه کار",
+        filled: true,
+        path: "profile.portfolio.url",
+      },
+    ],
+  },
+  email: {
+    title: "ایمیل",
+    customContent: false,
+    mainPath: "email",
+    fields: [
+      {
+        type: "input",
+        name: "email",
+        label: "آدرس ایمیل",
+        filled: false,
+        path: "portfolio.url",
+      },
+      {
+        type: "input",
+        name: "emailRepetition",
+        label: "تکرار آدرس ایمیل",
+        filled: false,
+        path: "portfolio.url",
+      },
+      {
+        type: "input",
+        name: "password",
+        label: "رمز عبور شما",
+        filled: false,
+        path: "portfolio.url",
+        type: "password",
+      },
+    ],
+  },
+  audioIntroduction: {
+    title: "معرفی صوتی",
+    customContent: true,
+    component: () =>
+      import("./CustomContents/AudioIntroductionCustomContent.vue"),
+    mainPath: "profile.portfolio",
+    fields: [
+      {
+        type: "input",
+        name: "url",
+        label: "لینک نمونه کار",
+        filled: true,
+        path: "profile.portfolio.url",
+      },
+    ],
+  },
+  personalResume: {
+    title: "رزومه شخصی",
+    customContent: true,
+    component: () => import("./CustomContents/PersonalResumeCustomContent.vue"),
+    mainPath: "profile.portfolio",
+    fields: [
+      {
+        type: "input",
+        name: "url",
+        label: "لینک نمونه کار",
+        filled: true,
+        path: "profile.portfolio.url",
+      },
+    ],
+  },
 };

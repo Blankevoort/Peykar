@@ -26,6 +26,7 @@ use App\Http\Controllers\ProfileControllers\EducationsController;
 use App\Http\Controllers\ProfileControllers\SoftwareSkillsController;
 use App\Http\Controllers\ProfileControllers\WorkExperienceController;
 use App\Http\Controllers\ProfileControllers\AcademicExperienceController;
+use App\Http\Controllers\ProfileControllers\PortfolioController;
 
 // User Existence, Login And Register Requests
 
@@ -76,9 +77,11 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     Route::prefix('user-cv')->group(function () {
 
-        Route::PATCH('about/{id}', [UserController::class, "update"]);
+        Route::patch('about/{id}', [UserController::class, "update"]);
 
-        Route::PATCH('info/{id}', [UserController::class, "update"]);
+        Route::patch('info/{id}', [UserController::class, "update"]);
+
+        Route::patch('email/{id}', [UserController::class, "updateEmail"]);
 
         Route::resource('academicExperiences', AcademicExperienceController::class);
 
@@ -103,6 +106,8 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
         Route::resource('workExperience', WorkExperienceController::class);
 
         Route::resource('formerColleagues', WorkExperienceController::class);
+
+        Route::resource('portfolio', PortfolioController::class);
     });
 });
 

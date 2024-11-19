@@ -31,6 +31,7 @@ class UserProfileResource extends JsonResource
                 'disability' => $this->profile->disability ?? null,
                 'nationality' => $this->profile->nationality ?? null,
                 'disabilityType' => $this->profile->disabilityType ?? null,
+                'portfolio' => $this->profile->portfolio ?? null,
 
                 'languages' => $this->profile->langs ?? null,
                 'workExperience' => $this->profile->workExperience ?? null,

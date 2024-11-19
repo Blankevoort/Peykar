@@ -9,13 +9,14 @@ use App\Models\Profile\awards;
 use App\Models\Profile\skills;
 use App\Models\Profile\courses;
 use App\Models\Profile\Socials;
+use App\Models\Profile\portfolio;
 use App\Models\Profile\activities;
 use App\Models\Profile\colleagues;
+use App\Models\Profile\educations;
 use App\Models\Profile\softwareSkills;
+use App\Models\Profile\workExperience;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Profile\AcademicExperience;
-use App\Models\Profile\educations;
-use App\Models\Profile\workExperience;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Profile extends Model
@@ -107,5 +108,10 @@ class Profile extends Model
     public function workExperience()
     {
         return $this->hasMany(workExperience::class);
+    }
+
+    public function portfolio()
+    {
+        return $this->hasMany(portfolio::class);
     }
 }

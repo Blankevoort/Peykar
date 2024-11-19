@@ -19,6 +19,7 @@ use App\Models\Profile\educations;
 use App\Models\Profile\softwareSkills;
 use App\Models\Profile\workExperience;
 use App\Models\Profile\academicExperience;
+use App\Models\Profile\portfolio;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class userSeeder extends Seeder
@@ -158,6 +159,11 @@ class userSeeder extends Seeder
             'endYear' => $currentDate,
             'currentlyWorking' => true,
             'achievements' => 'Built APIs for major clients.',
+            'profile_id' => $profile->id,
+        ]);
+
+        portfolio::firstOrCreate([
+            'url' => 'https://moeensedaqati.ir/',
             'profile_id' => $profile->id,
         ]);
     }

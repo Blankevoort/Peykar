@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use Illuminate\Http\Request;
-use App\Http\Resources\UserProfileResource;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use App\Http\Resources\UserProfileResource;
 
 class UserController extends Controller
 {
@@ -25,6 +25,7 @@ class UserController extends Controller
             'profile.colleagues',
             'profile.educations',
             'profile.workExperience',
+            'profile.portfolio',
         ]);
 
         return new UserProfileResource($user);
@@ -82,5 +83,33 @@ class UserController extends Controller
         $profile->isDirty() && $profile->save();
 
         return response()->json(['message' => 'User and Profile updated successfully'], 204);
+    }
+
+    function updateEmail(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email',
+            'emailRepetition' => 'required|email|same:email',
+            'password' => 'required',
+        ]);
+
+        $user = auth()->user();
+
+        if ($user->email === $request->email) {
+            return response()->json([
+                'message' => 'The new email cannot be the same as the current email.',
+            ], 422);
+        }
+
+        if (!Hash::check($request->password, $user->password)) {
+            return response()->json([
+                'message' => 'The provided password is incorrect.',
+            ], 401);
+        }
+
+        $user->email = $request->email;
+        $user->save();
+
+        return response()->json(['status' => 204]);
     }
 }
