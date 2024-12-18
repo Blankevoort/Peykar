@@ -41,6 +41,8 @@ Route::post('login', [AuthController::class, 'login']);
 Route::get('jobs', [JobController::class, "index"]);
 Route::get('job/{id}', [JobController::class, "show"]);
 
+Route::post('search/jobs', [SearchController::class, 'searchJobs']);
+
 // Protected Routes
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
@@ -62,8 +64,6 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::resource('request', RequestController::class);
 
     Route::resource('profiles', ProfileController::class);
-
-    Route::get('search', [JobController::class, 'search']);
 
     Route::resource('history', HistoryController::class);
 

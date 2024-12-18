@@ -19,46 +19,32 @@ class JobController extends Controller
             'employmentCondition.degree',
             'employmentCondition.softwares',
             'employmentCondition',
+            'likes',
+            'requests',
+            'tags',
         ])->get();
 
-
         foreach ($jobs as $job) {
-            $liked = false;
-            $requested = false;
-            $tagsList = [];
-
-            if ($job->likes) {
-                foreach ($job->likes as $like) {
-                    if ($like->user_id) {
-                        $liked = true;
-                        break;
-                    }
-                }
-            }
-
-            if ($job->requests) {
-                foreach ($job->requests as $request) {
-                    if ($request->user_id) {
-                        $requested = true;
-                        break;
-                    }
-                }
-            }
-
-            if ($job->tags) {
-                foreach ($job->tags as $tag) {
-                    $tagsList[] = $tag->label;
-                }
-            }
-
-            $job->requested = $requested;
-            $job->liked = $liked;
-            $job->tagsList = $tagsList;
+            $this->processJob($job);
         }
 
         return response()->json($jobs);
+    }
 
-        // return JobResource::collection($jobs);
+    public function show($id)
+    {
+        $job = Job::with([
+            'employmentCondition.degree',
+            'employmentCondition.softwares',
+            'employmentCondition',
+            'likes',
+            'requests',
+            'tags',
+        ])->findOrFail($id);
+
+        $this->processJob($job);
+
+        return response()->json($job);
     }
 
     public function store(Request $request)
@@ -99,6 +85,7 @@ class JobController extends Controller
             'backgroundImage' => $backgroundImage,
             'image' => $companyImage,
             'title' => $request->title,
+            'group' => $request->group,
             'workDate' => $request->workDate,
             'workConditions' => $request->workHours,
             'benefits' => json_encode($request->benefits),
@@ -164,69 +151,19 @@ class JobController extends Controller
         return response()->json(['message' => 'Job deleted successfully'], 200);
     }
 
-    public function show($id)
-    {
-        $job = Job::findOrFail($id);
-
-        $job->likeCount = $job->likes->count();
-        $job->requestCount = $job->requests->count();
-        $job->tagsCount = $job->tags->count();
-
-        $liked = false;
-        $requested = false;
-        $tagsList = [];
-
-        if ($job->likes) {
-            foreach ($job->likes as $like) {
-                if ($like->user_id) {
-                    $liked = true;
-                    break;
-                }
-            }
-        }
-
-        if ($job->requests) {
-            foreach ($job->requests as $request) {
-                if ($request->user_id) {
-                    $requested = true;
-                    break;
-                }
-            }
-        }
-
-        if ($job->tags) {
-            foreach ($job->tags as $tag) {
-                $tagsList[] = $tag->name;
-            }
-        }
-
-        $job->requested = $requested;
-        $job->liked = $liked;
-        $job->tagsList = $tagsList;
-
-        return new JobResource($job);
-    }
-
     public function userJobs()
     {
         return Job::where('user_id', Auth::user()->id)->get();
     }
 
-    public function search(Request $request)
+    private function processJob(&$job)
     {
-        $search = $request->search;
+        $liked = $job->likes->contains('user_id', auth()->id());
+        $requested = $job->requests->contains('user_id', auth()->id());
+        $tagsList = $job->tags->pluck('label')->toArray();
 
-        $request->user()->history()->create(['search' => $search]);
-
-        $jobs = Job::where(function ($query) use ($search) {
-            $query->where('title', 'like', "%$search%");
-        })
-            ->orWhereHas('tags', function ($query) use ($search) {
-                $query->where('name', 'like', "%$search%");
-            })
-            ->with('tags')
-            ->get();
-
-        return $jobs;
+        $job->requested = $requested;
+        $job->liked = $liked;
+        $job->tagsList = $tagsList;
     }
 }

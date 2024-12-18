@@ -17,6 +17,7 @@ class Job extends Model
         "title",
         "backgroundImage",
         "image",
+        "group",
         "workDate",
         "benefits",
         "description",

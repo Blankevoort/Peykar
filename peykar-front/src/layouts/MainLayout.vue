@@ -553,9 +553,9 @@
       v-model="drawer"
       behavior="mobile"
       show-if-above
-      :mini="!drawer || miniState"
+      :mini="!drawer"
       :breakpoint="500"
-      width="full"
+      :width="full"
       no-swipe-open
     >
       <div class="row q-px-md">
@@ -1462,6 +1462,7 @@ export default defineComponent({
     const addJobTitle = ref(false);
     const expandedTwo = ref(false);
     const expandedThree = ref(false);
+    const full = ref(window.screen.availWidth);
 
     const questions = ref([
       {
@@ -1558,6 +1559,8 @@ export default defineComponent({
 
     return {
       tab,
+      full,
+      name,
       user,
       logout,
       drawer,
@@ -1565,7 +1568,6 @@ export default defineComponent({
       jobTitle,
       expanded,
       questions,
-      name,
       updateTab,
       changeName,
       addJobTitle,

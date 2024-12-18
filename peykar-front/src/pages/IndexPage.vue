@@ -3,7 +3,7 @@
     <!-- Medium-4k Screen Content -->
 
     <div
-      class="col-md-12 col-lg-8 col-xl-7 row justify-between items-center gt-sm q-px-xl"
+      class="col-md-12 col-lg-8 col-xl-7 row justify-between items-center gt-sm"
     >
       <div
         class="col-md-6 col-lg-6 col-xl-6 text-weight-bold"
@@ -33,45 +33,64 @@
         <q-select
           class="col-4 q-px-sm"
           outlined
-          v-model="model"
+          v-model="title"
           :options="options"
           label="عنوان شغلی یا شرکت"
+          use-input
+          hide-dropdown-icon
+          @filter="filterFn"
+          clearable
         >
           <template v-slot:prepend>
-            <q-icon name="search" />
+            <q-img
+              src="https://jobvision.ir/assets/images/search/search-gray.svg"
+              style="width: 20px"
+            />
           </template>
         </q-select>
 
         <q-select
           class="col-3 q-px-sm"
+          style="height: 44px !important"
           outlined
-          v-model="model"
+          v-model="group"
           :options="options"
           label="گروه شغلی"
+          clearable
         >
           <template v-slot:prepend>
-            <q-icon name="work" />
+            <q-img
+              src="https://jobvision.ir/assets/images/search/briefcase-gray.svg"
+              style="width: 20px"
+            />
           </template>
         </q-select>
 
         <q-select
           class="col-3 q-px-sm"
           outlined
-          v-model="model"
+          v-model="location"
           :options="options"
           label="شهر"
+          use-input
+          hide-dropdown-icon
+          @filter="filterFn"
+          clearable
         >
           <template v-slot:prepend>
-            <q-icon name="location_on" />
+            <q-img
+              src="https://jobvision.ir/assets/images/jobs/location-selected.svg"
+              style="width: 20px"
+            />
           </template>
         </q-select>
 
         <q-btn
           color="primary"
           label="جستجو در مشاغل"
-          to="/jobs"
           dense
           class="col-2 q-px-sm text-bold"
+          @click="search"
         />
       </div>
 
@@ -82,6 +101,8 @@
         تازه‌ترین آگهی‌های شغلی برای شما
       </div>
 
+      <!-- Tabs -->
+
       <div class="col-12 row">
         <q-tabs
           class="text-bold"
@@ -91,7 +112,7 @@
           v-model="tab"
         >
           <q-tab class="text-bold" name="suggestions">
-            <q-icon class="q-pr-md" size="24px" name="lightbulb" />
+            <q-icon class="q-pr-md" size="24px" name="auto_awesome" />
             <span>مشاغل پیشنهادی</span>
           </q-tab>
 
@@ -112,25 +133,20 @@
         transition-next="jump-up"
       >
         <q-tab-panel
-          class="row justify-between"
+          class="row justify-around"
           name="suggestions"
           style="font-size: 16px"
         >
-          <!-- <div class="col-12 text-grey-6 q-my-md">
+          <div class="col-12 text-grey-6 q-my-md font-14">
             پیشنهاد شده بر اساس رفتار و عملکرد شما
-          </div> -->
+          </div>
 
           <div
             v-for="(job, index) in jobs"
             :key="'job-' + index + 1"
             class="q-my-md q-px-xs col-md-4 col-lg-4 col-xl-4"
           >
-            <q-card
-              class="full-width"
-              style="background-color: transparent"
-              flat
-              bordered
-            >
+            <q-card flat bordered>
               <!-- Job`s Tags -->
 
               <div class="row justify-between" v-if="job.tags">
@@ -527,16 +543,40 @@
 
 <script>
 import { ref, onBeforeMount } from "vue";
-// import { useRouter } from "vue-router";
 
 import { api } from "src/boot/axios";
+import { useRouter } from "vue-router";
 // import { getJobs } from "../composables/getJobs";
+
+const stringOptions = [
+  "Website",
+  "Logo",
+  "Golestan",
+  "Tehran",
+  "Esfehan",
+  "Google",
+  "Facebook",
+  "Twitter",
+  "Apple",
+  "Oracle",
+  "Your MUM",
+  "Your",
+  "MUM",
+  "Tehran",
+  "Iran",
+  "Tehran, Iran",
+];
 
 export default {
   setup() {
     const isLoading = ref(true);
     // const jobs = getJobs();
-    // const router = useRouter();
+    const title = ref();
+    const group = ref();
+    const location = ref();
+    const router = useRouter();
+
+    const options = ref(stringOptions);
     const jobs = ref([]);
     jobs.value.forEach((job) => {
       console.log(job.created_at);
@@ -587,6 +627,18 @@ export default {
         });
     }
 
+    function search() {
+      console.log("Search Title: " + title.value);
+      console.log("Search Group: " + group.value);
+      console.log("Search Location: " + location.value);
+
+      localStorage.setItem("searchTitle", title.value || "");
+      localStorage.setItem("searchGroup", group.value || "");
+      localStorage.setItem("searchLocation", location.value || "");
+
+      router.push("/jobs");
+    }
+
     onBeforeMount(() => {
       getJobs();
       setTimeout(() => {
@@ -595,13 +647,33 @@ export default {
     });
 
     return {
+      location,
       jobs,
       like,
+      title,
+      group,
+      search,
+      options,
       isLoading,
+      stringOptions,
       timeSincePosted,
       model: ref(null),
       tab: ref("suggestions"),
-      options: ["Google", "Facebook", "Twitter", "Apple", "Oracle"],
+      filterFn(val, update) {
+        if (val === "") {
+          update(() => {
+            options.value = stringOptions;
+          });
+          return;
+        }
+
+        update(() => {
+          const needle = val.toLowerCase();
+          options.value = stringOptions.filter(
+            (v) => v.toLowerCase().indexOf(needle) > -1
+          );
+        });
+      },
     };
   },
 };

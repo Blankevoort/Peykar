@@ -13,6 +13,7 @@ return new class extends Migration
             $table->string("title");
             $table->string("backgroundImage");
             $table->string("image");
+            $table->string("group");
             $table->string("workDate");
             $table->string("workConditions");
             $table->string("similarExperience");

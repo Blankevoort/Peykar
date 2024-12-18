@@ -7,44 +7,88 @@ const routes = [
   {
     path: "/jobs",
     component: () => import("src/layouts/MainLayout.vue"),
-    children: [{ path: "", component: () => import("src/pages/LayoutPages/Jobs/JobsListPage.vue") }],
+    children: [
+      {
+        path: "",
+        component: () => import("src/pages/LayoutPages/Jobs/JobsListPage.vue"),
+      },
+    ],
   },
   {
     path: "/job/:id",
     component: () => import("src/layouts/MainLayout.vue"),
-    children: [{ path: "", component: () => import("src/pages/LayoutPages/Jobs/JobInfoPage.vue") }],
+    children: [
+      {
+        path: "",
+        component: () => import("src/pages/LayoutPages/Jobs/JobInfoPage.vue"),
+      },
+    ],
   },
   {
     path: "/recommended-jobs",
     component: () => import("src/layouts/MainLayout.vue"),
     children: [
-      { path: "", component: () => import("src/pages/LayoutPages/Jobs/RecommendedPage.vue") },
+      {
+        path: "",
+        component: () =>
+          import("src/pages/LayoutPages/Jobs/RecommendedPage.vue"),
+      },
     ],
   },
   {
     path: "/my-cv",
     component: () => import("src/layouts/MainLayout.vue"),
-    children: [{ path: "", component: () => import("src/pages/AccountManagment/Dashboards/myResume.vue") }],
+    children: [
+      {
+        path: "",
+        component: () =>
+          import("src/pages/AccountManagment/Dashboards/myResume.vue"),
+      },
+    ],
   },
   {
     path: "/top-companies",
     component: () => import("src/layouts/MainLayout.vue"),
-    children: [{ path: "", component: () => import("src/pages/LayoutPages/Companies/TopCompanies.vue") }],
+    children: [
+      {
+        path: "",
+        component: () =>
+          import("src/pages/LayoutPages/Companies/TopCompanies.vue"),
+      },
+    ],
   },
   {
     path: "/company",
     component: () => import("src/layouts/MainLayout.vue"),
-    children: [{ path: "", component: () => import("src/pages/LayoutPages/Companies/CompanyPage.vue") }],
+    children: [
+      {
+        path: "",
+        component: () =>
+          import("src/pages/LayoutPages/Companies/CompanyPage.vue"),
+      },
+    ],
   },
   {
     path: "/account",
     component: () => import("src/layouts/BlankLayout.vue"),
-    children: [{ path: "", component: () => import("src/pages/AccountManagment/UserLogin/UserLoginPage.vue") }],
+    children: [
+      {
+        path: "",
+        component: () =>
+          import("src/pages/AccountManagment/UserLogin/UserLoginPage.vue"),
+      },
+    ],
   },
   {
     path: "/employer",
     component: () => import("src/layouts/BlankLayout.vue"),
-    children: [{ path: "", component: () => import("src/pages/AccountManagment/UserLogin/EmployerLoginPage.vue") }],
+    children: [
+      {
+        path: "",
+        component: () =>
+          import("src/pages/AccountManagment/UserLogin/EmployerLoginPage.vue"),
+      },
+    ],
   },
 
   {

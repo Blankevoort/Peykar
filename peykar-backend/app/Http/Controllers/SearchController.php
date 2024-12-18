@@ -7,31 +7,28 @@ use Illuminate\Http\Request;
 
 class SearchController extends Controller
 {
-    public function search(Request $request)
+    public function searchJobs(Request $request)
     {
-        $search = $request->get('q');
-        
-        return Job::where('title', 'LIKE', '%' . $search . '%')->get();
+        $title = $request->title;
+        $group = $request->group;
+        $location = $request->location;
 
-        // $title = $request->input('title');
-        // $tagId = $request->input('tagId');
+        $query = Job::query();
 
-        // $query = Job::query();
+        if ($title) {
+            $query->where('title', 'LIKE', "%{$title}%");
+        }
 
-        // if ($title) {
-        //     $query->where('title', 'like', '%' . $title . '%');
-        // }
+        if ($group) {
+            $query->where('group', 'LIKE', "%{$group}%");
+        }
 
-        // if ($tagId) {
-        //     $query->whereHas('tags', function ($query) use ($tagId) {
-        //         $query->where('id', $tagId);
-        //     });
-        // }
+        if ($location) {
+            $query->where('location', 'LIKE', "%{$location}%");
+        }
 
-        // $result = $query->get();
+        $jobIds = $query->pluck('id');
 
-        // $count = $result->count();
-
-        // return response()->json(['result' => $result, 'count' => $count]);
+        return response()->json($jobIds);
     }
 }

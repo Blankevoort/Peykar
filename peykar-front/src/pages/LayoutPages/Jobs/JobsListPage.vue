@@ -14,7 +14,7 @@
                 hide-dropdown-icon
                 class="col-3"
                 outlined
-                v-model="model"
+                v-model="title"
                 :options="options"
                 label="عنوان شغلی یا شرکت"
                 use-input
@@ -29,7 +29,7 @@
               <q-select
                 class="col-3"
                 outlined
-                v-model="model"
+                v-model="group"
                 :options="options"
                 label="گروه شغلی"
               >
@@ -42,7 +42,7 @@
                 class="col-4 q-px-sm"
                 hide-dropdown-icon
                 outlined
-                v-model="model"
+                v-model="location"
                 :options="options"
                 label="شهر"
                 use-input
@@ -203,40 +203,43 @@
               />
 
               <div
-                class="col-12 q-my-xs row justify-between items-center text-grey-7"
+                class="col-12 q-my-xs row justify-between items-center text-grey-8"
               >
-                <div class="col-6 q-px-md">40,396 فرصت شغلی فعال</div>
+                <div class="col-6">
+                  <span class="text-bold">40,396</span> فرصت شغلی فعال
+                </div>
 
-                <div class="col-6 q-px-md text-right">
+                <div class="col-6 text-right">
                   <q-btn-dropdown
                     class="q-my-sm text-black"
-                    label="منطبق ترین"
+                    :label="filter"
                     flat
+                    dense
                   >
                     <q-tabs
                       vertical
                       active-class="active-sort-type"
                       indicator-color="transparent"
-                      v-model="tab"
+                      v-model="filter"
                     >
                       <q-tab
                         class="q-mx-xs q-my-xs text-black"
                         style="border-radius: 8px"
-                        name="recent"
+                        name="جدیدترین"
                         label="جدیدترین"
                       />
 
                       <q-tab
                         class="q-mx-xs q-my-xs text-black"
                         style="border-radius: 8px"
-                        name="suitable"
-                        label="منطبق ترین"
+                        name="مرتبط‌ترین"
+                        label="مرتبط‌ترین"
                       />
 
                       <q-tab
                         class="q-mx-xs q-my-xs text-black"
                         style="border-radius: 8px"
-                        name="mostSalary"
+                        name="بیشترین حقوق"
                         label="بیشترین حقوق"
                       />
                     </q-tabs>
@@ -247,30 +250,11 @@
               <!-- Job Offers Cards -->
 
               <div
-                class="bg-white q-py-sm q-my-sm col-12"
+                class="q-py-sm q-my-sm col-12"
                 v-for="(job, index) in jobs"
                 :key="'job-' + index + 1"
               >
-                <!-- Job`s Tags -->
-
-                <div class="row justify-between" v-if="job.tagList">
-                  <div class="col-9 row">
-                    <q-badge
-                      v-for="(tag, index) in job.tagList"
-                      :key="index"
-                      class="q-my-xs q-mx-xs q-py-sm"
-                      :color="tag.important ? 'red-2' : 'indigo-1'"
-                      :text-color="tag.important ? 'negative' : 'primary'"
-                      :label="tag.label"
-                    />
-                  </div>
-                </div>
-
-                <q-card
-                  class="full-width"
-                  style="background-color: transparent"
-                  flat
-                >
+                <q-card class="br-10" flat bordered>
                   <!-- Job`s Tags -->
 
                   <div class="row justify-between" v-if="job.tags">
@@ -840,13 +824,17 @@
 </template>
 
 <script>
-import { onBeforeMount, ref } from "vue";
+import { onMounted, ref } from "vue";
 
 // import { getJobs } from "../../../composables/getJobs";
 import { api } from "src/boot/axios";
 
 export default {
   setup() {
+    const title = ref("");
+    const group = ref("");
+    const location = ref("");
+    const filter = ref("مرتبط‌ترین");
     const jobs = ref([]);
     jobs.value.forEach((job) => {
       console.log(job.created_at);
@@ -884,16 +872,62 @@ export default {
         });
     }
 
-    onBeforeMount(() => {
-      getJobs();
+    const fetchJobsByIds = async (ids) => {
+      jobs.value = [];
+      try {
+        for (const id of ids) {
+          const response = await api.get(`api/job/${id}`);
+          jobs.value.push(response.data);
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
+    onMounted(async () => {
+      const searchTitle = localStorage.getItem("searchTitle");
+      const searchGroup = localStorage.getItem("searchGroup");
+      const searchLocation = localStorage.getItem("searchLocation");
+
+      if (searchTitle || searchGroup || searchLocation) {
+        title.value = searchTitle || "";
+        group.value = searchGroup || "";
+        location.value = searchLocation || "";
+
+        try {
+          const searchResponse = await api.post("api/search/jobs", {
+            title: title.value,
+            group: group.value,
+            location: location.value,
+          });
+
+          const jobIds = searchResponse.data;
+
+          if (jobIds.length > 0) {
+            await fetchJobsByIds(jobIds);
+          } else {
+            jobs.value = [];
+          }
+          localStorage.removeItem("searchTitle");
+          localStorage.removeItem("searchGroup");
+          localStorage.removeItem("searchLocation");
+        } catch (err) {
+          console.error(err);
+        }
+      } else {
+        getJobs();
+      }
     });
 
     return {
       jobs,
+      title,
+      group,
+      filter,
+      location,
       timeSincePosted,
       model: ref(null),
       tab: ref("firstPage"),
-      group: ref("op1"),
       options: ["Google", "Facebook", "Twitter", "Apple", "Oracle"],
       optionss: [
         {

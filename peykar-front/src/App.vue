@@ -26,6 +26,10 @@
   font-size: 13px;
 }
 
+.font-14 {
+  font-size: 14px;
+}
+
 .font-16 {
   font-size: 16px;
 }
