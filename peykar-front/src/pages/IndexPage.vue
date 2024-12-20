@@ -29,69 +29,78 @@
         دنبال چه شغلی می‌گردید؟
       </div>
 
-      <div class="col-12 row justify-between content-center">
-        <q-select
-          class="col-4 q-px-sm"
-          outlined
-          v-model="title"
-          :options="options"
-          label="عنوان شغلی یا شرکت"
-          use-input
-          hide-dropdown-icon
-          @filter="filterFn"
-          clearable
-        >
-          <template v-slot:prepend>
-            <q-img
-              src="https://jobvision.ir/assets/images/search/search-gray.svg"
-              style="width: 20px"
-            />
-          </template>
-        </q-select>
+      <div class="col-12 row justify-between">
+        <div class="col-4 q-gutter-y-sm">
+          <div class="text-grey-6 font-12">عنوان شغلی یا شرکت ...</div>
 
-        <q-select
-          class="col-3 q-px-sm"
-          style="height: 44px !important"
-          outlined
-          v-model="group"
-          :options="options"
-          label="گروه شغلی"
-          clearable
-        >
-          <template v-slot:prepend>
-            <q-img
-              src="https://jobvision.ir/assets/images/search/briefcase-gray.svg"
-              style="width: 20px"
-            />
-          </template>
-        </q-select>
+          <q-select
+            class="q-px-sm"
+            outlined
+            v-model="title"
+            :options="options"
+            use-input
+            hide-dropdown-icon
+            @filter="filterFn"
+            clearable
+          >
+            <template v-slot:prepend>
+              <q-img
+                src="https://jobvision.ir/assets/images/search/search-gray.svg"
+                style="width: 20px"
+              />
+            </template>
+          </q-select>
+        </div>
 
-        <q-select
-          class="col-3 q-px-sm"
-          outlined
-          v-model="location"
-          :options="options"
-          label="شهر"
-          use-input
-          hide-dropdown-icon
-          @filter="filterFn"
-          clearable
-        >
-          <template v-slot:prepend>
-            <q-img
-              src="https://jobvision.ir/assets/images/jobs/location-selected.svg"
-              style="width: 20px"
-            />
-          </template>
-        </q-select>
+        <div class="col-3 q-gutter-y-sm">
+          <div class="text-grey-6 font-12">گروه شغلی</div>
+          <q-select
+            class="q-px-sm"
+            style="height: 44px !important"
+            outlined
+            v-model="group"
+            :options="options"
+            clearable
+          >
+            <template v-slot:prepend>
+              <q-img
+                src="https://jobvision.ir/assets/images/search/briefcase-gray.svg"
+                style="width: 20px"
+              />
+            </template>
+          </q-select>
+        </div>
 
-        <q-btn
-          color="primary"
-          label="جستجو در مشاغل"
-          dense
-          class="col-2 q-px-sm text-bold"
-          @click="search"
-        />
+        <div class="col-3 q-gutter-y-sm">
+          <div class="text-grey-6 font-12">شهر</div>
+          <q-select
+            class="q-px-sm"
+            outlined
+            v-model="location"
+            :options="options"
+            use-input
+            hide-dropdown-icon
+            @filter="filterFn"
+            clearable
+          >
+            <template v-slot:prepend>
+              <q-img
+                src="https://jobvision.ir/assets/images/jobs/location-selected.svg"
+                style="width: 20px"
+              />
+            </template>
+          </q-select>
+        </div>
+
+        <div class="col-2 flex items-end">
+          <q-btn
+            color="primary"
+            label="جستجو در مشاغل"
+            class="q-px-sm text-bold"
+            @click="search"
+            style="height: 45px; width: 150px"
+          />
+        </div>
       </div>
 
       <div
@@ -233,7 +242,9 @@
                 class="q-px-sm"
                 @click="$router.push('/job/' + job.id)"
               >
-                <q-btn class="font-13 text-grey-6" flat> {{ timeSincePosted(job.postedDate) }}</q-btn>
+                <q-btn class="font-13 text-grey-6" flat>
+                  {{ timeSincePosted(job.created_at) }}</q-btn
+                >
 
                 <q-space />
 
@@ -422,32 +433,42 @@
 
               <div class="row justify-between" v-if="job.tags">
                 <div class="row col-12">
-                  <div class="col-10">
-                    <q-badge
-                      v-for="(tag, index) in job.tags"
-                      :key="index"
-                      class="q-my-xs q-mx-xs q-py-sm"
-                      :color="tag.important ? 'red-2' : 'indigo-1'"
-                      :text-color="tag.important ? 'negative' : 'primary'"
-                      :label="tag.label"
-                    />
-                  </div>
+                  <div class="row col-12">
+                    <div class="col-10" @click="$router.push('/job/' + job.id)">
+                      <q-badge
+                        v-for="(tag, index) in job.tags"
+                        :key="index"
+                        class="q-my-xs q-mx-xs q-py-sm"
+                        :color="tag.important ? 'red-2' : 'indigo-1'"
+                        :text-color="tag.important ? 'negative' : 'primary'"
+                        :label="tag.label"
+                      />
+                    </div>
 
-                  <div class="col-2 text-right">
-                    <q-btn
-                      v-if="!job.liked"
-                      @click="like(job.id)"
-                      flat
-                      icon="favorite_outline"
-                    />
+                    <div class="col-2 text-right" v-if="user">
+                      <q-btn
+                        v-if="!job.liked"
+                        @click="like(job.id)"
+                        flat
+                        icon="favorite_outline"
+                      />
 
-                    <q-btn
-                      v-else
-                      @click="like(job.id)"
-                      color="red"
-                      flat
-                      icon="favorite"
-                    />
+                      <q-btn
+                        v-else
+                        @click="like(job.id)"
+                        color="red"
+                        flat
+                        icon="favorite"
+                      />
+                    </div>
+
+                    <div class="col-2 text-right" v-else>
+                      <q-btn
+                        @click="$router.push('/account')"
+                        flat
+                        icon="favorite_outline"
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
@@ -492,7 +513,9 @@
               <q-separator inset />
 
               <q-card-actions class="q-px-sm">
-                <q-btn flat> {{ timeSincePosted(job.postedDate) }}</q-btn>
+                <q-btn flat class="font-13 text-grey-6">
+                  {{ timeSincePosted(job.created_at) }}</q-btn
+                >
 
                 <q-space />
 
@@ -557,6 +580,7 @@
 
 <script>
 import { ref, onMounted } from "vue";
+import dayjs from "dayjs";
 
 import { api } from "src/boot/axios";
 import { useRouter } from "vue-router";
@@ -583,7 +607,6 @@ const stringOptions = [
 export default {
   setup() {
     const isLoading = ref(true);
-    // const jobs = getJobs();
     const title = ref();
     const group = ref();
     const location = ref();
@@ -592,20 +615,21 @@ export default {
 
     const options = ref(stringOptions);
     const jobs = ref([]);
-    jobs.value.forEach((job) => {
-      console.log(job.created_at);
-      const time = timeSincePosted(job.created_at);
-      console.log(time);
-    });
     const timeSincePosted = (postedDate) => {
-      const now = new Date();
-      const posted = new Date(postedDate);
+      const now = dayjs();
+      const posted = dayjs(postedDate);
 
-      const diffInMilliseconds = now - posted;
-      const diffInDays = Math.floor(diffInMilliseconds / (1000 * 60 * 60 * 24));
+      if (!posted.isValid()) {
+        console.error("Invalid Date:", postedDate);
+        return "تاریخ نامعتبر";
+      }
 
-      if (diffInDays > 0) {
+      const diffInDays = now.diff(posted, "day");
+
+      if (diffInDays > 1) {
         return `${diffInDays} روز پیش`;
+      } else if (diffInDays === 1) {
+        return "دیروز";
       } else {
         return "امروز";
       }

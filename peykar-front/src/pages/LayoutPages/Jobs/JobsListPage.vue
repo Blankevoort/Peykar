@@ -259,19 +259,45 @@
 
                   <div class="row justify-between" v-if="job.tags">
                     <div class="row col-12">
-                      <div class="col-10">
-                        <q-badge
-                          v-for="(tag, index) in job.tags"
-                          :key="index"
-                          class="q-my-xs q-mx-xs q-py-sm"
-                          :color="tag.important ? 'red-2' : 'indigo-1'"
-                          :text-color="tag.important ? 'negative' : 'primary'"
-                          :label="tag.label"
-                        />
-                      </div>
+                      <div class="row col-12">
+                        <div
+                          class="col-10"
+                          @click="$router.push('/job/' + job.id)"
+                        >
+                          <q-badge
+                            v-for="(tag, index) in job.tags"
+                            :key="index"
+                            class="q-my-xs q-mx-xs q-py-sm"
+                            :color="tag.important ? 'red-2' : 'indigo-1'"
+                            :text-color="tag.important ? 'negative' : 'primary'"
+                            :label="tag.label"
+                          />
+                        </div>
 
-                      <div class="col-2 text-right">
-                        <q-btn flat icon="favorite_outline" />
+                        <div class="col-2 text-right" v-if="user">
+                          <q-btn
+                            v-if="!job.liked"
+                            @click="like(job.id)"
+                            flat
+                            icon="favorite_outline"
+                          />
+
+                          <q-btn
+                            v-else
+                            @click="like(job.id)"
+                            color="red"
+                            flat
+                            icon="favorite"
+                          />
+                        </div>
+
+                        <div class="col-2 text-right" v-else>
+                          <q-btn
+                            @click="$router.push('/account')"
+                            flat
+                            icon="favorite_outline"
+                          />
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -306,23 +332,20 @@
                           <p class="text-positive" v-if="job.rightsMax">
                             {{ job.rightsMin }} - {{ job.rightsMax }}
                           </p>
+
                           <p class="text-positive" v-else>
                             {{ job.rightsMin }}+
                           </p>
                         </div>
+
+                        <div class="col-12 q-pb-sm">
+                          <div flat class="font-13 text-grey-6">
+                            {{ timeSincePosted(job.created_at) }}
+                          </div>
+                        </div>
                       </div>
                     </q-card-section>
                   </q-card-section>
-
-                  <q-separator inset />
-
-                  <q-card-actions class="q-px-sm">
-                    <q-btn flat> {{ timeSincePosted(job.postedDate) }}</q-btn>
-
-                    <q-space />
-
-                    <q-btn color="positive" label="ارسال رزومه" />
-                  </q-card-actions>
                 </q-card>
               </div>
 
@@ -406,10 +429,10 @@
                 <q-input
                   filled
                   class="col-12 q-px-md q-my-sm"
-                  label="عنوان شغل"
+                  placeholder="عنوان شغل"
                 />
 
-                <q-input filled class="col-12 q-px-md q-my-sm" label="شهر">
+                <q-input filled class="col-12 q-px-md q-my-sm" placeholder="شهر">
                   <template v-slot:prepend>
                     <q-icon name="location_on" />
                   </template>
@@ -708,8 +731,29 @@
                           />
                         </div>
 
-                        <div class="col-2 text-right">
-                          <q-btn flat icon="favorite_outline" />
+                        <div class="col-2 text-right" v-if="user">
+                          <q-btn
+                            v-if="!job.liked"
+                            @click="like(job.id)"
+                            flat
+                            icon="favorite_outline"
+                          />
+
+                          <q-btn
+                            v-else
+                            @click="like(job.id)"
+                            color="red"
+                            flat
+                            icon="favorite"
+                          />
+                        </div>
+
+                        <div class="col-2 text-right" v-else>
+                          <q-btn
+                            @click="$router.push('/account')"
+                            flat
+                            icon="favorite_outline"
+                          />
                         </div>
                       </div>
                     </div>
@@ -746,23 +790,20 @@
                             <p class="text-positive" v-if="job.rightsMax">
                               {{ job.rightsMin }} - {{ job.rightsMax }}
                             </p>
+
                             <p class="text-positive" v-else>
                               {{ job.rightsMin }}+
                             </p>
                           </div>
+
+                          <div class="col-12 q-pb-sm">
+                            <div flat class="font-13 text-grey-6">
+                              {{ timeSincePosted(job.created_at) }}
+                            </div>
+                          </div>
                         </div>
                       </q-card-section>
                     </q-card-section>
-
-                    <q-separator inset />
-
-                    <q-card-actions class="q-px-sm">
-                      <q-btn flat> {{ timeSincePosted(job.postedDate) }}</q-btn>
-
-                      <q-space />
-
-                      <q-btn color="positive" label="ارسال رزومه" />
-                    </q-card-actions>
                   </q-card>
                 </div>
               </div>
@@ -825,8 +866,8 @@
 
 <script>
 import { onMounted, ref } from "vue";
+import dayjs from "dayjs";
 
-// import { getJobs } from "../../../composables/getJobs";
 import { api } from "src/boot/axios";
 
 export default {
@@ -836,37 +877,46 @@ export default {
     const location = ref("");
     const filter = ref("مرتبط‌ترین");
     const jobs = ref([]);
-    jobs.value.forEach((job) => {
-      console.log(job.created_at);
-      const time = timeSincePosted(job.created_at);
-      console.log(time);
-    });
-    const timeSincePosted = (postedDate) => {
-      const now = new Date();
-      const posted = new Date(postedDate);
+    const user = ref();
+    const timeSincePosted = (created_at) => {
+      const now = dayjs();
+      const posted = dayjs(created_at);
 
-      const diffInMilliseconds = now - posted;
-      const diffInDays = Math.floor(diffInMilliseconds / (1000 * 60 * 60 * 24));
+      if (!posted.isValid()) {
+        console.error("Invalid Date:", created_at);
+        return "تاریخ نامعتبر";
+      }
 
-      if (diffInDays > 0) {
+      const diffInDays = now.diff(posted, "day");
+
+      if (diffInDays > 1) {
         return `${diffInDays} روز پیش`;
+      } else if (diffInDays === 1) {
+        return "دیروز";
       } else {
         return "امروز";
       }
     };
 
-    function getJobs() {
-      api
-        .get("api/jobs")
-        .then((r) => {
-          jobs.value = r.data;
-        })
-        .catch((err) => {
-          console.log(err);
-          // if (err.response.status === 404) {
-          //   router.push("/404");
-          // }
-        });
+    async function getData() {
+      try {
+        const userResponse = await api.get("api/user");
+        user.value = userResponse.data;
+      } catch (err) {
+        if (err.response && err.response.status === 401) {
+          console.error("User not authenticated.");
+        } else {
+          console.error("Error fetching data:", err);
+        }
+      }
+
+      if (user.value) {
+        const jobsResponse = await api.get("api/loggedIn/jobs");
+        jobs.value = jobsResponse.data;
+      } else {
+        const jobsResponse = await api.get("api/jobs");
+        jobs.value = jobsResponse.data;
+      }
     }
 
     const fetchJobsByIds = async (ids) => {
@@ -912,12 +962,13 @@ export default {
           console.error(err);
         }
       } else {
-        getJobs();
+        getData();
       }
     });
 
     return {
       jobs,
+      user,
       title,
       group,
       filter,
@@ -967,5 +1018,11 @@ export default {
 .active-tab {
   background-color: #5660f2 !important;
   color: white !important;
+}
+.q-field__control {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  font-size: 40px;
 }
 </style>

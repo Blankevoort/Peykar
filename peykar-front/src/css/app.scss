@@ -13,14 +13,23 @@
   height: 45px;
 }
 
-// .q-field__append {
-//   height: 45px;
-// }
+.q-field__marginal {
+  height: 45px;
+}
+
+.q-field--auto-height .q-field__control, .q-field--auto-height .q-field__native {
+  min-height: 45px;
+  max-height: 45px;
+}
 
 .q-btn .q-focus-helper {
   display: none;
 }
 
-.q-field__native {
-  font-weight: unset!important;
-}
+// .q-field__native.q-placeholder {
+//   height: 45px;
+// }
+
+// .q-field__append {
+//   height: 45px;
+// }
