@@ -151,7 +151,7 @@
 
               <div class="row justify-between" v-if="job.tags">
                 <div class="row col-12">
-                  <div class="col-10">
+                  <div class="col-10" @click="$router.push('/job/' + job.id)">
                     <q-badge
                       v-for="(tag, index) in job.tags"
                       :key="index"
@@ -162,7 +162,7 @@
                     />
                   </div>
 
-                  <div class="col-2 text-right">
+                  <div class="col-2 text-right" v-if="user">
                     <q-btn
                       v-if="!job.liked"
                       @click="like(job.id)"
@@ -178,10 +178,21 @@
                       icon="favorite"
                     />
                   </div>
+
+                  <div class="col-2 text-right" v-else>
+                    <q-btn
+                      @click="$router.push('/account')"
+                      flat
+                      icon="favorite_outline"
+                    />
+                  </div>
                 </div>
               </div>
 
-              <q-card-section horizontal>
+              <q-card-section
+                horizontal
+                @click="$router.push('/job/' + job.id)"
+              >
                 <q-card-section class="col-xs-5 col-sm-3 flex flex-center">
                   <q-img
                     class="rounded-borders"
@@ -192,7 +203,7 @@
                   />
                 </q-card-section>
 
-                <q-card-section>
+                <q-card-section @click="$router.push('/job/' + job.id)">
                   <div class="q-mt-sm q-mb-xs">{{ job.title }}</div>
 
                   <div class="text-caption" v-if="job.company">
@@ -218,8 +229,11 @@
 
               <q-separator inset />
 
-              <q-card-actions class="q-px-sm">
-                <q-btn flat> {{ timeSincePosted(job.postedDate) }}</q-btn>
+              <q-card-actions
+                class="q-px-sm"
+                @click="$router.push('/job/' + job.id)"
+              >
+                <q-btn class="font-13 text-grey-6" flat> {{ timeSincePosted(job.postedDate) }}</q-btn>
 
                 <q-space />
 
@@ -542,11 +556,10 @@
 </template>
 
 <script>
-import { ref, onBeforeMount } from "vue";
+import { ref, onMounted } from "vue";
 
 import { api } from "src/boot/axios";
 import { useRouter } from "vue-router";
-// import { getJobs } from "../composables/getJobs";
 
 const stringOptions = [
   "Website",
@@ -575,6 +588,7 @@ export default {
     const group = ref();
     const location = ref();
     const router = useRouter();
+    const user = ref();
 
     const options = ref(stringOptions);
     const jobs = ref([]);
@@ -586,32 +600,36 @@ export default {
     const timeSincePosted = (postedDate) => {
       const now = new Date();
       const posted = new Date(postedDate);
+
       const diffInMilliseconds = now - posted;
-      const diffInHours = Math.floor(diffInMilliseconds / (1000 * 60 * 60));
       const diffInDays = Math.floor(diffInMilliseconds / (1000 * 60 * 60 * 24));
 
       if (diffInDays > 0) {
         return `${diffInDays} روز پیش`;
-      } else if (diffInHours > 0) {
-        return `${diffInHours} ساعت پیش`;
       } else {
-        const diffInMinutes = Math.floor(diffInMilliseconds / (1000 * 60));
-        return `${diffInMinutes} دقیقه پیش`;
+        return "امروز";
       }
     };
 
-    function getJobs() {
-      api
-        .get("api/jobs")
-        .then((r) => {
-          jobs.value = r.data;
-        })
-        .catch((err) => {
-          console.log(err);
-          // if (err.response.status === 404) {
-          //   router.push("/404");
-          // }
-        });
+    async function getData() {
+      try {
+        const userResponse = await api.get("api/user");
+        user.value = userResponse.data;
+      } catch (err) {
+        if (err.response && err.response.status === 401) {
+          console.error("User not authenticated.");
+        } else {
+          console.error("Error fetching data:", err);
+        }
+      }
+
+      if (user.value) {
+        const jobsResponse = await api.get("api/loggedIn/jobs");
+        jobs.value = jobsResponse.data;
+      } else {
+        const jobsResponse = await api.get("api/jobs");
+        jobs.value = jobsResponse.data;
+      }
     }
 
     function like(jobId) {
@@ -628,10 +646,6 @@ export default {
     }
 
     function search() {
-      console.log("Search Title: " + title.value);
-      console.log("Search Group: " + group.value);
-      console.log("Search Location: " + location.value);
-
       localStorage.setItem("searchTitle", title.value || "");
       localStorage.setItem("searchGroup", group.value || "");
       localStorage.setItem("searchLocation", location.value || "");
@@ -639,21 +653,22 @@ export default {
       router.push("/jobs");
     }
 
-    onBeforeMount(() => {
-      getJobs();
-      setTimeout(() => {
-        isLoading.value = false;
-      }, 2000);
+    onMounted(() => {
+      getData();
+      // setTimeout(() => {
+      //   isLoading.value = false;
+      // }, 2000);
     });
 
     return {
-      location,
+      user,
       jobs,
       like,
       title,
       group,
       search,
       options,
+      location,
       isLoading,
       stringOptions,
       timeSincePosted,

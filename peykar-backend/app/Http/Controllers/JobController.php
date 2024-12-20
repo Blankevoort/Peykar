@@ -16,9 +16,9 @@ class JobController extends Controller
     public function index()
     {
         $jobs = Job::with([
+            'employmentCondition',
             'employmentCondition.degree',
             'employmentCondition.softwares',
-            'employmentCondition',
             'likes',
             'requests',
             'tags',
@@ -34,9 +34,9 @@ class JobController extends Controller
     public function show($id)
     {
         $job = Job::with([
+            'employmentCondition',
             'employmentCondition.degree',
             'employmentCondition.softwares',
-            'employmentCondition',
             'likes',
             'requests',
             'tags',

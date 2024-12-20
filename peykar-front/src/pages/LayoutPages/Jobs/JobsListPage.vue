@@ -844,17 +844,14 @@ export default {
     const timeSincePosted = (postedDate) => {
       const now = new Date();
       const posted = new Date(postedDate);
+
       const diffInMilliseconds = now - posted;
-      const diffInHours = Math.floor(diffInMilliseconds / (1000 * 60 * 60));
       const diffInDays = Math.floor(diffInMilliseconds / (1000 * 60 * 60 * 24));
 
       if (diffInDays > 0) {
         return `${diffInDays} روز پیش`;
-      } else if (diffInHours > 0) {
-        return `${diffInHours} ساعت پیش`;
       } else {
-        const diffInMinutes = Math.floor(diffInMilliseconds / (1000 * 60));
-        return `${diffInMinutes} دقیقه پیش`;
+        return "امروز";
       }
     };
 
