@@ -10,57 +10,61 @@
         <div class="col-md-12 col-lg-8 col-xl-7">
           <div class="row justify-center content-center items-center q-my-md">
             <div class="col-12 row">
-              <q-select
-                hide-dropdown-icon
-                class="col-3"
-                outlined
-                v-model="title"
-                :options="options"
-                label="عنوان شغلی یا شرکت"
-                use-input
-                hide-selected
-                fill-input
-              >
-                <template v-slot:prepend>
-                  <q-icon name="search" />
-                </template>
-              </q-select>
+              <div class="col-3 q-gutter-y-sm">
+                <div class="text-grey-6 font-12">عنوان شغلی یا شرکت ...</div>
 
-              <q-select
-                class="col-3"
-                outlined
-                v-model="group"
-                :options="options"
-                label="گروه شغلی"
-              >
-                <template v-slot:prepend>
-                  <q-icon name="work" />
-                </template>
-              </q-select>
+                <q-select
+                  hide-dropdown-icon
+                  outlined
+                  v-model="title"
+                  :options="options"
+                  use-input
+                  hide-selected
+                  fill-input
+                >
+                  <template v-slot:prepend>
+                    <q-icon name="search" />
+                  </template>
+                </q-select>
+              </div>
 
-              <q-select
-                class="col-4 q-px-sm"
-                hide-dropdown-icon
-                outlined
-                v-model="location"
-                :options="options"
-                label="شهر"
-                use-input
-                hide-selected
-                fill-input
-              >
-                <template v-slot:prepend>
-                  <q-icon name="location_on" />
-                </template>
-              </q-select>
+              <div class="col-3 q-gutter-y-sm">
+                <div class="text-grey-6 font-12">گروه شغلی</div>
 
-              <q-btn
-                color="primary"
-                label="جستجو در مشاغل"
-                to="/jobs"
-                class="col-2 q-px-sm text-weight-bold"
-                style="height: 55px"
-              />
+                <q-select outlined v-model="group" :options="options">
+                  <template v-slot:prepend>
+                    <q-icon name="work" />
+                  </template>
+                </q-select>
+              </div>
+
+              <div class="col-4 q-px-sm q-gutter-y-sm">
+                <div class="text-grey-6 font-12">شهر</div>
+
+                <q-select
+                  hide-dropdown-icon
+                  outlined
+                  v-model="location"
+                  :options="options"
+                  use-input
+                  hide-selected
+                  fill-input
+                >
+                  <template v-slot:prepend>
+                    <q-icon name="location_on" />
+                  </template>
+                </q-select>
+              </div>
+
+              <div class="col-2 q-px-sm flex items-end">
+                <q-btn
+                  color="primary"
+                  label="جستجو در مشاغل"
+                  to="/jobs"
+                  class="text-weight-bold"
+                  style="height: 45px"
+                />
+              </div>
             </div>
 
             <div class="col-12 row">
@@ -401,43 +405,45 @@
 
             <!-- Sidebar -->
 
-            <div
-              class="col-7 q-px-sm row justify-center"
-              style="
-                background-color: white;
-                position: sticky;
-                z-index: 10px;
-                max-height: calc(100vh - 90px);
-                overscroll-behavior: contain;
-              "
-            >
-              <q-card
-                class="col-8 row justify-center q-my-xl q-my-xl q-px-md q-pa-md"
-              >
-                <div
-                  class="text-weight-bold text-primary q-my-md"
-                  style="font-size: 18px"
+            <div class="col-7 q-px-sm bg-white sticky-sidebar">
+              <div class="row justify-center">
+                <q-card
+                  class="col-8 row justify-center q-my-xl q-my-xl q-px-md q-pa-md"
+                  style="
+                    border: 1px solid #eef0f4;
+                    border-radius: 10px !important;
+                  "
+                  flat
                 >
-                  اطلاع رسانی شغلی
-                </div>
+                  <div
+                    class="text-weight-bold text-primary q-my-md"
+                    style="font-size: 18px"
+                  >
+                    اطلاع رسانی شغلی
+                  </div>
 
-                <div class="text-weight-medium q-my-md">
-                  عنوان شغلی و شهر مورد نظر خود را وارد نمایید و جدیدترین آگهی
-                  های شغلی را در ایمیل خود دریافت کنید.
-                </div>
+                  <div class="text-weight-medium q-my-md">
+                    عنوان شغلی و شهر مورد نظر خود را وارد نمایید و جدیدترین آگهی
+                    های شغلی را در ایمیل خود دریافت کنید.
+                  </div>
 
-                <q-input
-                  filled
-                  class="col-12 q-px-md q-my-sm"
-                  placeholder="عنوان شغل"
-                />
+                  <q-input
+                    filled
+                    class="col-12 q-px-md q-my-sm"
+                    placeholder="عنوان شغل"
+                  />
 
-                <q-input filled class="col-12 q-px-md q-my-sm" placeholder="شهر">
-                  <template v-slot:prepend>
-                    <q-icon name="location_on" />
-                  </template>
-                </q-input>
-              </q-card>
+                  <q-input
+                    filled
+                    class="col-12 q-px-md q-my-sm"
+                    placeholder="شهر"
+                  >
+                    <template v-slot:prepend>
+                      <q-icon name="location_on" />
+                    </template>
+                  </q-input>
+                </q-card>
+              </div>
             </div>
           </div>
         </div>
@@ -455,33 +461,37 @@
             <!-- Inputs -->
 
             <div class="col-12 row">
-              <q-select
-                hide-dropdown-icon
-                class="col-6"
-                outlined
-                v-model="model"
-                :options="options"
-                label="عنوان شغلی یا شرکت"
-                use-input
-                hide-selected
-                fill-input
-              >
-                <template v-slot:prepend>
-                  <q-icon name="search" />
-                </template>
-              </q-select>
+              <div class="col-6 q-gutter-y-sm">
+                <div class="text-grey-6 font-12">عنوان شغلی یا شرکت</div>
 
-              <q-select
-                class="col-6"
-                outlined
-                v-model="model"
-                :options="options"
-                label="گروه شغلی"
-              >
-                <template v-slot:prepend>
-                  <q-icon name="work" />
-                </template>
-              </q-select>
+                <q-select
+                  hide-dropdown-icon
+                  outlined
+                  v-model="model"
+                  :options="options"
+                  use-input
+                  hide-selected
+                  fill-input
+                >
+                  <template v-slot:prepend>
+                    <q-icon name="search" />
+                  </template>
+                </q-select>
+              </div>
+              <div class="col-6 q-gutter-y-sm">
+                <div class="text-grey-6 font-12">گروه شغلی</div>
+
+                <q-select
+                  class="col-6"
+                  outlined
+                  v-model="model"
+                  :options="options"
+                >
+                  <template v-slot:prepend>
+                    <q-icon name="work" />
+                  </template>
+                </q-select>
+              </div>
             </div>
 
             <!-- Filters List -->
@@ -1019,10 +1029,19 @@ export default {
   background-color: #5660f2 !important;
   color: white !important;
 }
+
 .q-field__control {
   display: flex;
   align-items: center;
   height: 40px;
   font-size: 40px;
+}
+
+.sticky-sidebar {
+  height: 132ch;
+  position: sticky;
+  top: 75px;
+  bottom: 75px;
+  align-self: flex-start;
 }
 </style>

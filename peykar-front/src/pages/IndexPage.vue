@@ -329,41 +329,35 @@
       </div>
 
       <div class="col-12 row justify-between content-center">
-        <q-select
-          class="col-12 q-py-xs q-px-sm"
-          outlined
-          v-model="model"
-          :options="options"
-          label="عنوان شغلی یا شرکت"
-        >
-          <template v-slot:prepend>
-            <q-icon name="search" />
-          </template>
-        </q-select>
+        <div class="col-12 q-py-xs q-px-sm q-gutter-y-sm">
+          <div class="text-grey-6 font-12">عنوان شغلی یا شرکت</div>
 
-        <q-select
-          class="col-12 q-py-xs q-px-sm"
-          outlined
-          v-model="model"
-          :options="options"
-          label="گروه شغلی"
-        >
-          <template v-slot:prepend>
-            <q-icon name="work" />
-          </template>
-        </q-select>
+          <q-select outlined v-model="model" :options="options">
+            <template v-slot:prepend>
+              <q-icon name="search" />
+            </template>
+          </q-select>
+        </div>
 
-        <q-select
-          class="col-12 q-py-xs q-px-sm"
-          outlined
-          v-model="model"
-          :options="options"
-          label="شهر"
-        >
-          <template v-slot:prepend>
-            <q-icon name="location_on" />
-          </template>
-        </q-select>
+        <div class="col-12 q-py-xs q-px-sm q-gutter-y-sm">
+          <div class="text-grey-6 font-12">گروه شغلی</div>
+
+          <q-select outlined v-model="model" :options="options">
+            <template v-slot:prepend>
+              <q-icon name="work" />
+            </template>
+          </q-select>
+        </div>
+
+        <div class="col-12 q-py-xs q-px-sm q-gutter-y-sm">
+          <div class="text-grey-6 font-12">شهر</div>
+
+          <q-select outlined v-model="model" :options="options">
+            <template v-slot:prepend>
+              <q-icon name="location_on" />
+            </template>
+          </q-select>
+        </div>
 
         <div class="full-width q-my-sm q-px-sm">
           <q-btn
