@@ -80,7 +80,7 @@
                                 </span>
 
                                 <span class="text-grey-6 text-bold">
-                                  ({{ timeSincePosted(job.postedDate) }})
+                                  ({{ timeSincePosted(job.created_at) }})
                                 </span>
                               </div>
                             </div>
@@ -110,6 +110,7 @@
                                 class="text-h6 text-bold"
                                 style="color: #5660f2 !important"
                               >
+                                company
                                 {{ job.company }}
                               </span>
                             </div>
@@ -179,7 +180,7 @@
                       <div>مزایا و تسهیلات</div>
 
                       <div class="text-grey-6 q-pt-sm row flex">
-                        <p style="font-size: 13px">{{ benefits }}</p>
+                        <!-- <p style="font-size: 13px">{{ benefits }}</p> -->
                       </div>
                     </div>
                   </div>
@@ -284,7 +285,7 @@
                         <div class="col-5 text-black">مزایا و تسهیلات</div>
 
                         <div class="col-xs-7 col-sm-6 text-right">
-                          <p style="font-size: 13px">{{ benefits }}</p>
+                          <!-- <p style="font-size: 13px">{{ benefits }}</p> -->
                         </div>
                       </div>
                     </div>
@@ -410,12 +411,10 @@
                   <div class="full-width row items-center">
                     <q-icon name="check_circle" color="grey-6" size="18px" />
 
-                    <div
-                      v-for="exp in job.keyIndicators.similarExperience"
-                      :key="exp"
-                      class="q-px-md q-mx-xs q-my-xs"
-                    >
-                      {{ exp }}
+                    <!-- v-for="exp in job.similarExperience"
+                      :key="exp" -->
+                    <div class="q-px-md q-mx-xs q-my-xs">
+                      {{ job.similarExperience }}
                     </div>
                   </div>
 
@@ -423,14 +422,11 @@
 
                   <div class="full-width row items-center q-py-md">
                     <div
-                      v-for="skill in job.keyIndicators.neededSkills.slice(
-                        0,
-                        3
-                      )"
+                      v-for="skill in job.employment_condition.softwares"
                       :key="skill"
                       class="skill-border q-px-md q-mx-xs q-my-xs"
                     >
-                      {{ skill.name }} | {{ skill.level }}
+                      {{ skill.proficiency }} | {{ skill.name }}
                     </div>
                   </div>
 
@@ -446,7 +442,7 @@
                     <div class="text-bold text-h6">شرایط احراز شغل</div>
 
                     <div
-                      v-if="job.employmentConditions.age"
+                      v-if="job.employment_condition.age"
                       class="full-width row justify-between items-ceneter q-py-sm"
                     >
                       <div class="col-3 background-light">
@@ -455,13 +451,13 @@
 
                       <div class="col-8 background">
                         <div class="q-pa-sm">
-                          {{ job.employmentConditions.age }}
+                          {{ job.employment_condition.age }}
                         </div>
                       </div>
                     </div>
 
                     <div
-                      v-if="job.employmentConditions.gender"
+                      v-if="job.employment_condition.gender"
                       class="full-width row justify-between items-ceneter q-py-sm"
                     >
                       <div class="col-3 background-light">
@@ -470,13 +466,13 @@
 
                       <div class="col-8 background">
                         <div class="q-pa-sm">
-                          {{ job.employmentConditions.gender }}
+                          {{ job.employment_condition.gender }}
                         </div>
                       </div>
                     </div>
 
                     <div
-                      v-if="job.employmentConditions.softwares"
+                      v-if="job.employment_condition.softwares"
                       class="full-width row justify-between items-ceneter q-py-sm"
                     >
                       <div class="col-3 background-light">
@@ -490,7 +486,7 @@
                           <div class="q-mr-md row items-center q-mt-sm">
                             <div
                               v-for="(software, index) in job
-                                .employmentConditions.softwares"
+                                .employment_condition.softwares"
                               :key="index"
                             >
                               <div
@@ -524,7 +520,7 @@
                     </div>
 
                     <div
-                      v-if="job.employmentConditions.degree"
+                      v-if="job.employment_condition.degree"
                       class="full-width row justify-between items-ceneter q-py-sm"
                     >
                       <div class="col-3 background-light">
@@ -534,11 +530,9 @@
                       <div class="background col-8 row">
                         <div class="q-py-sm">
                           <div class="q-mr-md row items-center q-mt-sm">
-                            <div
-                              v-for="(degree, index) in job.employmentConditions
-                                .degree"
-                              :key="index"
-                            >
+                            <!-- v-for="degree,  in job.employment_condition.degree"
+                              :key="index" -->
+                            <div>
                               <div
                                 class="text-white row q-px-sm q-py-xs q-ma-xs"
                                 style="
@@ -552,15 +546,19 @@
                                   class="text-bold q-ml-sm"
                                   style="font-size: 13px"
                                 >
-                                  {{ degree.field }}
+                                  {{ job.employment_condition.degree.field }}
                                 </div>
+
                                 <q-separator
                                   color="white"
                                   class="q-mx-sm q-my-xs"
                                   vertical
                                 />
+
                                 <div>
-                                  {{ degree.proficiency }}
+                                  {{
+                                    job.employment_condition.degree.proficiency
+                                  }}
                                 </div>
                               </div>
                             </div>
@@ -607,12 +605,10 @@
                           size="18px"
                         />
 
-                        <div
-                          v-for="exp in job.keyIndicators.similarExperience"
-                          :key="exp"
-                          class="q-px-md q-mx-xs q-my-xs"
-                        >
-                          {{ exp }}
+                        <!-- v-for="exp in job.similarExperience"
+                          :key="exp" -->
+                        <div class="q-px-md q-mx-xs q-my-xs">
+                          {{ job.similarExperience }}
                         </div>
                       </div>
 
@@ -620,19 +616,16 @@
 
                       <div class="full-width row items-center q-py-md">
                         <div
-                          v-for="skill in job.keyIndicators.neededSkills.slice(
-                            0,
-                            3
-                          )"
+                          v-for="skill in job.employment_condition.softwares"
                           :key="skill"
                           class="skill-border q-px-md q-mx-xs q-my-xs"
                         >
-                          {{ skill.name }} | {{ skill.level }}
+                          {{ skill.proficiency }} | {{ skill.name }}
                         </div>
                       </div>
 
-                      <div class="full-width q-py-md">
-                        <div class="text-h6 text-bold">شرح شغل و وظایف</div>
+                      <div class="full-width q-py-md q-gutter-y-md">
+                        <div class="text-bold">شرح شغل و وظایف</div>
 
                         <div v-html="job.description" />
                       </div>
@@ -640,56 +633,48 @@
                       <!-- Employment Conditions -->
 
                       <div class="full-width q-py-md">
-                        <div class="text-bold text-h6">شرایط احراز شغل</div>
+                        <div class="text-bold">شرایط احراز شغل</div>
 
                         <div
-                          v-if="job.employmentConditions.age"
-                          class="full-width row justify-between items-ceneter q-py-sm"
+                          v-if="job.employment_condition.age"
+                          class="full-width q-gutter-y-md q-py-sm"
                         >
-                          <div class="col-3 background-light">
-                            <div class="text-bold text-grey-7 q-pa-sm">سن</div>
-                          </div>
+                          <div class="text-bold text-grey-7 q-pa-sm">سن</div>
 
-                          <div class="col-8 background">
+                          <div class="background">
                             <div class="q-pa-sm">
-                              {{ job.employmentConditions.age }}
+                              {{ job.employment_condition.age }}
                             </div>
                           </div>
                         </div>
 
                         <div
-                          v-if="job.employmentConditions.gender"
-                          class="full-width row justify-between items-ceneter q-py-sm"
+                          v-if="job.employment_condition.gender"
+                          class="full-width q-gutter-y-md q-py-sm"
                         >
-                          <div class="col-3 background-light">
-                            <div class="text-bold text-grey-7 q-pa-sm">
-                              جنسیت
-                            </div>
-                          </div>
+                          <div class="text-bold text-grey-7 q-pa-sm">جنسیت</div>
 
-                          <div class="col-8 background">
+                          <div class="background">
                             <div class="q-pa-sm">
-                              {{ job.employmentConditions.gender }}
+                              {{ job.employment_condition.gender }}
                             </div>
                           </div>
                         </div>
 
                         <div
-                          v-if="job.employmentConditions.softwares"
-                          class="full-width row justify-between q-py-sm"
+                          v-if="job.employment_condition.softwares"
+                          class="full-width q-gutter-y-md q-py-sm"
                         >
-                          <div class="col-3 background-light">
-                            <div class="text-bold text-grey-7 q-pa-sm">
-                              نرم افزارها
-                            </div>
+                          <div class="text-bold text-grey-7 q-pa-sm">
+                            نرم افزار ها
                           </div>
 
-                          <div class="background col-8 row">
+                          <div class="background row">
                             <div class="q-py-sm">
                               <div class="q-mr-md row items-center q-mt-sm">
                                 <div
                                   v-for="(software, index) in job
-                                    .employmentConditions.softwares"
+                                    .employment_condition.softwares"
                                   :key="index"
                                 >
                                   <div
@@ -707,11 +692,13 @@
                                     >
                                       {{ software.name }}
                                     </div>
+
                                     <q-separator
                                       color="white"
-                                      class="q-mx-sm q-my-xs"
+                                      class="q-mx-xs q-my-xs"
                                       vertical
                                     />
+
                                     <div>
                                       {{ software.proficiency }}
                                     </div>
@@ -723,23 +710,20 @@
                         </div>
 
                         <div
-                          v-if="job.employmentConditions.degree"
-                          class="full-width row justify-between q-py-sm"
+                          v-if="job.employment_condition.degree"
+                          class="full-width q-gutter-y-md q-py-sm"
                         >
-                          <div class="col-3 background-light">
-                            <div class="text-bold text-grey-7 q-pa-sm">
-                              تحصیلات
-                            </div>
+                          <div class="text-bold text-grey-7 q-pa-sm">
+                            تحصیلات
                           </div>
 
-                          <div class="background col-8 row">
+                          <div class="background row">
                             <div class="q-py-sm">
                               <div class="q-mr-md row items-center q-mt-sm">
-                                <div
-                                  v-for="(degree, index) in job
-                                    .employmentConditions.degree"
-                                  :key="index"
-                                >
+                                <!-- v-for="degree in job
+                                    .employment_condition.degree"
+                                  :key="degree" -->
+                                <div>
                                   <div
                                     class="text-white row q-px-sm q-py-xs q-ma-xs"
                                     style="
@@ -753,15 +737,22 @@
                                       class="text-bold q-ml-sm"
                                       style="font-size: 13px"
                                     >
-                                      {{ degree.field }}
+                                      {{
+                                        job.employment_condition.degree.field
+                                      }}
                                     </div>
+
                                     <q-separator
                                       color="white"
-                                      class="q-mx-sm q-my-xs"
+                                      class="q-mx-xs q-my-xs"
                                       vertical
                                     />
+
                                     <div>
-                                      {{ degree.proficiency }}
+                                      {{
+                                        job.employment_condition.degree
+                                          .proficiency
+                                      }}
                                     </div>
                                   </div>
                                 </div>
@@ -1089,8 +1080,10 @@
 
 <script>
 import { computed, onMounted, ref } from "vue";
+import dayjs from "dayjs";
 
-import { useRouter, useRoute } from "vue-router";
+import { api } from "src/boot/axios";
+import { useRoute } from "vue-router";
 
 export default {
   setup() {
@@ -1102,26 +1095,29 @@ export default {
     const tab = ref("companyInfo");
     const toggleDropdown = ref(false);
     const timeSincePosted = (postedDate) => {
-      const now = new Date();
-      const posted = new Date(postedDate);
-      const diffInMilliseconds = now - posted;
+      const now = dayjs();
+      const posted = dayjs(postedDate);
 
-      const diffInMinutes = Math.floor(diffInMilliseconds / (1000 * 60));
-      const diffInHours = Math.floor(diffInMinutes / 60);
-      const diffInDays = Math.floor(diffInHours / 24);
+      if (!posted.isValid()) {
+        console.error("Invalid Date:", postedDate);
+        return "تاریخ نامعتبر";
+      }
 
-      if (diffInDays > 0) {
+      const diffInDays = now.diff(posted, "day");
+
+      if (diffInDays > 1) {
         return `${diffInDays} روز پیش`;
-      } else if (diffInHours > 0) {
-        return `${diffInHours} ساعت پیش`;
+      } else if (diffInDays === 1) {
+        return "دیروز";
       } else {
-        return `${diffInMinutes} دقیقه پیش`;
+        return "امروز";
       }
     };
-    const benefits = computed(() => {
-      if (!job.value) return "";
-      return job.value.benefits.join(" - ");
-    });
+
+    // const benefits = computed(() => {
+    //   if (!job.value) return "";
+    //   return job.value.benefits.join(" - ");
+    // });
 
     function OpenDropdown() {
       if (toggleDropdown.value == false) {
@@ -1134,9 +1130,9 @@ export default {
     }
 
     function getJob() {
-      const jobs = JSON.parse(localStorage.getItem("jobDetails")) || [];
-      const jobId = parseInt(route.params.id, 10);
-      job.value = jobs.find((job) => job.id === jobId) || null;
+      api.get("api/job/" + route.params.id).then((r) => {
+        job.value = r.data;
+      });
     }
 
     onMounted(() => {
@@ -1149,7 +1145,7 @@ export default {
       sTab,
       showMore,
       showCard,
-      benefits,
+      // benefits,
       OpenDropdown,
       toggleDropdown,
       timeSincePosted,
