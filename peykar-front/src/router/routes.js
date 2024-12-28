@@ -45,6 +45,9 @@ const routes = [
           import("src/pages/AccountManagment/Dashboards/myResume.vue"),
       },
     ],
+    meta: {
+      requireAuth: true,
+    },
   },
   {
     path: "/top-companies",
@@ -78,6 +81,9 @@ const routes = [
           import("src/pages/AccountManagment/UserLogin/UserLoginPage.vue"),
       },
     ],
+    meta: {
+      login: true,
+    },
   },
   {
     path: "/employer",

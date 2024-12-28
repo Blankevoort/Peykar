@@ -48,8 +48,8 @@ Route::post('search/jobs', [SearchController::class, 'searchJobs']);
 Route::group(['middleware' => ['auth:sanctum']], function () {
 
     Route::prefix('loggedIn')->group(function () {
-    Route::get('jobs', [JobController::class, "index"]);
-    Route::get('job/{id}', [JobController::class, "show"]);
+        Route::get('jobs', [JobController::class, "index"]);
+        Route::get('job/{id}', [JobController::class, "show"]);
     });
 
     Route::patch('user', [UserController::class, "update"]);
