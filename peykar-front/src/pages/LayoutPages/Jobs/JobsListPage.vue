@@ -258,12 +258,7 @@
                 v-for="(job, index) in jobs"
                 :key="'job-' + index + 1"
               >
-                <JobCard
-                  :job="job"
-                  :user="user"
-                  :like="like"
-                  :sendCV="sendCV"
-                />
+                <JobCard :job="job" :user="user" />
               </div>
 
               <!-- Job Offers Tabs -->
@@ -617,12 +612,7 @@
                   v-for="(job, index) in jobs"
                   :key="'job-' + index + 1"
                 >
-                  <JobCard
-                    :job="job"
-                    :user="user"
-                    :like="like"
-                    :sendCV="sendCV"
-                  />
+                  <JobCard :job="job" :user="user" />
                 </div>
               </div>
 
@@ -683,8 +673,6 @@
 </template>
 
 <script>
-import { useQuasar } from "quasar";
-import { useErrorHandler } from "src/composables/useErrorHandler";
 import { onMounted, ref } from "vue";
 
 import { api } from "src/boot/axios";
@@ -696,8 +684,6 @@ export default {
   },
 
   setup() {
-    const $q = useQuasar();
-    const { handleError } = useErrorHandler();
     const title = ref("");
     const group = ref("");
     const location = ref("");
@@ -738,44 +724,6 @@ export default {
       }
     };
 
-    function like(jobId) {
-      api
-        .post("api/like", {
-          job_id: jobId,
-        })
-        .then((r) => {
-          if (r.data.status === 204) {
-            $q.notify({
-              message: r.data.message,
-              color: "green",
-              position: "bottom-left",
-            });
-          }
-        })
-        .catch(handleError);
-    }
-
-    function sendCV(jobId) {
-      api
-        .post("api/job/" + jobId + "/request")
-        .then((r) => {
-          if (r.data.status === 204) {
-            $q.notify({
-              message: "درخواست با موفقیت ارسال شد!",
-              color: "green",
-              position: "bottom-left",
-            });
-          } else if (r.data.status === 409) {
-            $q.notify({
-              message: "برای این موقعیت درخواست ارسال شده دارید",
-              color: "red",
-              position: "bottom-left",
-            });
-          }
-        })
-        .catch(handleError);
-    }
-
     onMounted(async () => {
       const searchTitle = localStorage.getItem("searchTitle");
       const searchGroup = localStorage.getItem("searchGroup");
@@ -812,12 +760,10 @@ export default {
     });
 
     return {
-      like,
       jobs,
       user,
       title,
       group,
-      sendCV,
       filter,
       location,
       model: ref(null),

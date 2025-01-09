@@ -106,6 +106,7 @@
 </template>
 
 <script>
+import useJobActions from "src/composables/useJobActions";
 import dayjs from "dayjs";
 
 export default {
@@ -118,17 +119,10 @@ export default {
       type: Object,
       required: false,
     },
-    like: {
-      type: Function,
-      required: true,
-    },
-    sendCV: {
-      type: Function,
-      required: true,
-    },
   },
 
   setup() {
+    const { like, sendCV } = useJobActions();
     const timeSincePosted = (created_at) => {
       const now = dayjs();
       const posted = dayjs(created_at);
@@ -150,6 +144,8 @@ export default {
     };
 
     return {
+      like,
+      sendCV,
       timeSincePosted,
     };
   },

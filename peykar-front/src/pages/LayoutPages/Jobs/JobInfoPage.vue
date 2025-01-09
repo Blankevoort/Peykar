@@ -54,8 +54,12 @@
                 style="
                   border-top-right-radius: 10px !important;
                   border-top-left-radius: 10px !important;
+                  max-height: 235px;
                 "
-                :src="job.backgroundImage"
+                :src="`http://127.0.0.1:8000/storage/backgroundImages/${
+                  job.backgroundImage ||
+                  'https://fileapi.jobvision.ir/StaticFiles/Employer/DefaultImages/default-companyHeader.jpeg?v=20231122'
+                }`"
               />
 
               <!-- Main Card Content -->
@@ -66,7 +70,11 @@
                     <div class="full-width row">
                       <div class="col-md-1 col-lg-2 col-xl-1 full-height">
                         <q-avatar size="70px">
-                          <img :src="job.image" />
+                          <img
+                            :src="`http://127.0.0.1:8000/storage/companyImages/${
+                              job.image || 'defaultImage.jpg'
+                            }`"
+                          />
                         </q-avatar>
                       </div>
 
@@ -180,7 +188,7 @@
                       <div>مزایا و تسهیلات</div>
 
                       <div class="text-grey-6 q-pt-sm row flex">
-                        <!-- <p style="font-size: 13px">{{ benefits }}</p> -->
+                        <p style="font-size: 13px">{{ formattedBenefits }}</p>
                       </div>
                     </div>
                   </div>
@@ -195,7 +203,9 @@
                     <div class="col-xs-3 col-sm-1">
                       <q-avatar>
                         <img
-                          src="https://fileapi.jobvision.ir/api/v1.0/files/getimage?fileid=4483058&width=80&height=80"
+                          :src="`http://127.0.0.1:8000/storage/companyImages/${
+                            job.image || 'defaultImage.jpg'
+                          }`"
                         />
                       </q-avatar>
                     </div>
@@ -285,7 +295,7 @@
                         <div class="col-5 text-black">مزایا و تسهیلات</div>
 
                         <div class="col-xs-7 col-sm-6 text-right">
-                          <!-- <p style="font-size: 13px">{{ benefits }}</p> -->
+                          <p style="font-size: 13px">{{ formattedBenefits }}</p>
                         </div>
                       </div>
                     </div>
@@ -308,7 +318,7 @@
                       <div class="col-6 flex justify-center">
                         <div class="text-center text-grey-7">
                           <div class="text-bold">
-                            {{ timeSincePosted(job.postedDate) }}
+                            {{ timeSincePosted(job.created_at) }}
                           </div>
 
                           <div class="q-py-sm">منتشر شده</div>
@@ -1086,6 +1096,37 @@ import { api } from "src/boot/axios";
 import { useRoute } from "vue-router";
 
 export default {
+  computed: {
+    formattedBenefits() {
+      try {
+        if (Array.isArray(this.job.benefits)) {
+          return this.job.benefits.join(" - ");
+        }
+
+        if (
+          typeof this.job.benefits === "object" &&
+          this.job.benefits !== null
+        ) {
+          const benefitsArray = Object.values(this.job.benefits);
+          return benefitsArray.join(" - ");
+        }
+
+        const benefitsArray = JSON.parse(this.job.benefits || "[]");
+
+        if (Array.isArray(benefitsArray) && benefitsArray.length > 0) {
+          return benefitsArray.join(" - ");
+        } else {
+          console.error("Parsed benefits is not a valid array:", benefitsArray);
+          return "مزایا و تسهیلات نامعتبر است.";
+        }
+      } catch (e) {
+        // Handle JSON parsing errors
+        console.error("Error parsing job benefits:", e);
+        return "مزایا و تسهیلات نامعتبر است.";
+      }
+    },
+  },
+
   setup() {
     const job = ref();
     const route = useRoute();
@@ -1094,12 +1135,12 @@ export default {
     const sTab = ref("jobInfo");
     const tab = ref("companyInfo");
     const toggleDropdown = ref(false);
-    const timeSincePosted = (postedDate) => {
+    const timeSincePosted = (created_at) => {
       const now = dayjs();
-      const posted = dayjs(postedDate);
+      const posted = dayjs(created_at);
 
       if (!posted.isValid()) {
-        console.error("Invalid Date:", postedDate);
+        console.error("Invalid Date:", created_at);
         return "تاریخ نامعتبر";
       }
 
@@ -1113,11 +1154,6 @@ export default {
         return "امروز";
       }
     };
-
-    // const benefits = computed(() => {
-    //   if (!job.value) return "";
-    //   return job.value.benefits.join(" - ");
-    // });
 
     function OpenDropdown() {
       if (toggleDropdown.value == false) {
@@ -1145,7 +1181,6 @@ export default {
       sTab,
       showMore,
       showCard,
-      // benefits,
       OpenDropdown,
       toggleDropdown,
       timeSincePosted,

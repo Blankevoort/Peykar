@@ -155,7 +155,7 @@
             :key="'job-' + index + 1"
             class="q-my-md q-px-xs col-md-4 col-lg-4 col-xl-4"
           >
-            <JobCard :job="job" :user="user" :like="like" :sendCV="sendCV" />
+            <JobCard :job="job" :user="user" />
           </div>
         </q-tab-panel>
 
@@ -327,7 +327,7 @@
             v-for="(job, index) in jobs"
             :key="'job-' + index + 1"
           >
-            <JobCard :job="job" :user="user" :like="like" :sendCV="sendCV" />
+            <JobCard :job="job" :user="user" />
           </div>
         </q-tab-panel>
 
@@ -385,8 +385,6 @@
 </template>
 
 <script>
-import { useQuasar } from "quasar";
-import { useErrorHandler } from "src/composables/useErrorHandler";
 import { ref, onMounted } from "vue";
 
 import { api } from "src/boot/axios";
@@ -418,8 +416,6 @@ export default {
   },
 
   setup() {
-    const $q = useQuasar();
-    const { handleError } = useErrorHandler();
     const isLoading = ref(true);
     const title = ref();
     const group = ref();
@@ -459,44 +455,6 @@ export default {
       router.push("/jobs");
     }
 
-    function like(jobId) {
-      api
-        .post("api/like", {
-          job_id: jobId,
-        })
-        .then((r) => {
-          if (r.data.status === 204) {
-            $q.notify({
-              message: r.data.message,
-              color: "green",
-              position: "bottom-left",
-            });
-          }
-        })
-        .catch(handleError);
-    }
-
-    function sendCV(jobId) {
-      api
-        .post("api/job/" + jobId + "/request")
-        .then((r) => {
-          if (r.data.status === 204) {
-            $q.notify({
-              message: "درخواست با موفقیت ارسال شد!",
-              color: "green",
-              position: "bottom-left",
-            });
-          } else if (r.data.status === 409) {
-            $q.notify({
-              message: "برای این موقعیت درخواست ارسال شده دارید",
-              color: "red",
-              position: "bottom-left",
-            });
-          }
-        })
-        .catch(handleError);
-    }
-
     onMounted(() => {
       getData();
       // setTimeout(() => {
@@ -507,11 +465,9 @@ export default {
     return {
       user,
       jobs,
-      like,
       title,
       group,
       search,
-      sendCV,
       options,
       location,
       isLoading,
