@@ -66,7 +66,9 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     Route::post('like', [LikeController::class, 'toggleLike']);
 
-    Route::resource('request', RequestController::class);
+    Route::post('job/{jobId}/request', [RequestController::class, 'store']);
+
+    Route::patch('job/{jobId}/request/{requestId}', [RequestController::class, 'update']);
 
     Route::resource('profiles', ProfileController::class);
 

@@ -13,7 +13,6 @@ class CreateRequestsTable extends Migration
             $table->string('state')->default('درحال بررسی');
             $table->unsignedBigInteger('job_id');
             $table->unsignedBigInteger('user_id');
-            $table->timestamps();
         });
     }
 

@@ -17,14 +17,14 @@ class LikeController extends Controller
 
         if ($existingLike) {
             $existingLike->delete();
-            return response()->json(['message' => 'Like removed'], 200);
+            return response()->json(['message' => "موقعیت از لیست علاقهمندی ها حذف شد!", 'status' => 204]);
         } else {
             $like = new Like();
             $like->user()->associate($user);
             $like->job()->associate($job);
             $like->save();
 
-            return response()->json(['message' => 'Like added'], 201);
+            return response()->json(['message' => "موقعیت در لیست علاقهمندی‌ها قرار گرفت!", 'status' => 204]);
         }
     }
 }

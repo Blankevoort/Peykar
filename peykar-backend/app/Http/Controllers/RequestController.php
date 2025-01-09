@@ -16,40 +16,30 @@ class RequestController extends Controller
         return Request::all();
     }
 
-    public function store(HttpRequest $httpRequest)
+    public function store($jobId)
     {
-        $httpRequest->validate([
-            'job_id' => 'required|exists:jobs,id',
-        ]);
-
-        $existingRequest = Request::where('job_id', $httpRequest->input('job_id'))
+        $existingRequest = Request::where('job_id', $jobId)
             ->where('user_id', Auth::id())
             ->first();
 
         if ($existingRequest) {
-            return response()->json('', 409);
+            return response()->json(['status' => 409]);
         }
 
         Request::create([
-            'job_id' => $httpRequest->input('job_id'),
+            'job_id' => $jobId,
             'user_id' => auth()->id(),
         ]);
 
-        return response()->json('', 204);
+        return response()->json(['status' => 204]);
     }
 
-    public function update(HttpRequest $request)
+    public function update(HttpRequest $request, $requestId)
     {
-        $jobRequest = Request::findOrFail($request->request_id);
+        $jobRequest = Request::findOrFail($requestId);
         $jobRequest->update($request->all());
 
-        return response()->json('', 204);
+        return response()->json(['status' => 204]);
     }
 
-    public function destroy(Request $request)
-    {
-        $request->delete();
-
-        return response()->json('', 204);
-    }
 }

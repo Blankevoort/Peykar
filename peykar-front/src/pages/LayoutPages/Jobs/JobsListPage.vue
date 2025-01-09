@@ -258,99 +258,12 @@
                 v-for="(job, index) in jobs"
                 :key="'job-' + index + 1"
               >
-                <q-card class="br-10" flat bordered>
-                  <!-- Job`s Tags -->
-
-                  <div class="row justify-between" v-if="job.tags">
-                    <div class="row col-12">
-                      <div class="row col-12">
-                        <div
-                          class="col-10"
-                          @click="$router.push('/job/' + job.id)"
-                        >
-                          <q-badge
-                            v-for="(tag, index) in job.tags"
-                            :key="index"
-                            class="q-my-xs q-mx-xs q-py-sm"
-                            :color="tag.important ? 'red-2' : 'indigo-1'"
-                            :text-color="tag.important ? 'negative' : 'primary'"
-                            :label="tag.label"
-                          />
-                        </div>
-
-                        <div class="col-2 text-right" v-if="user">
-                          <q-btn
-                            v-if="!job.liked"
-                            @click="like(job.id)"
-                            flat
-                            icon="favorite_outline"
-                          />
-
-                          <q-btn
-                            v-else
-                            @click="like(job.id)"
-                            color="red"
-                            flat
-                            icon="favorite"
-                          />
-                        </div>
-
-                        <div class="col-2 text-right" v-else>
-                          <q-btn
-                            @click="$router.push('/account')"
-                            flat
-                            icon="favorite_outline"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <q-card-section horizontal>
-                    <q-card-section class="col-xs-5 col-sm-3 flex flex-center">
-                      <q-img
-                        class="rounded-borders"
-                        :src="
-                          'http://127.0.0.1:8000/storage/companyImages/' +
-                          job.image
-                        "
-                        style="width: 48px; height: 48px"
-                      />
-                    </q-card-section>
-
-                    <q-card-section>
-                      <div class="q-mt-sm q-mb-xs">{{ job.title }}</div>
-
-                      <div class="text-caption" v-if="job.company">
-                        {{ job.company }}
-                      </div>
-
-                      <div class="text-caption text-grey row">
-                        <div>
-                          {{ job.location }}
-                        </div>
-
-                        <div class="row" v-if="job.rightsMin">
-                          <span class="q-px-sm">|</span>
-
-                          <p class="text-positive" v-if="job.rightsMax">
-                            {{ job.rightsMin }} - {{ job.rightsMax }}
-                          </p>
-
-                          <p class="text-positive" v-else>
-                            {{ job.rightsMin }}+
-                          </p>
-                        </div>
-
-                        <div class="col-12 q-pb-sm">
-                          <div flat class="font-13 text-grey-6">
-                            {{ timeSincePosted(job.created_at) }}
-                          </div>
-                        </div>
-                      </div>
-                    </q-card-section>
-                  </q-card-section>
-                </q-card>
+                <JobCard
+                  :job="job"
+                  :user="user"
+                  :like="like"
+                  :sendCV="sendCV"
+                />
               </div>
 
               <!-- Job Offers Tabs -->
@@ -704,117 +617,12 @@
                   v-for="(job, index) in jobs"
                   :key="'job-' + index + 1"
                 >
-                  <!-- Job`s Tags -->
-
-                  <div class="row justify-between" v-if="job.tagList">
-                    <div class="row col-12">
-                      <div class="col-10">
-                        <q-badge
-                          v-for="(tag, index) in job.tags"
-                          :key="index"
-                          class="q-my-xs q-mx-xs q-py-sm"
-                          :color="tag.important ? 'red-2' : 'indigo-1'"
-                          :text-color="tag.important ? 'negative' : 'primary'"
-                          :label="tag.label"
-                        />
-                      </div>
-
-                      <div class="col-2 text-right">
-                        <q-btn flat icon="favorite_outline" />
-                      </div>
-                    </div>
-                  </div>
-
-                  <q-card style="background-color: transparent" flat>
-                    <!-- Job`s Tags -->
-
-                    <div class="row justify-between" v-if="job.tags">
-                      <div class="row col-12">
-                        <div class="col-10">
-                          <q-badge
-                            v-for="(tag, index) in job.tags"
-                            :key="index"
-                            class="q-my-xs q-mx-xs q-py-sm"
-                            :color="tag.important ? 'red-2' : 'indigo-1'"
-                            :text-color="tag.important ? 'negative' : 'primary'"
-                            :label="tag.label"
-                          />
-                        </div>
-
-                        <div class="col-2 text-right" v-if="user">
-                          <q-btn
-                            v-if="!job.liked"
-                            @click="like(job.id)"
-                            flat
-                            icon="favorite_outline"
-                          />
-
-                          <q-btn
-                            v-else
-                            @click="like(job.id)"
-                            color="red"
-                            flat
-                            icon="favorite"
-                          />
-                        </div>
-
-                        <div class="col-2 text-right" v-else>
-                          <q-btn
-                            @click="$router.push('/account')"
-                            flat
-                            icon="favorite_outline"
-                          />
-                        </div>
-                      </div>
-                    </div>
-
-                    <q-card-section horizontal>
-                      <q-card-section
-                        class="col-xs-3 col-sm-1 flex flex-center q-px-md"
-                      >
-                        <q-img
-                          class="rounded-borders"
-                          style="width: 48px; height: 48px"
-                          :src="
-                            'http://127.0.0.1:8000/storage/companyImages/' +
-                            job.image
-                          "
-                        />
-                      </q-card-section>
-
-                      <q-card-section>
-                        <div class="q-mt-sm q-mb-xs">{{ job.title }}</div>
-
-                        <div class="text-caption" v-if="job.company">
-                          {{ job.company }}
-                        </div>
-
-                        <div class="text-caption text-grey row">
-                          <div>
-                            {{ job.location }}
-                          </div>
-
-                          <div class="row" v-if="job.rightsMin">
-                            <span class="q-px-sm">|</span>
-
-                            <p class="text-positive" v-if="job.rightsMax">
-                              {{ job.rightsMin }} - {{ job.rightsMax }}
-                            </p>
-
-                            <p class="text-positive" v-else>
-                              {{ job.rightsMin }}+
-                            </p>
-                          </div>
-
-                          <div class="col-12 q-pb-sm">
-                            <div flat class="font-13 text-grey-6">
-                              {{ timeSincePosted(job.created_at) }}
-                            </div>
-                          </div>
-                        </div>
-                      </q-card-section>
-                    </q-card-section>
-                  </q-card>
+                  <JobCard
+                    :job="job"
+                    :user="user"
+                    :like="like"
+                    :sendCV="sendCV"
+                  />
                 </div>
               </div>
 
@@ -875,38 +683,27 @@
 </template>
 
 <script>
+import { useQuasar } from "quasar";
+import { useErrorHandler } from "src/composables/useErrorHandler";
 import { onMounted, ref } from "vue";
-import dayjs from "dayjs";
 
 import { api } from "src/boot/axios";
+import JobCard from "components/JobCard.vue";
 
 export default {
+  components: {
+    JobCard,
+  },
+
   setup() {
+    const $q = useQuasar();
+    const { handleError } = useErrorHandler();
     const title = ref("");
     const group = ref("");
     const location = ref("");
     const filter = ref("مرتبط‌ترین");
     const jobs = ref([]);
     const user = ref();
-    const timeSincePosted = (created_at) => {
-      const now = dayjs();
-      const posted = dayjs(created_at);
-
-      if (!posted.isValid()) {
-        console.error("Invalid Date:", created_at);
-        return "تاریخ نامعتبر";
-      }
-
-      const diffInDays = now.diff(posted, "day");
-
-      if (diffInDays > 1) {
-        return `${diffInDays} روز پیش`;
-      } else if (diffInDays === 1) {
-        return "دیروز";
-      } else {
-        return "امروز";
-      }
-    };
 
     async function getData() {
       try {
@@ -940,6 +737,44 @@ export default {
         console.error(err);
       }
     };
+
+    function like(jobId) {
+      api
+        .post("api/like", {
+          job_id: jobId,
+        })
+        .then((r) => {
+          if (r.data.status === 204) {
+            $q.notify({
+              message: r.data.message,
+              color: "green",
+              position: "bottom-left",
+            });
+          }
+        })
+        .catch(handleError);
+    }
+
+    function sendCV(jobId) {
+      api
+        .post("api/job/" + jobId + "/request")
+        .then((r) => {
+          if (r.data.status === 204) {
+            $q.notify({
+              message: "درخواست با موفقیت ارسال شد!",
+              color: "green",
+              position: "bottom-left",
+            });
+          } else if (r.data.status === 409) {
+            $q.notify({
+              message: "برای این موقعیت درخواست ارسال شده دارید",
+              color: "red",
+              position: "bottom-left",
+            });
+          }
+        })
+        .catch(handleError);
+    }
 
     onMounted(async () => {
       const searchTitle = localStorage.getItem("searchTitle");
@@ -977,13 +812,14 @@ export default {
     });
 
     return {
+      like,
       jobs,
       user,
       title,
       group,
+      sendCV,
       filter,
       location,
-      timeSincePosted,
       model: ref(null),
       tab: ref("firstPage"),
       options: ["Google", "Facebook", "Twitter", "Apple", "Oracle"],
